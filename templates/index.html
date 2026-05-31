@@ -3,162 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hyperlocal Resilience Grid</title>
+    <title>The Solidarity Grid</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .active-tab { border-bottom: 3px solid #2563eb; color: #2563eb; font-weight: 700; }
+        /* Premium custom CSS extensions matching the glassmorphism reference aesthetic */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            background: rgba(30, 41, 59, 0.55);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+        .active-tab {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+            border-color: rgba(147, 51, 234, 0.6);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.25);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #a855f7 50%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-button {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            transition: all 0.2s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+            opacity: 0.95;
+        }
+        /* Custom scrollbar alignment for premium dark dashboard context */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; rounded: 3px; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans text-gray-900 selection:bg-blue-100">
+<body class="bg-[#090d16] text-slate-100 font-sans min-h-screen relative overflow-x-hidden selection:bg-purple-500/30">
 
-    <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-xs">
-        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold tracking-wider">G</div>
-                <span class="text-xl font-extrabold tracking-tight text-gray-900">THE SOLIDARITY GRID</span>
-            </div>
+    <div class="absolute top-[-10%] left-[-20%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none"></div>
+
+    <header class="sticky top-0 z-50 bg-[#090d16]/70 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-4">
-                <button onclick="alert('Prototype Auth Context: Active Simulation Account')" class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium bg-white hover:bg-gray-50 transition-colors cursor-pointer">
-                    <img src="https://www.google.com/favicon.ico" class="w-4 h-4" alt="Google">
-                    <span>Logged in via Google</span>
+                <div class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-black shadow-[0_0_20px_rgba(124,58,237,0.3)]">
+                    G
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-wider bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">THE SOLIDARITY GRID</span>
+                    <p class="text-[10px] text-slate-500 tracking-widest uppercase font-bold mt-0.5">Hyperlocal Interchanges Cluster</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 bg-white/5 border border-white/5 rounded-full px-4 py-1.5 text-xs text-slate-400">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Live Datastream: Connected
+                </div>
+                <button class="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-xs font-semibold hover:bg-white/10 transition-colors cursor-pointer text-slate-200">
+                    <img src="https://www.google.com/favicon.ico" class="w-3.5 h-3.5 opacity-80" alt="Google">
+                    <span>Simulated Session Account</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10">
 
-        <section class="bg-gradient-to-br from-blue-900 to-indigo-950 text-white rounded-2xl p-6 md:p-8 shadow-md mb-10">
-            <div class="max-w-3xl">
-                <span class="bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full">UAE 2026 Year of Family Priority</span>
-                <h1 class="text-3xl md:text-4xl font-black tracking-tight mt-3 mb-4">Strength in Solidarity: Digitizing our Neighborhood Square</h1>
-                <p class="text-gray-300 text-base leading-relaxed mb-6">
-                    Welcome to our live public cloud prototype framework. This web application builds urban community resilience by establishing a real-time database network where neighbors exchange skills, monetize local talents, and trade heritage crafts.
+        <section class="glass-panel rounded-3xl p-6 md:p-8 mb-10 relative overflow-hidden shadow-2xl">
+            <div class="absolute top-0 right-0 w-96 h-full bg-gradient-to-l from-purple-600/10 to-transparent pointer-events-none"></div>
+            <div class="max-w-3xl relative z-10">
+                <div class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-full mb-4">
+                    <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-purple-300">UAE Community Architecture Deployment</span>
+                </div>
+                <h1 class="text-3xl md:text-5xl font-black tracking-tight text-white mb-4 leading-tight">
+                    Digitizing Our Neighborhood Square <br class="hidden sm:inline"> With <span class="text-gradient">Strength in Solidarity</span>
+                </h1>
+                <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-6 max-w-2xl">
+                    Welcome to our live public cloud framework ecosystem. This interactive application maps hyperlocal community resilience—enabling neighbors within a 5km radius to safely exchange localized skills, trade heritage crafts, and provide vital structural support.
                 </p>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-white/10 pt-6">
-                    <div class="flex items-start gap-3">
-                        <div class="p-2 bg-white/10 rounded-lg"><i class="fa-solid font-lg fa-map-location-dot text-blue-400"></i></div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-white/5 pt-6 mt-2">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/10"><i class="fa-solid fa-satellite-dish text-xs"></i></div>
                         <div>
-                            <h4 class="font-bold text-sm">Who & Where</h4>
-                            <p class="text-xs text-gray-400">Verified neighbors within a 2-5km radius.</p>
+                            <p class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Node Grid Radius</p>
+                            <h4 class="font-extrabold text-white text-sm">Hyperlocal Max 5.0 KM</h4>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3">
-                        <div class="p-2 bg-white/10 rounded-lg"><i class="fa-solid font-lg fa-hand-holding-hand text-teal-400"></i></div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 border border-purple-500/10"><i class="fa-solid fa-layer-group text-xs"></i></div>
                         <div>
-                            <h4 class="font-bold text-sm">Why & What</h4>
-                            <p class="text-xs text-gray-400">Combating isolation via mutual economic support.</p>
+                            <p class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Framework Focus</p>
+                            <h4 class="font-extrabold text-white text-sm">UN SDGs 8, 10, & 11 Mapping</h4>
                         </div>
                     </div>
-                    <div class="flex items-start gap-3">
-                        <div class="p-2 bg-white/10 rounded-lg"><i class="fa-solid font-lg fa-chart-line text-amber-400"></i></div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-400 border border-rose-500/10"><i class="fa-solid fa-shield-halved text-xs"></i></div>
                         <div>
-                            <h4 class="font-bold text-sm">SDG Impact Goals</h4>
-                            <p class="text-xs text-gray-400">Directly mapping to UN SDGs 8, 10, and 11.</p>
+                            <p class="text-[10px] uppercase font-bold tracking-wider text-slate-500">Security Guard</p>
+                            <h4 class="font-extrabold text-white text-sm">Encrypted Identity Vault</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            <div class="lg:col-span-2">
-                
-                <div class="flex border-b border-gray-200 mb-6 bg-white rounded-t-xl px-2">
-                    <button id="tab-all" onclick="filterCategory('all')" class="active-tab px-4 py-3 text-sm font-semibold cursor-pointer transition-all">All Interchanges</button>
-                    <button id="tab-services" onclick="filterCategory('services')" class="px-4 py-3 text-sm font-semibold text-gray-500 hover:text-gray-800 cursor-pointer transition-all">Local Services</button>
-                    <button id="tab-heritage" onclick="filterCategory('heritage')" class="px-4 py-3 text-sm font-semibold text-gray-500 hover:text-gray-800 cursor-pointer transition-all">Heritage Hub (Souq)</button>
-                </div>
+            <div class="lg:col-span-3 space-y-6">
+                <div class="glass-panel rounded-2xl p-5">
+                    <h3 class="text-xs font-black tracking-widest text-slate-400 uppercase mb-4 flex items-center justify-between">
+                        <span>Filter Matrix</span>
+                        <i class="fa-solid fa-sliders text-slate-500 text-[10px]"></i>
+                    </h3>
+                    
+                    <div class="space-y-2">
+                        <button id="tab-all" onclick="filterCategory('all')" class="active-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-white/5 transition-all duration-200 cursor-pointer text-slate-400 hover:text-white hover:bg-white/5">
+                            <i class="fa-solid fa-globe text-sm w-4 text-center"></i>
+                            <span>All Cluster Interchanges</span>
+                        </button>
+                        <button id="tab-services" onclick="filterCategory('services')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-white/5 transition-all duration-200 cursor-pointer text-slate-400 hover:text-white hover:bg-white/5">
+                            <i class="fa-solid fa-hand-holding-hand text-sm w-4 text-center"></i>
+                            <span>Local Service Hub</span>
+                        </button>
+                        <button id="tab-heritage" onclick="filterCategory('heritage')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-white/5 transition-all duration-200 cursor-pointer text-slate-400 hover:text-white hover:bg-white/5">
+                            <i class="fa-solid fa-store text-sm w-4 text-center"></i>
+                            <span>Heritage Hub (Souq)</span>
+                        </button>
+                    </div>
 
-                <div class="flex gap-2 mb-6 items-center">
-                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mr-2">Filter Grid:</span>
-                    <button id="type-all" onclick="filterType('all')" class="bg-blue-600 text-white text-xs px-3 py-1.5 font-medium rounded-full transition-colors cursor-pointer">Show All</button>
-                    <button id="type-service" onclick="filterType('Service')" class="bg-gray-200 text-gray-700 hover:bg-gray-300 text-xs px-3 py-1.5 font-medium rounded-full transition-colors cursor-pointer">Services Only</button>
-                    <button id="type-product" onclick="filterType('Product')" class="bg-gray-200 text-gray-700 hover:bg-gray-300 text-xs px-3 py-1.5 font-medium rounded-full transition-colors cursor-pointer">Products Only</button>
-                </div>
-
-                <div id="listings-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {% for item in listings %}
-                    <div class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between hover:border-blue-300 hover:shadow-xs transition-all">
-                        <div>
-                            <div class="flex justify-between items-start gap-2 mb-3">
-                                <span class="text-[10px] uppercase font-extrabold tracking-widest px-2 py-0.5 rounded-sm bg-gray-100 text-gray-600 border border-gray-200">{{ item.type }}</span>
-                                <span class="text-xs text-blue-600 font-semibold flex items-center gap-1"><i class="fa-solid fa-location-dot text-[10px]"></i> {{ item.distance }}</span>
-                            </div>
-                            <h3 class="font-bold text-gray-900 text-base leading-snug mb-1">{{ item.title }}</h3>
-                            <p class="text-xs text-gray-500 line-clamp-3 mb-4">{{ item.description }}</p>
+                    <div class="border-t border-white/5 my-5 pt-4">
+                        <span class="block text-[10px] font-black uppercase tracking-wider text-slate-500 mb-3">Interchange Mode</span>
+                        <div class="grid grid-cols-3 gap-1 bg-[#0b1220] p-1 border border-white/5 rounded-lg">
+                            <button id="type-all" onclick="filterType('all')" class="bg-blue-600 text-white text-[10px] font-bold py-1.5 rounded-md transition-all cursor-pointer text-center">All</button>
+                            <button id="type-service" onclick="filterType('Service')" class="text-slate-400 hover:text-white text-[10px] font-bold py-1.5 rounded-md transition-all cursor-pointer text-center">Services</button>
+                            <button id="type-product" onclick="filterType('Product')" class="text-slate-400 hover:text-white text-[10px] font-bold py-1.5 rounded-md transition-all cursor-pointer text-center">Products</button>
                         </div>
-                        <div class="border-t border-gray-100 pt-3 mt-2">
-                            <div class="flex justify-between items-center mb-3">
-                                <div class="flex flex-col">
-                                    <span class="text-xs font-bold text-gray-800">{{ item.provider }}</span>
-                                    <span class="text-[9px] text-teal-600 font-medium flex items-center gap-0.5"><i class="fa-solid fa-shield-check"></i> {{ item.badge }}</span>
-                                </div>
-                                <span class="text-xs font-extrabold text-gray-900 bg-gray-50 px-2 py-1 rounded border border-gray-100">{{ item.price }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 space-y-4">
+                <div class="flex items-center justify-between px-1 mb-2">
+                    <h2 class="text-sm font-black tracking-wider uppercase text-slate-400 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></span>
+                        Live Datastream Feed
+                    </h2>
+                    <span class="text-[10px] text-slate-500 font-medium">Auto-Sync Instance Enabled</span>
+                </div>
+
+                <div id="listings-grid" class="space-y-4">
+                    {% for item in listings %}
+                    <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-500/5 to-transparent pointer-events-none"></div>
+                        <div>
+                            <div class="flex justify-between items-start gap-4 mb-3">
+                                <span class="text-[9px] uppercase font-black tracking-widest px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-300 border border-blue-500/20">
+                                    {{ item.type }}
+                                </span>
+                                <span class="text-xs text-slate-400 font-semibold flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-md border border-white/5">
+                                    <i class="fa-solid fa-location-dot text-rose-400 text-[10px]"></i> {{ item.distance }}
+                                </span>
                             </div>
-                            <button onclick="alert('Secure Milestone Chat initiated with ' + '{{ item.provider }}' + '. Escrow enabled.')" class="w-full bg-gray-900 hover:bg-blue-600 text-white text-xs font-semibold py-2 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-1.5">
-                                <i class="fa-regular fa-comment-dots"></i> Connect Safely
-                            </button>
+                            <h3 class="font-extrabold text-white text-lg tracking-tight mb-2 group-hover:text-blue-400 transition-colors">{{ item.title }}</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6 font-medium">{{ item.description }}</p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-xs font-bold text-slate-300 uppercase tracking-wider">
+                                    {{ item.provider[:2] }}
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-extrabold text-white">{{ item.provider }}</span>
+                                    <span class="text-[9px] text-emerald-400 font-bold tracking-wide flex items-center gap-1 mt-0.5">
+                                        <i class="fa-solid fa-circle-check text-[8px]"></i> {{ item.badge }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 justify-between sm:justify-end">
+                                <span class="text-xs font-black text-slate-200 bg-[#0f172a] border border-white/10 px-3 py-1.5 rounded-lg">
+                                    {{ item.price }}
+                                </span>
+                                <button onclick="alert('Secure Connection Bridge initiated with ' + '{{ item.provider }}' + '. Authorized Escrow Active.')" class="px-4 py-2 bg-white/5 border border-white/10 hover:bg-blue-600 hover:border-blue-500 text-white text-xs font-bold rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-2">
+                                    <i class="fa-regular fa-comment-dots text-xs"></i> Connect
+                                </button>
+                            </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
 
-            <div class="lg:col-span-1">
-                <div class="bg-white border border-gray-200 rounded-xl p-6 sticky top-24 shadow-xs">
-                    <h2 class="font-extrabold text-lg text-gray-900 tracking-tight mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-circle-plus text-blue-600"></i> Cloud Data Hub
+            <div class="lg:col-span-3 space-y-6">
+                <div class="glass-panel rounded-2xl p-6 sticky top-28 shadow-2xl">
+                    <h2 class="font-black text-sm text-white tracking-wider uppercase mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-plus text-purple-400"></i> Inject Node Data
                     </h2>
-                    <p class="text-xs text-gray-500 mb-5 leading-relaxed">
-                        Input an item below. Your submission transmits directly to our live Supabase cloud database cluster and auto-syncs to the public grid.
+                    <p class="text-[11px] text-slate-400 leading-relaxed mb-5">
+                        Transmit a verified node data string directly to your live Supabase distributed database cluster layer.
                     </p>
 
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Your Name</label>
-                            <input type="text" id="form-provider" placeholder="e.g., Dhrupad M." class="w-full text-sm px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">User Handle / Identity</label>
+                            <input type="text" id="form-provider" placeholder="e.g., Dhrupad M." class="w-full text-xs px-3.5 py-2.5 bg-[#0b1220] border border-white/5 focus:border-purple-500 rounded-xl focus:outline-none transition-colors text-white placeholder-slate-600 font-medium">
                         </div>
-                        <div class="flex gap-4">
-                            <div class="flex-1">
-                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Listing Category</label>
-                                <select id="form-category" class="w-full text-sm px-2 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 bg-white">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Grid Category</label>
+                                <select id="form-category" class="w-full text-xs px-2.5 py-2.5 bg-[#0b1220] border border-white/5 focus:border-purple-500 rounded-xl focus:outline-none transition-colors text-white font-medium">
                                     <option value="services">Local Services</option>
-                                    <option value="heritage">Heritage Hub (Souq)</option>
+                                    <option value="heritage">Heritage Hub</option>
                                 </select>
                             </div>
-                            <div class="flex-1">
-                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Exchange Form</label>
-                                <select id="form-type" class="w-full text-sm px-2 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 bg-white">
+                            <div>
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Node Form</label>
+                                <select id="form-type" class="w-full text-xs px-2.5 py-2.5 bg-[#0b1220] border border-white/5 focus:border-purple-500 rounded-xl focus:outline-none transition-colors text-white font-medium">
                                     <option value="Service">Service</option>
                                     <option value="Product">Product</option>
                                 </select>
                             </div>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Skill Title / Offering</label>
-                            <input type="text" id="form-title" placeholder="e.g., Traditional Henna Artistry" class="w-full text-sm px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Interchange Title / Skill</label>
+                            <input type="text" id="form-title" placeholder="e.g., Arabic Calligraphy Tutorial" class="w-full text-xs px-3.5 py-2.5 bg-[#0b1220] border border-white/5 focus:border-purple-500 rounded-xl focus:outline-none transition-colors text-white placeholder-slate-600 font-medium">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Detailed Description</label>
-                            <textarea id="form-description" rows="3" placeholder="Explain what skill you are offering or sharing with your neighbors..." class="w-full text-sm px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"></textarea>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Node Content Description</label>
+                            <textarea id="form-description" rows="3" placeholder="Outline specific structural details regarding your craft or service parameters..." class="w-full text-xs px-3.5 py-2.5 bg-[#0b1220] border border-white/5 focus:border-purple-500 rounded-xl focus:outline-none transition-colors text-white placeholder-slate-600 font-medium resize-none"></textarea>
                         </div>
-                        <div class="flex gap-4 items-center">
+                        <div class="flex gap-4 items-center justify-between bg-[#0b1220] border border-white/5 p-3 rounded-xl">
                             <div class="flex-1">
-                                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Price / Value Tag</label>
-                                <input type="text" id="form-price" placeholder="e.g., Free / AED 50" class="w-full text-sm px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                                <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Value / Rate Tag</label>
+                                <input type="text" id="form-price" placeholder="e.g., AED 75" class="w-full bg-transparent text-xs text-white focus:outline-none placeholder-slate-600 font-bold">
                             </div>
-                            <div class="flex items-center gap-2 mt-4 pt-1">
-                                <input type="checkbox" id="form-student" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 border-gray-300">
-                                <label for="form-student" class="text-xs font-bold text-gray-700 cursor-pointer">Student ID?</label>
+                            <div class="flex items-center gap-2 border-l border-white/5 pl-3 h-8">
+                                <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-purple-500 rounded bg-[#0b1220] border-white/10">
+                                <label for="form-student" class="text-[10px] font-black text-slate-400 tracking-wider cursor-pointer uppercase select-none">Student ID?</label>
                             </div>
                         </div>
 
-                        <button onclick="submitNewListing()" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2.5 rounded-lg transition-colors cursor-pointer shadow-xs mt-2">
-                            Inject Into Cloud Grid
+                        <button onclick="submitNewListing()" class="w-full glow-button text-white text-xs font-black uppercase tracking-wider py-3 rounded-xl cursor-pointer mt-2">
+                            Inject Data Node
                         </button>
                     </div>
                 </div>
@@ -172,7 +274,7 @@
 
         function filterCategory(cat) {
             currentCategory = cat;
-            document.querySelectorAll('[id^="tab-"]').forEach(el => el.classList.remove('active-tab', 'text-blue-600'));
+            document.querySelectorAll('[id^="tab-"]').forEach(el => el.classList.remove('active-tab', 'text-white'));
             document.getElementById(`tab-${cat}`).classList.add('active-tab');
             fetchAndRenderListings();
         }
@@ -180,12 +282,10 @@
         function filterType(type) {
             currentType = type;
             document.querySelectorAll('[id^="type-"]').forEach(el => {
-                el.classList.remove('bg-blue-600', 'text-white');
-                el.classList.add('bg-gray-200', 'text-gray-700');
+                el.className = 'text-slate-400 hover:text-white text-[10px] font-bold py-1.5 rounded-md transition-all cursor-pointer text-center';
             });
             const eventTargetId = type === 'all' ? 'all' : type === 'Service' ? 'service' : 'product';
-            document.getElementById(`type-${eventTargetId}`).classList.remove('bg-gray-200', 'text-gray-700');
-            document.getElementById(`type-${eventTargetId}`).classList.add('bg-blue-600', 'text-white');
+            document.getElementById(`type-${eventTargetId}`).className = 'bg-blue-600 text-white text-[10px] font-bold py-1.5 rounded-md transition-all cursor-pointer text-center';
             fetchAndRenderListings();
         }
 
@@ -198,34 +298,45 @@
                     
                     if(data.length === 0) {
                         container.innerHTML = `
-                            <div class="col-span-full bg-white border border-dashed border-gray-300 rounded-xl p-8 text-center text-gray-500 text-sm">
-                                No active matches found in your immediate neighborhood perimeter for this filter layout.
+                            <div class="glass-card rounded-2xl border-dashed border-slate-700 p-8 text-center text-slate-500 text-xs font-medium">
+                                No matching active nodes discovered inside your immediate perimeter layout criteria.
                             </div>`;
                         return;
                     }
 
                     data.forEach(item => {
+                        const avatarInitials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'GN';
                         container.innerHTML += `
-                            <div class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between hover:border-blue-300 hover:shadow-xs transition-all">
+                            <div class="glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-500/5 to-transparent pointer-events-none"></div>
                                 <div>
-                                    <div class="flex justify-between items-start gap-2 mb-3">
-                                        <span class="text-[10px] uppercase font-extrabold tracking-widest px-2 py-0.5 rounded-sm bg-gray-100 text-gray-600 border border-gray-200">${item.type}</span>
-                                        <span class="text-xs text-blue-600 font-semibold flex items-center gap-1"><i class="fa-solid fa-location-dot text-[10px]"></i> ${item.distance}</span>
+                                    <div class="flex justify-between items-start gap-4 mb-3">
+                                        <span class="text-[9px] uppercase font-black tracking-widest px-2.5 py-1 rounded-md bg-blue-500/10 text-blue-300 border border-blue-500/20">${item.type}</span>
+                                        <span class="text-xs text-slate-400 font-semibold flex items-center gap-1.5 bg-white/5 px-2.5 py-1 rounded-md border border-white/5">
+                                            <i class="fa-solid fa-location-dot text-rose-400 text-[10px]"></i> ${item.distance}
+                                        </span>
                                     </div>
-                                    <h3 class="font-bold text-gray-900 text-base leading-snug mb-1">${item.title}</h3>
-                                    <p class="text-xs text-gray-500 line-clamp-3 mb-4">${item.description}</p>
+                                    <h3 class="font-extrabold text-white text-lg tracking-tight mb-2 group-hover:text-blue-400 transition-colors">${item.title}</h3>
+                                    <p class="text-xs text-slate-400 leading-relaxed mb-6 font-medium">${item.description}</p>
                                 </div>
-                                <div class="border-t border-gray-100 pt-3 mt-2">
-                                    <div class="flex justify-between items-center mb-3">
-                                        <div class="flex flex-col">
-                                            <span class="text-xs font-bold text-gray-800">${item.provider}</span>
-                                            <span class="text-[9px] text-teal-600 font-medium flex items-center gap-0.5"><i class="fa-solid fa-shield-check"></i> ${item.badge}</span>
+                                <div class="border-t border-white/5 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                    <div class="flex items-center gap-2.5">
+                                        <div class="w-8 h-8 rounded-full bg-slate-800 border border-white/10 flex items-center justify-center text-xs font-bold text-slate-300 uppercase tracking-wider">
+                                            ${avatarInitials}
                                         </div>
-                                        <span class="text-xs font-extrabold text-gray-900 bg-gray-50 px-2 py-1 rounded border border-gray-100">${item.price}</span>
+                                        <div class="flex flex-col">
+                                            <span class="text-xs font-extrabold text-white">${item.provider}</span>
+                                            <span class="text-[9px] text-emerald-400 font-bold tracking-wide flex items-center gap-1 mt-0.5">
+                                                <i class="fa-solid fa-circle-check text-[8px]"></i> ${item.badge}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <button onclick="alert('Secure Milestone Chat initiated with ' + '${item.provider}' + '. Escrow enabled.')" class="w-full bg-gray-900 hover:bg-blue-600 text-white text-xs font-semibold py-2 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-1.5">
-                                        <i class="fa-regular fa-comment-dots"></i> Connect Safely
-                                    </button>
+                                    <div class="flex items-center gap-3 justify-between sm:justify-end">
+                                        <span class="text-xs font-black text-slate-200 bg-[#0f172a] border border-white/10 px-3 py-1.5 rounded-lg">${item.price}</span>
+                                        <button onclick="alert('Secure Connection Bridge initiated with ' + '${item.provider}' + '. Authorized Escrow Active.')" class="px-4 py-2 bg-white/5 border border-white/10 hover:bg-blue-600 hover:border-blue-500 text-white text-xs font-bold rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-2">
+                                            <i class="fa-regular fa-comment-dots text-xs"></i> Connect
+                                        </button>
+                                    </div>
                                 </div>
                             </div>`;
                     });
@@ -242,7 +353,7 @@
             const isStudent = document.getElementById('form-student').checked;
 
             if(!provider || !title || !description) {
-                alert('Please fill out Name, Title, and Description fields to simulate injection.');
+                alert('Please input values across Handle, Title, and Description string nodes.');
                 return;
             }
 
@@ -259,7 +370,7 @@
                     document.getElementById('form-price').value = '';
                     fetchAndRenderListings();
                 } else {
-                    alert('Database insertion error: ' + res.error);
+                    alert('Cluster insertion anomaly context: ' + res.error);
                 }
             });
         }
