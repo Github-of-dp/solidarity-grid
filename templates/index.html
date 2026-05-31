@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Warm Arabian Premium Palette Extensions */
+        /* Mid-Tone Arab Heritage Palette Extensions */
         .heritage-gradient {
             background: linear-gradient(135deg, #064e3b 0%, #0f766e 100%);
         }
@@ -17,33 +17,34 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        /* Deeper warm card fill to pop beautifully against the clay background */
         .cream-card {
-            background-color: #fbf9f6;
-            border: 1px solid rgba(6, 78, 59, 0.06);
+            background-color: #f5f0e6;
+            border: 1px solid rgba(6, 78, 59, 0.08);
         }
         .gold-border-glow:hover {
-            border-color: rgba(217, 119, 6, 0.3);
-            box-shadow: 0 12px 30px rgba(217, 119, 6, 0.08);
+            border-color: rgba(217, 119, 6, 0.4);
+            box-shadow: 0 12px 30px rgba(6, 78, 59, 0.08);
             transform: translateY(-2px);
         }
         .active-tab-heritage {
-            background-color: #e6f4ea;
+            background-color: #dfe2db;
             border-color: #059669;
             color: #065f46;
         }
         .premium-shadow {
-            box-shadow: 0 6px 24px rgba(6, 78, 59, 0.04);
+            box-shadow: 0 6px 24px rgba(6, 78, 59, 0.05);
         }
     </style>
 </head>
-<body class="bg-[#F7F4EF] text-slate-800 font-sans min-h-screen relative selection:bg-emerald-600/10">
+<body class="bg-[#dfd7ca] text-slate-800 font-sans min-h-screen relative selection:bg-emerald-600/10">
 
     <!-- Subtle elegant ambient decorative vector glows -->
-    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-600/5 rounded-full blur-[140px] pointer-events-none"></div>
-    <div class="absolute bottom-40 left-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-900/10 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="absolute bottom-40 left-0 w-[500px] h-[500px] bg-amber-700/5 rounded-full blur-[120px] pointer-events-none"></div>
 
     <!-- Top Premium Navbar Header -->
-    <header class="sticky top-0 z-50 bg-[#F7F4EF]/90 backdrop-blur-md border-b border-emerald-900/10 premium-shadow">
+    <header class="sticky top-0 z-50 bg-[#dfd7ca]/90 backdrop-blur-md border-b border-emerald-900/15 premium-shadow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-3.5">
                 <div class="w-11 h-11 heritage-gradient rounded-xl flex items-center justify-center text-amber-400 font-serif text-xl shadow-md border border-amber-500/20">
@@ -51,13 +52,13 @@
                 </div>
                 <div>
                     <span class="text-lg font-black tracking-tight text-emerald-950 block">THE SOLIDARITY GRID</span>
-                    <span class="text-[10px] text-emerald-700 tracking-widest uppercase font-bold block">Hyperlocal Family & Heritage Interchange</span>
+                    <span class="text-[10px] text-emerald-800 tracking-widest uppercase font-bold block">Hyperlocal Community Interchange</span>
                 </div>
             </div>
             
             <div class="flex items-center gap-4">
-                <div class="hidden md:flex items-center gap-2 bg-emerald-100/60 text-emerald-900 border border-emerald-200/50 rounded-full px-4 py-1.5 text-xs font-semibold">
-                    <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                <div class="hidden md:flex items-center gap-2 bg-emerald-900/10 text-emerald-950 border border-emerald-900/20 rounded-full px-4 py-1.5 text-xs font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-emerald-700 animate-pulse"></span>
                     Community Node Active
                 </div>
             </div>
@@ -66,77 +67,13 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10">
 
-        <!-- Majlis / Welcome Banner Panel Layout -->
-        <section class="cream-card rounded-3xl p-6 md:p-8 mb-8 relative overflow-hidden premium-shadow">
-            <div class="absolute top-0 right-0 w-full sm:w-1/3 h-full bg-gradient-to-l from-emerald-50/40 to-transparent pointer-events-none"></div>
-            <div class="max-w-3xl relative z-10">
-                <div class="inline-flex items-center gap-2 bg-amber-100/60 border border-amber-200/70 px-3 py-1 rounded-full mb-4">
-                    <i class="fa-solid fa-hands-holding-child text-amber-800 text-xs"></i>
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-amber-900">UAE Community Initiative</span>
-                </div>
-                <h1 class="text-3xl md:text-4xl font-black text-emerald-950 mb-3 tracking-tight">
-                    Fostering Community Goodwill & <span class="gold-text">Traditional Arab Hospitality</span>
-                </h1>
-                <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl font-medium">
-                    Welcome to a modern digital extension of our neighborhood square. Rooted in family values and cultural solidarity, this platform safely connects households within 5km to share skills, trade traditional crafts, and look out for one another.
-                </p>
-            </div>
-        </section>
-
-        <!-- Dynamic Detailed App Blueprint & UN SDG Blueprint Section -->
-        <section class="cream-card rounded-3xl p-6 md:p-8 mb-10 premium-shadow">
-            <div class="border-b border-emerald-900/5 pb-4 mb-6">
-                <h2 class="text-xs font-black text-emerald-800 uppercase tracking-widest flex items-center gap-2">
-                    <i class="fa-solid fa-circle-info text-amber-600"></i> Project Architecture & Core Framework
-                </h2>
-                <p class="text-slate-500 text-xs mt-1 font-medium">Understanding the mechanics, philosophy, and global alignment of the application platform.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Why Blueprint -->
-                <div class="bg-white/60 p-5 rounded-2xl border border-emerald-900/5">
-                    <div class="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-800 mb-3 border border-emerald-100">
-                        <i class="fa-solid fa-gavel text-sm"></i>
-                    </div>
-                    <h3 class="font-extrabold text-emerald-950 text-sm mb-2 tracking-tight">The Vision (Why)</h3>
-                    <p class="text-slate-600 text-xs leading-relaxed font-medium">
-                        Modern neighborhoods often face fragmented social cohesion. This app acts as a digital ledger to reverse that effect—providing families a trusted framework to network, rely on internal resources, and safeguard cultural heritage during economic changes.
-                    </p>
-                </div>
-
-                <!-- How Blueprint -->
-                <div class="bg-white/60 p-5 rounded-2xl border border-emerald-900/5">
-                    <div class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center text-amber-800 mb-3 border border-amber-100">
-                        <i class="fa-solid fa-gears text-sm"></i>
-                    </div>
-                    <h3 class="font-extrabold text-emerald-950 text-sm mb-2 tracking-tight">The Execution (How)</h3>
-                    <p class="text-slate-600 text-xs leading-relaxed font-medium">
-                        Using a lightweight, fast Python/Flask client paired with a real-time relational Supabase cluster database layer, listings are geo-fenced within a 5-kilometer radius to guarantee that mutual aid and resource flows stay strictly hyperlocal.
-                    </p>
-                </div>
-
-                <!-- SDG Alignment Blueprint -->
-                <div class="bg-white/60 p-5 rounded-2xl border border-emerald-900/5">
-                    <div class="w-9 h-9 rounded-xl bg-teal-50 flex items-center justify-center text-teal-800 mb-3 border border-teal-100">
-                        <i class="fa-solid fa-globe text-sm"></i>
-                    </div>
-                    <h3 class="font-extrabold text-emerald-950 text-sm mb-2 tracking-tight">UN SDG Integration</h3>
-                    <div class="space-y-2 mt-2">
-                        <div class="flex items-start gap-2">
-                            <span class="px-1.5 py-0.5 rounded bg-emerald-800 text-white text-[9px] font-black mt-0.5">8</span>
-                            <p class="text-[11px] text-slate-600 font-semibold"><strong class="text-slate-800">Decent Work:</strong> Empowers local home-businesses and heritage artisans.</p>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <span class="px-1.5 py-0.5 rounded bg-amber-600 text-white text-[9px] font-black mt-0.5">10</span>
-                            <p class="text-[11px] text-slate-600 font-semibold"><strong class="text-slate-800">Reduced Inequalities:</strong> Prioritizes student volunteers and zero-cost family support services.</p>
-                        </div>
-                        <div class="flex items-start gap-2">
-                            <span class="px-1.5 py-0.5 rounded bg-teal-600 text-white text-[9px] font-black mt-0.5">11</span>
-                            <p class="text-[11px] text-slate-600 font-semibold"><strong class="text-slate-800">Sustainable Communities:</strong> Decreases localized transit reliance and builds internal resource pools.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- ORIGINAL Dynamic Header / Title Block Section Reinstated -->
+        <section class="mb-10">
+            <h1 class="text-3xl font-black text-emerald-950 mb-2 tracking-tight">The Solidarity Grid</h1>
+            <p class="text-xs text-emerald-900/80 font-bold uppercase tracking-widest mb-4">Hyperlocal Community Services & Skills Resource Ledger</p>
+            <p class="text-slate-700 text-sm max-w-3xl leading-relaxed font-medium">
+                Welcome to the modern neighborhood square. Rooted in community values and local reciprocity, this interface allows members living within a 5.0 KM radius to transparently find, exchange, and request critical daily aid, localized tasks, and household support loops directly with one another safely.
+            </p>
         </section>
 
         <!-- Balanced 3-Column Content Framework -->
@@ -145,32 +82,32 @@
             <!-- Left Filtering Matrices Tab Navigation Panel -->
             <div class="lg:col-span-3 space-y-6">
                 <div class="cream-card rounded-2xl p-5 premium-shadow">
-                    <h3 class="text-xs font-black tracking-wider text-slate-400 uppercase mb-4 flex items-center justify-between">
+                    <h3 class="text-xs font-black tracking-wider text-slate-500 uppercase mb-4 flex items-center justify-between">
                         <span>Filter Hub</span>
-                        <i class="fa-solid fa-leaf text-emerald-700 text-xs"></i>
+                        <i class="fa-solid fa-leaf text-emerald-800 text-xs"></i>
                     </h3>
                     
                     <div class="space-y-2">
-                        <button id="tab-all" onclick="filterCategory('all')" class="active-tab-heritage w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-emerald-900/5 transition-all duration-200 cursor-pointer text-slate-500 hover:bg-slate-100/50">
+                        <button id="tab-all" onclick="filterCategory('all')" class="active-tab-heritage w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-emerald-900/5 transition-all duration-200 cursor-pointer text-slate-600">
                             <i class="fa-solid fa-kaaba text-sm w-4 text-center"></i>
                             <span>All Community Exchanges</span>
                         </button>
-                        <button id="tab-services" onclick="filterCategory('services')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-transparent transition-all duration-200 cursor-pointer text-slate-500 hover:bg-slate-100/50">
+                        <button id="tab-services" onclick="filterCategory('services')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-transparent transition-all duration-200 cursor-pointer text-slate-600 hover:bg-emerald-950/5">
                             <i class="fa-solid fa-people-roof text-sm w-4 text-center"></i>
                             <span>Family & Local Services</span>
                         </button>
-                        <button id="tab-heritage" onclick="filterCategory('heritage')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-transparent transition-all duration-200 cursor-pointer text-slate-500 hover:bg-slate-100/50">
+                        <button id="tab-heritage" onclick="filterCategory('heritage')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-transparent transition-all duration-200 cursor-pointer text-slate-600 hover:bg-emerald-950/5">
                             <i class="fa-solid fa-wheat-awn text-sm w-4 text-center"></i>
                             <span>Heritage Craft & Souq</span>
                         </button>
                     </div>
 
-                    <div class="border-t border-slate-200/60 my-5 pt-4">
-                        <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-3">Interchange Type</span>
-                        <div class="grid grid-cols-3 gap-1 bg-stone-200/50 p-1 border border-slate-200 rounded-xl">
+                    <div class="border-t border-slate-300/60 my-5 pt-4">
+                        <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-3">Interchange Type</span>
+                        <div class="grid grid-cols-3 gap-1 bg-stone-300/40 p-1 border border-slate-300 rounded-xl">
                             <button id="type-all" onclick="filterType('all')" class="bg-emerald-800 text-white text-[10px] font-bold py-1.5 rounded-lg transition-all cursor-pointer text-center">All</button>
-                            <button id="type-service" onclick="filterType('Service')" class="text-slate-600 hover:text-emerald-900 text-[10px] font-bold py-1.5 rounded-lg transition-all cursor-pointer text-center">Services</button>
-                            <button id="type-product" onclick="filterType('Product')" class="text-slate-600 hover:text-emerald-900 text-[10px] font-bold py-1.5 rounded-lg transition-all cursor-pointer text-center">Products</button>
+                            <button id="type-service" onclick="filterType('Service')" class="text-slate-700 hover:text-emerald-950 text-[10px] font-bold py-1.5 rounded-lg transition-all cursor-pointer text-center">Services</button>
+                            <button id="type-product" onclick="filterType('Product')" class="text-slate-700 hover:text-emerald-950 text-[10px] font-bold py-1.5 rounded-lg transition-all cursor-pointer text-center">Products</button>
                         </div>
                     </div>
                 </div>
@@ -179,8 +116,8 @@
             <!-- Middle Stream Feed Display Portal Panel -->
             <div class="lg:col-span-6 space-y-4">
                 <div class="flex items-center justify-between px-1 mb-1">
-                    <h2 class="text-xs font-bold tracking-wider uppercase text-slate-400 flex items-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                    <h2 class="text-xs font-bold tracking-wider uppercase text-slate-500 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-700"></span>
                         Live Community Noticeboard
                     </h2>
                 </div>
@@ -191,30 +128,30 @@
                     <div class="cream-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-300 gold-border-glow premium-shadow">
                         <div>
                             <div class="flex justify-between items-start gap-4 mb-3">
-                                <span class="text-[9px] uppercase font-black tracking-wider px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-200/40">
+                                <span class="text-[9px] uppercase font-black tracking-wider px-2.5 py-1 rounded-md bg-emerald-900/10 text-emerald-950 border border-emerald-900/20">
                                     {{ item.type }}
                                 </span>
-                                <span class="text-xs text-slate-500 font-medium flex items-center gap-1.5">
-                                    <i class="fa-solid fa-location-dot text-amber-600 text-[11px]"></i> {{ item.distance }}
+                                <span class="text-xs text-slate-600 font-semibold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-location-dot text-amber-700 text-[11px]"></i> {{ item.distance }}
                                 </span>
                             </div>
                             <h3 class="font-extrabold text-emerald-950 text-lg tracking-tight mb-1.5">{{ item.title }}</h3>
-                            <p class="text-xs text-slate-600 leading-relaxed mb-5 font-medium">{{ item.description }}</p>
+                            <p class="text-xs text-slate-700 leading-relaxed mb-5 font-medium">{{ item.description }}</p>
                         </div>
-                        <div class="border-t border-slate-200/60 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div class="border-t border-slate-300/60 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-8.5 h-8.5 rounded-full bg-emerald-100/50 border border-emerald-200/40 flex items-center justify-center text-xs font-bold text-emerald-900 uppercase tracking-wider">
+                                <div class="w-8.5 h-8.5 rounded-full bg-emerald-900/10 border border-emerald-900/20 flex items-center justify-center text-xs font-bold text-emerald-950 uppercase tracking-wider">
                                     {{ item.provider[:2] }}
                                 </div>
                                 <div class="flex flex-col">
                                     <span class="text-xs font-bold text-slate-900">{{ item.provider }}</span>
-                                    <span class="text-[9px] text-emerald-600 font-bold tracking-wide flex items-center gap-1 mt-0.5">
+                                    <span class="text-[9px] text-emerald-700 font-bold tracking-wide flex items-center gap-1 mt-0.5">
                                         <i class="fa-solid fa-circle-check text-[8px]"></i> {{ item.badge }}
                                     </span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 justify-between sm:justify-end">
-                                <span class="text-xs font-black text-emerald-950 bg-amber-100/40 border border-amber-200/40 px-3 py-1.5 rounded-lg">
+                                <span class="text-xs font-black text-emerald-950 bg-amber-900/5 border border-amber-900/20 px-3 py-1.5 rounded-lg">
                                     {{ item.price }}
                                 </span>
                                 <button onclick="alert('Connecting safely with your neighbor ' + '{{ item.provider }}' + '. Peace be upon you.')" class="px-4 py-2 heritage-gradient text-white text-xs font-bold rounded-xl hover:opacity-90 shadow-sm transition-all duration-200 cursor-pointer flex items-center gap-2">
@@ -231,7 +168,7 @@
             <div class="lg:col-span-3 space-y-6">
                 <div class="cream-card rounded-2xl p-6 sticky top-28 premium-shadow">
                     <h2 class="font-black text-sm text-emerald-950 tracking-wider uppercase mb-1.5 flex items-center gap-2">
-                        <i class="fa-solid fa-circle-plus text-amber-600"></i> Post to the Grid
+                        <i class="fa-solid fa-circle-plus text-amber-700"></i> Post to the Grid
                     </h2>
                     <p class="text-[11px] text-slate-500 leading-relaxed mb-5">
                         Add your listing or family offering instantly onto our local neighborhood grid network.
@@ -239,39 +176,39 @@
 
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Your Name / Household</label>
-                            <input type="text" id="form-provider" placeholder="e.g., Al Mansoori Family" class="w-full text-xs px-3.5 py-2.5 bg-stone-100/50 border border-slate-200 rounded-xl focus:border-emerald-700 focus:outline-none transition-colors text-slate-800 placeholder-slate-400 font-medium">
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Your Name / Household</label>
+                            <input type="text" id="form-provider" placeholder="e.g., Al Mansoori Family" class="w-full text-xs px-3.5 py-2.5 bg-stone-200/40 border border-slate-300 rounded-xl focus:border-emerald-700 focus:outline-none transition-colors text-slate-800 placeholder-slate-400 font-medium">
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Category</label>
-                                <select id="form-category" class="w-full text-xs px-2.5 py-2.5 bg-stone-100/50 border border-slate-200 rounded-xl focus:border-emerald-700 focus:outline-none transition-colors text-slate-800 font-medium">
+                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Category</label>
+                                <select id="form-category" class="w-full text-xs px-2.5 py-2.5 bg-stone-200/40 border border-slate-300 rounded-xl focus:border-emerald-700 focus:outline-none transition-colors text-slate-800 font-medium">
                                     <option value="services">Family Services</option>
                                     <option value="heritage">Heritage & Souq</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Type</label>
-                                <select id="form-type" class="w-full text-xs px-2.5 py-2.5 bg-stone-100/50 border border-slate-200 rounded-xl focus:border-emerald-700 focus:outline-none transition-colors text-slate-800 font-medium">
+                                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Type</label>
+                                <select id="form-type" class="w-full text-xs px-2.5 py-2.5 bg-stone-200/40 border border-slate-300 rounded-xl focus:border-emerald-700 focus:outline-none transition-colors text-slate-800 font-medium">
                                     <option value="Service">Service</option>
                                     <option value="Product">Product</option>
                                 </select>
                             </div>
                         </div>
                         <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Listing Title</label>
-                            <input type="text" id="form-title" placeholder="e.g., Traditional Emirati Dinner Set" class="w-full text-xs px-3.5 py-2.5 bg-stone-100/50 border border-slate-200 rounded-xl focus:border-emerald-700 focus:outline-none transition-colors text-slate-800 placeholder-slate-400 font-medium">
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Listing Title</label>
+                            <input type="text" id="form-title" placeholder="e.g., Traditional Emirati Dinner Set" class="w-full text-xs px-3.5 py-2.5 bg-stone-200/40 border border-slate-300 rounded-xl focus:border-emerald-700 focus:outline-none transition-colors text-slate-800 placeholder-slate-400 font-medium">
                         </div>
                         <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Description</label>
-                            <textarea id="form-description" rows="3" placeholder="Share details about your offering or service with your neighbors..." class="w-full text-xs px-3.5 py-2.5 bg-stone-100/50 border border-slate-200 rounded-xl focus:border-emerald-700 focus:outline-none transition-colors text-slate-800 placeholder-slate-400 font-medium resize-none"></textarea>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Description</label>
+                            <textarea id="form-description" rows="3" placeholder="Share details about your offering or service with your neighbors..." class="w-full text-xs px-3.5 py-2.5 bg-stone-200/40 border border-slate-300 rounded-xl focus:border-emerald-700 focus:outline-none transition-colors text-slate-800 placeholder-slate-400 font-medium resize-none"></textarea>
                         </div>
-                        <div class="flex gap-4 items-center justify-between bg-stone-100/50 border border-slate-200 p-3 rounded-xl">
+                        <div class="flex gap-4 items-center justify-between bg-stone-200/40 border border-slate-300 p-3 rounded-xl">
                             <div class="flex-1">
-                                <label class="block text-[9px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">Value Tag / Price</label>
+                                <label class="block text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Value Tag / Price</label>
                                 <input type="text" id="form-price" placeholder="e.g., AED 120" class="w-full bg-transparent text-xs text-slate-800 focus:outline-none placeholder-slate-400 font-bold">
                             </div>
-                            <div class="flex items-center gap-2 border-l border-slate-200 pl-3 h-8">
+                            <div class="flex items-center gap-2 border-l border-slate-300 pl-3 h-8">
                                 <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-emerald-800 rounded bg-white border-slate-300">
                                 <label for="form-student" class="text-[10px] font-bold text-slate-500 tracking-wide cursor-pointer uppercase select-none">Student?</label>
                             </div>
@@ -293,15 +230,15 @@
 
         function filterCategory(cat) {
             currentCategory = cat;
-            document.querySelectorAll('[id^="tab-"]').forEach(el => el.className = 'w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-transparent transition-all duration-200 cursor-pointer text-slate-500 hover:bg-slate-100/50');
-            document.getElementById(`tab-${cat}`).className = 'active-tab-heritage w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-emerald-900/5 transition-all duration-200 cursor-pointer text-slate-500';
+            document.querySelectorAll('[id^="tab-"]').forEach(el => el.className = 'w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-transparent transition-all duration-200 cursor-pointer text-slate-600 hover:bg-emerald-950/5');
+            document.getElementById(`tab-${cat}`).className = 'active-tab-heritage w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold border border-emerald-900/5 transition-all duration-200 cursor-pointer text-slate-600';
             fetchAndRenderListings();
         }
 
         function filterType(type) {
             currentType = type;
             document.querySelectorAll('[id^="type-"]').forEach(el => {
-                el.className = 'text-slate-600 hover:text-emerald-900 text-[10px] font-bold py-1.5 rounded-lg transition-all cursor-pointer text-center';
+                el.className = 'text-slate-700 hover:text-emerald-950 text-[10px] font-bold py-1.5 rounded-lg transition-all cursor-pointer text-center';
             });
             const targetId = type === 'all' ? 'all' : type === 'Service' ? 'service' : 'product';
             document.getElementById(`type-${targetId}`).className = 'bg-emerald-800 text-white text-[10px] font-bold py-1.5 rounded-lg transition-all cursor-pointer text-center';
@@ -317,7 +254,7 @@
                     
                     if(data.length === 0) {
                         container.innerHTML = `
-                            <div class="bg-white/60 border border-dashed border-slate-200 rounded-2xl p-8 text-center text-slate-400 text-xs font-medium">
+                            <div class="bg-white/40 border border-dashed border-slate-300 rounded-2xl p-8 text-center text-slate-500 text-xs font-medium">
                                 No local listings found matching the current search settings.
                             </div>`;
                         return;
@@ -329,28 +266,28 @@
                             <div class="cream-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-300 gold-border-glow premium-shadow">
                                 <div>
                                     <div class="flex justify-between items-start gap-4 mb-3">
-                                        <span class="text-[9px] uppercase font-black tracking-wider px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-200/40">${item.type}</span>
-                                        <span class="text-xs text-slate-500 font-medium flex items-center gap-1.5">
-                                            <i class="fa-solid fa-location-dot text-amber-600 text-[11px]"></i> ${item.distance}
+                                        <span class="text-[9px] uppercase font-black tracking-wider px-2.5 py-1 rounded-md bg-emerald-900/10 text-emerald-950 border border-emerald-900/20">${item.type}</span>
+                                        <span class="text-xs text-slate-600 font-semibold flex items-center gap-1.5">
+                                            <i class="fa-solid fa-location-dot text-amber-700 text-[11px]"></i> ${item.distance}
                                         </span>
                                     </div>
                                     <h3 class="font-extrabold text-emerald-950 text-lg tracking-tight mb-1.5">${item.title}</h3>
-                                    <p class="text-xs text-slate-600 leading-relaxed mb-5 font-medium">${item.description}</p>
+                                    <p class="text-xs text-slate-700 leading-relaxed mb-5 font-medium">${item.description}</p>
                                 </div>
-                                <div class="border-t border-slate-200/60 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                                <div class="border-t border-slate-300/60 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-8.5 h-8.5 rounded-full bg-emerald-100/50 border border-emerald-200/40 flex items-center justify-center text-xs font-bold text-emerald-900 uppercase tracking-wider">
+                                        <div class="w-8.5 h-8.5 rounded-full bg-emerald-900/10 border border-emerald-900/20 flex items-center justify-center text-xs font-bold text-emerald-950 uppercase tracking-wider">
                                             ${avatarInitials}
                                         </div>
                                         <div class="flex flex-col">
                                             <span class="text-xs font-bold text-slate-900">${item.provider}</span>
-                                            <span class="text-[9px] text-emerald-600 font-bold tracking-wide flex items-center gap-1 mt-0.5">
+                                            <span class="text-[9px] text-emerald-700 font-bold tracking-wide flex items-center gap-1 mt-0.5">
                                                 <i class="fa-solid fa-circle-check text-[8px]"></i> ${item.badge}
                                             </span>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-3 justify-between sm:justify-end">
-                                        <span class="text-xs font-black text-emerald-950 bg-amber-100/40 border border-amber-200/40 px-3 py-1.5 rounded-lg">${item.price}</span>
+                                        <span class="text-xs font-black text-emerald-950 bg-amber-900/5 border border-amber-900/20 px-3 py-1.5 rounded-lg">${item.price}</span>
                                         <button onclick="alert('Connecting safely with your neighbor ' + '${item.provider}' + '. Peace be upon you.')" class="px-4 py-2 heritage-gradient text-white text-xs font-bold rounded-xl hover:opacity-90 shadow-sm transition-all duration-200 cursor-pointer flex items-center gap-2">
                                             <i class="fa-regular fa-comments text-xs"></i> Contact
                                         </button>
