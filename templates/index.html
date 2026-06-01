@@ -139,48 +139,101 @@
             </div>
         </div>
 
-        <!-- THE HIGH-END PREMIUM RESOURCE STREAM GRID -->
-        <div id="listings-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- THE HIGH-END BRUTALIST DYNAMIC GRID -->
+        <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[340px]">
             {% for item in listings %}
-            <div class="cyber-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group">
-                <div>
-                    <!-- Card Top Meta Tags info layout -->
-                    <div class="flex justify-between items-center gap-3 mb-4">
-                        <span class="text-[9px] font-black uppercase tracking-widest bg-slate-900 text-slate-300 px-2.5 py-1 rounded border border-slate-800">
-                            {{ item.type }}
-                        </span>
-                        <span class="text-[11px] text-slate-500 font-bold tracking-wide flex items-center gap-1">
-                            <i class="fa-solid fa-location-crosshairs text-slate-600 text-xs"></i> {{ item.distance }}
-                        </span>
+                {# Create layout variety dynamically based on the loop index #}
+                {% if loop.index % 4 == 1 %}
+                    <!-- STYLE A: ULTRA-WIDE, LIGHT-GRADIENT FEATURE CARD (Spans 2 columns on large screens) -->
+                    <div class="md:col-span-2 bg-gradient-to-br from-[#e2ebd4] to-[#cbd7b9] border border-white/20 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(190,242,100,0.15)] text-slate-950">
+                        <div>
+                            <div class="flex justify-between items-center gap-3 mb-6">
+                                <span class="text-[10px] font-black uppercase tracking-widest bg-black/5 text-slate-800 px-3 py-1 rounded-md border border-black/10">{{ item.type }}</span>
+                                <span class="text-xs text-slate-700 font-bold tracking-wide flex items-center gap-1">
+                                    <i class="fa-solid fa-location-crosshairs text-slate-600"></i> {{ item.distance }}
+                                </span>
+                            </div>
+                            <!-- Heavy Brutalist Headline -->
+                            <h3 class="hero-font text-2xl md:text-3xl font-black tracking-tighter leading-none uppercase mb-3 text-slate-950 max-w-xl">{{ item.title }}</h3>
+                            <p class="text-xs text-slate-700 leading-relaxed font-medium max-w-lg line-clamp-3">{{ item.description }}</p>
+                        </div>
+                        
+                        <div class="border-t border-black/10 pt-5 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-black/10 border border-black/5 text-slate-900 font-extrabold text-sm flex items-center justify-center uppercase">{{ item.provider[:2] }}</div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-black tracking-wide text-slate-900">{{ item.provider }}</span>
+                                    <span class="text-[9px] text-emerald-800 font-black uppercase tracking-widest"><i class="fa-solid fa-shield text-[8px]"></i> VERIFIED LOG</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="text-lg font-black tracking-tight text-slate-950">{{ item.price }}</span>
+                                <button onclick="alert('Routing secure network handshakes...')" class="px-5 py-2.5 bg-black text-white hover:bg-slate-900 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Core Item Text block -->
-                    <h3 class="font-extrabold text-white text-lg mb-2 tracking-tight group-hover:text-[#bef264] transition-colors duration-200 line-clamp-1 uppercase">{{ item.title }}</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed mb-6 font-medium line-clamp-2 h-9">{{ item.description }}</p>
-                </div>
-                
-                <!-- Card Footer row separator block -->
-                <div class="border-t border-slate-900 pt-4 flex items-center justify-between mt-auto">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-extrabold text-xs flex items-center justify-center uppercase shrink-0">
-                            {{ item.provider[:2] }}
+                {% elif loop.index % 4 == 3 %}
+                    <!-- STYLE B: PITCH-BLACK GLOWING CYBER CARD (Deep contrast variant) -->
+                    <div class="bg-gradient-to-b from-[#0a0f18] to-[#04060a] border border-slate-800/80 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:border-[#bef264]/40 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] text-white relative overflow-hidden">
+                        <!-- Tiny subtle lime accent light dot -->
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-[#bef264]/5 blur-2xl rounded-full"></div>
+                        
+                        <div>
+                            <div class="flex justify-between items-center gap-3 mb-6 relative z-10">
+                                <span class="text-[10px] font-black uppercase tracking-widest bg-slate-900 text-[#bef264] px-3 py-1 rounded-md border border-slate-800">{{ item.type }}</span>
+                                <span class="text-xs text-slate-500 font-bold tracking-wide flex items-center gap-1">
+                                    <i class="fa-solid fa-location-crosshairs text-slate-600"></i> {{ item.distance }}
+                                </span>
+                            </div>
+                            <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-white group-hover:text-[#bef264] transition-colors duration-200 line-clamp-2">{{ item.title }}</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed font-medium line-clamp-3">{{ item.description }}</p>
                         </div>
-                        <div class="flex flex-col">
-                            <span class="text-xs font-bold text-white tracking-wide line-clamp-1 max-w-[100px]">{{ item.provider }}</span>
-                            <span class="text-[9px] text-[#bef264] font-black uppercase tracking-widest flex items-center gap-0.5">
-                                <i class="fa-solid fa-shield text-[8px]"></i> SECURED
-                            </span>
+                        
+                        <div class="border-t border-slate-900 pt-5 flex items-center justify-between relative z-10">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-extrabold text-sm flex items-center justify-center uppercase">{{ item.provider[:2] }}</div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-black tracking-wide text-white">{{ item.provider }}</span>
+                                    <span class="text-[9px] text-[#bef264] font-black uppercase tracking-widest"><i class="fa-solid fa-shield text-[8px]"></i> SECURED NODE</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="text-base font-black text-white tracking-tight">{{ item.price }}</span>
+                                <button onclick="alert('Routing secure network handshakes...')" class="px-5 py-2.5 bg-white text-black hover:bg-[#bef264] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="flex items-center gap-3.5">
-                        <span class="text-sm font-black text-white tracking-tight">{{ item.price }}</span>
-                        <button onclick="alert('Routing network security payload pipeline connection handshakes...')" class="px-4 py-2 bg-white text-black hover:bg-[#bef264] text-[10px] font-black uppercase tracking-wider rounded-lg transition-all duration-200 cursor-pointer shadow-sm">
-                            CONNECT
-                        </button>
+
+                {% else %}
+                    <!-- STYLE C: STANDARD SAGE GRADIENT VERTICAL BLOCK -->
+                    <div class="bg-gradient-to-br from-[#ecf2e4] to-[#dfebd0] border border-white/20 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(190,242,100,0.1)] text-slate-950">
+                        <div>
+                            <div class="flex justify-between items-center gap-3 mb-6">
+                                <span class="text-[10px] font-black uppercase tracking-widest bg-black/5 text-slate-800 px-3 py-1 rounded-md border border-black/10">{{ item.type }}</span>
+                                <span class="text-xs text-slate-600 font-bold tracking-wide flex items-center gap-1">
+                                    <i class="fa-solid fa-location-crosshairs text-slate-500"></i> {{ item.distance }}
+                                </span>
+                            </div>
+                            <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-slate-950 line-clamp-2">{{ item.title }}</h3>
+                            <p class="text-xs text-slate-700 leading-relaxed font-medium line-clamp-3">{{ item.description }}</p>
+                        </div>
+                        
+                        <div class="border-t border-black/5 pt-5 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-black/5 border border-black/5 text-slate-900 font-extrabold text-sm flex items-center justify-center uppercase">{{ item.provider[:2] }}</div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-black tracking-wide text-slate-900">{{ item.provider }}</span>
+                                    <span class="text-[9px] text-slate-500 font-black uppercase tracking-widest"><i class="fa-solid fa-circle-check text-[8px]"></i> VERIFIED</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="text-base font-black text-slate-950 tracking-tight">{{ item.price }}</span>
+                                <button onclick="alert('Routing secure network handshakes...')" class="px-5 py-2.5 bg-black text-white hover:bg-slate-900 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                {% endif %}
             {% endfor %}
         </div>
     </main>
@@ -310,34 +363,93 @@
                         return;
                     }
 
-                    data.forEach(item => {
+                    data.forEach((item, index) => {
                         const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'HN';
-                        container.innerHTML += `
-                            <div class="cyber-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group">
-                                <div>
-                                    <div class="flex justify-between items-center gap-3 mb-4">
-                                        <span class="text-[9px] font-black uppercase tracking-widest bg-slate-900 text-slate-300 px-2.5 py-1 rounded border border-slate-800">${item.type}</span>
-                                        <span class="text-[11px] text-slate-500 font-bold tracking-wide flex items-center gap-1">
-                                            <i class="fa-solid fa-location-crosshairs text-slate-600 text-xs"></i> ${item.distance}
-                                        </span>
+                        const loopIdx = index + 1;
+                        let cardHtml = '';
+
+                        if (loopIdx % 4 === 1) {
+                            // Style A: Wide Feature Card
+                            cardHtml = `
+                                <div class="md:col-span-2 bg-gradient-to-br from-[#e2ebd4] to-[#cbd7b9] border border-white/20 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(190,242,100,0.15)] text-slate-950">
+                                    <div>
+                                        <div class="flex justify-between items-center gap-3 mb-6">
+                                            <span class="text-[10px] font-black uppercase tracking-widest bg-black/5 text-slate-800 px-3 py-1 rounded-md border border-black/10">${item.type}</span>
+                                            <span class="text-xs text-slate-700 font-bold tracking-wide flex items-center gap-1"><i class="fa-solid fa-location-crosshairs text-slate-600"></i> ${item.distance}</span>
+                                        </div>
+                                        <h3 class="hero-font text-2xl md:text-3xl font-black tracking-tighter leading-none uppercase mb-3 text-slate-950 max-w-xl">${item.title}</h3>
+                                        <p class="text-xs text-slate-700 leading-relaxed font-medium max-w-lg line-clamp-3">${item.description}</p>
                                     </div>
-                                    <h3 class="font-extrabold text-white text-lg mb-2 tracking-tight group-hover:text-[#bef264] transition-colors duration-200 line-clamp-1 uppercase">${item.title}</h3>
-                                    <p class="text-xs text-slate-400 leading-relaxed mb-6 font-medium line-clamp-2 h-9">${item.description}</p>
-                                </div>
-                                <div class="border-t border-slate-100/10 pt-4 flex items-center justify-between mt-auto">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-extrabold text-xs flex items-center justify-center uppercase shrink-0">${initials}</div>
-                                        <div class="flex flex-col">
-                                            <span class="text-xs font-bold text-white tracking-wide line-clamp-1 max-w-[100px]">${item.provider}</span>
-                                            <span class="text-[9px] text-[#bef264] font-black uppercase tracking-widest flex items-center gap-0.5"><i class="fa-solid fa-shield text-[8px]"></i> SECURED</span>
+                                    <div class="border-t border-black/10 pt-5 flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-9 h-9 rounded-xl bg-black/10 border border-black/5 text-slate-900 font-extrabold text-sm flex items-center justify-center uppercase">${initials}</div>
+                                            <div class="flex flex-col">
+                                                <span class="text-xs font-black tracking-wide text-slate-900">${item.provider}</span>
+                                                <span class="text-[9px] text-emerald-800 font-black uppercase tracking-widest"><i class="fa-solid fa-shield text-[8px]"></i> VERIFIED LOG</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-4">
+                                            <span class="text-lg font-black tracking-tight text-slate-950">${item.price}</span>
+                                            <button onclick="alert('Routing secure network handshakes...')" class="px-5 py-2.5 bg-black text-white hover:bg-slate-900 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-3.5">
-                                        <span class="text-sm font-black text-white tracking-tight">${item.price}</span>
-                                        <button onclick="alert('Routing network security payload pipeline connection handshakes...')" class="px-4 py-2 bg-white text-black hover:bg-[#bef264] text-[10px] font-black uppercase tracking-wider rounded-lg transition-all duration-200 cursor-pointer shadow-sm">CONNECT</button>
+                                </div>`;
+                        } else if (loopIdx % 4 === 3) {
+                            // Style B: Dark Cyber Card
+                            cardHtml = `
+                                <div class="bg-gradient-to-b from-[#0a0f18] to-[#04060a] border border-slate-800/80 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:border-[#bef264]/40 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.8)] text-white relative overflow-hidden">
+                                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#bef264]/5 blur-2xl rounded-full"></div>
+                                    <div>
+                                        <div class="flex justify-between items-center gap-3 mb-6 relative z-10">
+                                            <span class="text-[10px] font-black uppercase tracking-widest bg-slate-900 text-[#bef264] px-3 py-1 rounded-md border border-slate-800">${item.type}</span>
+                                            <span class="text-xs text-slate-500 font-bold tracking-wide flex items-center gap-1"><i class="fa-solid fa-location-crosshairs text-slate-600"></i> ${item.distance}</span>
+                                        </div>
+                                        <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-white group-hover:text-[#bef264] transition-colors duration-200 line-clamp-2">${item.title}</h3>
+                                        <p class="text-xs text-slate-400 leading-relaxed font-medium line-clamp-3">${item.description}</p>
                                     </div>
-                                </div>
-                            </div>`;
+                                    <div class="border-t border-slate-900 pt-5 flex items-center justify-between relative z-10">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-9 h-9 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-extrabold text-sm flex items-center justify-center uppercase">${initials}</div>
+                                            <div class="flex flex-col">
+                                                <span class="text-xs font-black tracking-wide text-white">${item.provider}</span>
+                                                <span class="text-[9px] text-[#bef264] font-black uppercase tracking-widest"><i class="fa-solid fa-shield text-[8px]"></i> SECURED NODE</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-4">
+                                            <span class="text-base font-black text-white tracking-tight">${item.price}</span>
+                                            <button onclick="alert('Routing secure network handshakes...')" class="px-5 py-2.5 bg-white text-black hover:bg-[#bef264] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-200 cursor-pointer shadow-sm">CONNECT</button>
+                                        </div>
+                                    </div>
+                                </div>`;
+                        } else {
+                            // Style C: Regular Gradient Card
+                            cardHtml = `
+                                <div class="bg-gradient-to-br from-[#ecf2e4] to-[#dfebd0] border border-white/20 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(190,242,100,0.1)] text-slate-950">
+                                    <div>
+                                        <div class="flex justify-between items-center gap-3 mb-6">
+                                            <span class="text-[10px] font-black uppercase tracking-widest bg-black/5 text-slate-800 px-3 py-1 rounded-md border border-black/10">${item.type}</span>
+                                            <span class="text-xs text-slate-600 font-bold tracking-wide flex items-center gap-1"><i class="fa-solid fa-location-crosshairs text-slate-500"></i> ${item.distance}</span>
+                                        </div>
+                                        <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-slate-950 line-clamp-2">${item.title}</h3>
+                                        <p class="text-xs text-slate-700 leading-relaxed font-medium line-clamp-3">${item.description}</p>
+                                    </div>
+                                    <div class="border-t border-black/5 pt-5 flex items-center justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-9 h-9 rounded-xl bg-black/5 border border-black/5 text-slate-900 font-extrabold text-sm flex items-center justify-center uppercase">${initials}</div>
+                                            <div class="flex flex-col">
+                                                <span class="text-xs font-black tracking-wide text-slate-900">${item.provider}</span>
+                                                <span class="text-[9px] text-slate-500 font-black uppercase tracking-widest"><i class="fa-solid fa-circle-check text-[8px]"></i> VERIFIED</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-4">
+                                            <span class="text-base font-black text-slate-950 tracking-tight">${item.price}</span>
+                                            <button onclick="alert('Routing secure network handshakes...')" class="px-5 py-2.5 bg-black text-white hover:bg-slate-900 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
+                                        </div>
+                                    </div>
+                                </div>`;
+                        }
+                        
+                        container.innerHTML += cardHtml;
                     });
                 });
         }
