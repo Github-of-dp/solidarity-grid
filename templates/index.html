@@ -32,7 +32,6 @@
             border: 1px solid rgba(150, 110, 80, 0.2);
         }
 
-        /* Custom Styling to fit Leaflet beautifully into the heritage look */
         .leaflet-container {
             font-family: 'Plus Jakarta Sans', sans-serif;
             border-radius: 24px;
@@ -61,8 +60,8 @@
         </div>
 
         <div class="hidden md:flex items-center gap-2.5 text-[10px] font-black text-stone-700 tracking-widest uppercase bg-stone-900/5 px-4 py-2 rounded-xl border border-stone-900/5">
-            <i class="fa-solid fa-location-crosshairs text-emerald-700 animate-pulse"></i>
-            <span>YOUR HUB POSITION: <span id="user-coords" class="text-stone-950">24.4539° N, 54.3773° E</span></span>
+            <i id="gps-icon" class="fa-solid fa-location-crosshairs text-amber-700 animate-pulse"></i>
+            <span>POSITION STATUS: <span id="user-coords" class="text-stone-950">REQUESTING SYSTEM GPS...</span></span>
         </div>
 
         <div>
@@ -78,17 +77,16 @@
             COMMUNITY<br>
             <span class="bg-gradient-to-r from-[#8a5329] to-[#ac7347] bg-clip-text text-transparent">SUPPORT MAP GRID</span>
         </h1>
-    </section>
-
-    <section class="w-full max-w-7xl mx-auto">
-        <div id="main-map" class="w-full h-80 md:h-96 rounded-3xl border border-stone-400/40 shadow-xs z-10"></div>
+        <p class="text-stone-800 text-xs md:text-sm max-w-lg font-medium leading-relaxed mt-1">
+            Coordinate specialized local assistance, resources, and exchange networks map-tracked dynamically to your actual radial positioning.
+        </p>
     </section>
 
     <section class="w-screen -mx-4 md:-mx-6 bg-[#d4c8b6] border-y border-stone-400/40 py-3 overflow-hidden flex select-none">
         <div class="flex whitespace-nowrap gap-12 text-[10px] font-black tracking-widest uppercase items-center animate-marquee shrink-0 text-stone-800">
             <span>SANAD RADIAL MAPPING PLATFORM ONLINE</span> <span class="text-[#ac7347]">•</span>
-            <span class="font-bold opacity-60">CLICK CARDS TO LOCATE ASSETS ON MAP</span> <span class="text-[#ac7347]">•</span>
-            <span class="text-stone-950">GPS TETHERING COMPLETED</span> <span class="text-[#ac7347]">•</span>
+            <span class="font-bold opacity-60">LIVE GPS RESOLUTION TETHERED</span> <span class="text-[#ac7347]">•</span>
+            <span class="text-stone-950">CLICK CARDS TO PAN OVER LIVE LOCATION VECTORS</span> <span class="text-[#ac7347]">•</span>
         </div>
     </section>
 
@@ -110,6 +108,14 @@
 
         <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[340px]">
             </div>
+
+        <div class="w-full flex flex-col gap-2 mt-4 border-t border-stone-400/30 pt-6">
+            <div class="flex items-center gap-2 text-xs font-black tracking-wide text-stone-950 uppercase">
+                <i class="fa-solid fa-earth-middle-east text-[#ac7347]"></i>
+                <span>MAPPED GEOLOCATION EXCHANGE CLUSTER RADII</span>
+            </div>
+            <div id="main-map" class="w-full h-80 md:h-[420px] rounded-3xl border border-stone-400/40 shadow-xs z-10"></div>
+        </div>
     </main>
 
     <div id="form-modal" class="fixed inset-0 bg-stone-950/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200">
@@ -150,16 +156,16 @@
 
                 <div>
                     <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Exchange Listing Title</label>
-                    <input type="text" id="form-title" placeholder="e.g. Arabic Calligraphy Tutoring" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950">
+                    <input type="text" id="form-title" placeholder="e.g. Traditional Majlis Preparation Help" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950">
                 </div>
 
                 <div>
                     <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Operational Descriptions Context</label>
-                    <textarea id="form-description" rows="2" placeholder="Provide details..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950 resize-none"></textarea>
+                    <textarea id="form-description" rows="2" placeholder="Provide description..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950 resize-none"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Tap/Click Map to Place Pin</label>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Tap/Click Form Map to Sync Target Pin Location</label>
                     <div id="modal-map" class="w-full h-28 rounded-xl border border-stone-400/50 shadow-xs"></div>
                     <input type="hidden" id="form-lat" value="24.4539">
                     <input type="hidden" id="form-lng" value="54.3773">
@@ -187,47 +193,37 @@
         let currentCategory = 'all';
         let currentType = 'all';
         
-        // Base coordinate baseline references Abu Dhabi center (Corniche)
-        const userLat = 24.4539;
-        const userLng = 54.3773;
+        // Baseline default coordinate variables (Fallback position)
+        let userLat = 24.4539;
+        let userLng = 54.3773;
 
         let mainMap, modalMap;
         let mainMarkersGroup = L.layerGroup();
+        let userLocationMarker = null;
         let modalSelectionMarker = null;
 
-        // Initialize maps on browser window settlement
         window.addEventListener('DOMContentLoaded', () => {
             initMaps();
-            fetchAndRenderListings();
+            detectLiveUserLocation(); // Instant trigger permission-prompting sequence
         });
 
         function initMaps() {
-            // 1. Initialize Main App Display Map
+            // 1. Build Main Bottom Map Layer Architecture
             mainMap = L.map('main-map', { scrollWheelZoom: false }).setView([userLat, userLng], 12);
             
-            // Warm tones/Sepia filtered clean terrain tile map
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
             }).addTo(mainMap);
 
-            // Mark User Base Central Point
-            L.marker([userLat, userLng]).addTo(mainMap)
-                .bindPopup('<b style="font-family:sans-serif; font-size:11px; color:#ac7347;">YOUR MAIN CURRENT STATION HUB</b>')
-                .openPopup();
-
             mainMarkersGroup.addTo(mainMap);
 
-            // 2. Initialize Mini Creation Map Inside Form Overlay Modal
+            // 2. Build Mini Map Placement Layer within creation modal
             modalMap = L.map('modal-map', { zoomControl: false }).setView([userLat, userLng], 11);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
 
-            // Setup click binding inside formulation map to track live coordinate changes
             modalMap.on('click', (e) => {
-                const clickedLat = e.latlng.lat;
-                const clickedLng = e.latlng.lng;
-                
-                document.getElementById('form-lat').value = clickedLat;
-                document.getElementById('form-lng').value = clickedLng;
+                document.getElementById('form-lat').value = e.latlng.lat;
+                document.getElementById('form-lng').value = e.latlng.lng;
 
                 if (modalSelectionMarker) {
                     modalSelectionMarker.setLatLng(e.latlng);
@@ -237,13 +233,59 @@
             });
         }
 
+        // PERMISSION REQUESTING COMPONENT CAPTURING NATIVE DEVICE GEO-DATA STRINGS
+        function detectLiveUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        userLat = position.coords.latitude;
+                        userLng = position.coords.longitude;
+
+                        // UI Feedback Sync
+                        document.getElementById('user-coords').innerText = `${userLat.toFixed(4)}° N, ${userLng.toFixed(4)}° E`;
+                        const gpsIcon = document.getElementById('gps-icon');
+                        gpsIcon.className = 'fa-solid fa-circle-check text-emerald-700 animate-none';
+
+                        // Drop user pin indicator on bottom main map instance
+                        if(userLocationMarker) mainMap.removeLayer(userLocationMarker);
+                        userLocationMarker = L.circleMarker([userLat, userLng], {
+                            radius: 9,
+                            fillColor: '#3b82f6',
+                            color: '#fff',
+                            weight: 2,
+                            fillOpacity: 0.9
+                        }).addTo(mainMap).bindPopup('<b style="font-family:sans-serif; font-size:11px;">YOUR DETECTED LOCATION STATION</b>');
+
+                        // Re-center display seamlessly over user base location coordinates
+                        mainMap.setView([userLat, userLng], 12);
+                        modalMap.setView([userLat, userLng], 12);
+
+                        // Trigger visual re-render execution to evaluate dynamic radial metrics
+                        fetchAndRenderListings();
+                    },
+                    (error) => {
+                        console.warn('Geolocation access declined or failed. Defaulting system matrix to baseline Abu Dhabi values.');
+                        document.getElementById('user-coords').innerText = '24.4539° N, 54.3773° E (FALLBACK DEFAULT)';
+                        document.getElementById('gps-icon').className = 'fa-solid fa-triangle-exclamation text-amber-800 animate-none';
+                        
+                        // Default Fallback Indicator Pin
+                        userLocationMarker = L.marker([userLat, userLng]).addTo(mainMap)
+                            .bindPopup('<b style="font-family:sans-serif; font-size:11px; color:#ac7347;">DEFAULT SYSTEM REGION POINT</b>');
+                        
+                        fetchAndRenderListings();
+                    }
+                );
+            } else {
+                fetchAndRenderListings();
+            }
+        }
+
         function toggleModal(open) {
             const modal = document.getElementById('form-modal');
             const inner = modal.querySelector('div');
             if(open) {
                 modal.classList.remove('opacity-0', 'pointer-events-none');
                 inner.classList.remove('scale-95');
-                // Leaflet requires container tracking verification updates if initialized hidden
                 setTimeout(() => { modalMap.invalidateSize(); }, 200);
             } else {
                 modal.classList.add('opacity-0', 'pointer-events-none');
@@ -251,16 +293,16 @@
             }
         }
 
-        function panToMapTarget(lat, lng, label) {
+        function panToMapTarget(lat, lng) {
             if(mainMap && lat && lng) {
-                mainMap.setView([lat, lng], 14, { animate: true, duration: 1.5 });
-                // Automatically find and invoke popup display
+                mainMap.setView([lat, lng], 14, { animate: true, duration: 1.2 });
                 mainMarkersGroup.eachLayer((marker) => {
                     if(marker.getLatLng().lat === parseFloat(lat) && marker.getLatLng().lng === parseFloat(lng)) {
                         marker.openPopup();
                     }
                 });
-                window.scrollTo({ top: document.getElementById('main-map').offsetTop - 100, behavior: 'smooth' });
+                // Smooth scroll navigation to look cleanly onto map below
+                window.scrollTo({ top: document.getElementById('main-map').offsetTop - 60, behavior: 'smooth' });
             }
         }
 
@@ -285,7 +327,6 @@
             fetchAndRenderListings();
         }
 
-        // Live Haversine Radial Distance Equation Helper
         function calculateKilometerGap(lat1, lon1, lat2, lon2) {
             if (!lat2 || !lon2) return null;
             const R = 6371; 
@@ -303,7 +344,7 @@
                 .then(data => {
                     const container = document.getElementById('listings-grid');
                     container.innerHTML = '';
-                    mainMarkersGroup.clearLayers(); // Clean existing markers
+                    mainMarkersGroup.clearLayers(); // Dynamic clean resets
                     
                     if(data.length === 0) {
                         container.innerHTML = `
@@ -316,7 +357,6 @@
                     data.forEach((item) => {
                         const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'SD';
                         
-                        // Parse geographical coordinates securely
                         let targetLat = item.latitude ? parseFloat(item.latitude) : 24.4322;
                         let targetLon = item.longitude ? parseFloat(item.longitude) : 54.6044;
                         
@@ -326,18 +366,18 @@
                             targetLon = parseFloat(splitted[1]);
                         }
 
-                        // Inject dynamic pin data straight into Leaflet Main Engine Map Layers
+                        // INSTANT LOADING PINS ATTACHED AND BOUND ONTO MAP IMMEDIATELY
                         const mapMarker = L.marker([targetLat, targetLon])
-                            .bindPopup(`<div style="font-family:'Plus Jakarta Sans', sans-serif; p-1"><b style="color:#ac7347; text-transform:uppercase; font-size:12px;">${item.title}</b><br><span style="font-size:10px; color:#444;">Handler: ${item.provider}</span></div>`);
+                            .bindPopup(`<div style="font-family:'Plus Jakarta Sans', sans-serif; p-0.5"><b style="color:#ac7347; text-transform:uppercase; font-size:12px;">${item.title}</b><br><span style="font-size:10px; color:#444;">Handler Node: ${item.provider}</span></div>`);
                         mainMarkersGroup.addLayer(mapMarker);
 
-                        // Calculate spatial visual distance readout metrics
+                        // Dynamic live radial geometry computation
                         const computedDistance = calculateKilometerGap(userLat, userLng, targetLat, targetLon);
                         const distanceText = computedDistance ? `${computedDistance} km away` : 'Active Area';
 
-                        // PERFECT UNIFORM SAME-LENGTH STRUCTURAL MATRIX Injections
+                        // PERFECT IDENTICAL UNIFORM STRUCTURES EXECUTED IN CARDS
                         const cardHtml = `
-                            <div onclick="panToMapTarget(${targetLat}, ${targetLon}, '${item.title}')" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-3xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md text-stone-900 cursor-pointer group">
+                            <div onclick="panToMapTarget(${targetLat}, ${targetLon})" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-3xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md text-stone-900 cursor-pointer group">
                                 <div>
                                     <div class="flex justify-between items-center gap-2 mb-4">
                                         <span class="text-[9px] font-black uppercase tracking-widest bg-stone-950/5 text-stone-700 px-2.5 py-1 rounded-md border border-stone-400/20">${item.type}</span>
@@ -359,7 +399,7 @@
                                     </div>
                                     <div class="flex items-center gap-3">
                                         <span class="text-base font-black text-stone-950 tracking-tight">${item.price}</span>
-                                        <button class="px-4 py-2 bg-stone-950 text-white group-hover:bg-[#ac7347] text-[9px] font-black uppercase tracking-widest rounded-xl transition-all">LOCATE</button>
+                                        <button class="px-4 py-2 bg-stone-950 text-white group-hover:bg-[#ac7347] text-[9px] font-black uppercase tracking-widest rounded-xl transition-all">VIEW LOCATION</button>
                                     </div>
                                 </div>
                             </div>`;
@@ -381,7 +421,7 @@
             const isStudent = document.getElementById('form-student').checked;
 
             if(!provider || !title || !description) {
-                alert('Fill out all parameter fields to complete registration.');
+                alert('Fill out all parameter fields to register.');
                 return;
             }
 
