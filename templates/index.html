@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanad — Community Exchange Grid</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
         
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #dfd5c6; /* Perfect neutral warm desert sand — not bright, not dark */
+            background-color: #dfd5c6; /* Perfect neutral warm desert sand */
             background-image: 
                 linear-gradient(rgba(13c, 90, 50, 0.04) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(13c, 90, 50, 0.04) 1px, transparent 1px);
@@ -23,11 +26,16 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Smooth tinted frosted glass header */
         .cyber-header {
             background: rgba(240, 232, 218, 0.75);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(150, 110, 80, 0.2);
+        }
+
+        /* Custom Styling to fit Leaflet beautifully into the heritage look */
+        .leaflet-container {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            border-radius: 24px;
         }
 
         @keyframes marquee {
@@ -41,7 +49,6 @@
 </head>
 <body class="text-stone-900 antialiased min-h-screen flex flex-col p-4 md:p-6 gap-6">
 
-    <!-- COMFORTABLE NEUTRAL NAVIGATION HEADER -->
     <header class="w-full max-w-7xl mx-auto h-20 cyber-header rounded-3xl px-6 flex items-center justify-between sticky top-4 z-50 shadow-xs">
         <div class="flex items-center gap-4">
             <div class="h-12 w-12 bg-transparent rounded-xl flex items-center justify-center overflow-hidden shrink-0">
@@ -53,10 +60,9 @@
             </div>
         </div>
 
-        <!-- SIMULATED LIVE GEOLOCATION HUB PIN -->
         <div class="hidden md:flex items-center gap-2.5 text-[10px] font-black text-stone-700 tracking-widest uppercase bg-stone-900/5 px-4 py-2 rounded-xl border border-stone-900/5">
-            <i class="fa-solid fa-location-dot text-emerald-700 animate-pulse"></i>
-            <span>YOUR HUB POSITION: <span id="user-coords" class="text-stone-950">FETCHING ENGINE GPS...</span></span>
+            <i class="fa-solid fa-location-crosshairs text-emerald-700 animate-pulse"></i>
+            <span>YOUR HUB POSITION: <span id="user-coords" class="text-stone-950">24.4539° N, 54.3773° E</span></span>
         </div>
 
         <div>
@@ -66,29 +72,26 @@
         </div>
     </header>
 
-    <!-- NEUTRAL CONTRAST HERO SECTION -->
-    <section class="w-full max-w-7xl mx-auto pt-6 pb-2 relative flex flex-col gap-1.5">
+    <section class="w-full max-w-7xl mx-auto pt-4 pb-2 flex flex-col gap-1.5">
         <div class="w-12 h-1 bg-[#ac7347] rounded-full mb-1"></div>
         <h1 class="hero-font text-5xl md:text-6xl font-black text-stone-950 tracking-tighter leading-[0.95] uppercase select-none">
             COMMUNITY<br>
-            <span class="bg-gradient-to-r from-[#8a5329] to-[#ac7347] bg-clip-text text-transparent">SUPPORT EXCHANGE</span>
+            <span class="bg-gradient-to-r from-[#8a5329] to-[#ac7347] bg-clip-text text-transparent">SUPPORT MAP GRID</span>
         </h1>
-        <p class="text-stone-800 text-xs md:text-sm max-w-lg font-medium mt-2 leading-relaxed">
-            Coordinate specialized local assistance, traditional tools, and family support resources map-tracked cleanly to your community radius.
-        </p>
     </section>
 
-    <!-- TICKER STRIP -->
+    <section class="w-full max-w-7xl mx-auto">
+        <div id="main-map" class="w-full h-80 md:h-96 rounded-3xl border border-stone-400/40 shadow-xs z-10"></div>
+    </section>
+
     <section class="w-screen -mx-4 md:-mx-6 bg-[#d4c8b6] border-y border-stone-400/40 py-3 overflow-hidden flex select-none">
         <div class="flex whitespace-nowrap gap-12 text-[10px] font-black tracking-widest uppercase items-center animate-marquee shrink-0 text-stone-800">
-            <span>SANAD RANGE DETECTOR ACTIVE</span> <span class="text-[#ac7347]">•</span>
-            <span class="font-bold opacity-60">VERIFIED RADIAL Handshakes</span> <span class="text-[#ac7347]">•</span>
-            <span class="text-stone-950">LOCAL CORE LINK SYNCED</span> <span class="text-[#ac7347]">•</span>
-            <span class="font-bold opacity-60">ABU DHABI PROTOCOL LEDGER</span> <span class="text-[#ac7347]">•</span>
+            <span>SANAD RADIAL MAPPING PLATFORM ONLINE</span> <span class="text-[#ac7347]">•</span>
+            <span class="font-bold opacity-60">CLICK CARDS TO LOCATE ASSETS ON MAP</span> <span class="text-[#ac7347]">•</span>
+            <span class="text-stone-950">GPS TETHERING COMPLETED</span> <span class="text-[#ac7347]">•</span>
         </div>
     </section>
 
-    <!-- FILTER NAVIGATION BAR -->
     <main class="w-full max-w-7xl mx-auto flex flex-col gap-6 mt-1 flex-1">
         
         <div class="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-400/40 pb-4">
@@ -105,17 +108,14 @@
             </div>
         </div>
 
-        <!-- PERFECTLY SYMMETRIC, UNIFORM CARD GRID (STRICT 340px ROWS) -->
         <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[340px]">
-            <!-- Async dynamic script builds exact uniform structures here -->
-        </div>
+            </div>
     </main>
 
-    <!-- ASSET REGISTRATION WITH INTEGRATED REGION TRACKING MAP SIMULATOR -->
     <div id="form-modal" class="fixed inset-0 bg-stone-950/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200">
-        <div class="bg-[#ebdcc7] border border-stone-400/40 rounded-3xl shadow-xl w-full max-w-md p-6 transform scale-95 transition-all duration-200 text-stone-900">
+        <div class="bg-[#ebdcc7] border border-stone-400/40 rounded-3xl shadow-xl w-full max-w-md p-5 transform scale-95 transition-all duration-200 text-stone-900 max-h-[90vh] overflow-y-auto">
             
-            <div class="flex items-center justify-between border-b border-stone-400/40 pb-3 mb-4">
+            <div class="flex items-center justify-between border-b border-stone-400/40 pb-3 mb-3">
                 <div class="flex items-center gap-2">
                     <div class="w-1.5 h-3.5 bg-[#ac7347] rounded-xs"></div>
                     <h3 class="font-extrabold text-xs text-stone-950 uppercase tracking-widest">Register Exchange Node Location</h3>
@@ -125,23 +125,23 @@
                 </button>
             </div>
 
-            <div class="space-y-3.5">
+            <div class="space-y-3">
                 <div>
                     <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Household / Identity Handle</label>
-                    <input type="text" id="form-provider" placeholder="e.g. Al Suwaidi Family" class="w-full text-xs px-3 py-2.5 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950 placeholder-stone-500">
+                    <input type="text" id="form-provider" placeholder="e.g. Al Suwaidi Family" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950">
                 </div>
                 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Exchange Category</label>
-                        <select id="form-category" class="w-full text-xs px-3 py-2.5 bg-[#f6ede0] border border-stone-400/40 rounded-xl text-stone-800 font-medium focus:outline-none focus:border-[#ac7347]">
+                        <select id="form-category" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347]">
                             <option value="services">Family Services</option>
                             <option value="heritage">Heritage & Crafts</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Asset Variant</label>
-                        <select id="form-type" class="w-full text-xs px-3 py-2.5 bg-[#f6ede0] border border-stone-400/40 rounded-xl text-stone-800 font-medium focus:outline-none focus:border-[#ac7347]">
+                        <select id="form-type" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347]">
                             <option value="Service">Service</option>
                             <option value="Product">Product</option>
                         </select>
@@ -150,34 +150,25 @@
 
                 <div>
                     <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Exchange Listing Title</label>
-                    <input type="text" id="form-title" placeholder="e.g. Arabic Calligraphy Tutoring" class="w-full text-xs px-3 py-2.5 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950 placeholder-stone-500">
+                    <input type="text" id="form-title" placeholder="e.g. Arabic Calligraphy Tutoring" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950">
                 </div>
 
                 <div>
                     <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Operational Descriptions Context</label>
-                    <textarea id="form-description" rows="2" placeholder="Provide description parameters..." class="w-full text-xs px-3 py-2.5 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950 resize-none placeholder-stone-500"></textarea>
+                    <textarea id="form-description" rows="2" placeholder="Provide details..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950 resize-none"></textarea>
                 </div>
 
-                <!-- DYNAMIC MAP LOCATION CAPTURE ELEMENT -->
                 <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Set Node Location Point (Map Sync)</label>
-                    <div class="w-full h-24 bg-[#e4d5bf] rounded-xl border border-stone-400/50 relative overflow-hidden flex flex-col items-center justify-center text-center p-2">
-                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#ac7347_1px,transparent_1px)] [background-size:12px_12px]"></div>
-                        <i class="fa-solid fa-map-location-dot text-lg text-[#ac7347] relative z-10 mb-1"></i>
-                        <span class="text-[10px] font-bold text-stone-800 relative z-10 uppercase tracking-wide">Interactive Map Vector Area</span>
-                        <select id="form-location-zone" class="relative z-10 mt-1 text-[9px] bg-[#f6ede0] px-2 py-1 rounded-md border border-stone-400/40 font-bold text-stone-900 focus:outline-none">
-                            <option value="24.4539,54.3773">Corniche, Abu Dhabi Central</option>
-                            <option value="24.4322,54.6044">Yas Island Hub Zone</option>
-                            <option value="24.5992,54.4331">Saadiyat Cultural Grid</option>
-                            <option value="24.3412,54.5101">Mussafah Neighborhood Sector</option>
-                        </select>
-                    </div>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Tap/Click Map to Place Pin</label>
+                    <div id="modal-map" class="w-full h-28 rounded-xl border border-stone-400/50 shadow-xs"></div>
+                    <input type="hidden" id="form-lat" value="24.4539">
+                    <input type="hidden" id="form-lng" value="54.3773">
                 </div>
 
-                <div class="flex items-center justify-between gap-3 border border-stone-400/40 p-2.5 rounded-xl bg-[#f6ede0]">
+                <div class="flex items-center justify-between gap-3 border border-stone-400/40 p-2 rounded-xl bg-[#f6ede0]">
                     <div>
                         <label class="block text-[9px] font-black text-stone-500 tracking-widest uppercase mb-0.5">Value Rate Metric</label>
-                        <input type="text" id="form-price" placeholder="AED 150" class="w-full bg-transparent text-xs text-stone-950 font-black focus:outline-none placeholder-stone-400">
+                        <input type="text" id="form-price" placeholder="AED 150" class="w-full bg-transparent text-xs text-stone-950 font-black focus:outline-none">
                     </div>
                     <div class="flex items-center gap-1.5 border-l border-stone-400/40 pl-3 h-8 shrink-0">
                         <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-[#ac7347] rounded bg-white">
@@ -192,17 +183,59 @@
         </div>
     </div>
 
-    <!-- CLEAN GEOGRAPHIC DISTANCE COMPONENT SCRIPT -->
     <script>
         let currentCategory = 'all';
         let currentType = 'all';
         
-        // Base coordinate baseline representation defaults to Abu Dhabi Corniche area
-        let userLatitude = 24.4539;
-        let userLongitude = 54.3773;
+        // Base coordinate baseline references Abu Dhabi center (Corniche)
+        const userLat = 24.4539;
+        const userLng = 54.3773;
 
-        // Initialize user location visual metrics upon page entry
-        document.getElementById('user-coords').innerText = `${userLatitude.toFixed(4)}° N, ${userLongitude.toFixed(4)}° E`;
+        let mainMap, modalMap;
+        let mainMarkersGroup = L.layerGroup();
+        let modalSelectionMarker = null;
+
+        // Initialize maps on browser window settlement
+        window.addEventListener('DOMContentLoaded', () => {
+            initMaps();
+            fetchAndRenderListings();
+        });
+
+        function initMaps() {
+            // 1. Initialize Main App Display Map
+            mainMap = L.map('main-map', { scrollWheelZoom: false }).setView([userLat, userLng], 12);
+            
+            // Warm tones/Sepia filtered clean terrain tile map
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+            }).addTo(mainMap);
+
+            // Mark User Base Central Point
+            L.marker([userLat, userLng]).addTo(mainMap)
+                .bindPopup('<b style="font-family:sans-serif; font-size:11px; color:#ac7347;">YOUR MAIN CURRENT STATION HUB</b>')
+                .openPopup();
+
+            mainMarkersGroup.addTo(mainMap);
+
+            // 2. Initialize Mini Creation Map Inside Form Overlay Modal
+            modalMap = L.map('modal-map', { zoomControl: false }).setView([userLat, userLng], 11);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
+
+            // Setup click binding inside formulation map to track live coordinate changes
+            modalMap.on('click', (e) => {
+                const clickedLat = e.latlng.lat;
+                const clickedLng = e.latlng.lng;
+                
+                document.getElementById('form-lat').value = clickedLat;
+                document.getElementById('form-lng').value = clickedLng;
+
+                if (modalSelectionMarker) {
+                    modalSelectionMarker.setLatLng(e.latlng);
+                } else {
+                    modalSelectionMarker = L.marker(e.latlng).addTo(modalMap);
+                }
+            });
+        }
 
         function toggleModal(open) {
             const modal = document.getElementById('form-modal');
@@ -210,9 +243,24 @@
             if(open) {
                 modal.classList.remove('opacity-0', 'pointer-events-none');
                 inner.classList.remove('scale-95');
+                // Leaflet requires container tracking verification updates if initialized hidden
+                setTimeout(() => { modalMap.invalidateSize(); }, 200);
             } else {
                 modal.classList.add('opacity-0', 'pointer-events-none');
                 inner.classList.add('scale-95');
+            }
+        }
+
+        function panToMapTarget(lat, lng, label) {
+            if(mainMap && lat && lng) {
+                mainMap.setView([lat, lng], 14, { animate: true, duration: 1.5 });
+                // Automatically find and invoke popup display
+                mainMarkersGroup.eachLayer((marker) => {
+                    if(marker.getLatLng().lat === parseFloat(lat) && marker.getLatLng().lng === parseFloat(lng)) {
+                        marker.openPopup();
+                    }
+                });
+                window.scrollTo({ top: document.getElementById('main-map').offsetTop - 100, behavior: 'smooth' });
             }
         }
 
@@ -222,9 +270,7 @@
                 el.className = 'px-5 py-2.5 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer';
             });
             const targeted = document.getElementById(`tab-${cat}`);
-            if(targeted) {
-                targeted.className = 'px-5 py-2.5 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer';
-            }
+            if(targeted) targeted.className = 'px-5 py-2.5 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer';
             fetchAndRenderListings();
         }
 
@@ -235,21 +281,18 @@
             });
             const idMap = type === 'all' ? 'all' : type === 'Service' ? 'service' : 'product';
             const node = document.getElementById(`type-${idMap}`);
-            if(node) {
-                node.className = 'px-4 py-1.5 bg-[#c8bca8] text-stone-950 text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
-            }
+            if(node) node.className = 'px-4 py-1.5 bg-[#c8bca8] text-stone-950 text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
             fetchAndRenderListings();
         }
 
-        // Live Haversine Trigonometric Formula execution to evaluate spatial grid gaps
+        // Live Haversine Radial Distance Equation Helper
         function calculateKilometerGap(lat1, lon1, lat2, lon2) {
             if (!lat2 || !lon2) return null;
-            const R = 6371; // Earth's Radius km
+            const R = 6371; 
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
-                      Math.sin(dLon/2) * Math.sin(dLon/2);
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
             const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
             return (R * c).toFixed(1);
         }
@@ -260,11 +303,12 @@
                 .then(data => {
                     const container = document.getElementById('listings-grid');
                     container.innerHTML = '';
+                    mainMarkersGroup.clearLayers(); // Clean existing markers
                     
                     if(data.length === 0) {
                         container.innerHTML = `
                             <div class="col-span-full bg-stone-400/20 border border-dashed border-stone-500 rounded-3xl p-16 text-center text-stone-700 text-xs font-bold uppercase tracking-widest">
-                                Zero operational grid nodes discovered matching criteria.
+                                Zero operational grid nodes discovered matching parameters.
                             </div>`;
                         return;
                     }
@@ -272,7 +316,7 @@
                     data.forEach((item) => {
                         const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'SD';
                         
-                        // Parse node position attributes if provided natively by item context data
+                        // Parse geographical coordinates securely
                         let targetLat = item.latitude ? parseFloat(item.latitude) : 24.4322;
                         let targetLon = item.longitude ? parseFloat(item.longitude) : 54.6044;
                         
@@ -282,18 +326,23 @@
                             targetLon = parseFloat(splitted[1]);
                         }
 
-                        // Compute dynamic map range readout live
-                        const computedDistance = calculateKilometerGap(userLatitude, userLongitude, targetLat, targetLon);
-                        const dynamicDistanceDisplay = computedDistance ? `${computedDistance} km away` : (item.distance || 'Proximal Zone');
+                        // Inject dynamic pin data straight into Leaflet Main Engine Map Layers
+                        const mapMarker = L.marker([targetLat, targetLon])
+                            .bindPopup(`<div style="font-family:'Plus Jakarta Sans', sans-serif; p-1"><b style="color:#ac7347; text-transform:uppercase; font-size:12px;">${item.title}</b><br><span style="font-size:10px; color:#444;">Handler: ${item.provider}</span></div>`);
+                        mainMarkersGroup.addLayer(mapMarker);
 
-                        // ALL CARDS ARE BUILT UNIFORM: SAME STRUCTURAL CONFIGURATION, LENGTH, AND FLEX VALUE
+                        // Calculate spatial visual distance readout metrics
+                        const computedDistance = calculateKilometerGap(userLat, userLng, targetLat, targetLon);
+                        const distanceText = computedDistance ? `${computedDistance} km away` : 'Active Area';
+
+                        // PERFECT UNIFORM SAME-LENGTH STRUCTURAL MATRIX Injections
                         const cardHtml = `
-                            <div class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-3xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-xs text-stone-900">
+                            <div onclick="panToMapTarget(${targetLat}, ${targetLon}, '${item.title}')" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-3xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md text-stone-900 cursor-pointer group">
                                 <div>
                                     <div class="flex justify-between items-center gap-2 mb-4">
                                         <span class="text-[9px] font-black uppercase tracking-widest bg-stone-950/5 text-stone-700 px-2.5 py-1 rounded-md border border-stone-400/20">${item.type}</span>
                                         <span class="text-[11px] text-[#ac7347] font-extrabold tracking-tight flex items-center gap-1">
-                                            <i class="fa-solid fa-map-pin text-emerald-700"></i> ${dynamicDistanceDisplay}
+                                            <i class="fa-solid fa-map-pin text-emerald-700 group-hover:scale-125 transition-transform"></i> ${distanceText}
                                         </span>
                                     </div>
                                     <h3 class="hero-font text-xl font-black tracking-tight leading-tight uppercase mb-2 text-stone-950 line-clamp-2">${item.title}</h3>
@@ -305,12 +354,12 @@
                                         <div class="w-8 h-8 rounded-xl bg-[#ac7347]/10 text-[#ac7347] font-black text-xs flex items-center justify-center uppercase">${initials}</div>
                                         <div class="flex flex-col">
                                             <span class="text-xs font-bold tracking-tight text-stone-950 leading-none">${item.provider}</span>
-                                            <span class="text-[9px] text-stone-500 font-bold tracking-wider mt-0.5 uppercase">GRID MEMBER</span>
+                                            <span class="text-[9px] text-stone-500 font-bold tracking-wider mt-0.5 uppercase">MEMBER NODE</span>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-3">
                                         <span class="text-base font-black text-stone-950 tracking-tight">${item.price}</span>
-                                        <button onclick="alert('Establishing encrypted map route link...')" class="px-4 py-2 bg-stone-950 text-white hover:bg-[#ac7347] text-[9px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">ROUTE</button>
+                                        <button class="px-4 py-2 bg-stone-950 text-white group-hover:bg-[#ac7347] text-[9px] font-black uppercase tracking-widest rounded-xl transition-all">LOCATE</button>
                                     </div>
                                 </div>
                             </div>`;
@@ -327,11 +376,12 @@
             const title = document.getElementById('form-title').value;
             const description = document.getElementById('form-description').value;
             const price = document.getElementById('form-price').value;
-            const locationZone = document.getElementById('form-location-zone').value;
+            const chosenLat = document.getElementById('form-lat').value;
+            const chosenLng = document.getElementById('form-lng').value;
             const isStudent = document.getElementById('form-student').checked;
 
             if(!provider || !title || !description) {
-                alert('Fill out all parameter fields to broadcast.');
+                alert('Fill out all parameter fields to complete registration.');
                 return;
             }
 
@@ -339,13 +389,8 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
-                    provider, 
-                    category, 
-                    type, 
-                    title, 
-                    description, 
-                    price, 
-                    location_zone: locationZone,
+                    provider, category, type, title, description, price, 
+                    location_zone: `${chosenLat},${chosenLng}`,
                     is_student: isStudent ? 'true' : 'false' 
                 })
             })
@@ -355,13 +400,12 @@
                     document.getElementById('form-title').value = '';
                     document.getElementById('form-description').value = '';
                     document.getElementById('form-price').value = '';
+                    if(modalSelectionMarker) { modalMap.removeLayer(modalSelectionMarker); modalSelectionMarker = null; }
                     toggleModal(false);
                     fetchAndRenderListings();
                 }
             });
         }
-        
-        window.onload = fetchAndRenderListings;
     </script>
 </body>
 </html>
