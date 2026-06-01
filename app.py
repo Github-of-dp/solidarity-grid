@@ -1,119 +1,108 @@
 import os
+import json
 from flask import Flask, render_template, request, jsonify
-from supabase import create_client, Client
 
 app = Flask(__name__)
 
-# CONFIGURATION: Connected live to your personal Supabase project
-SUPABASE_URL = "https://gpljplpjuwfbffawxxns.supabase.co"
-SUPABASE_KEY = "sb_publishable_KCQg3VEcFKBbYrf3XZthTw_8SgA6N6J"
+# A reliable, persistent file path to act as our local document database
+DATA_FILE = os.path.join(os.path.dirname(__file__), 'listings_db.json')
 
-# Initialize live Supabase Client connection cluster with safety fallbacks
-try:
-    supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
-except Exception as e:
-    print(f"Initialization Error: Could not connect to Supabase client: {e}")
-    supabase = None
+def load_stored_listings():
+    """Load listings safely from the persistent database file."""
+    # Seed default values with highly specific, distinct coordinates so they never cross wires
+    default_placeholders = [
+        {
+            "id": 1,
+            "provider": "Rahul Sharma",
+            "category": "services",
+            "type": "Service",
+            "title": "Class 12 Math & Calculus Tuition",
+            "description": "Offering tailored preparation tracks for CBSE Grade 12 Mathematics, focusing on Calculus integration techniques and Matrix determinants.",
+            "price": "AED 120/hr",
+            "location_zone": "24.4322,54.6044", # Yas Island Sector
+            "is_student": "false"
+        },
+        {
+            "id": 2,
+            "provider": "Aisha Al Mansoori",
+            "category": "heritage",
+            "type": "Product",
+            "title": "Handcrafted Clay Pottery & Talli Crafts",
+            "description": "Authentic, locally sourced Emirati heritage crafts and hand-woven items perfect for traditional community presentation setups.",
+            "price": "AED 250",
+            "location_zone": "24.4539,54.3773", # Corniche Central Sector
+            "is_student": "false"
+        }
+    ]
+    
+    if not os.path.exists(DATA_FILE):
+        with open(DATA_FILE, 'w', encoding='utf-8') as f:
+            json.dump(default_placeholders, f, indent=4)
+        return default_placeholders
+    
+    try:
+        with open(DATA_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return default_placeholders
 
-# Local emergency backup data to display if the database table is completely empty or building
-fallback_listings = [
-    {
-        "id": 1,
-        "provider": "Aisha M.",
-        "badge": "Verified Resident",
-        "category": "heritage",
-        "type": "Product",
-        "title": "Authentic Emirati Luqaimat Catering",
-        "description": "Freshly made traditional crunchy sweet dumplings with date syrup for family gatherings and weekend events.",
-        "distance": "0.5 km away",
-        "tag": "Cultural Cuisine",
-        "price": "AED 45"
-    },
-    {
-        "id": 2,
-        "provider": "Rahul K.",
-        "badge": "Verified Student Volunteer",
-        "category": "services",
-        "type": "Service",
-        "title": "Grade 10 Mathematics Tutoring",
-        "description": "Offering tailored intensive revision sessions for school curriculum. Flexible hours over weekends.",
-        "distance": "1.2 km away",
-        "tag": "Education",
-        "price": "Free / Volunteer"
-    }
-]
+def save_listings_to_disk(listings_data):
+    """Write listing collection straight to disk so everyone can see updates live."""
+    with open(DATA_FILE, 'w', encoding='utf-8') as f:
+        json.dump(listings_data, f, indent=4)
 
 @app.route('/')
-def home():
-    listings = []
-    if supabase:
-        try:
-            # Fetch initial live feed rows ordered from newest to oldest timestamp
-            response = supabase.table("listings").select("*").order("created_at", descending=True).execute()
-            listings = response.data
-        except Exception as e:
-            print(f"Live database read exception encountered: {e}")
-            listings = fallback_listings
-    else:
-        listings = fallback_listings
-        
-    return render_template('index.html', listings=listings)
+def index():
+    return render_template('index.html')
 
 @app.route('/api/listings', methods=['GET'])
 def get_listings():
-    category = request.args.get('category', 'all')
-    listing_type = request.args.get('type', 'all')
+    category_filter = request.args.get('category', 'all')
+    type_filter = request.args.get('type', 'all')
     
-    if not supabase:
-        # Filter fallback if client didn't boot
-        filtered = fallback_listings
-        if category != 'all': filtered = [l for l in filtered if l['category'] == category]
-        if listing_type != 'all': filtered = [l for l in filtered if l['type'] == listing_type]
-        return jsonify(filtered)
+    all_items = load_stored_listings()
+    filtered_list = []
+    
+    for item in all_items:
+        # Category tracking condition
+        if category_filter != 'all' and item.get('category') != category_filter:
+            continue
+        # Subvariant asset type tracking condition
+        if type_filter != 'all' and item.get('type') != type_filter:
+            continue
+        filtered_list.append(item)
         
-    try:
-        query = supabase.table("listings").select("*").order("created_at", descending=True)
-        
-        # Apply strict live filters based on user selection toggles
-        if category != 'all':
-            query = query.eq('category', category)
-        if listing_type != 'all':
-            query = query.eq('type', listing_type)
-            
-        response = query.execute()
-        return jsonify(response.data)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    return jsonify(filtered_list)
 
 @app.route('/api/listings/add', methods=['POST'])
 def add_listing():
-    data = request.json
+    incoming_data = request.json
     
-    # Determine user badge status depending on checkbox input state
-    badge_status = "Verified Student Volunteer" if data.get('is_student') == 'true' else "Verified Resident"
+    if not incoming_data or not incoming_data.get('provider') or not incoming_data.get('title'):
+        return jsonify({"success": False, "error": "Missing essential listing parameters."}), 400
     
-    new_row = {
-        "provider": data.get('provider', 'Guest Neighbor'),
-        "badge": badge_status,
-        "category": data.get('category', 'services'),
-        "type": data.get('type', 'Service'),
-        "title": data.get('title', 'Untitled Offering'),
-        "description": data.get('description', ''),
-        "distance": "0.4 km away",
-        "tag": "Community Support" if data.get('category') == 'services' else "Heritage Craft",
-        "price": data.get('price', 'Free')
+    current_collection = load_stored_listings()
+    
+    # Generate a reliable auto-incrementing ID metric
+    new_id = max([item.get('id', 0) for item in current_collection]) + 1 if current_collection else 1
+    
+    # Append new node data systematically ensuring coordinates are tracked as an isolated pair
+    new_node = {
+        "id": new_id,
+        "provider": incoming_data.get('provider'),
+        "category": incoming_data.get('category', 'services'),
+        "type": incoming_data.get('type', 'Service'),
+        "title": incoming_data.get('title'),
+        "description": incoming_data.get('description', ''),
+        "price": incoming_data.get('price', 'Contact for Rate'),
+        "location_zone": incoming_data.get('location_zone', '24.4539,54.3773'),
+        "is_student": incoming_data.get('is_student', 'false')
     }
     
-    if not supabase:
-        # Simulate local sandbox array append if live DB connection is missing
-        fallback_listings.insert(0, new_row)
-        return jsonify({"success": True, "item": new_row})
-        
-    try:
-        response = supabase.table("listings").insert(new_row).execute()
-        return jsonify({"success": True, "item": response.data[0]})
-    except Exception as e:
-        return jsonify({"success": False, "error": str(e)}), 500
+    current_collection.append(new_node)
+    save_listings_to_disk(current_collection)
+    
+    return jsonify({"success": True, "id": new_id})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)

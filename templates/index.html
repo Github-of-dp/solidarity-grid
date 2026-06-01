@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanad — Community Exchange Grid</title>
+    
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -15,7 +16,7 @@
         
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #dfd5c6; /* Perfect neutral warm desert sand */
+            background-color: #dfd5c6; /* Balanced neutral warm desert sand tone */
             background-image: 
                 linear-gradient(rgba(13c, 90, 50, 0.04) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(13c, 90, 50, 0.04) 1px, transparent 1px);
@@ -32,6 +33,7 @@
             border: 1px solid rgba(150, 110, 80, 0.2);
         }
 
+        /* Seamless Leaflet container alignment styling */
         .leaflet-container {
             font-family: 'Plus Jakarta Sans', sans-serif;
             border-radius: 24px;
@@ -78,15 +80,15 @@
             <span class="bg-gradient-to-r from-[#8a5329] to-[#ac7347] bg-clip-text text-transparent">SUPPORT MAP GRID</span>
         </h1>
         <p class="text-stone-800 text-xs md:text-sm max-w-lg font-medium leading-relaxed mt-1">
-            Coordinate specialized local assistance, resources, and exchange networks map-tracked dynamically to your actual radial positioning.
+            Coordinate specialized local assistance, family assets, and resources map-tracked cleanly relative to your actual live radial distance positioning.
         </p>
     </section>
 
     <section class="w-screen -mx-4 md:-mx-6 bg-[#d4c8b6] border-y border-stone-400/40 py-3 overflow-hidden flex select-none">
         <div class="flex whitespace-nowrap gap-12 text-[10px] font-black tracking-widest uppercase items-center animate-marquee shrink-0 text-stone-800">
             <span>SANAD RADIAL MAPPING PLATFORM ONLINE</span> <span class="text-[#ac7347]">•</span>
-            <span class="font-bold opacity-60">LIVE GPS RESOLUTION TETHERED</span> <span class="text-[#ac7347]">•</span>
-            <span class="text-stone-950">CLICK CARDS TO PAN OVER LIVE LOCATION VECTORS</span> <span class="text-[#ac7347]">•</span>
+            <span class="font-bold opacity-60">LIVE GPS CHIP RADIAL SYNC COMPLETED</span> <span class="text-[#ac7347]">•</span>
+            <span class="text-stone-950">CLICK CARDS TO LOCATE ASSETS ON MAP SPATIAL GRAPH</span> <span class="text-[#ac7347]">•</span>
         </div>
     </section>
 
@@ -112,9 +114,9 @@
         <div class="w-full flex flex-col gap-2 mt-4 border-t border-stone-400/30 pt-6">
             <div class="flex items-center gap-2 text-xs font-black tracking-wide text-stone-950 uppercase">
                 <i class="fa-solid fa-earth-middle-east text-[#ac7347]"></i>
-                <span>MAPPED GEOLOCATION EXCHANGE CLUSTER RADII</span>
+                <span>GEOGRAPHIC CLUSTER COVERAGE RADII</span>
             </div>
-            <div id="main-map" class="w-full h-80 md:h-[420px] rounded-3xl border border-stone-400/40 shadow-xs z-10"></div>
+            <div id="main-map" class="w-full h-80 md:h-[440px] rounded-3xl border border-stone-400/40 shadow-xs z-10"></div>
         </div>
     </main>
 
@@ -156,16 +158,16 @@
 
                 <div>
                     <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Exchange Listing Title</label>
-                    <input type="text" id="form-title" placeholder="e.g. Traditional Majlis Preparation Help" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950">
+                    <input type="text" id="form-title" placeholder="e.g. Traditional Majlis Setup Design Help" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950">
                 </div>
 
                 <div>
                     <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Operational Descriptions Context</label>
-                    <textarea id="form-description" rows="2" placeholder="Provide description..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950 resize-none"></textarea>
+                    <textarea id="form-description" rows="2" placeholder="Describe exchange resource specifications..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none focus:border-[#ac7347] text-stone-950 resize-none"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Tap/Click Form Map to Sync Target Pin Location</label>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Tap Mini-Map Area to Place Coordinate Pin</label>
                     <div id="modal-map" class="w-full h-28 rounded-xl border border-stone-400/50 shadow-xs"></div>
                     <input type="hidden" id="form-lat" value="24.4539">
                     <input type="hidden" id="form-lng" value="54.3773">
@@ -193,7 +195,7 @@
         let currentCategory = 'all';
         let currentType = 'all';
         
-        // Baseline default coordinate variables (Fallback position)
+        // Base starting coordinate tracker variables (Defaults to Abu Dhabi city layout)
         let userLat = 24.4539;
         let userLng = 54.3773;
 
@@ -204,11 +206,11 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             initMaps();
-            detectLiveUserLocation(); // Instant trigger permission-prompting sequence
+            detectLiveUserLocation(); // Instant geolocation discovery tracking
         });
 
         function initMaps() {
-            // 1. Build Main Bottom Map Layer Architecture
+            // 1. Initialize stable main display map located at page bottom layout base
             mainMap = L.map('main-map', { scrollWheelZoom: false }).setView([userLat, userLng], 12);
             
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -217,7 +219,7 @@
 
             mainMarkersGroup.addTo(mainMap);
 
-            // 2. Build Mini Map Placement Layer within creation modal
+            // 2. Initialize input coordinate mini map tool layout
             modalMap = L.map('modal-map', { zoomControl: false }).setView([userLat, userLng], 11);
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
 
@@ -233,7 +235,7 @@
             });
         }
 
-        // PERMISSION REQUESTING COMPONENT CAPTURING NATIVE DEVICE GEO-DATA STRINGS
+        // BROWSER LOCATION ACCESS TRACKING SEQUENCER
         function detectLiveUserLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
@@ -241,12 +243,10 @@
                         userLat = position.coords.latitude;
                         userLng = position.coords.longitude;
 
-                        // UI Feedback Sync
+                        // UI Dashboard feedback adjustments
                         document.getElementById('user-coords').innerText = `${userLat.toFixed(4)}° N, ${userLng.toFixed(4)}° E`;
-                        const gpsIcon = document.getElementById('gps-icon');
-                        gpsIcon.className = 'fa-solid fa-circle-check text-emerald-700 animate-none';
+                        document.getElementById('gps-icon').className = 'fa-solid fa-circle-check text-emerald-700 animate-none';
 
-                        // Drop user pin indicator on bottom main map instance
                         if(userLocationMarker) mainMap.removeLayer(userLocationMarker);
                         userLocationMarker = L.circleMarker([userLat, userLng], {
                             radius: 9,
@@ -254,23 +254,21 @@
                             color: '#fff',
                             weight: 2,
                             fillOpacity: 0.9
-                        }).addTo(mainMap).bindPopup('<b style="font-family:sans-serif; font-size:11px;">YOUR DETECTED LOCATION STATION</b>');
+                        }).addTo(mainMap).bindPopup('<b style="font-family:sans-serif; font-size:11px;">YOUR LIVE DEVICE STATION LOCATION</b>');
 
-                        // Re-center display seamlessly over user base location coordinates
+                        // Recalibrate focus over actual real positions
                         mainMap.setView([userLat, userLng], 12);
                         modalMap.setView([userLat, userLng], 12);
 
-                        // Trigger visual re-render execution to evaluate dynamic radial metrics
                         fetchAndRenderListings();
                     },
                     (error) => {
-                        console.warn('Geolocation access declined or failed. Defaulting system matrix to baseline Abu Dhabi values.');
-                        document.getElementById('user-coords').innerText = '24.4539° N, 54.3773° E (FALLBACK DEFAULT)';
+                        console.warn('Location tracking permissions declined. Reverting layout engine to fallback Abu Dhabi coordinates.');
+                        document.getElementById('user-coords').innerText = '24.4539° N, 54.3773° E (FALLBACK HUB)';
                         document.getElementById('gps-icon').className = 'fa-solid fa-triangle-exclamation text-amber-800 animate-none';
                         
-                        // Default Fallback Indicator Pin
                         userLocationMarker = L.marker([userLat, userLng]).addTo(mainMap)
-                            .bindPopup('<b style="font-family:sans-serif; font-size:11px; color:#ac7347;">DEFAULT SYSTEM REGION POINT</b>');
+                            .bindPopup('<b style="font-family:sans-serif; font-size:11px; color:#ac7347;">DEFAULT BACKUP STATION ZONE</b>');
                         
                         fetchAndRenderListings();
                     }
@@ -293,6 +291,7 @@
             }
         }
 
+        // SMOOTH MAP PANNING WITH SEPARATED COMPONENT LABELS FIXED
         function panToMapTarget(lat, lng) {
             if(mainMap && lat && lng) {
                 mainMap.setView([lat, lng], 14, { animate: true, duration: 1.2 });
@@ -301,7 +300,6 @@
                         marker.openPopup();
                     }
                 });
-                // Smooth scroll navigation to look cleanly onto map below
                 window.scrollTo({ top: document.getElementById('main-map').offsetTop - 60, behavior: 'smooth' });
             }
         }
@@ -327,6 +325,7 @@
             fetchAndRenderListings();
         }
 
+        // Haversine Geometry Formula to measure geographical kilometer spans
         function calculateKilometerGap(lat1, lon1, lat2, lon2) {
             if (!lat2 || !lon2) return null;
             const R = 6371; 
@@ -344,7 +343,7 @@
                 .then(data => {
                     const container = document.getElementById('listings-grid');
                     container.innerHTML = '';
-                    mainMarkersGroup.clearLayers(); // Dynamic clean resets
+                    mainMarkersGroup.clearLayers(); // Dynamic clean reset of layout markers
                     
                     if(data.length === 0) {
                         container.innerHTML = `
@@ -357,8 +356,8 @@
                     data.forEach((item) => {
                         const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'SD';
                         
-                        let targetLat = item.latitude ? parseFloat(item.latitude) : 24.4322;
-                        let targetLon = item.longitude ? parseFloat(item.longitude) : 54.6044;
+                        let targetLat = 24.4539;
+                        let targetLon = 54.3773;
                         
                         if(item.location_zone && item.location_zone.includes(',')) {
                             const splitted = item.location_zone.split(',');
@@ -366,16 +365,21 @@
                             targetLon = parseFloat(splitted[1]);
                         }
 
-                        // INSTANT LOADING PINS ATTACHED AND BOUND ONTO MAP IMMEDIATELY
+                        // INSTANT AUTO-LOADING BOUND MARKERS CAPTURING SEPARATED PROPERTIES CORRECTLY
                         const mapMarker = L.marker([targetLat, targetLon])
-                            .bindPopup(`<div style="font-family:'Plus Jakarta Sans', sans-serif; p-0.5"><b style="color:#ac7347; text-transform:uppercase; font-size:12px;">${item.title}</b><br><span style="font-size:10px; color:#444;">Handler Node: ${item.provider}</span></div>`);
+                            .bindPopup(`
+                                <div style="font-family:'Plus Jakarta Sans', sans-serif; padding: 3px;">
+                                    <b style="color:#ac7347; text-transform:uppercase; font-size:12px;">${item.title}</b><br>
+                                    <span style="font-size:11px; color:#1c1917; font-weight: 600; display:block; margin-top:2px;">Node: ${item.provider}</span>
+                                    <span style="font-size:10px; color:#6b5a4c; display:block; margin-top:1px;">Rate: ${item.price}</span>
+                                </div>
+                            `);
                         mainMarkersGroup.addLayer(mapMarker);
 
-                        // Dynamic live radial geometry computation
                         const computedDistance = calculateKilometerGap(userLat, userLng, targetLat, targetLon);
                         const distanceText = computedDistance ? `${computedDistance} km away` : 'Active Area';
 
-                        // PERFECT IDENTICAL UNIFORM STRUCTURES EXECUTED IN CARDS
+                        // STRUCTURALLY DESIGNED STABLE UNIFORM DISPLAY DOM BLOCK MATRIX
                         const cardHtml = `
                             <div onclick="panToMapTarget(${targetLat}, ${targetLon})" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-3xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 hover:shadow-md text-stone-900 cursor-pointer group">
                                 <div>
@@ -421,7 +425,7 @@
             const isStudent = document.getElementById('form-student').checked;
 
             if(!provider || !title || !description) {
-                alert('Fill out all parameter fields to register.');
+                alert('Fill out all parameter fields to complete registration.');
                 return;
             }
 
