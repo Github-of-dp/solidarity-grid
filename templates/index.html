@@ -8,142 +8,175 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+        
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #05070a;
+            background-image: 
+                linear-gradient(rgba(14, 116, 144, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 116, 144, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
         }
-        .scrollbar-none::-webkit-scrollbar { display: none; }
-        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Retail Card Micro-interactions */
-        .retail-card {
-            background: #ffffff;
-            border: 1px solid #efefef;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+        .hero-font {
+            font-family: 'Space Grotesk', sans-serif;
         }
-        .retail-card:hover {
-            border-color: #2563eb;
-            transform: translateY(-4px);
-            box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.06);
+
+        /* Custom text-stroke for the marquee outline effect from image_0dfac6.jpg */
+        .text-stroke {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
         }
-        /* Modal Transition */
-        .modal-animate {
+
+        /* Glass pill element headers */
+        .cyber-header {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Interactive resource cards mimicking the dark sleek vibe */
+        .cyber-card {
+            background: rgba(13, 18, 26, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cyber-card:hover {
+            border-color: #bef264; /* Electric Lime */
+            box-shadow: 0 0 30px -10px rgba(190, 242, 100, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Infinite horizontal scroll animation for the ticker tape */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
         }
     </style>
 </head>
-<body class="text-slate-900 antialiased bg-[#f8fafc] min-h-screen flex flex-col lg:flex-row overflow-x-hidden">
+<body class="text-slate-100 antialiased min-h-screen flex flex-col p-4 md:p-6 gap-6">
 
-    <!-- LEFT SIDEBAR: DYNAMIC CONTROL CONSOLE (Fixed 30% Width) -->
-    <aside class="w-full lg:w-[320px] xl:w-[360px] bg-[#0f172a] text-white flex flex-col justify-between p-6 lg:fixed lg:inset-y-0 lg:left-0 z-40 border-b lg:border-b-0 lg:border-r border-slate-800">
-        <div class="space-y-8">
-            <!-- Brand block -->
-            <div class="flex items-center gap-2.5">
-                <div class="w-2.5 h-6 bg-blue-500 rounded-xs"></div>
-                <span class="text-sm font-extrabold tracking-widest uppercase">SOLIDARITY<span class="text-blue-500">GRID</span></span>
+    <!-- FLOATING CYBER GLOW GLASSMORPHIC HEADER BAR -->
+    <header class="w-full max-w-7xl mx-auto h-16 cyber-header rounded-full px-6 flex items-center justify-between sticky top-4 z-50 shadow-2xl">
+        <div class="flex items-center gap-3">
+            <!-- Icon Badge styled precisely like the green node icon in image_0dfac6.jpg -->
+            <div class="w-6 h-6 rounded-full bg-[#bef264] flex items-center justify-center shadow-[0_0_15px_rgba(190,242,100,0.4)]">
+                <i class="fa-solid fa-bolt text-black text-xs"></i>
             </div>
-
-            <!-- Location Meta Badge -->
-            <div class="flex items-center gap-2 bg-slate-900/60 border border-slate-800/80 px-4 py-3 rounded-xl">
-                <i class="fa-solid fa-circle-nodes text-blue-500 text-xs animate-pulse"></i>
-                <div class="flex flex-col">
-                    <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Active Node Cluster</span>
-                    <span class="text-xs font-bold text-slate-200">Abu Dhabi, UAE</span> <!-- -->
-                </div>
-            </div>
-
-            <!-- Segmented Category Filtration Hub -->
-            <div class="space-y-2">
-                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Ecosystem Streams</label>
-                <div class="space-y-1">
-                    <button id="tab-all" onclick="filterCategory('all')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold bg-blue-600 text-white transition-all cursor-pointer shadow-xs">
-                        <i class="fa-solid fa-grid-2 text-sm w-4"></i>
-                        <span>All Streams</span>
-                    </button>
-                    <button id="tab-services" onclick="filterCategory('services')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition-all cursor-pointer">
-                        <i class="fa-solid fa-handshake-angle text-sm w-4"></i>
-                        <span>Family Services</span>
-                    </button>
-                    <button id="tab-heritage" onclick="filterCategory('heritage')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition-all cursor-pointer">
-                        <i class="fa-solid fa-boxes-packing text-sm w-4"></i>
-                        <span>Heritage & Crafts</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Sub-Type Toggle Switch -->
-            <div class="space-y-2">
-                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Resource Type</label>
-                <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800">
-                    <button id="type-all" onclick="filterType('all')" class="bg-slate-800 text-white font-bold text-[10px] uppercase tracking-wider py-2 rounded-lg transition-all cursor-pointer text-center">All</button>
-                    <button id="type-service" onclick="filterType('Service')" class="text-slate-400 hover:text-white font-semibold text-[10px] uppercase tracking-wider py-2 rounded-lg transition-all cursor-pointer text-center">Offers</button>
-                    <button id="type-product" onclick="filterType('Product')" class="text-slate-400 hover:text-white font-semibold text-[10px] uppercase tracking-wider py-2 rounded-lg transition-all cursor-pointer text-center">Products</button>
-                </div>
-            </div>
+            <span class="text-sm font-black tracking-widest text-white">SOLIDARITY<span class="text-[#bef264]">GRID</span></span>
         </div>
 
-        <!-- Global Action Panel Anchor -->
-        <div class="pt-6 border-t border-slate-800 mt-8 lg:mt-0">
-            <button onclick="toggleModal(true)" class="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase tracking-wider py-3.5 rounded-xl shadow-md transition-all cursor-pointer flex items-center justify-center gap-2">
-                <i class="fa-solid fa-plus text-xs"></i>
-                <span>Publish New Listing</span>
+        <div class="hidden md:flex items-center gap-2 text-[10px] font-bold text-slate-400 tracking-widest uppercase">
+            <i class="fa-solid fa-fingerprint text-[#bef264]"></i>
+            <span>Node Status: <strong class="text-white">Verified Local Impact</strong></span>
+        </div>
+
+        <div>
+            <button onclick="toggleModal(true)" class="bg-white hover:bg-[#bef264] text-black text-xs font-extrabold px-5 py-2.5 rounded-full transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer tracking-wider shadow-md">
+                GET STARTED
             </button>
         </div>
-    </aside>
+    </header>
 
-    <!-- RIGHT CANVAS: HIGH-END RETAIL DISPLAY GRID (Fluid Remaining Width) -->
-    <main class="flex-1 lg:pl-[320px] xl:pl-[360px] p-6 lg:p-10 flex flex-col gap-6">
+    <!-- HERO SECTION MATCHING IMAGE_0DFAC6.JPG VISUAL WEIGHT -->
+    <section class="w-full max-w-7xl mx-auto pt-8 pb-4 relative flex flex-col gap-2">
+        <div class="w-16 h-1 bg-[#bef264] rounded-full mb-2 shadow-[0_0_10px_rgba(190,242,100,0.5)]"></div>
+        <h1 class="hero-font text-6xl md:text-8xl font-black text-white tracking-tighter leading-[0.85] uppercase select-none">
+            COMMUNITY<br>
+            <span class="text-[#bef264] drop-shadow-[0_0_35px_rgba(190,242,100,0.2)]">EXCHANGE</span>
+        </h1>
+        <p class="text-slate-400 text-sm md:text-base max-w-xl font-medium mt-4 leading-relaxed">
+            Turn local household assets and specialized family skills into verified communal infrastructure anyone can access.
+        </p>
+    </section>
+
+    <!-- INFINITE SLIDING TICKER TAPE (Pulled directly from image_0dfac6.jpg styling) -->
+    <section class="w-screen -mx-4 md:-mx-6 bg-black border-y border-slate-800 py-3.5 overflow-hidden flex select-none">
+        <div class="flex whitespace-nowrap gap-12 text-xs font-black tracking-widest uppercase items-center animate-marquee shrink-0">
+            <span>MUTUAL REWARDS</span> <span class="text-[#bef264] text-base">•</span>
+            <span class="text-stroke">VERIFIED LOGS</span> <span class="text-[#bef264] text-base">•</span>
+            <span>HYPERLOCAL ACTION</span> <span class="text-[#bef264] text-base">•</span>
+            <span class="text-stroke">UAE LEADERBOARD</span> <span class="text-[#bef264] text-base">•</span>
+            <span>MUTUAL REWARDS</span> <span class="text-[#bef264] text-base">•</span>
+            <span class="text-stroke">VERIFIED LOGS</span> <span class="text-[#bef264] text-base">•</span>
+            <span>HYPERLOCAL ACTION</span> <span class="text-[#bef264] text-base">•</span>
+            <span class="text-stroke">UAE LEADERBOARD</span> <span class="text-[#bef264] text-base">•</span>
+        </div>
+        <!-- Duplicated strip to ensure seamless seamless loop wrapping -->
+        <div class="flex whitespace-nowrap gap-12 text-xs font-black tracking-widest uppercase items-center animate-marquee shrink-0 aria-hidden='true'">
+            <span>MUTUAL REWARDS</span> <span class="text-[#bef264] text-base">•</span>
+            <span class="text-stroke">VERIFIED LOGS</span> <span class="text-[#bef264] text-base">•</span>
+            <span>HYPERLOCAL ACTION</span> <span class="text-[#bef264] text-base">•</span>
+            <span class="text-stroke">UAE LEADERBOARD</span> <span class="text-[#bef264] text-base">•</span>
+            <span>MUTUAL REWARDS</span> <span class="text-[#bef264] text-base">•</span>
+            <span class="text-stroke">VERIFIED LOGS</span> <span class="text-[#bef264] text-base">•</span>
+            <span>HYPERLOCAL ACTION</span> <span class="text-[#bef264] text-base">•</span>
+            <span class="text-stroke">UAE LEADERBOARD</span> <span class="text-[#bef264] text-base">•</span>
+        </div>
+    </section>
+
+    <!-- CONTROL HUB AND GRID PLATFORM -->
+    <main class="w-full max-w-7xl mx-auto flex flex-col gap-6 mt-4 flex-1">
         
-        <!-- Live Status Metadata Header Strip -->
-        <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-            <div class="flex flex-col gap-0.5">
-                <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Active Marketplace Ledger</span>
-                <h1 id="feed-title" class="text-base font-extrabold tracking-tight text-slate-900 uppercase">All Streams</h1>
+        <!-- HYPER-MINIMAL FILTER LAYER BAR -->
+        <div class="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-900 pb-4">
+            <!-- Stream filter choices -->
+            <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none">
+                <button id="tab-all" onclick="filterCategory('all')" class="px-4 py-2 rounded-full text-xs font-extrabold bg-[#bef264] text-black transition-all cursor-pointer">ALL EXCHANGES</button>
+                <button id="tab-services" onclick="filterCategory('services')" class="px-4 py-2 rounded-full text-xs font-bold text-slate-400 hover:text-white transition-all cursor-pointer">FAMILY SERVICES</button>
+                <button id="tab-heritage" onclick="filterCategory('heritage')" class="px-4 py-2 rounded-full text-xs font-bold text-slate-400 hover:text-white transition-all cursor-pointer">HERITAGE & CRAFTS</button>
             </div>
-            <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-3xs">
-                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></span>
-                <span class="text-[10px] font-bold text-slate-600 tracking-wide uppercase">Live Pipeline Stream</span>
+
+            <!-- Offers/Products Selector Switch -->
+            <div class="flex items-center bg-slate-900/60 p-1 rounded-full border border-slate-800/60 self-start sm:self-auto">
+                <button id="type-all" onclick="filterType('all')" class="px-4 py-1.5 bg-slate-800 text-white text-[10px] font-black tracking-wider uppercase rounded-full transition-all cursor-pointer">ALL</button>
+                <button id="type-service" onclick="filterType('Service')" class="px-4 py-1.5 text-slate-400 hover:text-white text-[10px] font-black tracking-wider uppercase rounded-full transition-all cursor-pointer">OFFERS</button>
+                <button id="type-product" onclick="filterType('Product')" class="px-4 py-1.5 text-slate-400 hover:text-white text-[10px] font-black tracking-wider uppercase rounded-full transition-all cursor-pointer">PRODUCTS</button>
             </div>
         </div>
 
-        <!-- AIRBNB/GRAILED FUSION MASONRY CARD CATALOG GRID -->
-        <div id="listings-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+        <!-- THE HIGH-END PREMIUM RESOURCE STREAM GRID -->
+        <div id="listings-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for item in listings %}
-            <div class="retail-card rounded-2xl p-5 flex flex-col justify-between shadow-3xs">
+            <div class="cyber-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group">
                 <div>
-                    <!-- Retail Meta Tags Row -->
+                    <!-- Card Top Meta Tags info layout -->
                     <div class="flex justify-between items-center gap-3 mb-4">
-                        <span class="text-[9px] font-extrabold uppercase tracking-widest text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
+                        <span class="text-[9px] font-black uppercase tracking-widest bg-slate-900 text-slate-300 px-2.5 py-1 rounded border border-slate-800">
                             {{ item.type }}
                         </span>
-                        <span class="text-[11px] text-slate-400 font-medium flex items-center gap-1">
-                            <i class="fa-solid fa-location-dot text-slate-300 text-xs"></i> {{ item.distance }}
+                        <span class="text-[11px] text-slate-500 font-bold tracking-wide flex items-center gap-1">
+                            <i class="fa-solid fa-location-crosshairs text-slate-600 text-xs"></i> {{ item.distance }}
                         </span>
                     </div>
 
-                    <!-- Clean Retail Text block -->
-                    <h3 class="font-bold text-slate-900 text-base mb-1.5 tracking-tight line-clamp-1 hover:text-blue-600 transition cursor-pointer">{{ item.title }}</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed mb-6 font-normal line-clamp-2 h-9">{{ item.description }}</p>
+                    <!-- Core Item Text block -->
+                    <h3 class="font-extrabold text-white text-lg mb-2 tracking-tight group-hover:text-[#bef264] transition-colors duration-200 line-clamp-1 uppercase">{{ item.title }}</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-6 font-medium line-clamp-2 h-9">{{ item.description }}</p>
                 </div>
                 
-                <!-- Retail Card Footer row block -->
-                <div class="border-t border-slate-100 pt-4 flex items-center justify-between mt-auto">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-xl bg-blue-50 border border-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center uppercase shrink-0">
+                <!-- Card Footer row separator block -->
+                <div class="border-t border-slate-900 pt-4 flex items-center justify-between mt-auto">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-extrabold text-xs flex items-center justify-center uppercase shrink-0">
                             {{ item.provider[:2] }}
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-xs font-bold text-slate-800 line-clamp-1 max-w-[100px]">{{ item.provider }}</span>
-                            <span class="text-[9px] text-emerald-600 font-bold flex items-center gap-0.5">
-                                <i class="fa-solid fa-shield-check text-[10px]"></i> Verified
+                            <span class="text-xs font-bold text-white tracking-wide line-clamp-1 max-w-[100px]">{{ item.provider }}</span>
+                            <span class="text-[9px] text-[#bef264] font-black uppercase tracking-widest flex items-center gap-0.5">
+                                <i class="fa-solid fa-shield text-[8px]"></i> SECURED
                             </span>
                         </div>
                     </div>
                     
-                    <div class="flex items-center gap-3">
-                        <span class="text-sm font-extrabold text-slate-900 tracking-tight">{{ item.price }}</span>
-                        <button onclick="alert('Routing clean context contact gateway secure handshakes...')" class="px-4 py-2 bg-[#0f172a] hover:bg-blue-600 text-white text-[11px] font-bold rounded-xl transition-all shadow-3xs cursor-pointer">
-                            Connect
+                    <div class="flex items-center gap-3.5">
+                        <span class="text-sm font-black text-white tracking-tight">{{ item.price }}</span>
+                        <button onclick="alert('Routing network security payload pipeline connection handshakes...')" class="px-4 py-2 bg-white text-black hover:bg-[#bef264] text-[10px] font-black uppercase tracking-wider rounded-lg transition-all duration-200 cursor-pointer shadow-sm">
+                            CONNECT
                         </button>
                     </div>
                 </div>
@@ -152,38 +185,38 @@
         </div>
     </main>
 
-    <!-- FLOATING GLASSMORPHIC CREATION MODAL OVERLAY -->
-    <div id="form-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none modal-animate">
-        <div class="bg-white border border-slate-200 rounded-2xl shadow-xl w-full max-w-md p-6 relative transform scale-95 modal-animate">
+    <!-- SLICK FLOATING CREATION MODAL OVERLAY PORTAL -->
+    <div id="form-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-[#0d121a] border border-slate-800 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.8)] w-full max-w-md p-6 relative transform scale-95 transition-all duration-300">
             
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-circle-plus text-blue-600 text-sm"></i>
-                    <h3 class="font-bold text-xs text-slate-900 uppercase tracking-widest">New Grid Resource</h3>
+            <div class="flex items-center justify-between border-b border-slate-900 pb-3 mb-5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-2 h-4 bg-[#bef264] rounded-xs shadow-[0_0_10px_rgba(190,242,100,0.4)]"></div>
+                    <h3 class="font-extrabold text-xs text-white uppercase tracking-widest">Broadcast Resource Node</h3>
                 </div>
-                <button onclick="toggleModal(false)" class="text-slate-400 hover:text-slate-600 cursor-pointer p-1">
+                <button onclick="toggleModal(false)" class="text-slate-500 hover:text-white cursor-pointer p-1 transition-colors">
                     <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
             </div>
 
-            <!-- Form Inputs Slot Entries -->
+            <!-- Form Matrix Entry parameters fields -->
             <div class="space-y-4">
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Your Household Name</label>
-                    <input type="text" id="form-provider" placeholder="e.g. Al Romaithi Household" class="w-full text-xs px-3 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-slate-50 font-medium">
+                    <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Your Household Namespace Identifier</label>
+                    <input type="text" id="form-provider" placeholder="e.g. Al Romaithi Family" class="w-full text-xs px-3 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:outline-none focus:border-[#bef264] text-white font-medium placeholder-slate-600">
                 </div>
                 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Category Stream</label>
-                        <select id="form-category" class="w-full text-xs px-2 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium focus:outline-none focus:border-blue-500">
+                        <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Stream Cluster</label>
+                        <select id="form-category" class="w-full text-xs px-3 py-3 bg-slate-950 border border-slate-800 rounded-xl text-slate-300 font-medium focus:outline-none focus:border-[#bef264]">
                             <option value="services">Family Services</option>
                             <option value="heritage">Heritage & Crafts</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Resource Type</label>
-                        <select id="form-type" class="w-full text-xs px-2 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium focus:outline-none focus:border-blue-500">
+                        <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Resource Blueprint</label>
+                        <select id="form-type" class="w-full text-xs px-3 py-3 bg-slate-950 border border-slate-800 rounded-xl text-slate-300 font-medium focus:outline-none focus:border-[#bef264]">
                             <option value="Service">Service</option>
                             <option value="Product">Product</option>
                         </select>
@@ -191,34 +224,34 @@
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Listing Title</label>
-                    <input type="text" id="form-title" placeholder="e.g. Traditional Handwoven Rug" class="w-full text-xs px-3 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-slate-50 font-medium">
+                    <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Resource Title</label>
+                    <input type="text" id="form-title" placeholder="e.g. Traditional Handcrafted Basket" class="w-full text-xs px-3 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:outline-none focus:border-[#bef264] text-white font-medium placeholder-slate-600">
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Context Guidelines / Description</label>
-                    <textarea id="form-description" rows="3" placeholder="Provide accurate item parameters or skill descriptions flawlessly..." class="w-full text-xs px-3 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-slate-50 font-medium resize-none"></textarea>
+                    <label class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Context Summary Description</label>
+                    <textarea id="form-description" rows="3" placeholder="Provide accurate operational parameters or skill specs clearly..." class="w-full text-xs px-3 py-3 bg-slate-950 border border-slate-800 rounded-xl focus:outline-none focus:border-[#bef264] text-white font-medium resize-none placeholder-slate-600"></textarea>
                 </div>
 
-                <div class="flex items-center justify-between gap-3 border border-slate-200 p-3 rounded-xl bg-slate-50">
+                <div class="flex items-center justify-between gap-3 border border-slate-800 p-3 rounded-xl bg-slate-950/60">
                     <div>
-                        <label class="block text-[9px] font-bold text-slate-400 uppercase mb-0.5">Value / Price Metric</label>
-                        <input type="text" id="form-price" placeholder="AED 150" class="w-full bg-transparent text-xs text-slate-900 font-bold focus:outline-none placeholder-slate-400">
+                        <label class="block text-[9px] font-black text-slate-500 uppercase tracking-widest mb-0.5">Value Rate / Token Price</label>
+                        <input type="text" id="form-price" placeholder="AED 150" class="w-full bg-transparent text-xs text-white font-black focus:outline-none placeholder-slate-700">
                     </div>
-                    <div class="flex items-center gap-1.5 border-l border-slate-200 pl-3 h-8 shrink-0">
-                        <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-blue-600 rounded">
-                        <label for="form-student" class="text-[9px] font-bold text-slate-500 tracking-wide uppercase select-none cursor-pointer">Student?</label>
+                    <div class="flex items-center gap-1.5 border-l border-slate-800 pl-3 h-8 shrink-0">
+                        <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-[#bef264] rounded bg-slate-950 border-slate-800">
+                        <label for="form-student" class="text-[9px] font-black text-slate-400 tracking-widest uppercase select-none cursor-pointer">Student?</label>
                     </div>
                 </div>
 
-                <button onclick="submitNewListing()" class="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-xl transition shadow-xs cursor-pointer text-center mt-2">
-                    Publish to Cluster Grid
+                <button onclick="submitNewListing()" class="w-full bg-[#bef264] text-black text-xs font-black uppercase tracking-widest py-3.5 rounded-xl transition-all hover:shadow-[0_0_20px_rgba(190,242,100,0.3)] cursor-pointer text-center mt-2">
+                    BROADCAST AD NODE
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- PIPELINE CORE CLIENT SCRIPT INTERACTIVE DISPATCH CONTROLLER -->
+    <!-- PIPELINE LOGIC CONTROLLER LAYER INTERACTIVES -->
     <script>
         let currentCategory = 'all';
         let currentType = 'all';
@@ -239,14 +272,12 @@
             currentCategory = cat;
             
             document.querySelectorAll('[id^="tab-"]').forEach(el => {
-                el.className = 'w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition-all cursor-pointer';
+                el.className = 'px-4 py-2 rounded-full text-xs font-bold text-slate-400 hover:text-white transition-all cursor-pointer';
             });
             const targeted = document.getElementById(`tab-${cat}`);
             if(targeted) {
-                targeted.className = 'w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold bg-blue-600 text-white transition-all cursor-pointer shadow-xs';
+                targeted.className = 'px-4 py-2 rounded-full text-xs font-extrabold bg-[#bef264] text-black transition-all cursor-pointer';
             }
-
-            document.getElementById('feed-title').innerText = cat === 'all' ? 'All Streams' : `${cat} Stream`;
             fetchAndRenderListings();
         }
 
@@ -254,12 +285,12 @@
             currentType = type;
             
             document.querySelectorAll('[id^="type-"]').forEach(el => {
-                el.className = 'text-slate-400 hover:text-white font-semibold text-[10px] uppercase tracking-wider py-2 rounded-lg transition-all cursor-pointer text-center';
+                el.className = 'px-4 py-1.5 text-slate-400 hover:text-white text-[10px] font-black tracking-wider uppercase rounded-full transition-all cursor-pointer';
             });
             const idMap = type === 'all' ? 'all' : type === 'Service' ? 'service' : 'product';
             const node = document.getElementById(`type-${idMap}`);
             if(node) {
-                node.className = 'bg-slate-800 text-white font-bold text-[10px] uppercase tracking-wider py-2 rounded-lg transition-all cursor-pointer text-center';
+                node.className = 'px-4 py-1.5 bg-slate-800 text-white text-[10px] font-black tracking-wider uppercase rounded-full transition-all cursor-pointer';
             }
             fetchAndRenderListings();
         }
@@ -273,8 +304,8 @@
                     
                     if(data.length === 0) {
                         container.innerHTML = `
-                            <div class="col-span-full bg-white border border-dashed border-slate-200 rounded-2xl p-16 text-center text-slate-400 text-xs font-medium shadow-3xs">
-                                No active node assets available for the selected filtration state rules.
+                            <div class="col-span-full bg-slate-950/40 border border-dashed border-slate-800 rounded-2xl p-16 text-center text-slate-500 text-xs font-bold uppercase tracking-widest">
+                                Zero operational node listings found in ledger cache matching filter rule tags.
                             </div>`;
                         return;
                     }
@@ -282,28 +313,28 @@
                     data.forEach(item => {
                         const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'HN';
                         container.innerHTML += `
-                            <div class="retail-card rounded-2xl p-5 flex flex-col justify-between shadow-3xs">
+                            <div class="cyber-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group">
                                 <div>
                                     <div class="flex justify-between items-center gap-3 mb-4">
-                                        <span class="text-[9px] font-extrabold uppercase tracking-widest text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">${item.type}</span>
-                                        <span class="text-[11px] text-slate-400 font-medium flex items-center gap-1">
-                                            <i class="fa-solid fa-location-dot text-slate-300 text-xs"></i> ${item.distance}
+                                        <span class="text-[9px] font-black uppercase tracking-widest bg-slate-900 text-slate-300 px-2.5 py-1 rounded border border-slate-800">${item.type}</span>
+                                        <span class="text-[11px] text-slate-500 font-bold tracking-wide flex items-center gap-1">
+                                            <i class="fa-solid fa-location-crosshairs text-slate-600 text-xs"></i> ${item.distance}
                                         </span>
                                     </div>
-                                    <h3 class="font-bold text-slate-900 text-base mb-1.5 tracking-tight line-clamp-1 hover:text-blue-600 transition cursor-pointer">${item.title}</h3>
-                                    <p class="text-xs text-slate-500 leading-relaxed mb-6 font-normal line-clamp-2 h-9">${item.description}</p>
+                                    <h3 class="font-extrabold text-white text-lg mb-2 tracking-tight group-hover:text-[#bef264] transition-colors duration-200 line-clamp-1 uppercase">${item.title}</h3>
+                                    <p class="text-xs text-slate-400 leading-relaxed mb-6 font-medium line-clamp-2 h-9">${item.description}</p>
                                 </div>
-                                <div class="border-t border-slate-100 pt-4 flex items-center justify-between mt-auto">
-                                    <div class="flex items-center gap-2.5">
-                                        <div class="w-8 h-8 rounded-xl bg-blue-50 border border-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center uppercase shrink-0">${initials}</div>
+                                <div class="border-t border-slate-100/10 pt-4 flex items-center justify-between mt-auto">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-extrabold text-xs flex items-center justify-center uppercase shrink-0">${initials}</div>
                                         <div class="flex flex-col">
-                                            <span class="text-xs font-bold text-slate-800 line-clamp-1 max-w-[100px]">${item.provider}</span>
-                                            <span class="text-[9px] text-emerald-600 font-bold flex items-center gap-0.5"><i class="fa-solid fa-shield-check text-[10px]"></i> Verified</span>
+                                            <span class="text-xs font-bold text-white tracking-wide line-clamp-1 max-w-[100px]">${item.provider}</span>
+                                            <span class="text-[9px] text-[#bef264] font-black uppercase tracking-widest flex items-center gap-0.5"><i class="fa-solid fa-shield text-[8px]"></i> SECURED</span>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-3">
-                                        <span class="text-sm font-extrabold text-slate-900 tracking-tight">${item.price}</span>
-                                        <button onclick="alert('Routing clean context contact gateway secure handshakes...')" class="px-4 py-2 bg-[#0f172a] hover:bg-blue-600 text-white text-[11px] font-bold rounded-xl transition-all shadow-3xs cursor-pointer">Connect</button>
+                                    <div class="flex items-center gap-3.5">
+                                        <span class="text-sm font-black text-white tracking-tight">${item.price}</span>
+                                        <button onclick="alert('Routing network security payload pipeline connection handshakes...')" class="px-4 py-2 bg-white text-black hover:bg-[#bef264] text-[10px] font-black uppercase tracking-wider rounded-lg transition-all duration-200 cursor-pointer shadow-sm">CONNECT</button>
                                     </div>
                                 </div>
                             </div>`;
@@ -321,7 +352,7 @@
             const isStudent = document.getElementById('form-student').checked;
 
             if(!provider || !title || !description) {
-                alert('All data input entry parameters must be filled before syncing.');
+                alert('Fill out all form parameters to commit database sync.');
                 return;
             }
 
