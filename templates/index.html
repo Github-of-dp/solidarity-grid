@@ -11,101 +11,138 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #fafafa; 
         }
-        .feed-card {
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Retail Card Micro-interactions */
+        .retail-card {
             background: #ffffff;
-            border: 1px solid #eaeaea;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid #efefef;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .feed-card:hover {
+        .retail-card:hover {
             border-color: #2563eb;
-            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
-            transform: translateY(-2px);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.06);
         }
-        /* Smooth Modal transition helper */
+        /* Modal Transition */
         .modal-animate {
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
     </style>
 </head>
-<body class="text-slate-900 antialiased min-h-screen flex flex-col">
+<body class="text-slate-900 antialiased bg-[#f8fafc] min-h-screen flex flex-col lg:flex-row overflow-x-hidden">
 
-    <!-- ULTRA-MINIMALIST COMPACT NAVIGATION -->
-    <header class="bg-[#0f172a] text-white sticky top-0 z-40 shadow-xs">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <!-- LEFT SIDEBAR: DYNAMIC CONTROL CONSOLE (Fixed 30% Width) -->
+    <aside class="w-full lg:w-[320px] xl:w-[360px] bg-[#0f172a] text-white flex flex-col justify-between p-6 lg:fixed lg:inset-y-0 lg:left-0 z-40 border-b lg:border-b-0 lg:border-r border-slate-800">
+        <div class="space-y-8">
+            <!-- Brand block -->
             <div class="flex items-center gap-2.5">
-                <div class="w-2.5 h-5 bg-blue-600 rounded-xs"></div>
-                <span class="text-sm font-extrabold tracking-wider uppercase">SOLIDARITY<span class="text-blue-500">GRID</span></span>
+                <div class="w-2.5 h-6 bg-blue-500 rounded-xs"></div>
+                <span class="text-sm font-extrabold tracking-widest uppercase">SOLIDARITY<span class="text-blue-500">GRID</span></span>
             </div>
-            
-            <!-- Context Action Control Row -->
-            <div class="flex items-center gap-4">
-                <div class="hidden sm:flex items-center gap-1.5 text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
-                    <i class="fa-solid fa-circle-nodes text-blue-500 text-[10px]"></i>
-                    <span>Abu Dhabi Node</span>
+
+            <!-- Location Meta Badge -->
+            <div class="flex items-center gap-2 bg-slate-900/60 border border-slate-800/80 px-4 py-3 rounded-xl">
+                <i class="fa-solid fa-circle-nodes text-blue-500 text-xs animate-pulse"></i>
+                <div class="flex flex-col">
+                    <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Active Node Cluster</span>
+                    <span class="text-xs font-bold text-slate-200">Abu Dhabi, UAE</span> <!-- -->
                 </div>
-                <button onclick="toggleModal(true)" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm transition-all cursor-pointer flex items-center gap-2">
-                    <i class="fa-solid fa-plus text-[11px]"></i>
-                    <span>Create Listing</span>
-                </button>
+            </div>
+
+            <!-- Segmented Category Filtration Hub -->
+            <div class="space-y-2">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Ecosystem Streams</label>
+                <div class="space-y-1">
+                    <button id="tab-all" onclick="filterCategory('all')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold bg-blue-600 text-white transition-all cursor-pointer shadow-xs">
+                        <i class="fa-solid fa-grid-2 text-sm w-4"></i>
+                        <span>All Streams</span>
+                    </button>
+                    <button id="tab-services" onclick="filterCategory('services')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition-all cursor-pointer">
+                        <i class="fa-solid fa-handshake-angle text-sm w-4"></i>
+                        <span>Family Services</span>
+                    </button>
+                    <button id="tab-heritage" onclick="filterCategory('heritage')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition-all cursor-pointer">
+                        <i class="fa-solid fa-boxes-packing text-sm w-4"></i>
+                        <span>Heritage & Crafts</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sub-Type Toggle Switch -->
+            <div class="space-y-2">
+                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Resource Type</label>
+                <div class="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800">
+                    <button id="type-all" onclick="filterType('all')" class="bg-slate-800 text-white font-bold text-[10px] uppercase tracking-wider py-2 rounded-lg transition-all cursor-pointer text-center">All</button>
+                    <button id="type-service" onclick="filterType('Service')" class="text-slate-400 hover:text-white font-semibold text-[10px] uppercase tracking-wider py-2 rounded-lg transition-all cursor-pointer text-center">Offers</button>
+                    <button id="type-product" onclick="filterType('Product')" class="text-slate-400 hover:text-white font-semibold text-[10px] uppercase tracking-wider py-2 rounded-lg transition-all cursor-pointer text-center">Products</button>
+                </div>
             </div>
         </div>
-    </header>
 
-    <!-- CLEAN CENTRAL APP HUB WORKSPACE -->
-    <main class="max-w-6xl w-full mx-auto px-6 py-10 flex-1 flex flex-col gap-8">
+        <!-- Global Action Panel Anchor -->
+        <div class="pt-6 border-t border-slate-800 mt-8 lg:mt-0">
+            <button onclick="toggleModal(true)" class="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase tracking-wider py-3.5 rounded-xl shadow-md transition-all cursor-pointer flex items-center justify-center gap-2">
+                <i class="fa-solid fa-plus text-xs"></i>
+                <span>Publish New Listing</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- RIGHT CANVAS: HIGH-END RETAIL DISPLAY GRID (Fluid Remaining Width) -->
+    <main class="flex-1 lg:pl-[320px] xl:pl-[360px] p-6 lg:p-10 flex flex-col gap-6">
         
-        <!-- DASHBOARD FILTER SUB-HEADER HUB -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-5">
-            <!-- Modern Text Filter Row Selector Pills -->
-            <div class="flex items-center gap-1 overflow-x-auto whitespace-nowrap scrollbar-none">
-                <button id="tab-all" onclick="filterCategory('all')" class="px-4 py-2 text-xs font-bold bg-blue-50 text-blue-600 rounded-lg transition-all cursor-pointer">All Exchanges</button>
-                <button id="tab-services" onclick="filterCategory('services')" class="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-900 rounded-lg transition-all cursor-pointer">Family Services</button>
-                <button id="tab-heritage" onclick="filterCategory('heritage')" class="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-900 rounded-lg transition-all cursor-pointer">Heritage & Crafts</button>
+        <!-- Live Status Metadata Header Strip -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+            <div class="flex flex-col gap-0.5">
+                <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Active Marketplace Ledger</span>
+                <h1 id="feed-title" class="text-base font-extrabold tracking-tight text-slate-900 uppercase">All Streams</h1>
             </div>
-
-            <!-- Context Filter Segment Switcher -->
-            <div class="flex items-center bg-slate-100 p-1 rounded-lg self-start sm:self-auto border border-slate-200">
-                <button id="type-all" onclick="filterType('all')" class="px-3 py-1 bg-white text-slate-900 text-[11px] font-bold rounded-md shadow-2xs transition-all cursor-pointer">All</button>
-                <button id="type-service" onclick="filterType('Service')" class="px-3 py-1 text-slate-500 hover:text-slate-900 text-[11px] font-semibold transition-all cursor-pointer">Offers</button>
-                <button id="type-product" onclick="filterType('Product')" class="px-3 py-1 text-slate-500 hover:text-slate-900 text-[11px] font-semibold transition-all cursor-pointer">Products</button>
+            <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-3xs">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-ping"></span>
+                <span class="text-[10px] font-bold text-slate-600 tracking-wide uppercase">Live Pipeline Stream</span>
             </div>
         </div>
 
-        <!-- HIGH-FIDELITY MASONRY-STYLE CATALOG CARD STREAM -->
-        <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- AIRBNB/GRAILED FUSION MASONRY CARD CATALOG GRID -->
+        <div id="listings-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
             {% for item in listings %}
-            <div class="feed-card rounded-2xl p-6 flex flex-col justify-between">
+            <div class="retail-card rounded-2xl p-5 flex flex-col justify-between shadow-3xs">
                 <div>
-                    <!-- Meta Header Tag strip -->
-                    <div class="flex justify-between items-center gap-4 mb-3.5">
-                        <span class="text-[9px] font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
+                    <!-- Retail Meta Tags Row -->
+                    <div class="flex justify-between items-center gap-3 mb-4">
+                        <span class="text-[9px] font-extrabold uppercase tracking-widest text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
                             {{ item.type }}
                         </span>
                         <span class="text-[11px] text-slate-400 font-medium flex items-center gap-1">
-                            <i class="fa-solid fa-location-dot text-slate-300"></i> {{ item.distance }}
+                            <i class="fa-solid fa-location-dot text-slate-300 text-xs"></i> {{ item.distance }}
                         </span>
                     </div>
-                    <!-- Core Info Block -->
-                    <h3 class="font-bold text-slate-900 text-base mb-1.5 tracking-tight line-clamp-1">{{ item.title }}</h3>
+
+                    <!-- Clean Retail Text block -->
+                    <h3 class="font-bold text-slate-900 text-base mb-1.5 tracking-tight line-clamp-1 hover:text-blue-600 transition cursor-pointer">{{ item.title }}</h3>
                     <p class="text-xs text-slate-500 leading-relaxed mb-6 font-normal line-clamp-2 h-9">{{ item.description }}</p>
                 </div>
                 
-                <!-- Card Footer Border Strip -->
-                <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <div class="w-7 h-7 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 font-bold text-[10px] flex items-center justify-center uppercase shrink-0">
+                <!-- Retail Card Footer row block -->
+                <div class="border-t border-slate-100 pt-4 flex items-center justify-between mt-auto">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-xl bg-blue-50 border border-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center uppercase shrink-0">
                             {{ item.provider[:2] }}
                         </div>
                         <div class="flex flex-col">
                             <span class="text-xs font-bold text-slate-800 line-clamp-1 max-w-[100px]">{{ item.provider }}</span>
-                            <span class="text-[9px] text-emerald-600 font-bold flex items-center gap-0.5"><i class="fa-solid fa-circle-check text-[8px]"></i> Verified</span>
+                            <span class="text-[9px] text-emerald-600 font-bold flex items-center gap-0.5">
+                                <i class="fa-solid fa-shield-check text-[10px]"></i> Verified
+                            </span>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2.5">
-                        <span class="text-xs font-extrabold text-slate-900">{{ item.price }}</span>
-                        <button onclick="alert('Routing clean contact channel loop...')" class="px-3.5 py-1.5 bg-[#0f172a] hover:bg-slate-800 text-white text-[11px] font-bold rounded-lg shadow-2xs transition-all cursor-pointer">
+                    
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm font-extrabold text-slate-900 tracking-tight">{{ item.price }}</span>
+                        <button onclick="alert('Routing clean context contact gateway secure handshakes...')" class="px-4 py-2 bg-[#0f172a] hover:bg-blue-600 text-white text-[11px] font-bold rounded-xl transition-all shadow-3xs cursor-pointer">
                             Connect
                         </button>
                     </div>
@@ -115,39 +152,38 @@
         </div>
     </main>
 
-    <!-- HIDDEN OVERLAY POPUP CREATION MODAL MODULE -->
+    <!-- FLOATING GLASSMORPHIC CREATION MODAL OVERLAY -->
     <div id="form-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none modal-animate">
         <div class="bg-white border border-slate-200 rounded-2xl shadow-xl w-full max-w-md p-6 relative transform scale-95 modal-animate">
             
-            <!-- Modal Exit Control Header -->
             <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-circle-plus text-blue-600 text-sm"></i>
-                    <h3 class="font-bold text-sm text-slate-900 uppercase tracking-wider">New Grid Listing</h3>
+                    <h3 class="font-bold text-xs text-slate-900 uppercase tracking-widest">New Grid Resource</h3>
                 </div>
                 <button onclick="toggleModal(false)" class="text-slate-400 hover:text-slate-600 cursor-pointer p-1">
                     <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
             </div>
 
-            <!-- Clean Form Entry Slots -->
+            <!-- Form Inputs Slot Entries -->
             <div class="space-y-4">
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Your Name / Household</label>
-                    <input type="text" id="form-provider" placeholder="e.g. Al Mazrouei Household" class="w-full text-xs px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-slate-50 font-medium">
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Your Household Name</label>
+                    <input type="text" id="form-provider" placeholder="e.g. Al Romaithi Household" class="w-full text-xs px-3 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-slate-50 font-medium">
                 </div>
                 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Category Stream</label>
-                        <select id="form-category" class="w-full text-xs px-2 py-2 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium focus:outline-none focus:border-blue-500">
+                        <select id="form-category" class="w-full text-xs px-2 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium focus:outline-none focus:border-blue-500">
                             <option value="services">Family Services</option>
                             <option value="heritage">Heritage & Crafts</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Resource Type</label>
-                        <select id="form-type" class="w-full text-xs px-2 py-2 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium focus:outline-none focus:border-blue-500">
+                        <select id="form-type" class="w-full text-xs px-2 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium focus:outline-none focus:border-blue-500">
                             <option value="Service">Service</option>
                             <option value="Product">Product</option>
                         </select>
@@ -156,17 +192,17 @@
 
                 <div>
                     <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Listing Title</label>
-                    <input type="text" id="form-title" placeholder="e.g. Traditional Handcrafted Basket" class="w-full text-xs px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-slate-50 font-medium">
+                    <input type="text" id="form-title" placeholder="e.g. Traditional Handwoven Rug" class="w-full text-xs px-3 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-slate-50 font-medium">
                 </div>
 
                 <div>
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Context / Details</label>
-                    <textarea id="form-description" rows="3" placeholder="Provide clean parameters, metrics, or guidelines..." class="w-full text-xs px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-slate-50 font-medium resize-none"></textarea>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Context Guidelines / Description</label>
+                    <textarea id="form-description" rows="3" placeholder="Provide accurate item parameters or skill descriptions flawlessly..." class="w-full text-xs px-3 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 bg-slate-50 font-medium resize-none"></textarea>
                 </div>
 
                 <div class="flex items-center justify-between gap-3 border border-slate-200 p-3 rounded-xl bg-slate-50">
                     <div>
-                        <label class="block text-[9px] font-bold text-slate-400 uppercase mb-0.5">Value / Price</label>
+                        <label class="block text-[9px] font-bold text-slate-400 uppercase mb-0.5">Value / Price Metric</label>
                         <input type="text" id="form-price" placeholder="AED 150" class="w-full bg-transparent text-xs text-slate-900 font-bold focus:outline-none placeholder-slate-400">
                     </div>
                     <div class="flex items-center gap-1.5 border-l border-slate-200 pl-3 h-8 shrink-0">
@@ -176,18 +212,17 @@
                 </div>
 
                 <button onclick="submitNewListing()" class="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-xl transition shadow-xs cursor-pointer text-center mt-2">
-                    Publish Listing
+                    Publish to Cluster Grid
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- PIPELINE SCRIPT INTERACTIVE DISPATCHER LAYER -->
+    <!-- PIPELINE CORE CLIENT SCRIPT INTERACTIVE DISPATCH CONTROLLER -->
     <script>
         let currentCategory = 'all';
         let currentType = 'all';
 
-        // Toggle Modal System cleanly
         function toggleModal(open) {
             const modal = document.getElementById('form-modal');
             const inner = modal.querySelector('div');
@@ -204,12 +239,14 @@
             currentCategory = cat;
             
             document.querySelectorAll('[id^="tab-"]').forEach(el => {
-                el.className = 'px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-900 rounded-lg transition-all cursor-pointer';
+                el.className = 'w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-900 transition-all cursor-pointer';
             });
             const targeted = document.getElementById(`tab-${cat}`);
             if(targeted) {
-                targeted.className = 'px-4 py-2 text-xs font-bold bg-blue-50 text-blue-600 rounded-lg transition-all cursor-pointer';
+                targeted.className = 'w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold bg-blue-600 text-white transition-all cursor-pointer shadow-xs';
             }
+
+            document.getElementById('feed-title').innerText = cat === 'all' ? 'All Streams' : `${cat} Stream`;
             fetchAndRenderListings();
         }
 
@@ -217,12 +254,12 @@
             currentType = type;
             
             document.querySelectorAll('[id^="type-"]').forEach(el => {
-                el.className = 'px-3 py-1 text-slate-500 hover:text-slate-900 text-[11px] font-semibold transition-all cursor-pointer';
+                el.className = 'text-slate-400 hover:text-white font-semibold text-[10px] uppercase tracking-wider py-2 rounded-lg transition-all cursor-pointer text-center';
             });
             const idMap = type === 'all' ? 'all' : type === 'Service' ? 'service' : 'product';
             const node = document.getElementById(`type-${idMap}`);
             if(node) {
-                node.className = 'px-3 py-1 bg-white text-slate-900 text-[11px] font-bold rounded-md shadow-2xs transition-all cursor-pointer';
+                node.className = 'bg-slate-800 text-white font-bold text-[10px] uppercase tracking-wider py-2 rounded-lg transition-all cursor-pointer text-center';
             }
             fetchAndRenderListings();
         }
@@ -236,8 +273,8 @@
                     
                     if(data.length === 0) {
                         container.innerHTML = `
-                            <div class="col-span-full bg-white border border-dashed border-slate-200 rounded-2xl p-12 text-center text-slate-400 text-xs font-medium">
-                                No active node listings found for the selected view filter context.
+                            <div class="col-span-full bg-white border border-dashed border-slate-200 rounded-2xl p-16 text-center text-slate-400 text-xs font-medium shadow-3xs">
+                                No active node assets available for the selected filtration state rules.
                             </div>`;
                         return;
                     }
@@ -245,28 +282,28 @@
                     data.forEach(item => {
                         const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'HN';
                         container.innerHTML += `
-                            <div class="feed-card rounded-2xl p-6 flex flex-col justify-between">
+                            <div class="retail-card rounded-2xl p-5 flex flex-col justify-between shadow-3xs">
                                 <div>
-                                    <div class="flex justify-between items-center gap-4 mb-3.5">
-                                        <span class="text-[9px] font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">${item.type}</span>
+                                    <div class="flex justify-between items-center gap-3 mb-4">
+                                        <span class="text-[9px] font-extrabold uppercase tracking-widest text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">${item.type}</span>
                                         <span class="text-[11px] text-slate-400 font-medium flex items-center gap-1">
-                                            <i class="fa-solid fa-location-dot text-slate-300"></i> ${item.distance}
+                                            <i class="fa-solid fa-location-dot text-slate-300 text-xs"></i> ${item.distance}
                                         </span>
                                     </div>
-                                    <h3 class="font-bold text-slate-900 text-base mb-1.5 tracking-tight line-clamp-1">${item.title}</h3>
+                                    <h3 class="font-bold text-slate-900 text-base mb-1.5 tracking-tight line-clamp-1 hover:text-blue-600 transition cursor-pointer">${item.title}</h3>
                                     <p class="text-xs text-slate-500 leading-relaxed mb-6 font-normal line-clamp-2 h-9">${item.description}</p>
                                 </div>
-                                <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                                <div class="border-t border-slate-100 pt-4 flex items-center justify-between mt-auto">
                                     <div class="flex items-center gap-2.5">
-                                        <div class="w-7 h-7 rounded-lg bg-slate-50 border border-slate-200 text-slate-600 font-bold text-[10px] flex items-center justify-center uppercase shrink-0">${initials}</div>
+                                        <div class="w-8 h-8 rounded-xl bg-blue-50 border border-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center uppercase shrink-0">${initials}</div>
                                         <div class="flex flex-col">
                                             <span class="text-xs font-bold text-slate-800 line-clamp-1 max-w-[100px]">${item.provider}</span>
-                                            <span class="text-[9px] text-emerald-600 font-bold flex items-center gap-0.5"><i class="fa-solid fa-circle-check text-[8px]"></i> Verified</span>
+                                            <span class="text-[9px] text-emerald-600 font-bold flex items-center gap-0.5"><i class="fa-solid fa-shield-check text-[10px]"></i> Verified</span>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-2.5">
-                                        <span class="text-sm font-extrabold text-slate-900">${item.price}</span>
-                                        <button onclick="alert('Routing clean contact channel loop...')" class="px-3.5 py-1.5 bg-[#0f172a] hover:bg-slate-800 text-white text-[11px] font-bold rounded-lg shadow-2xs transition-all cursor-pointer">Connect</button>
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-sm font-extrabold text-slate-900 tracking-tight">${item.price}</span>
+                                        <button onclick="alert('Routing clean context contact gateway secure handshakes...')" class="px-4 py-2 bg-[#0f172a] hover:bg-blue-600 text-white text-[11px] font-bold rounded-xl transition-all shadow-3xs cursor-pointer">Connect</button>
                                     </div>
                                 </div>
                             </div>`;
@@ -284,7 +321,7 @@
             const isStudent = document.getElementById('form-student').checked;
 
             if(!provider || !title || !description) {
-                alert('Fill out all fields before publishing.');
+                alert('All data input entry parameters must be filled before syncing.');
                 return;
             }
 
