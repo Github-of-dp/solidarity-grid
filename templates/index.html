@@ -12,28 +12,28 @@
         
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #fcfaf6; /* Soft, comforting desert cream */
+            background-color: #1a1310; /* Muted, deep desert clay/terracotta base (No eye strain) */
             background-image: 
                 linear-gradient(rgba(197, 137, 85, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(197, 137, 85, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-size: 32px 32px;
         }
 
         .hero-font {
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Subtle textured outlines mirroring traditional geometry */
+        /* Subtle textured outlines */
         .text-stroke {
             color: transparent;
-            -webkit-text-stroke: 1px rgba(197, 137, 85, 0.3);
+            -webkit-text-stroke: 1px rgba(230, 186, 142, 0.2);
         }
 
-        /* Soft warm-tinted frosted glass for the navigation bar */
+        /* Soft warm-tinted glass navigation header */
         .cyber-header {
-            background: rgba(24df, 244, 238, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(197, 137, 85, 0.12);
+            background: rgba(34, 25, 21, 0.85);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(197, 137, 85, 0.15);
         }
 
         @keyframes marquee {
@@ -45,24 +45,23 @@
         }
     </style>
 </head>
-<body class="text-stone-800 antialiased min-h-screen flex flex-col p-4 md:p-6 gap-6">
+<body class="text-stone-200 antialiased min-h-screen flex flex-col p-4 md:p-6 gap-6">
 
-    <!-- COMFORTABLE HERITAGE NAVIGATION BAR -->
-    <header class="w-full max-w-7xl mx-auto h-20 cyber-header rounded-3xl px-6 flex items-center justify-between sticky top-4 z-50 shadow-sm">
+    <!-- COMFORTABLE NAV HEADER -->
+    <header class="w-full max-w-7xl mx-auto h-20 cyber-header rounded-3xl px-6 flex items-center justify-between sticky top-4 z-50 shadow-md">
         <div class="flex items-center gap-4">
-            <!-- Universal path looking for your logo asset inside the static folder -->
             <div class="h-12 w-12 bg-transparent rounded-xl flex items-center justify-center overflow-hidden shrink-0">
                 <img src="/static/Logo.png" alt="Sanad Logo" class="object-contain h-full w-full">
             </div>
             <div class="flex flex-col">
-                <span class="text-base font-black tracking-widest text-stone-900 leading-none">SANAD</span>
+                <span class="text-base font-black tracking-widest text-white leading-none">SANAD</span>
                 <span class="text-[11px] text-[#c58955] font-bold tracking-widest uppercase mt-0.5">سند</span>
             </div>
         </div>
 
-        <div class="hidden md:flex items-center gap-2 text-[10px] font-black text-stone-500 tracking-widest uppercase">
+        <div class="hidden md:flex items-center gap-2 text-[10px] font-black text-stone-400 tracking-widest uppercase">
             <i class="fa-solid fa-circle-nodes text-[#3b82f6]"></i>
-            <span>SYSTEM LAYER: <strong class="text-[#c58955]">MUTUAL COMMUNITY NODES</strong></span>
+            <span>SYSTEM LAYER: <strong class="text-[#e6ba8e]">MUTUAL SOLIDARITY NODES</strong></span>
         </div>
 
         <div>
@@ -72,138 +71,137 @@
         </div>
     </header>
 
-    <!-- LIGHT & CLEAN HERO SECTION -->
+    <!-- CALMED DOWN HERO ARCHITECTURE -->
     <section class="w-full max-w-7xl mx-auto pt-8 pb-2 relative flex flex-col gap-2">
         <div class="w-12 h-1 bg-[#c58955] rounded-full mb-1"></div>
-        <h1 class="hero-font text-5xl md:text-7xl font-black text-stone-900 tracking-tighter leading-[0.9] uppercase select-none">
+        <h1 class="hero-font text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9] uppercase select-none">
             COMMUNITY<br>
-            <span class="bg-gradient-to-r from-[#c58955] to-[#8c5333] bg-clip-text text-transparent">SUPPORT EXCHANGE</span>
+            <span class="bg-gradient-to-r from-[#e6ba8e] to-[#c58955] bg-clip-text text-transparent">SUPPORT EXCHANGE</span>
         </h1>
-        <p class="text-stone-600 text-xs md:text-sm max-w-lg font-medium mt-3 leading-relaxed">
-            Seamlessly coordinate specialized family assistance, cultural skills, resources, and community tools across a shared trusted grid.
+        <p class="text-stone-400 text-xs md:text-sm max-w-lg font-medium mt-3 leading-relaxed">
+            Seamlessly coordinate specialized family assistance, cultural skills, resources, and community tools across a trusted mutual ecosystem.
         </p>
     </section>
 
-    <!-- REFRESHED SOFT VALUES MARQUEE -->
-    <section class="w-screen -mx-4 md:-mx-6 bg-[#f5efe4] border-y border-stone-200 py-3.5 overflow-hidden flex select-none">
+    <!-- LOW-STRESS TICKER MARQUEE -->
+    <section class="w-screen -mx-4 md:-mx-6 bg-[#251b17] border-y border-stone-800/80 py-3.5 overflow-hidden flex select-none">
         <div class="flex whitespace-nowrap gap-12 text-[10px] font-black tracking-widest uppercase items-center animate-marquee shrink-0">
-            <span class="text-stone-800">SANAD LEDGER</span> <span class="text-[#c58955]">•</span>
-            <span class="text-stroke">VERIFIED LOGS</span> <span class="text-[#c58955]">•</span>
-            <span class="text-[#3b82f6]">LOCAL EMBEDDED CORES</span> <span class="text-[#c58955]">•</span>
-            <span class="text-stroke">ABU DHABI HUB</span> <span class="text-[#c58955]">•</span>
-            <span class="text-stone-800">SANAD LEDGER</span> <span class="text-[#c58955]">•</span>
-            <span class="text-stroke">VERIFIED LOGS</span> <span class="text-[#c58955]">•</span>
-            <span class="text-[#3b82f6]">LOCAL EMBEDDED CORES</span> <span class="text-[#c58955]">•</span>
-            <span class="text-stroke">ABU DHABI HUB</span> <span class="text-[#c58955]">•</span>
+            <span class="text-stone-300">SANAD EXCHANGE CORE</span> <span class="text-[#c58955]">•</span>
+            <span class="text-stroke">VERIFIED COMMUNITY LOGS</span> <span class="text-[#c58955]">•</span>
+            <span class="text-[#3b82f6]">LOCAL NETWORK LINKS</span> <span class="text-[#c58955]">•</span>
+            <span class="text-stroke">ABU DHABI SYSTEM REGISTER</span> <span class="text-[#c58955]">•</span>
+            <span class="text-stone-300">SANAD EXCHANGE CORE</span> <span class="text-[#c58955]">•</span>
+            <span class="text-stroke">VERIFIED COMMUNITY LOGS</span> <span class="text-[#c58955]">•</span>
+            <span class="text-[#3b82f6]">LOCAL NETWORK LINKS</span> <span class="text-[#c58955]">•</span>
+            <span class="text-stroke">ABU DHABI SYSTEM REGISTER</span> <span class="text-[#c58955]">•</span>
         </div>
     </section>
 
-    <!-- CONTENT SELECTION ARCHITECTURE -->
+    <!-- FILTER SECTION HUB -->
     <main class="w-full max-w-7xl mx-auto flex flex-col gap-6 mt-2 flex-1">
         
-        <div class="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-200 pb-4">
+        <div class="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-800/80 pb-4">
             <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none">
-                <button id="tab-all" onclick="filterCategory('all')" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-[#c58955] text-white transition-all cursor-pointer">ALL NODES</button>
-                <button id="tab-services" onclick="filterCategory('services')" class="px-5 py-2.5 rounded-xl text-xs font-bold text-stone-500 hover:text-stone-900 transition-all cursor-pointer">FAMILY SERVICES</button>
-                <button id="tab-heritage" onclick="filterCategory('heritage')" class="px-5 py-2.5 rounded-xl text-xs font-bold text-stone-500 hover:text-stone-900 transition-all cursor-pointer">HERITAGE & CRAFTS</button>
+                <button id="tab-all" onclick="filterCategory('all')" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-[#c58955] text-white transition-all cursor-pointer">ALL ASSETS</button>
+                <button id="tab-services" onclick="filterCategory('services')" class="px-5 py-2.5 rounded-xl text-xs font-bold text-stone-400 hover:text-white transition-all cursor-pointer">FAMILY SERVICES</button>
+                <button id="tab-heritage" onclick="filterCategory('heritage')" class="px-5 py-2.5 rounded-xl text-xs font-bold text-stone-400 hover:text-white transition-all cursor-pointer">HERITAGE & CRAFTS</button>
             </div>
 
-            <div class="flex items-center bg-[#f3eae0] p-1 rounded-xl border border-stone-200/60 self-start sm:self-auto">
-                <button id="type-all" onclick="filterType('all')" class="px-4 py-1.5 bg-[#e9dec0]/50 text-stone-900 text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">ALL TYPES</button>
-                <button id="type-service" onclick="filterType('Service')" class="px-4 py-1.5 text-stone-500 hover:text-stone-900 text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">OFFERS</button>
-                <button id="type-product" onclick="filterType('Product')" class="px-4 py-1.5 text-stone-500 hover:text-stone-900 text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">PRODUCTS</button>
+            <div class="flex items-center bg-[#221915] p-1 rounded-xl border border-stone-800 self-start sm:self-auto">
+                <button id="type-all" onclick="filterType('all')" class="px-4 py-1.5 bg-[#322520] text-[#e6ba8e] text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">ALL</button>
+                <button id="type-service" onclick="filterType('Service')" class="px-4 py-1.5 text-stone-400 hover:text-white text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">OFFERS</button>
+                <button id="type-product" onclick="filterType('Product')" class="px-4 py-1.5 text-stone-400 hover:text-white text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">PRODUCTS</button>
             </div>
         </div>
 
-        <!-- RE-ENGINEERED COMPOSITE ASYMMETRIC CARD GRID -->
+        <!-- ASYMMETRIC CARD GRID USING MUTED CREAM AND WARM COPPER TONES -->
         <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[340px]">
             {% for item in listings %}
                 {% if loop.index % 4 == 1 %}
-                    <!-- STYLE A: ULTRA-WIDE LIGHT SAND FEATURE EXCHANGER -->
-                    <div class="md:col-span-2 bg-gradient-to-br from-[#fdf8f2] to-[#f7eedf] border border-[#c58955]/15 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-md text-stone-900">
+                    <!-- STYLE A: WIDE FEATHER-WEIGHT MUTED SAND BLOCK -->
+                    <div class="md:col-span-2 bg-gradient-to-br from-[#eddccb] to-[#dfcebe] border border-white/10 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg text-stone-900">
                         <div>
                             <div class="flex justify-between items-center gap-3 mb-5">
-                                <span class="text-[10px] font-black uppercase tracking-widest bg-stone-900/5 text-stone-700 px-3 py-1 rounded-md border border-stone-900/5">{{ item.type }}</span>
-                                <span class="text-xs text-stone-500 font-bold tracking-wide flex items-center gap-1">
+                                <span class="text-[10px] font-black uppercase tracking-widest bg-stone-950/10 text-stone-800 px-3 py-1 rounded-md border border-stone-950/5">{{ item.type }}</span>
+                                <span class="text-xs text-stone-600 font-bold tracking-wide flex items-center gap-1">
                                     <i class="fa-solid fa-location-crosshairs text-[#c58955]"></i> {{ item.distance }}
                                 </span>
                             </div>
-                            <h3 class="hero-font text-2xl md:text-3xl font-black tracking-tighter leading-none uppercase mb-3 text-stone-900 max-w-xl">{{ item.title }}</h3>
-                            <p class="text-xs text-stone-600 leading-relaxed font-medium max-w-lg line-clamp-3">{{ item.description }}</p>
+                            <h3 class="hero-font text-2xl md:text-3xl font-black tracking-tighter leading-none uppercase mb-3 text-stone-950 max-w-xl">{{ item.title }}</h3>
+                            <p class="text-xs text-stone-700 leading-relaxed font-medium max-w-lg line-clamp-3">{{ item.description }}</p>
                         </div>
                         
-                        <div class="border-t border-stone-200 pt-5 flex items-center justify-between">
+                        <div class="border-t border-stone-950/10 pt-5 flex items-center justify-between">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-xl bg-[#c58955]/10 text-[#c58955] font-extrabold text-sm flex items-center justify-center uppercase">{{ item.provider[:2] }}</div>
+                                <div class="w-9 h-9 rounded-xl bg-stone-950/10 text-stone-900 font-extrabold text-sm flex items-center justify-center uppercase">{{ item.provider[:2] }}</div>
                                 <div class="flex flex-col">
-                                    <span class="text-xs font-black tracking-wide text-stone-900">{{ item.provider }}</span>
-                                    <span class="text-[9px] text-[#c58955] font-black uppercase tracking-widest"><i class="fa-solid fa-shield text-[8px]"></i> SECURED VERIFICATION</span>
+                                    <span class="text-xs font-black tracking-wide text-stone-950">{{ item.provider }}</span>
+                                    <span class="text-[9px] text-[#8c5333] font-black uppercase tracking-widest"><i class="fa-solid fa-shield text-[8px]"></i> SANAD LOG CERTIFIED</span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
-                                <span class="text-lg font-black tracking-tight text-stone-900">{{ item.price }}</span>
-                                <button onclick="alert('Securing hub routing handshake...')" class="px-5 py-2.5 bg-stone-900 text-white hover:bg-[#c58955] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
+                                <span class="text-lg font-black tracking-tight text-stone-950">{{ item.price }}</span>
+                                <button onclick="alert('Configuring dynamic hub routing...')" class="px-5 py-2.5 bg-stone-950 text-white hover:bg-[#c58955] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
                             </div>
                         </div>
                     </div>
 
                 {% elif loop.index % 4 == 3 %}
-                    <!-- STYLE B: LUXURIOUS LIGHT ORANGE/CREAM GRADIENT COMPONENT -->
-                    <div class="bg-gradient-to-br from-[#fffbfa] via-[#fbf3e7] to-[#f4e6d4] border border-[#c58955]/20 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-md text-stone-900 relative overflow-hidden">
-                        <!-- Soft Blue Highlight Accent Point -->
+                    <!-- STYLE B: COMFIER COFFEE & AMBER CONTRAST CONTAINER WITH BLUE GLOW -->
+                    <div class="bg-gradient-to-br from-[#2a1e1a] to-[#1d1411] border border-stone-800 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:border-[#c58955]/40 hover:-translate-y-1 hover:shadow-md text-stone-200 relative overflow-hidden">
                         <div class="absolute top-0 right-0 w-20 h-20 bg-[#3b82f6]/5 blur-2xl rounded-full"></div>
                         
                         <div>
                             <div class="flex justify-between items-center gap-3 mb-5 relative z-10">
-                                <span class="text-[10px] font-black uppercase tracking-widest bg-white text-[#c58955] px-3 py-1 rounded-md border border-[#c58955]/10 shadow-xs">{{ item.type }}</span>
-                                <span class="text-xs text-stone-400 font-bold tracking-wide flex items-center gap-1">
-                                    <i class="fa-solid fa-location-crosshairs text-stone-400"></i> {{ item.distance }}
+                                <span class="text-[10px] font-black uppercase tracking-widest bg-stone-900 text-[#e6ba8e] px-3 py-1 rounded-md border border-stone-800">{{ item.type }}</span>
+                                <span class="text-xs text-stone-500 font-bold tracking-wide flex items-center gap-1">
+                                    <i class="fa-solid fa-location-crosshairs text-stone-600"></i> {{ item.distance }}
                                 </span>
                             </div>
-                            <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-stone-900 line-clamp-2">{{ item.title }}</h3>
-                            <p class="text-xs text-stone-600 leading-relaxed font-medium line-clamp-3">{{ item.description }}</p>
+                            <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-white group-hover:text-[#e6ba8e] transition-colors duration-200 line-clamp-2">{{ item.title }}</h3>
+                            <p class="text-xs text-stone-400 leading-relaxed font-medium line-clamp-3">{{ item.description }}</p>
                         </div>
                         
-                        <div class="border-t border-stone-200/80 pt-5 flex items-center justify-between relative z-10">
+                        <div class="border-t border-stone-800/60 pt-5 flex items-center justify-between relative z-10">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-xl bg-white border border-stone-200 text-stone-700 font-extrabold text-sm flex items-center justify-center uppercase">{{ item.provider[:2] }}</div>
+                                <div class="w-9 h-9 rounded-xl bg-stone-900 border border-stone-800 text-stone-300 font-extrabold text-sm flex items-center justify-center uppercase">{{ item.provider[:2] }}</div>
                                 <div class="flex flex-col">
-                                    <span class="text-xs font-black tracking-wide text-stone-900">{{ item.provider }}</span>
+                                    <span class="text-xs font-black tracking-wide text-white">{{ item.provider }}</span>
                                     <span class="text-[9px] text-[#3b82f6] font-black uppercase tracking-widest"><i class="fa-solid fa-fingerprint text-[8px]"></i> BLUEPRINT AD VALID</span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
-                                <span class="text-base font-black text-stone-900 tracking-tight">{{ item.price }}</span>
-                                <button onclick="alert('Securing hub routing handshake...')" class="px-5 py-2.5 bg-[#3b82f6] text-white hover:bg-stone-900 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer shadow-sm">CONNECT</button>
+                                <span class="text-base font-black text-white tracking-tight">{{ item.price }}</span>
+                                <button onclick="alert('Configuring dynamic hub routing...')" class="px-5 py-2.5 bg-white text-black hover:bg-[#3b82f6] hover:text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
                             </div>
                         </div>
                     </div>
 
                 {% else %}
-                    <!-- STYLE C: CORE HERITAGE CREAM BLENDED BLOCK -->
-                    <div class="bg-gradient-to-br from-[#fbf9f4] to-[#f4eedf] border border-stone-200 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-sm text-stone-900">
+                    <!-- STYLE C: COMFY LIGHT DESERT SAND BLOCK -->
+                    <div class="bg-gradient-to-br from-[#f2e5d7] to-[#e6d6c5] border border-white/5 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-sm text-stone-900">
                         <div>
                             <div class="flex justify-between items-center gap-3 mb-5">
-                                <span class="text-[10px] font-black uppercase tracking-widest bg-stone-900/5 text-stone-700 px-3 py-1 rounded-md border border-stone-200">{{ item.type }}</span>
-                                <span class="text-xs text-stone-400 font-bold tracking-wide flex items-center gap-1">
-                                    <i class="fa-solid fa-location-crosshairs text-stone-400"></i> {{ item.distance }}
+                                <span class="text-[10px] font-black uppercase tracking-widest bg-stone-950/5 text-stone-700 px-3 py-1 rounded-md border border-stone-950/5">{{ item.type }}</span>
+                                <span class="text-xs text-stone-500 font-bold tracking-wide flex items-center gap-1">
+                                    <i class="fa-solid fa-location-crosshairs text-stone-600"></i> {{ item.distance }}
                                 </span>
                             </div>
-                            <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-stone-900 line-clamp-2">{{ item.title }}</h3>
-                            <p class="text-xs text-stone-600 leading-relaxed font-medium line-clamp-3">{{ item.description }}</p>
+                            <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-stone-950 line-clamp-2">{{ item.title }}</h3>
+                            <p class="text-xs text-stone-700 leading-relaxed font-medium line-clamp-3">{{ item.description }}</p>
                         </div>
                         
-                        <div class="border-t border-stone-200 pt-5 flex items-center justify-between">
+                        <div class="border-t border-stone-950/10 pt-5 flex items-center justify-between">
                             <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-xl bg-stone-100 text-stone-700 font-extrabold text-sm flex items-center justify-center uppercase">{{ item.provider[:2] }}</div>
+                                <div class="w-9 h-9 rounded-xl bg-stone-950/10 text-stone-900 font-extrabold text-sm flex items-center justify-center uppercase">{{ item.provider[:2] }}</div>
                                 <div class="flex flex-col">
                                     <span class="text-xs font-black tracking-wide text-stone-900">{{ item.provider }}</span>
-                                    <span class="text-[9px] text-stone-500 font-black uppercase tracking-widest"><i class="fa-solid fa-circle-check text-[8px]"></i> REGISTRATION OK</span>
+                                    <span class="text-[9px] text-stone-600 font-black uppercase tracking-widest"><i class="fa-solid fa-circle-check text-[8px]"></i> HUB ASSIGNED</span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
-                                <span class="text-base font-black text-stone-900 tracking-tight">{{ item.price }}</span>
-                                <button onclick="alert('Securing hub routing handshake...')" class="px-5 py-2.5 bg-stone-900 text-white hover:bg-[#c58955] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
+                                <span class="text-base font-black text-stone-950 tracking-tight">{{ item.price }}</span>
+                                <button onclick="alert('Configuring dynamic hub routing...')" class="px-5 py-2.5 bg-stone-950 text-white hover:bg-[#c58955] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
                             </div>
                         </div>
                     </div>
@@ -212,37 +210,37 @@
         </div>
     </main>
 
-    <!-- FLOATING INPUT FORM DESIGN ELEMENT -->
-    <div id="form-modal" class="fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200">
-        <div class="bg-[#fcfaf6] border border-stone-200 rounded-3xl shadow-xl w-full max-w-md p-6 transform scale-95 transition-all duration-200">
+    <!-- SLIDE UP DATA OVERLAY MODAL -->
+    <div id="form-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200">
+        <div class="bg-[#221915] border border-stone-800 rounded-3xl shadow-xl w-full max-w-md p-6 transform scale-95 transition-all duration-200 text-stone-200">
             
-            <div class="flex items-center justify-between border-b border-stone-200 pb-3 mb-5">
+            <div class="flex items-center justify-between border-b border-stone-800 pb-3 mb-5">
                 <div class="flex items-center gap-2">
                     <div class="w-1.5 h-3.5 bg-[#c58955] rounded-xs"></div>
-                    <h3 class="font-extrabold text-xs text-stone-900 uppercase tracking-widest">Register New Sanad Asset Node</h3>
+                    <h3 class="font-extrabold text-xs text-white uppercase tracking-widest">Register New Sanad Asset Node</h3>
                 </div>
-                <button onclick="toggleModal(false)" class="text-stone-400 hover:text-stone-900 cursor-pointer p-1">
+                <button onclick="toggleModal(false)" class="text-stone-500 hover:text-white cursor-pointer p-1">
                     <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
             </div>
 
             <div class="space-y-4">
                 <div>
-                    <label class="block text-[9px] font-black text-stone-500 uppercase tracking-widest mb-1">Household / Identity Handle</label>
-                    <input type="text" id="form-provider" placeholder="e.g. Al Romaithi Family" class="w-full text-xs px-3 py-3 bg-white border border-stone-200 rounded-xl focus:outline-none focus:border-[#c58955] text-stone-900 font-medium placeholder-stone-400">
+                    <label class="block text-[9px] font-black text-stone-400 uppercase tracking-widest mb-1">Household / Identity Handle</label>
+                    <input type="text" id="form-provider" placeholder="e.g. Al Romaithi Family" class="w-full text-xs px-3 py-3 bg-stone-950 border border-stone-800 rounded-xl focus:outline-none focus:border-[#c58955] text-white font-medium placeholder-stone-600">
                 </div>
                 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-[9px] font-black text-stone-500 uppercase tracking-widest mb-1">Exchange Category</label>
-                        <select id="form-category" class="w-full text-xs px-3 py-3 bg-white border border-stone-200 rounded-xl text-stone-700 font-medium focus:outline-none focus:border-[#c58955]">
+                        <label class="block text-[9px] font-black text-stone-400 uppercase tracking-widest mb-1">Exchange Category</label>
+                        <select id="form-category" class="w-full text-xs px-3 py-3 bg-stone-950 border border-stone-800 rounded-xl text-stone-300 font-medium focus:outline-none focus:border-[#c58955]">
                             <option value="services">Family Services</option>
                             <option value="heritage">Heritage & Crafts</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-[9px] font-black text-stone-500 uppercase tracking-widest mb-1">Blueprint Variant</label>
-                        <select id="form-type" class="w-full text-xs px-3 py-3 bg-white border border-stone-200 rounded-xl text-stone-700 font-medium focus:outline-none focus:border-[#c58955]">
+                        <label class="block text-[9px] font-black text-stone-400 uppercase tracking-widest mb-1">Blueprint Variant</label>
+                        <select id="form-type" class="w-full text-xs px-3 py-3 bg-stone-950 border border-stone-800 rounded-xl text-stone-300 font-medium focus:outline-none focus:border-[#c58955]">
                             <option value="Service">Service</option>
                             <option value="Product">Product</option>
                         </select>
@@ -250,34 +248,34 @@
                 </div>
 
                 <div>
-                    <label class="block text-[9px] font-black text-stone-500 uppercase tracking-widest mb-1">Exchange Listing Title</label>
-                    <input type="text" id="form-title" placeholder="e.g. Traditional Majlis Preparation Help" class="w-full text-xs px-3 py-3 bg-white border border-stone-200 rounded-xl focus:outline-none focus:border-[#c58955] text-stone-900 font-medium placeholder-stone-400">
+                    <label class="block text-[9px] font-black text-stone-400 uppercase tracking-widest mb-1">Exchange Listing Title</label>
+                    <input type="text" id="form-title" placeholder="e.g. Traditional Majlis Preparation Help" class="w-full text-xs px-3 py-3 bg-stone-950 border border-stone-800 rounded-xl focus:outline-none focus:border-[#c58955] text-white font-medium placeholder-stone-600">
                 </div>
 
                 <div>
-                    <label class="block text-[9px] font-black text-stone-500 uppercase tracking-widest mb-1">Operational Descriptions Context</label>
-                    <textarea id="form-description" rows="3" placeholder="Provide clear resource capacity information parameters..." class="w-full text-xs px-3 py-3 bg-white border border-stone-200 rounded-xl focus:outline-none focus:border-[#c58955] text-stone-900 font-medium resize-none placeholder-stone-400"></textarea>
+                    <label class="block text-[9px] font-black text-stone-400 uppercase tracking-widest mb-1">Operational Descriptions Context</label>
+                    <textarea id="form-description" rows="3" placeholder="Provide clear resource capacity information parameters..." class="w-full text-xs px-3 py-3 bg-stone-950 border border-stone-800 rounded-xl focus:outline-none focus:border-[#c58955] text-white font-medium resize-none placeholder-stone-600"></textarea>
                 </div>
 
-                <div class="flex items-center justify-between gap-3 border border-stone-200 p-3 rounded-xl bg-white">
+                <div class="flex items-center justify-between gap-3 border border-stone-800 p-3 rounded-xl bg-stone-950">
                     <div>
-                        <label class="block text-[9px] font-black text-stone-400 uppercase tracking-widest mb-0.5">Value Rate Metric</label>
-                        <input type="text" id="form-price" placeholder="AED 120" class="w-full bg-transparent text-xs text-stone-900 font-black focus:outline-none placeholder-stone-300">
+                        <label class="block text-[9px] font-black text-stone-500 tracking-widest uppercase mb-0.5">Value Rate Metric</label>
+                        <input type="text" id="form-price" placeholder="AED 120" class="w-full bg-transparent text-xs text-white font-black focus:outline-none placeholder-stone-700">
                     </div>
-                    <div class="flex items-center gap-1.5 border-l border-stone-200 pl-3 h-8 shrink-0">
-                        <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-[#c58955] rounded bg-white border-stone-300">
-                        <label for="form-student" class="text-[9px] font-black text-stone-500 tracking-widest uppercase select-none cursor-pointer">Student?</label>
+                    <div class="flex items-center gap-1.5 border-l border-stone-800 pl-3 h-8 shrink-0">
+                        <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-[#c58955] rounded bg-stone-950 border-stone-800">
+                        <label for="form-student" class="text-[9px] font-black text-stone-400 tracking-widest uppercase select-none cursor-pointer">Student?</label>
                     </div>
                 </div>
 
-                <button onclick="submitNewListing()" class="w-full bg-[#c58955] text-white text-xs font-black uppercase tracking-widest py-3.5 rounded-xl transition-all hover:bg-[#b07443] cursor-pointer text-center mt-2 shadow-sm">
+                <button onclick="submitNewListing()" class="w-full bg-[#c58955] hover:bg-[#b07443] text-white text-xs font-black uppercase tracking-widest py-3.5 rounded-xl transition-all cursor-pointer text-center mt-2 shadow-sm">
                     BROADCAST NODE ACCESS
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- CLIENT ASYNC RENDERING INTERACTION SCRIPT -->
+    <!-- CLIENT ASYNC RENDERING CODE HANDLERS -->
     <script>
         let currentCategory = 'all';
         let currentType = 'all';
@@ -297,7 +295,7 @@
         function filterCategory(cat) {
             currentCategory = cat;
             document.querySelectorAll('[id^="tab-"]').forEach(el => {
-                el.className = 'px-5 py-2.5 rounded-xl text-xs font-bold text-stone-500 hover:text-stone-900 transition-all cursor-pointer';
+                el.className = 'px-5 py-2.5 rounded-xl text-xs font-bold text-stone-400 hover:text-white transition-all cursor-pointer';
             });
             const targeted = document.getElementById(`tab-${cat}`);
             if(targeted) {
@@ -309,12 +307,12 @@
         function filterType(type) {
             currentType = type;
             document.querySelectorAll('[id^="type-"]').forEach(el => {
-                el.className = 'px-4 py-1.5 text-stone-500 hover:text-stone-900 text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
+                el.className = 'px-4 py-1.5 text-stone-400 hover:text-white text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
             });
             const idMap = type === 'all' ? 'all' : type === 'Service' ? 'service' : 'product';
             const node = document.getElementById(`type-${idMap}`);
             if(node) {
-                node.className = 'px-4 py-1.5 bg-[#e9dec0]/50 text-stone-900 text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
+                node.className = 'px-4 py-1.5 bg-[#322520] text-[#e6ba8e] text-[10px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
             }
             fetchAndRenderListings();
         }
@@ -328,7 +326,7 @@
                     
                     if(data.length === 0) {
                         container.innerHTML = `
-                            <div class="col-span-full bg-stone-100 border border-dashed border-stone-300 rounded-3xl p-16 text-center text-stone-400 text-xs font-bold uppercase tracking-widest">
+                            <div class="col-span-full bg-stone-950/20 border border-dashed border-stone-800 rounded-3xl p-16 text-center text-stone-500 text-xs font-bold uppercase tracking-widest">
                                 Zero operational exchange nodes discovered matching current filter parameters.
                             </div>`;
                         return;
@@ -341,77 +339,77 @@
 
                         if (loopIdx % 4 === 1) {
                             cardHtml = `
-                                <div class="md:col-span-2 bg-gradient-to-br from-[#fdf8f2] to-[#f7eedf] border border-[#c58955]/15 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-md text-stone-900">
+                                <div class="md:col-span-2 bg-gradient-to-br from-[#eddccb] to-[#dfcebe] border border-white/10 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg text-stone-900">
                                     <div>
                                         <div class="flex justify-between items-center gap-3 mb-5">
-                                            <span class="text-[10px] font-black uppercase tracking-widest bg-stone-900/5 text-stone-700 px-3 py-1 rounded-md border border-stone-900/5">${item.type}</span>
-                                            <span class="text-xs text-stone-500 font-bold tracking-wide flex items-center gap-1"><i class="fa-solid fa-location-crosshairs text-[#c58955]"></i> ${item.distance || '0.0 km'}</span>
+                                            <span class="text-[10px] font-black uppercase tracking-widest bg-stone-950/10 text-stone-800 px-3 py-1 rounded-md border border-stone-950/5">${item.type}</span>
+                                            <span class="text-xs text-stone-600 font-bold tracking-wide flex items-center gap-1"><i class="fa-solid fa-location-crosshairs text-[#c58955]"></i> ${item.distance || '0.0 km'}</span>
                                         </div>
-                                        <h3 class="hero-font text-2xl md:text-3xl font-black tracking-tighter leading-none uppercase mb-3 text-stone-900 max-w-xl">${item.title}</h3>
-                                        <p class="text-xs text-stone-600 leading-relaxed font-medium max-w-lg line-clamp-3">${item.description}</p>
+                                        <h3 class="hero-font text-2xl md:text-3xl font-black tracking-tighter leading-none uppercase mb-3 text-stone-950 max-w-xl">${item.title}</h3>
+                                        <p class="text-xs text-stone-700 leading-relaxed font-medium max-w-lg line-clamp-3">${item.description}</p>
                                     </div>
-                                    <div class="border-t border-stone-200 pt-5 flex items-center justify-between">
+                                    <div class="border-t border-stone-950/10 pt-5 flex items-center justify-between">
                                         <div class="flex items-center gap-3">
-                                            <div class="w-9 h-9 rounded-xl bg-[#c58955]/10 text-[#c58955] font-extrabold text-sm flex items-center justify-center uppercase">${initials}</div>
+                                            <div class="w-9 h-9 rounded-xl bg-stone-950/10 text-stone-900 font-extrabold text-sm flex items-center justify-center uppercase">${initials}</div>
                                             <div class="flex flex-col">
                                                 <span class="text-xs font-black tracking-wide text-stone-900">${item.provider}</span>
-                                                <span class="text-[9px] text-[#c58955] font-black uppercase tracking-widest"><i class="fa-solid fa-shield text-[8px]"></i> SECURED VERIFICATION</span>
+                                                <span class="text-[9px] text-[#8c5333] font-black uppercase tracking-widest"><i class="fa-solid fa-shield text-[8px]"></i> SANAD LOG CERTIFIED</span>
                                             </div>
                                         </div>
                                         <div class="flex items-center gap-4">
                                             <span class="text-lg font-black tracking-tight text-stone-900">${item.price}</span>
-                                            <button onclick="alert('Securing hub routing handshake...')" class="px-5 py-2.5 bg-stone-900 text-white hover:bg-[#c58955] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
+                                            <button onclick="alert('Configuring dynamic hub routing...')" class="px-5 py-2.5 bg-stone-950 text-white hover:bg-[#c58955] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
                                         </div>
                                     </div>
                                 </div>`;
                         } else if (loopIdx % 4 === 3) {
                             cardHtml = `
-                                <div class="bg-gradient-to-br from-[#fffbfa] via-[#fbf3e7] to-[#f4e6d4] border border-[#c58955]/20 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-md text-stone-900 relative overflow-hidden">
+                                <div class="bg-gradient-to-br from-[#2a1e1a] to-[#1d1411] border border-stone-800 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:border-[#c58955]/40 hover:-translate-y-1 hover:shadow-md text-stone-200 relative overflow-hidden">
                                     <div class="absolute top-0 right-0 w-20 h-20 bg-[#3b82f6]/5 blur-2xl rounded-full"></div>
                                     <div>
                                         <div class="flex justify-between items-center gap-3 mb-5 relative z-10">
-                                            <span class="text-[10px] font-black uppercase tracking-widest bg-white text-[#c58955] px-3 py-1 rounded-md border border-[#c58955]/10 shadow-xs">${item.type}</span>
-                                            <span class="text-xs text-stone-400 font-bold tracking-wide flex items-center gap-1"><i class="fa-solid fa-location-crosshairs text-stone-400"></i> ${item.distance || '0.0 km'}</span>
+                                            <span class="text-[10px] font-black uppercase tracking-widest bg-stone-900 text-[#e6ba8e] px-3 py-1 rounded-md border border-stone-800">${item.type}</span>
+                                            <span class="text-xs text-stone-500 font-bold tracking-wide flex items-center gap-1"><i class="fa-solid fa-location-crosshairs text-stone-600"></i> ${item.distance || '0.0 km'}</span>
                                         </div>
-                                        <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-stone-900 line-clamp-2">${item.title}</h3>
-                                        <p class="text-xs text-stone-600 leading-relaxed font-medium line-clamp-3">${item.description}</p>
+                                        <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-white group-hover:text-[#e6ba8e] transition-colors duration-200 line-clamp-2">${item.title}</h3>
+                                        <p class="text-xs text-stone-400 leading-relaxed font-medium line-clamp-3">${item.description}</p>
                                     </div>
-                                    <div class="border-t border-stone-200/80 pt-5 flex items-center justify-between relative z-10">
+                                    <div class="border-t border-stone-800/60 pt-5 flex items-center justify-between relative z-10">
                                         <div class="flex items-center gap-3">
-                                            <div class="w-9 h-9 rounded-xl bg-white border border-stone-200 text-stone-700 font-extrabold text-sm flex items-center justify-center uppercase">${initials}</div>
+                                            <div class="w-9 h-9 rounded-xl bg-stone-900 border border-stone-800 text-stone-300 font-extrabold text-sm flex items-center justify-center uppercase">${initials}</div>
                                             <div class="flex flex-col">
-                                                <span class="text-xs font-black tracking-wide text-stone-900">${item.provider}</span>
+                                                <span class="text-xs font-black tracking-wide text-white">${item.provider}</span>
                                                 <span class="text-[9px] text-[#3b82f6] font-black uppercase tracking-widest"><i class="fa-solid fa-fingerprint text-[8px]"></i> BLUEPRINT AD VALID</span>
                                             </div>
                                         </div>
                                         <div class="flex items-center gap-4">
-                                            <span class="text-base font-black text-stone-900 tracking-tight">${item.price}</span>
-                                            <button onclick="alert('Securing hub routing handshake...')" class="px-5 py-2.5 bg-[#3b82f6] text-white hover:bg-stone-900 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer shadow-sm">CONNECT</button>
+                                            <span class="text-base font-black text-white tracking-tight">${item.price}</span>
+                                            <button onclick="alert('Configuring dynamic hub routing...')" class="px-5 py-2.5 bg-white text-black hover:bg-[#3b82f6] hover:text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
                                         </div>
                                     </div>
                                 </div>`;
                         } else {
                             cardHtml = `
-                                <div class="bg-gradient-to-br from-[#fbf9f4] to-[#f4eedf] border border-stone-200 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-sm text-stone-900">
+                                <div class="bg-gradient-to-br from-[#f2e5d7] to-[#e6d6c5] border border-white/5 rounded-3xl p-8 flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1 hover:shadow-sm text-stone-900">
                                     <div>
                                         <div class="flex justify-between items-center gap-3 mb-5">
-                                            <span class="text-[10px] font-black uppercase tracking-widest bg-stone-900/5 text-stone-700 px-3 py-1 rounded-md border border-stone-200">${item.type}</span>
-                                            <span class="text-xs text-stone-400 font-bold tracking-wide flex items-center gap-1"><i class="fa-solid fa-location-crosshairs text-stone-400"></i> ${item.distance || '0.0 km'}</span>
+                                            <span class="text-[10px] font-black uppercase tracking-widest bg-stone-950/5 text-stone-700 px-3 py-1 rounded-md border border-stone-950/5">${item.type}</span>
+                                            <span class="text-xs text-stone-500 font-bold tracking-wide flex items-center gap-1"><i class="fa-solid fa-location-crosshairs text-stone-600"></i> ${item.distance || '0.0 km'}</span>
                                         </div>
-                                        <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-stone-900 line-clamp-2">${item.title}</h3>
-                                        <p class="text-xs text-stone-600 leading-relaxed font-medium line-clamp-3">${item.description}</p>
+                                        <h3 class="hero-font text-2xl font-black tracking-tighter leading-none uppercase mb-3 text-stone-950 line-clamp-2">${item.title}</h3>
+                                        <p class="text-xs text-stone-700 leading-relaxed font-medium line-clamp-3">${item.description}</p>
                                     </div>
-                                    <div class="border-t border-stone-200 pt-5 flex items-center justify-between">
+                                    <div class="border-t border-stone-950/10 pt-5 flex items-center justify-between">
                                         <div class="flex items-center gap-3">
-                                            <div class="w-9 h-9 rounded-xl bg-stone-100 text-stone-700 font-extrabold text-sm flex items-center justify-center uppercase">${initials}</div>
+                                            <div class="w-9 h-9 rounded-xl bg-stone-950/10 text-stone-900 font-extrabold text-sm flex items-center justify-center uppercase">${initials}</div>
                                             <div class="flex flex-col">
                                                 <span class="text-xs font-black tracking-wide text-stone-900">${item.provider}</span>
-                                                <span class="text-[9px] text-stone-500 font-black uppercase tracking-widest"><i class="fa-solid fa-circle-check text-[8px]"></i> REGISTRATION OK</span>
+                                                <span class="text-[9px] text-stone-600 font-black uppercase tracking-widest"><i class="fa-solid fa-circle-check text-[8px]"></i> HUB ASSIGNED</span>
                                             </div>
                                         </div>
                                         <div class="flex items-center gap-4">
-                                            <span class="text-base font-black text-stone-900 tracking-tight">${item.price}</span>
-                                            <button onclick="alert('Securing hub routing handshake...')" class="px-5 py-2.5 bg-stone-900 text-white hover:bg-[#c58955] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
+                                            <span class="text-base font-black text-stone-950 tracking-tight">${item.price}</span>
+                                            <button onclick="alert('Configuring dynamic hub routing...')" class="px-5 py-2.5 bg-stone-950 text-white hover:bg-[#c58955] text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer">CONNECT</button>
                                         </div>
                                     </div>
                                 </div>`;
@@ -452,7 +450,6 @@
             });
         }
         
-        // Initial build trigger on window arrival
         window.onload = fetchAndRenderListings;
     </script>
 </body>
