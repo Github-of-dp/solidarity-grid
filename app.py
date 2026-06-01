@@ -120,5 +120,4 @@ def add_listing():
     return jsonify({"success": True, "id": new_id})
 
 if __name__ == '__main__':
-    # Using clean restart handling
-    app.run(debug=True, port=5000)
+    app.run(debug=True)
