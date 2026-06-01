@@ -116,6 +116,4 @@ def add_listing():
         return jsonify({"success": False, "error": str(e)}), 500
 
 if __name__ == '__main__':
-    # Bind server to 0.0.0.0 and dynamic environment PORT for cloud host integration
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(debug=True)
