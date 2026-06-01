@@ -7,10 +7,9 @@ app = Flask(__name__)
 # Persistent file-based document tracking ledger
 DATA_FILE = os.path.join(os.path.dirname(__file__), 'listings_db.json')
 
-def load_stored_listings():
-    """Load listings safely from the persistent database file."""
-    # Seed values with distinct coordinates and unique data
-    default_placeholders = [
+def get_default_listings():
+    """Returns the core default listings to ensure data structure stability."""
+    return [
         {
             "id": 1,
             "provider": "Rahul Sharma",
@@ -34,17 +33,35 @@ def load_stored_listings():
             "is_student": "false"
         }
     ]
+
+def load_stored_listings():
+    """Load listings safely, self-healing the database if empty or missing."""
+    defaults = get_default_listings()
     
+    # If file doesn't exist, build it with default values
     if not os.path.exists(DATA_FILE):
         with open(DATA_FILE, 'w', encoding='utf-8') as f:
-            json.dump(default_placeholders, f, indent=4)
-        return default_placeholders
+            json.dump(defaults, f, indent=4)
+        return defaults
     
     try:
         with open(DATA_FILE, 'r', encoding='utf-8') as f:
-            return json.load(f)
+            content = f.read().strip()
+            if not content:  # File is empty string
+                raise ValueError("Empty file")
+            data = json.loads(content)
+            
+            # FORCE SELF-HEAL: If the file exists but has 0 listings, force reload defaults
+            if not data or len(data) == 0:
+                with open(DATA_FILE, 'w', encoding='utf-8') as f:
+                    json.dump(defaults, f, indent=4)
+                return defaults
+            return data
     except Exception:
-        return default_placeholders
+        # Fallback and fix if file is corrupted or unreadable
+        with open(DATA_FILE, 'w', encoding='utf-8') as f:
+            json.dump(defaults, f, indent=4)
+        return defaults
 
 def save_listings_to_disk(listings_data):
     """Write listing collection straight to disk so data is never lost."""
@@ -57,17 +74,22 @@ def index():
 
 @app.route('/api/listings', methods=['GET'])
 def get_listings():
-    category_filter = request.args.get('category', 'all')
-    type_filter = request.args.get('type', 'all')
+    category_filter = request.args.get('category', 'all').lower().strip()
+    type_filter = request.args.get('type', 'all').lower().strip()
     
     all_items = load_stored_listings()
     filtered_list = []
     
     for item in all_items:
-        if category_filter != 'all' and item.get('category') != category_filter:
+        # Match categories safely (case-insensitive fallback)
+        item_cat = str(item.get('category', 'services')).lower().strip()
+        item_type = str(item.get('type', 'Service')).lower().strip()
+        
+        if category_filter != 'all' and item_cat != category_filter:
             continue
-        if type_filter != 'all' and item.get('type') != type_filter:
+        if type_filter != 'all' and item_type != type_filter:
             continue
+            
         filtered_list.append(item)
         
     return jsonify(filtered_list)
@@ -90,7 +112,7 @@ def add_listing():
         "description": incoming_data.get('description', ''),
         "price": incoming_data.get('price', 'Contact for Rate'),
         "location_zone": incoming_data.get('location_zone', '24.4539,54.3773'),
-        "is_student": incoming_data.get('is_student', 'false')
+        "is_student": str(incoming_data.get('is_student', 'false')).lower()
     }
     
     current_collection.append(new_node)
@@ -98,4 +120,5 @@ def add_listing():
     return jsonify({"success": True, "id": new_id})
 
 if __name__ == '__main__':
+    # Using clean restart handling
     app.run(debug=True, port=5000)
