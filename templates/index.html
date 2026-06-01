@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Solidarity Grid | UAE Hyperlocal Exchange</title>
-    <!-- Tailwind CSS CDN for high-fidelity e-commerce execution -->
+    <!-- Tailwind CSS CDN for high-fidelity retail execution -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Noon Corporate E-Commerce Palette Config */
-        .noon-yellow {
-            background-color: #feee00;
+        /* Custom High-Fidelity Theme Palette */
+        .brand-primary {
+            background-color: #0f172a; /* Deep elegant corporate navy */
         }
-        .noon-bg-light {
+        .brand-accent {
+            background-color: #2563eb; /* Energetic blue accent */
+        }
+        .app-bg-light {
             background-color: #f7f9fa;
         }
         .retail-card {
@@ -21,14 +24,14 @@
             transition: all 0.2s ease-in-out;
         }
         .retail-card:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             border-color: #e4e7ec;
             transform: translateY(-1px);
         }
         .active-filter-pill {
-            background-color: #fffdec;
-            border-color: #feee00;
-            color: #383e47;
+            background-color: #f0f5ff;
+            border-color: #2563eb;
+            color: #2563eb;
             font-weight: 700;
         }
         .input-retail {
@@ -37,70 +40,151 @@
             color: #1f2937;
         }
         .input-retail:focus {
-            border-color: #383e47;
+            border-color: #2563eb;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(254, 238, 0, 0.2);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+        /* Domed arch styling matched directly from the product category circles in image_406006.jpg */
+        .domed-category-icon {
+            border-radius: 50% 50% 4px 4px;
+            border: 1px solid #e5e7eb;
+            background: #ffffff;
         }
     </style>
 </head>
-<body class="noon-bg-light text-gray-800 font-sans min-h-screen selection:bg-[#feee00]/40">
+<body class="app-bg-light text-gray-800 font-sans min-h-screen selection:bg-blue-500/20">
 
-    <!-- Noon Signature Top Banner (Notice/Promo Row Accent) -->
-    <div class="noon-yellow text-[11px] font-bold text-center py-2 text-gray-900 tracking-wide border-b border-yellow-300">
-        ⚡ FREE HYPERLOCAL EXCHANGE NETWORK • ACTIVE WITHIN A 5.0 KM RADIUS
-    </div>
-
-    <!-- Main Navigation Header Bar -->
-    <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <!-- Brand Portal -->
-            <div class="flex items-center gap-3">
-                <div class="w-16 h-8 noon-yellow text-slate-900 rounded font-sans text-xs font-black flex items-center justify-center tracking-tighter shadow-xs">
-                    noon
+    <!-- Top Signature Navigation Bar (Structured from image_406006.jpg) -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <!-- Main Top Bar: Logo, Search, Location, Quick Actions -->
+        <div class="max-w-[1440px] mx-auto px-4 h-16 flex items-center gap-6 justify-between">
+            
+            <!-- Brand Logo & Location Node (Left Block) -->
+            <div class="flex items-center gap-6 shrink-0">
+                <div class="text-xl font-black tracking-tighter text-slate-900 flex items-center gap-1.5">
+                    <span class="w-3 h-6 brand-accent rounded-xs"></span>
+                    SOLIDARITY GRID
                 </div>
-                <div class="h-6 w-[1px] bg-gray-200 hidden sm:block"></div>
-                <div>
-                    <span class="text-sm font-black tracking-tight text-gray-900 block sm:inline-block">THE SOLIDARITY GRID</span>
-                    <span class="text-[10px] text-gray-500 font-bold block sm:ml-2 sm:inline-block">COMMUNITY FEED</span>
+                <!-- Location Selector matched from image_406006.jpg -->
+                <div class="hidden md:flex items-center gap-1 text-xs text-gray-600 border-l border-gray-200 pl-4 cursor-pointer hover:text-blue-600">
+                    <i class="fa-solid fa-location-dot text-gray-400"></i>
+                    <span>Deliver to <strong class="text-gray-900 font-bold">Abu Dhabi</strong></span>
+                    <i class="fa-solid fa-chevron-down text-[9px] ml-0.5 text-gray-400"></i>
                 </div>
             </div>
-            
-            <!-- User Node Status Pill -->
-            <div class="flex items-center gap-4">
-                <div class="flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded px-3 py-1 text-xs font-bold">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Abu Dhabi Hub Active
+
+            <!-- Massive Centered Search Input Bar (Direct UX match from image_406006.jpg) -->
+            <div class="flex-1 max-w-2xl relative hidden sm:block">
+                <div class="absolute inset-y-0 left-3.5 flex items-center pointer-events-none text-gray-400">
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                </div>
+                <input type="text" placeholder="Search for local services, crafts, tool sharing, or household help..." 
+                       class="w-full h-10 pl-10 pr-4 rounded-md bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:bg-white focus:border-blue-600 transition-all placeholder-gray-400">
+            </div>
+
+            <!-- Right Side Utility Navigation Links -->
+            <div class="flex items-center gap-5 text-xs font-bold text-gray-700 shrink-0">
+                <div class="flex items-center gap-1 cursor-pointer hover:text-blue-600">
+                    <i class="fa-regular fa-user text-sm"></i>
+                    <span>Log In</span>
+                </div>
+                <div class="h-4 w-[1px] bg-gray-200"></div>
+                <div class="flex items-center gap-1 cursor-pointer hover:text-blue-600 relative">
+                    <i class="fa-regular fa-bell text-sm"></i>
+                    <span>Alerts</span>
+                    <span class="absolute -top-1.5 -right-1.5 w-2 h-2 rounded-full bg-blue-600"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secondary Navigation Link Strip (Direct match from image_406006.jpg link categories) -->
+        <div class="border-t border-gray-100 bg-white shadow-xs">
+            <div class="max-w-[1440px] mx-auto px-4 h-10 flex items-center gap-6 text-xs font-bold tracking-tight text-gray-900 uppercase overflow-x-auto whitespace-nowrap scrollbar-none">
+                <span class="text-blue-600 cursor-pointer flex items-center gap-1"><i class="fa-solid fa-bolt text-[11px]"></i> All Services</span>
+                <span class="hover:text-blue-600 cursor-pointer">Family Support</span>
+                <span class="hover:text-blue-600 cursor-pointer">Heritage Craft</span>
+                <span class="hover:text-blue-600 cursor-pointer">Home & Kitchen</span>
+                <span class="hover:text-blue-600 cursor-pointer">Tools & Hardware</span>
+                <span class="hover:text-blue-600 cursor-pointer">Kids & Education</span>
+                <span class="hover:text-blue-600 cursor-pointer">Sports & Recreation</span>
+                <div class="ml-auto lowercase normal-case text-gray-500 font-medium hidden lg:block">
+                    <span class="bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded text-[10px] border border-emerald-200">Hyperlocal Active Node</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+    <main class="max-w-[1440px] mx-auto px-4 py-6">
 
-        <!-- ORIGINAL Clean App Description Block -->
-        <section class="mb-6 bg-white p-6 rounded-lg border border-gray-200">
-            <h1 class="text-2xl font-black text-gray-900 mb-1 tracking-tight">The Solidarity Grid</h1>
-            <p class="text-xs text-blue-600 font-bold uppercase tracking-wider mb-3">Hyperlocal Community Services & Skills Resource Ledger</p>
-            <p class="text-gray-600 text-sm max-w-4xl leading-relaxed">
-                Welcome to the modern neighborhood square. Rooted in community values and local reciprocity, this interface allows members living within a 5.0 KM radius to transparently find, exchange, and request critical daily aid, localized tasks, and household support loops directly with one another safely.
-            </p>
+        <!-- Top Featured Promo/Notice Block (Designed to mimic the hero banner row layout in image_406006.jpg) -->
+        <section class="mb-8 bg-gradient-to-r from-slate-900 via-slate-800 to-blue-950 text-white rounded-lg p-6 relative overflow-hidden shadow-xs border border-slate-800">
+            <div class="absolute right-0 top-0 bottom-0 w-1/3 bg-radial from-blue-600/20 to-transparent opacity-60 pointer-events-none"></div>
+            <div class="relative z-10 max-w-3xl">
+                <span class="text-[10px] bg-blue-600 text-white font-black tracking-widest px-2 py-0.5 rounded uppercase mb-3 inline-block">Hyperlocal Community Services & Skills Resource Ledger</span>
+                <h1 class="text-2xl md:text-3xl font-black tracking-tight text-white mb-2">The Solidarity Grid</h1>
+                <p class="text-slate-300 text-xs md:text-sm leading-relaxed font-normal max-w-2xl">
+                    Welcome to the modern digital neighborhood square. Rooted in shared community values and local reciprocity, this interface allows members living within a 5.0 KM radius to transparently source, request, and exchange critical localized assistance loops cleanly.
+                </p>
+            </div>
         </section>
 
-        <!-- Main Marketplace Structure layout -->
+        <!-- Arched Feature Quick-Links (Direct structure implementation of the circular shortcut icons row in image_406006.jpg) -->
+        <section class="mb-8">
+            <div class="flex items-center gap-4 overflow-x-auto pb-2 scrollbar-none justify-start md:justify-center">
+                
+                <div onclick="filterCategory('all')" class="flex flex-col items-center gap-1.5 cursor-pointer group min-w-[76px]">
+                    <div class="w-16 h-16 domed-category-icon flex items-center justify-center text-slate-700 shadow-2xs group-hover:border-blue-500 group-hover:text-blue-600 transition-all">
+                        <i class="fa-solid fa-border-all text-xl"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-gray-700 text-center group-hover:text-blue-600">All Items</span>
+                </div>
+
+                <div onclick="filterCategory('services')" class="flex flex-col items-center gap-1.5 cursor-pointer group min-w-[76px]">
+                    <div class="w-16 h-16 domed-category-icon flex items-center justify-center text-slate-700 shadow-2xs group-hover:border-blue-500 group-hover:text-blue-600 transition-all">
+                        <i class="fa-solid fa-people-roof text-xl"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-gray-700 text-center group-hover:text-blue-600">Family Services</span>
+                </div>
+
+                <div onclick="filterCategory('heritage')" class="flex flex-col items-center gap-1.5 cursor-pointer group min-w-[76px]">
+                    <div class="w-16 h-16 domed-category-icon flex items-center justify-center text-slate-700 shadow-2xs group-hover:border-blue-500 group-hover:text-blue-600 transition-all">
+                        <i class="fa-solid fa-shop text-xl"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-gray-700 text-center group-hover:text-blue-600">Heritage Souq</span>
+                </div>
+
+                <div onclick="filterType('Service')" class="flex flex-col items-center gap-1.5 cursor-pointer group min-w-[76px]">
+                    <div class="w-16 h-16 domed-category-icon flex items-center justify-center text-slate-700 shadow-2xs group-hover:border-blue-500 group-hover:text-blue-600 transition-all">
+                        <i class="fa-solid fa-handshake-angle text-xl"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-gray-700 text-center group-hover:text-blue-600">Only Services</span>
+                </div>
+
+                <div onclick="filterType('Product')" class="flex flex-col items-center gap-1.5 cursor-pointer group min-w-[76px]">
+                    <div class="w-16 h-16 domed-category-icon flex items-center justify-center text-slate-700 shadow-2xs group-hover:border-blue-500 group-hover:text-blue-600 transition-all">
+                        <i class="fa-solid fa-box-open text-xl"></i>
+                    </div>
+                    <span class="text-[11px] font-bold text-gray-700 text-center group-hover:text-blue-600">Only Products</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Main Workspace Layout Grid Structure Split -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            <!-- Left Navigation / Content Filter Categorization Grid Menu -->
+            <!-- Left Side Interactive Dynamic Filter Controls -->
             <div class="lg:col-span-3 space-y-4">
                 <div class="bg-white border border-gray-200 rounded-lg p-4">
                     <h3 class="text-xs font-black tracking-wider text-gray-400 uppercase mb-3 flex items-center justify-between">
-                        <span>Categories</span>
-                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        <span>Navigation Categories</span>
+                        <i class="fa-solid fa-sliders text-[10px]"></i>
                     </h3>
                     
                     <div class="space-y-1">
                         <button id="tab-all" onclick="filterCategory('all')" class="active-filter-pill w-full flex items-center justify-between px-3 py-2.5 rounded text-left text-xs transition-all cursor-pointer border">
-                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-layer-group text-gray-400"></i> All Items</span>
-                            <i class="fa-solid fa-chevron-right text-[9px] text-gray-400"></i>
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-layer-group text-slate-400"></i> View All Listings</span>
+                            <i class="fa-solid fa-chevron-right text-[9px]"></i>
                         </button>
                         <button id="tab-services" onclick="filterCategory('services')" class="w-full flex items-center justify-between px-3 py-2.5 rounded text-left text-xs font-medium text-gray-600 hover:bg-gray-50 transition-all cursor-pointer border border-transparent">
                             <span class="flex items-center gap-2.5"><i class="fa-solid fa-handshake-angle text-gray-400"></i> Family & Local Services</span>
@@ -115,7 +199,7 @@
                     <div class="border-t border-gray-100 my-4 pt-4">
                         <span class="block text-[10px] font-black uppercase tracking-wider text-gray-400 mb-2">Filter By Resource Type</span>
                         <div class="grid grid-cols-3 gap-1 bg-gray-100 p-1 rounded">
-                            <button id="type-all" onclick="filterType('all')" class="bg-white text-gray-900 shadow-xs text-[10px] font-bold py-1.5 rounded transition-all cursor-pointer text-center">All</button>
+                            <button id="type-all" onclick="filterType('all')" class="bg-white text-gray-900 shadow-2xs text-[10px] font-bold py-1.5 rounded transition-all cursor-pointer text-center">All</button>
                             <button id="type-service" onclick="filterType('Service')" class="text-gray-600 hover:text-gray-900 text-[10px] font-medium py-1.5 rounded transition-all cursor-pointer text-center">Services</button>
                             <button id="type-product" onclick="filterType('Product')" class="text-gray-600 hover:text-gray-900 text-[10px] font-medium py-1.5 rounded transition-all cursor-pointer text-center">Products</button>
                         </div>
@@ -123,14 +207,14 @@
                 </div>
             </div>
 
-            <!-- Middle Stream Feed Display Portal Panel (Modern Dynamic Catalog Cards) -->
+            <!-- Middle Main Stream Feed Catalog Grid Portal View Component -->
             <div class="lg:col-span-6 space-y-3">
                 <div class="bg-white px-4 py-3 border border-gray-200 rounded-lg flex items-center justify-between">
-                    <h2 class="text-xs font-black tracking-wider uppercase text-gray-500 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full noon-yellow border border-yellow-400"></span>
-                        Recommended For You
+                    <h2 class="text-xs font-black tracking-wider uppercase text-slate-500 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full brand-accent"></span>
+                        Recommended Listings For You
                     </h2>
-                    <span class="text-[11px] font-medium text-gray-400">Showing active listings near you</span>
+                    <span class="text-[11px] font-medium text-gray-400">Active inside 5.0 KM</span>
                 </div>
 
                 <!-- Dynamic Clean Catalog Card Streams Display Box -->
@@ -139,7 +223,7 @@
                     <div class="retail-card rounded-lg p-5 flex flex-col justify-between relative overflow-hidden">
                         <div>
                             <div class="flex justify-between items-start gap-4 mb-2.5">
-                                <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded noon-yellow text-gray-900">
+                                <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded brand-primary text-white">
                                     {{ item.type }}
                                 </span>
                                 <span class="text-[11px] text-gray-500 font-medium flex items-center gap-1">
@@ -165,7 +249,7 @@
                                 <span class="text-sm font-black text-gray-900">
                                     {{ item.price }}
                                 </span>
-                                <button onclick="alert('Connecting with neighbor ' + '{{ item.provider }}' + '. Peace be upon you.')" class="px-4 py-1.5 bg-gray-900 text-white hover:bg-gray-800 text-xs font-bold rounded shadow-xs transition-all cursor-pointer flex items-center gap-1.5">
+                                <button onclick="alert('Connecting with neighbor ' + '{{ item.provider }}' + '. Peace be upon you.')" class="px-4 py-1.5 brand-primary text-white hover:opacity-90 text-xs font-bold rounded shadow-2xs transition-all cursor-pointer flex items-center gap-1.5">
                                     Contact
                                 </button>
                             </div>
@@ -175,11 +259,11 @@
                 </div>
             </div>
 
-            <!-- Right Panel Form Asset Module Design Box -->
+            <!-- Right Side Form Asset Submission Control Module Design Box -->
             <div class="lg:col-span-3 space-y-4">
                 <div class="bg-white border border-gray-200 rounded-lg p-5 sticky top-24 shadow-xs">
                     <h2 class="font-black text-xs text-gray-900 tracking-wider uppercase mb-1 flex items-center gap-2">
-                        <i class="fa-solid fa-square-plus text-yellow-500"></i> List An Offer
+                        <i class="fa-solid fa-square-plus text-blue-600"></i> List An Offer
                     </h2>
                     <p class="text-[11px] text-gray-500 mb-4">
                         Publish your community service or resource onto our interactive local grid instantly.
@@ -220,12 +304,12 @@
                                 <input type="text" id="form-price" placeholder="e.g., AED 120" class="w-full bg-transparent text-xs text-gray-900 focus:outline-none placeholder-gray-400 font-bold">
                             </div>
                             <div class="flex items-center gap-1.5 border-l border-gray-200 pl-2.5 h-8">
-                                <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-yellow-400 rounded bg-white border-gray-300">
+                                <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-blue-600 rounded bg-white border-gray-300">
                                 <label for="form-student" class="text-[10px] font-bold text-gray-500 tracking-wide cursor-pointer uppercase select-none">Student?</label>
                             </div>
                         </div>
 
-                        <button onclick="submitNewListing()" class="w-full noon-yellow text-gray-900 text-xs font-black uppercase tracking-wider py-2.5 rounded shadow-xs cursor-pointer hover:opacity-95 transition-opacity">
+                        <button onclick="submitNewListing()" class="w-full brand-accent text-white text-xs font-black uppercase tracking-wider py-2.5 rounded shadow-2xs cursor-pointer hover:opacity-95 transition-opacity">
                             Publish Listing
                         </button>
                     </div>
@@ -244,7 +328,9 @@
             document.querySelectorAll('[id^="tab-"]').forEach(el => el.className = 'w-full flex items-center justify-between px-3 py-2.5 rounded text-left text-xs font-medium text-gray-600 hover:bg-gray-50 transition-all cursor-pointer border border-transparent');
             
             const target = document.getElementById(`tab-${cat}`);
-            target.className = 'active-filter-pill w-full flex items-center justify-between px-3 py-2.5 rounded text-left text-xs transition-all cursor-pointer border';
+            if(target) {
+                target.className = 'active-filter-pill w-full flex items-center justify-between px-3 py-2.5 rounded text-left text-xs transition-all cursor-pointer border';
+            }
             fetchAndRenderListings();
         }
 
@@ -254,7 +340,10 @@
                 el.className = 'text-gray-600 hover:text-gray-900 text-[10px] font-medium py-1.5 rounded transition-all cursor-pointer text-center';
             });
             const targetId = type === 'all' ? 'all' : type === 'Service' ? 'service' : 'product';
-            document.getElementById(`type-${targetId}`).className = 'bg-white text-gray-900 shadow-xs text-[10px] font-bold py-1.5 rounded transition-all cursor-pointer text-center';
+            const targetNode = document.getElementById(`type-${targetId}`);
+            if (targetNode) {
+                targetNode.className = 'bg-white text-gray-900 shadow-2xs text-[10px] font-bold py-1.5 rounded transition-all cursor-pointer text-center';
+            }
             fetchAndRenderListings();
         }
 
@@ -279,7 +368,7 @@
                             <div class="retail-card rounded-lg p-5 flex flex-col justify-between relative overflow-hidden">
                                 <div>
                                     <div class="flex justify-between items-start gap-4 mb-2.5">
-                                        <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded noon-yellow text-gray-900">${item.type}</span>
+                                        <span class="text-[9px] uppercase font-bold tracking-wider px-2 py-0.5 rounded brand-primary text-white">${item.type}</span>
                                         <span class="text-[11px] text-gray-500 font-medium flex items-center gap-1">
                                             <i class="fa-solid fa-truck-fast text-[11px] text-gray-400"></i> ${item.distance}
                                         </span>
@@ -301,7 +390,7 @@
                                     </div>
                                     <div class="flex items-center gap-2.5 justify-between sm:justify-end">
                                         <span class="text-sm font-black text-gray-900">${item.price}</span>
-                                        <button onclick="alert('Connecting with neighbor ' + '${item.provider}' + '. Peace be upon you.')" class="px-4 py-1.5 bg-gray-900 text-white hover:bg-gray-800 text-xs font-bold rounded shadow-xs transition-all cursor-pointer flex items-center gap-1.5">
+                                        <button onclick="alert('Connecting with neighbor ' + '${item.provider}' + '. Peace be upon you.')" class="px-4 py-1.5 brand-primary text-white hover:opacity-90 text-xs font-bold rounded shadow-2xs transition-all cursor-pointer flex items-center gap-1.5">
                                             Contact
                                         </button>
                                     </div>
