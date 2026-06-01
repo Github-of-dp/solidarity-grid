@@ -4,12 +4,12 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-# A reliable, persistent file path to act as our local document database
+# Persistent file-based document tracking ledger
 DATA_FILE = os.path.join(os.path.dirname(__file__), 'listings_db.json')
 
 def load_stored_listings():
     """Load listings safely from the persistent database file."""
-    # Seed default values with highly specific, distinct coordinates so they never cross wires
+    # Seed values with distinct coordinates and unique data
     default_placeholders = [
         {
             "id": 1,
@@ -19,7 +19,7 @@ def load_stored_listings():
             "title": "Class 12 Math & Calculus Tuition",
             "description": "Offering tailored preparation tracks for CBSE Grade 12 Mathematics, focusing on Calculus integration techniques and Matrix determinants.",
             "price": "AED 120/hr",
-            "location_zone": "24.4322,54.6044", # Yas Island Sector
+            "location_zone": "24.4322,54.6044", # Yas Island
             "is_student": "false"
         },
         {
@@ -30,7 +30,7 @@ def load_stored_listings():
             "title": "Handcrafted Clay Pottery & Talli Crafts",
             "description": "Authentic, locally sourced Emirati heritage crafts and hand-woven items perfect for traditional community presentation setups.",
             "price": "AED 250",
-            "location_zone": "24.4539,54.3773", # Corniche Central Sector
+            "location_zone": "24.4680,54.3644", # Corniche Area
             "is_student": "false"
         }
     ]
@@ -47,7 +47,7 @@ def load_stored_listings():
         return default_placeholders
 
 def save_listings_to_disk(listings_data):
-    """Write listing collection straight to disk so everyone can see updates live."""
+    """Write listing collection straight to disk so data is never lost."""
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(listings_data, f, indent=4)
 
@@ -64,10 +64,8 @@ def get_listings():
     filtered_list = []
     
     for item in all_items:
-        # Category tracking condition
         if category_filter != 'all' and item.get('category') != category_filter:
             continue
-        # Subvariant asset type tracking condition
         if type_filter != 'all' and item.get('type') != type_filter:
             continue
         filtered_list.append(item)
@@ -77,16 +75,12 @@ def get_listings():
 @app.route('/api/listings/add', methods=['POST'])
 def add_listing():
     incoming_data = request.json
-    
     if not incoming_data or not incoming_data.get('provider') or not incoming_data.get('title'):
-        return jsonify({"success": False, "error": "Missing essential listing parameters."}), 400
+        return jsonify({"success": False, "error": "Missing essential parameters."}), 400
     
     current_collection = load_stored_listings()
-    
-    # Generate a reliable auto-incrementing ID metric
     new_id = max([item.get('id', 0) for item in current_collection]) + 1 if current_collection else 1
     
-    # Append new node data systematically ensuring coordinates are tracked as an isolated pair
     new_node = {
         "id": new_id,
         "provider": incoming_data.get('provider'),
@@ -101,7 +95,6 @@ def add_listing():
     
     current_collection.append(new_node)
     save_listings_to_disk(current_collection)
-    
     return jsonify({"success": True, "id": new_id})
 
 if __name__ == '__main__':
