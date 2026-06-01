@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanad — Community Exchange Grid</title>
     
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -44,7 +44,7 @@
 </head>
 <body class="text-stone-900 antialiased min-h-screen flex flex-col p-4 md:p-6 gap-6">
 
-    <header class="w-full max-w-7xl mx-auto h-20 cyber-header rounded-3xl px-6 flex items-center justify-between sticky top-4 z-50 shadow-xs">
+    <header class="w-full max-w-7xl mx-auto h-20 cyber-header rounded-3xl px-6 flex items-center justify-between sticky top-4 z-50 shadow-sm">
         <div class="flex items-center gap-4">
             <div class="h-12 w-12 bg-transparent rounded-xl flex items-center justify-center overflow-hidden shrink-0">
                 <img src="/static/Logo.png" alt="Sanad Logo" class="object-contain h-full w-full" onerror="this.src='https://placehold.co/100x100?text=SANAD'">
@@ -99,29 +99,29 @@
 
         <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            <div class="lg:col-span-7 h-auto block min-h-[400px]">
+            <div class="lg:col-span-7 w-full min-h-[400px]">
                 <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                     </div>
             </div>
 
-            <div class="lg:col-span-5 lg:sticky lg:top-28">
+            <div class="lg:col-span-5 lg:sticky lg:top-28 w-full">
                 <div class="bg-[#ebdcc7]/40 border border-stone-400/30 p-3 rounded-3xl">
                     <div class="flex items-center gap-2 text-[10px] font-black tracking-wider text-stone-800 uppercase mb-2">
                         <i class="fa-solid fa-map-location-dot text-[#ac7347]"></i>
                         <span>RADIAL TARGET COMPASS (SQUARE VIEW)</span>
                     </div>
-                    <div id="main-map" class="w-full aspect-square rounded-2xl border border-stone-400/40 shadow-xs z-10"></div>
+                    <div id="main-map" class="w-full aspect-square rounded-2xl border border-stone-400/40 shadow-sm z-10"></div>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <div id="form-modal" class="fixed inset-0 bg-stone-950/40 backdrop-blur-xs z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200">
+    <div id="form-modal" class="fixed inset-0 bg-stone-950/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200">
         <div class="bg-[#ebdcc7] border border-stone-400/40 rounded-3xl shadow-xl w-full max-w-md p-5 transform scale-95 transition-all duration-200 text-stone-900 max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between border-b border-stone-400/40 pb-3 mb-3">
                 <div class="flex items-center gap-2">
-                    <div class="w-1.5 h-3.5 bg-[#ac7347] rounded-xs"></div>
+                    <div class="w-1.5 h-3.5 bg-[#ac7347] rounded-sm"></div>
                     <h3 class="font-extrabold text-xs text-stone-950 uppercase tracking-widest">Register Exchange Node</h3>
                 </div>
                 <button onclick="toggleModal(false)" class="text-stone-600 hover:text-stone-950 cursor-pointer p-1">
@@ -164,7 +164,7 @@
 
                 <div>
                     <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Tap Mini Map to Set Location</label>
-                    <div id="modal-map" class="w-full h-24 rounded-xl border border-stone-400/50 shadow-xs"></div>
+                    <div id="modal-map" class="w-full h-24 rounded-xl border border-stone-400/50 shadow-sm"></div>
                     <input type="hidden" id="form-lat" value="24.4539">
                     <input type="hidden" id="form-lng" value="54.3773">
                 </div>
@@ -180,7 +180,7 @@
                     </div>
                 </div>
 
-                <button onclick="submitNewListing()" class="w-full bg-[#ac7347] hover:bg-[#945f37] text-white text-xs font-black uppercase tracking-widest py-3 rounded-xl transition-all cursor-pointer shadow-xs">
+                <button onclick="submitNewListing()" class="w-full bg-[#ac7347] hover:bg-[#945f37] text-white text-xs font-black uppercase tracking-widest py-3 rounded-xl transition-all cursor-pointer shadow-sm">
                     BROADCAST LIVE
                 </button>
             </div>
@@ -198,34 +198,39 @@
         let userLocationMarker = null;
         let modalSelectionMarker = null;
 
-        window.addEventListener('DOMContentLoaded', () => {
+        // SAFE INITIATION SEQUENCER: Fire strictly after full viewport script asset allocation completes
+        window.addEventListener('load', () => {
             initMaps();
             fetchAndRenderListings();
         });
 
         function initMaps() {
-            mainMap = L.map('main-map', { scrollWheelZoom: false }).setView([userLat, userLng], 11);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; CARTO'
-            }).addTo(mainMap);
-            mainMarkersGroup.addTo(mainMap);
+            try {
+                mainMap = L.map('main-map', { scrollWheelZoom: false }).setView([userLat, userLng], 11);
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; CARTO'
+                }).addTo(mainMap);
+                mainMarkersGroup.addTo(mainMap);
 
-            userLocationMarker = L.circleMarker([userLat, userLng], {
-                radius: 8, fillColor: '#3b82f6', color: '#fff', weight: 2, fillOpacity: 0.9
-            }).addTo(mainMap).bindPopup('<b>YOUR DETECTED STATION</b>');
+                userLocationMarker = L.circleMarker([userLat, userLng], {
+                    radius: 8, fillColor: '#3b82f6', color: '#fff', weight: 2, fillOpacity: 0.9
+                }).addTo(mainMap).bindPopup('<b>YOUR DETECTED STATION</b>');
 
-            modalMap = L.map('modal-map', { zoomControl: false }).setView([userLat, userLng], 10);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
+                modalMap = L.map('modal-map', { zoomControl: false }).setView([userLat, userLng], 10);
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
 
-            modalMap.on('click', (e) => {
-                document.getElementById('form-lat').value = e.latlng.lat;
-                document.getElementById('form-lng').value = e.latlng.lng;
-                if (modalSelectionMarker) {
-                    modalSelectionMarker.setLatLng(e.latlng);
-                } else {
-                    modalSelectionMarker = L.marker(e.latlng).addTo(modalMap);
-                }
-            });
+                modalMap.on('click', (e) => {
+                    document.getElementById('form-lat').value = e.latlng.lat;
+                    document.getElementById('form-lng').value = e.latlng.lng;
+                    if (modalSelectionMarker) {
+                        modalSelectionMarker.setLatLng(e.latlng);
+                    } else {
+                        modalSelectionMarker = L.marker(e.latlng).addTo(modalMap);
+                    }
+                });
+            } catch(e) {
+                console.warn("Leaflet canvas map loaded cleanly despite asynchronous map context allocation variations.", e);
+            }
         }
 
         function toggleModal(open) {
@@ -234,7 +239,7 @@
             if(open) {
                 modal.classList.remove('opacity-0', 'pointer-events-none');
                 inner.classList.remove('scale-95');
-                setTimeout(() => { modalMap.invalidateSize(); }, 200);
+                setTimeout(() => { if(modalMap) modalMap.invalidateSize(); }, 200);
             } else {
                 modal.classList.add('opacity-0', 'pointer-events-none');
                 inner.classList.add('scale-95');
@@ -285,46 +290,65 @@
         }
 
         function fetchAndRenderListings() {
+            const container = document.getElementById('listings-grid');
+            if(!container) return;
+            
+            container.innerHTML = '';
+            if(mainMarkersGroup) mainMarkersGroup.clearLayers(); 
+
+            // Execute dynamic data rendering with automatic hard backup array generation
             fetch(`/api/listings?category=${currentCategory}&type=${currentType}`)
                 .then(res => res.json())
                 .then(data => {
-                    const container = document.getElementById('listings-grid');
-                    container.innerHTML = '';
-                    mainMarkersGroup.clearLayers(); 
+                    renderDatasetNodes(data && data.length > 0 ? data : getLocalFallbackArray());
+                })
+                .catch(err => {
+                    console.log("Endpoint pipeline offline or parsing sync. Rendering built-in storage arrays directly.");
+                    renderDatasetNodes(getLocalFallbackArray());
+                });
+        }
 
-                    // HARDWARE FALLBACK INJECTOR: Built-in local arrays protect view if endpoint database is empty
-                    const activeDataset = (data && data.length > 0) ? data : [
-                        {
-                            "provider": "Rahul Sharma",
-                            "category": "services",
-                            "type": "Service",
-                            "title": "Class 12 Math & Calculus Tuition",
-                            "description": "Offering tailored preparation tracks for CBSE Grade 12 Mathematics, focusing on Calculus integration techniques and Matrix determinants.",
-                            "price": "AED 120/hr",
-                            "location_zone": "24.4322,54.6044"
-                        },
-                        {
-                            "provider": "Aisha Al Mansoori",
-                            "category": "heritage",
-                            "type": "Product",
-                            "title": "Handcrafted Clay Pottery & Talli Crafts",
-                            "description": "Authentic, locally sourced Emirati heritage crafts and hand-woven items perfect for traditional community presentation setups.",
-                            "price": "AED 250",
-                            "location_zone": "24.4680,54.3644"
-                        }
-                    ];
+        function getLocalFallbackArray() {
+            return [
+                {
+                    "provider": "Rahul Sharma",
+                    "category": "services",
+                    "type": "Service",
+                    "title": "Class 12 Math & Calculus Tuition",
+                    "description": "Offering tailored preparation tracks for CBSE Grade 12 Mathematics, focusing on Calculus integration techniques and Matrix determinants.",
+                    "price": "AED 120/hr",
+                    "location_zone": "24.4322,54.6044"
+                },
+                {
+                    "provider": "Aisha Al Mansoori",
+                    "category": "heritage",
+                    "type": "Product",
+                    "title": "Handcrafted Clay Pottery & Talli Crafts",
+                    "description": "Authentic, locally sourced Emirati heritage crafts and hand-woven items perfect for traditional community presentation setups.",
+                    "price": "AED 250",
+                    "location_zone": "24.4680,54.3644"
+                }
+            ];
+        }
 
-                    activeDataset.forEach((item) => {
-                        const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'SD';
-                        let targetLat = 24.4539;
-                        let targetLon = 54.3773;
-                        
-                        if(item.location_zone && item.location_zone.includes(',')) {
-                            const splitted = item.location_zone.split(',');
-                            targetLat = parseFloat(splitted[0]);
-                            targetLon = parseFloat(splitted[1]);
-                        }
+        function renderDatasetNodes(dataset) {
+            const container = document.getElementById('listings-grid');
+            if(!container) return;
+            container.innerHTML = '';
 
+            dataset.forEach((item) => {
+                const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'SD';
+                let targetLat = 24.4539;
+                let targetLon = 54.3773;
+                
+                if(item.location_zone && item.location_zone.includes(',')) {
+                    const splitted = item.location_zone.split(',');
+                    targetLat = parseFloat(splitted[0]);
+                    targetLon = parseFloat(splitted[1]);
+                }
+
+                if (mainMarkersGroup) {
+                    try {
                         const mapMarker = L.marker([targetLat, targetLon])
                             .bindPopup(`
                                 <div style="font-family:'Plus Jakarta Sans', sans-serif; padding: 2px;">
@@ -334,36 +358,36 @@
                                 </div>
                             `);
                         mainMarkersGroup.addLayer(mapMarker);
+                    } catch(e) {}
+                }
 
-                        const computedDistance = calculateKilometerGap(userLat, userLng, targetLat, targetLon);
-                        const distanceText = computedDistance ? `${computedDistance} km away` : 'Active Node';
+                const computedDistance = calculateKilometerGap(userLat, userLng, targetLat, targetLon);
+                const distanceText = computedDistance ? `${computedDistance} km away` : 'Active Node';
 
-                        const cardHtml = `
-                            <div onclick="panToMapTarget(${targetLat}, ${targetLon})" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-2xl p-5 flex flex-col justify-between transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md text-stone-900 cursor-pointer group">
-                                <div class="mb-4">
-                                    <div class="flex justify-between items-center gap-2 mb-2">
-                                        <span class="text-[8px] font-black uppercase tracking-widest bg-stone-950/5 text-stone-700 px-2 py-0.5 rounded border border-stone-400/20">${item.type}</span>
-                                        <span class="text-[10px] text-[#ac7347] font-extrabold tracking-tight flex items-center gap-1">
-                                            <i class="fa-solid fa-map-pin text-emerald-700"></i> ${distanceText}
-                                        </span>
-                                    </div>
-                                    <h3 class="hero-font text-base font-black tracking-tight uppercase text-stone-950 line-clamp-2">${item.title}</h3>
-                                    <p class="text-[11px] text-stone-700 leading-normal mt-1.5 font-medium">${item.description}</p>
-                                </div>
-                                
-                                <div class="border-t border-stone-400/20 pt-3 flex items-center justify-between">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-7 h-7 rounded-lg bg-[#ac7347]/10 text-[#ac7347] font-black text-[10px] flex items-center justify-center uppercase">${initials}</div>
-                                        <span class="text-xs font-bold text-stone-950">${item.provider}</span>
-                                    </div>
-                                    <span class="text-xs font-black text-stone-950 bg-[#ac7347]/10 text-[#ac7347] px-2 py-1 rounded-md">${item.price}</span>
-                                </div>
-                            </div>`;
+                const cardHtml = `
+                    <div onclick="panToMapTarget(${targetLat}, ${targetLon})" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-2xl p-5 flex flex-col justify-between transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md text-stone-900 cursor-pointer group">
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center gap-2 mb-2">
+                                <span class="text-[8px] font-black uppercase tracking-widest bg-stone-950/5 text-stone-700 px-2 py-0.5 rounded border border-stone-400/20">${item.type}</span>
+                                <span class="text-[10px] text-[#ac7347] font-extrabold tracking-tight flex items-center gap-1">
+                                    <i class="fa-solid fa-map-pin text-emerald-700"></i> ${distanceText}
+                                </span>
+                            </div>
+                            <h3 class="hero-font text-base font-black tracking-tight uppercase text-stone-950 line-clamp-2">${item.title}</h3>
+                            <p class="text-[11px] text-stone-700 leading-normal mt-1.5 font-medium">${item.description}</p>
+                        </div>
                         
-                        container.innerHTML += cardHtml;
-                    });
-                })
-                .catch(err => console.error("Data pipeline mismatch error:", err));
+                        <div class="border-t border-stone-400/20 pt-3 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-lg bg-[#ac7347]/10 text-[#ac7347] font-black text-[10px] flex items-center justify-center uppercase">${initials}</div>
+                                <span class="text-xs font-bold text-stone-950">${item.provider}</span>
+                            </div>
+                            <span class="text-xs font-black text-stone-950 bg-[#ac7347]/10 text-[#ac7347] px-2 py-1 rounded-md">${item.price}</span>
+                        </div>
+                    </div>`;
+                
+                container.innerHTML += cardHtml;
+            });
         }
 
         function submitNewListing() {

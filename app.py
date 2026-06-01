@@ -4,11 +4,9 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-# Persistent file-based document tracking ledger
 DATA_FILE = os.path.join(os.path.dirname(__file__), 'listings_db.json')
 
 def get_default_listings():
-    """Returns the core default listings to ensure data structure stability."""
     return [
         {
             "id": 1,
@@ -18,7 +16,7 @@ def get_default_listings():
             "title": "Class 12 Math & Calculus Tuition",
             "description": "Offering tailored preparation tracks for CBSE Grade 12 Mathematics, focusing on Calculus integration techniques and Matrix determinants.",
             "price": "AED 120/hr",
-            "location_zone": "24.4322,54.6044", # Yas Island
+            "location_zone": "24.4322,54.6044",
             "is_student": "false"
         },
         {
@@ -29,16 +27,13 @@ def get_default_listings():
             "title": "Handcrafted Clay Pottery & Talli Crafts",
             "description": "Authentic, locally sourced Emirati heritage crafts and hand-woven items perfect for traditional community presentation setups.",
             "price": "AED 250",
-            "location_zone": "24.4680,54.3644", # Corniche Area
+            "location_zone": "24.4680,54.3644",
             "is_student": "false"
         }
     ]
 
 def load_stored_listings():
-    """Load listings safely, self-healing the database if empty or missing."""
     defaults = get_default_listings()
-    
-    # If file doesn't exist, build it with default values
     if not os.path.exists(DATA_FILE):
         with open(DATA_FILE, 'w', encoding='utf-8') as f:
             json.dump(defaults, f, indent=4)
@@ -47,24 +42,20 @@ def load_stored_listings():
     try:
         with open(DATA_FILE, 'r', encoding='utf-8') as f:
             content = f.read().strip()
-            if not content:  # File is empty string
-                raise ValueError("Empty file")
+            if not content:
+                raise ValueError("Empty DB configuration layer file.")
             data = json.loads(content)
-            
-            # FORCE SELF-HEAL: If the file exists but has 0 listings, force reload defaults
             if not data or len(data) == 0:
                 with open(DATA_FILE, 'w', encoding='utf-8') as f:
                     json.dump(defaults, f, indent=4)
                 return defaults
             return data
     except Exception:
-        # Fallback and fix if file is corrupted or unreadable
         with open(DATA_FILE, 'w', encoding='utf-8') as f:
             json.dump(defaults, f, indent=4)
         return defaults
 
 def save_listings_to_disk(listings_data):
-    """Write listing collection straight to disk so data is never lost."""
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(listings_data, f, indent=4)
 
@@ -81,7 +72,6 @@ def get_listings():
     filtered_list = []
     
     for item in all_items:
-        # Match categories safely (case-insensitive fallback)
         item_cat = str(item.get('category', 'services')).lower().strip()
         item_type = str(item.get('type', 'Service')).lower().strip()
         
