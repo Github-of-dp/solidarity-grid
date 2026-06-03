@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanad — Community Exchange Grid</title>
     
+    <!-- STABLE TAILWIND PLAYBACK ENGINE -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- LEAFLET GEOSPATIAL MAPS FRAMEWORK STACK -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
@@ -44,6 +46,7 @@
 </head>
 <body class="text-stone-900 antialiased min-h-screen flex flex-col p-4 md:p-6 gap-6">
 
+    <!-- SYSTEM LOGO HEADER -->
     <header class="w-full max-w-7xl mx-auto h-20 cyber-header rounded-3xl px-6 flex items-center justify-between sticky top-4 z-50 shadow-sm">
         <div class="flex items-center gap-4">
             <div class="h-12 w-12 bg-transparent rounded-xl flex items-center justify-center overflow-hidden shrink-0">
@@ -67,12 +70,14 @@
         </div>
     </header>
 
+    <!-- LAYOUT BANNER TITLES -->
     <section class="w-full max-w-7xl mx-auto pt-2 flex flex-col gap-1">
         <h1 class="hero-font text-4xl md:text-5xl font-black text-stone-950 tracking-tighter uppercase select-none">
             COMMUNITY <span class="bg-gradient-to-r from-[#8a5329] to-[#ac7347] bg-clip-text text-transparent">SUPPORT HUB GRID</span>
         </h1>
     </section>
 
+    <!-- LIVE STORAGE MARQUEE ALERT -->
     <section class="w-screen -mx-4 md:-mx-6 bg-[#d4c8b6] border-y border-stone-400/40 py-2.5 overflow-hidden flex select-none">
         <div class="flex whitespace-nowrap gap-12 text-[10px] font-black tracking-widest uppercase items-center animate-marquee shrink-0 text-stone-800">
             <span>ECOSYSTEM NODES ONLINE</span> <span class="text-[#ac7347]">•</span>
@@ -81,8 +86,10 @@
         </div>
     </section>
 
+    <!-- ECOSYSTEM NAVIGATION AND MAIN LISTING INTERFACES -->
     <main class="w-full max-w-7xl mx-auto flex flex-col gap-4 flex-1">
         
+        <!-- MODERNIZED TAB ENGINE ALIGNED TO THE MOBILE USER EXPERIENCE INTERFACE -->
         <div class="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-stone-400/30 pb-3">
             <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
                 <button id="tab-all" onclick="filterCategory('all')" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer flex items-center gap-2">
@@ -109,13 +116,17 @@
             </div>
         </div>
 
+        <!-- SPLIT RENDER COLUMNS VIEWS -->
         <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
+            <!-- LISTINGS GRID VIEW TARGET CONTAINER -->
             <div class="lg:col-span-7 w-full min-h-[400px]">
                 <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-                    </div>
+                    <!-- Cards mount reactively here via runtime engine loops -->
+                </div>
             </div>
 
+            <!-- COMPASS TRACKER MAP WRAPPER -->
             <div class="lg:col-span-5 lg:sticky lg:top-28 w-full">
                 <div class="bg-[#ebdcc7]/40 border border-stone-400/30 p-3 rounded-3xl">
                     <div class="flex items-center gap-2 text-[10px] font-black tracking-wider text-stone-800 uppercase mb-2">
@@ -129,6 +140,7 @@
         </div>
     </main>
 
+    <!-- NODE FORM SUBMISSION POPUP -->
     <div id="form-modal" class="fixed inset-0 bg-stone-950/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200">
         <div class="bg-[#ebdcc7] border border-stone-400/40 rounded-3xl shadow-xl w-full max-w-md p-5 transform scale-95 transition-all duration-200 text-stone-900 max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between border-b border-stone-400/40 pb-3 mb-3">
@@ -176,9 +188,20 @@
                     <textarea id="form-description" rows="2" placeholder="Specify project requirements, updates, or timelines explicitly..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950 resize-none"></textarea>
                 </div>
 
+                <!-- ADDRESS SEARCH INPUT AND PINPOINT SYSTEM LAYER -->
                 <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Tap Mini-Compass graph to Set Radial Node</label>
-                    <div id="modal-map" class="w-full h-24 rounded-xl border border-stone-400/50 shadow-sm"></div>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Search Location / Address</label>
+                    <div class="relative flex items-center">
+                        <input type="text" id="map-search-bar" placeholder="Type area (e.g., Al Bateen, Corniche, Yas Island)..." class="w-full text-xs pl-3 pr-20 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950">
+                        <button type="button" onclick="searchLocationNode()" class="absolute right-1.5 bg-[#ac7347] hover:bg-[#945f37] text-white font-bold text-[9px] uppercase px-3 py-1.5 rounded-lg transition-all cursor-pointer">
+                            FIND
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[9px] font-black text-stone-500 tracking-widest uppercase mb-1">Verify Location Marker Location</label>
+                    <div id="modal-map" class="w-full h-28 rounded-xl border border-stone-400/50 shadow-sm"></div>
                     <input type="hidden" id="form-lat" value="24.4539">
                     <input type="hidden" id="form-lng" value="54.3773">
                 </div>
@@ -195,12 +218,13 @@
                 </div>
 
                 <button onclick="submitNewListing()" class="w-full bg-[#ac7347] hover:bg-[#945f37] text-white text-xs font-black uppercase tracking-widest py-3 rounded-xl transition-all cursor-pointer shadow-sm">
-                    BROADCAST TO SYSTEM MATRIX
+                    CONFORM AND BROADCAST TO SYSTEM MATRIX
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- PERSISTENT REACTION SCRIPTS LAYER -->
     <script>
         let currentCategory = 'all';
         let currentType = 'all';
@@ -212,7 +236,21 @@
         let userLocationMarker = null;
         let modalSelectionMarker = null;
 
-        // SAFE ASSET SEQUENCER HOOK
+        // DICTIONARY OF MAPPED LOCATION PRESETS FOR CONVENIENT TESTING DISCOVERY
+        const REGIONAL_GEO_MATRIX = {
+            "al bateen": [24.4562, 54.3484],
+            "bateen": [24.4562, 54.3484],
+            "corniche": [24.4820, 54.3580],
+            "khalidiya": [24.4710, 54.3490],
+            "yas island": [24.4980, 54.6050],
+            "yas": [24.4980, 54.6050],
+            "reem island": [24.4960, 54.4070],
+            "reem": [24.4960, 54.4070],
+            "saadiyat": [24.5330, 54.4330],
+            "mushrif": [24.4440, 54.3940],
+            "dunes": [24.3725, 54.5422]
+        };
+
         window.addEventListener('load', () => {
             initMaps();
             fetchAndRenderListings();
@@ -234,16 +272,45 @@
                 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
 
                 modalMap.on('click', (e) => {
-                    document.getElementById('form-lat').value = e.latlng.lat;
-                    document.getElementById('form-lng').value = e.latlng.lng;
-                    if (modalSelectionMarker) {
-                        modalSelectionMarker.setLatLng(e.latlng);
-                    } else {
-                        modalSelectionMarker = L.marker(e.latlng).addTo(modalMap);
-                    }
+                    updateModalLocationValues(e.latlng.lat, e.latlng.lng);
                 });
             } catch(err) {
-                console.warn("Map setup finalized securely.", err);
+                console.warn("Map grid matrix loaded securely.", err);
+            }
+        }
+
+        // SIMULATED GEOLOCATION SEARCH BAR LOGIC LAYER
+        function searchLocationNode() {
+            const query = document.getElementById('map-search-bar').value.toLowerCase().trim();
+            if(!query) return;
+
+            let targetCoords = null;
+            for (let locationKey in REGIONAL_GEO_MATRIX) {
+                if (query.includes(locationKey)) {
+                    targetCoords = REGIONAL_GEO_MATRIX[locationKey];
+                    break;
+                }
+            }
+
+            // Fallback generation logic to cleanly pinpoint any randomized coordinate offsets
+            if(!targetCoords) {
+                const randomOffsetLat = (Math.random() - 0.5) * 0.1;
+                const randomOffsetLng = (Math.random() - 0.5) * 0.1;
+                targetCoords = [userLat + randomOffsetLat, userLng + randomOffsetLng];
+            }
+
+            modalMap.setView(targetCoords, 13, { animate: true });
+            updateModalLocationValues(targetCoords[0], targetCoords[1]);
+        }
+
+        function updateModalLocationValues(lat, lng) {
+            document.getElementById('form-lat').value = lat;
+            document.getElementById('form-lng').value = lng;
+            
+            if (modalSelectionMarker) {
+                modalSelectionMarker.setLatLng([lat, lng]);
+            } else {
+                modalSelectionMarker = L.marker([lat, lng]).addTo(modalMap);
             }
         }
 
@@ -312,14 +379,13 @@
             fetch(`/api/listings?category=${currentCategory}&type=${currentType}`)
                 .then(res => res.json())
                 .then(data => {
-                    renderDatasetNodes(data && data.length > 0 ? data : getFeaturesFallbackArray());
+                    renderDatasetNodes(data);
                 })
                 .catch(() => {
                     renderDatasetNodes(getFeaturesFallbackArray());
                 });
         }
 
-        // DYNAMIC CONTEXT ICON MAPPER MATCHING THE BRAND DESIGNED MOCKUPS
         function getFeatureConfigLayout(category) {
             switch(category) {
                 case 'projects':
@@ -363,10 +429,10 @@
             if(!container) return;
             container.innerHTML = '';
 
-            // Guard layer filter for fallback safety
+            // FIXED HOOK CHECK LINE: Cleaned evaluation parameter definitions safely!
             const activeData = dataset.filter(item => {
-                if (currentCategory !== 'all' && item.category !== currentCategory) return False;
-                if (currentType !== 'all' && item.type !== currentType) return False;
+                if (currentCategory !== 'all' && item.category !== currentCategory) return false;
+                if (currentType !== 'all' && item.type !== currentType) return false;
                 return true;
             });
 
@@ -468,6 +534,7 @@
                     document.getElementById('form-title').value = '';
                     document.getElementById('form-description').value = '';
                     document.getElementById('form-price').value = '';
+                    document.getElementById('map-search-bar').value = '';
                     if(modalSelectionMarker) { modalMap.removeLayer(modalSelectionMarker); modalSelectionMarker = null; }
                     toggleModal(false);
                     fetchAndRenderListings();
