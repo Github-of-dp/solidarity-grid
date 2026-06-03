@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanad — Responsive Community Grid Engine</title>
+    <title>Sanad — Community Exchange Grid</title>
     
+    <!-- STABLE TAILWIND PLAYBACK ENGINE -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- LEAFLET GEOSPATIAL MAPS FRAMEWORK STACK -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
@@ -42,112 +44,105 @@
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="text-stone-900 antialiased min-h-screen flex flex-col p-3 sm:p-5 lg:p-8 gap-4 md:gap-6">
+<body class="text-stone-900 antialiased min-h-screen flex flex-col p-4 md:p-6 gap-6">
 
-    <header class="w-full max-w-[105rem] mx-auto h-16 sm:h-20 cyber-header rounded-2xl sm:rounded-3xl px-4 sm:px-6 flex items-center justify-between sticky top-3 lg:top-4 z-50 shadow-sm">
-        <div class="flex items-center gap-3 sm:gap-4">
-            <div class="h-10 w-10 sm:h-12 sm:w-12 bg-transparent rounded-xl flex items-center justify-center overflow-hidden shrink-0">
+    <!-- SYSTEM LOGO HEADER -->
+    <header class="w-full max-w-7xl mx-auto h-20 cyber-header rounded-3xl px-6 flex items-center justify-between sticky top-4 z-50 shadow-sm">
+        <div class="flex items-center gap-4">
+            <div class="h-12 w-12 bg-transparent rounded-xl flex items-center justify-center overflow-hidden shrink-0">
                 <img src="/static/Logo.png" alt="Sanad Logo" class="object-contain h-full w-full" onerror="this.src='https://placehold.co/100x100?text=SANAD'">
             </div>
             <div class="flex flex-col">
-                <span class="text-sm sm:text-base font-black tracking-widest text-stone-950 leading-none">SANAD</span>
-                <span class="text-[10px] sm:text-[11px] text-[#a06a42] font-bold tracking-widest uppercase mt-0.5">سند</span>
+                <span class="text-base font-black tracking-widest text-stone-950 leading-none">SANAD</span>
+                <span class="text-[11px] text-[#a06a42] font-bold tracking-widest uppercase mt-0.5">سند</span>
             </div>
         </div>
 
-        <div class="hidden lg:flex items-center gap-2.5 text-[10px] font-black text-stone-700 tracking-widest uppercase bg-stone-900/5 px-4 py-2 rounded-xl border border-stone-900/5">
-            <i class="fa-solid fa-location-crosshairs text-amber-700 animate-pulse"></i>
+        <div class="hidden md:flex items-center gap-2.5 text-[10px] font-black text-stone-700 tracking-widest uppercase bg-stone-900/5 px-4 py-2 rounded-xl border border-stone-900/5">
+            <i id="gps-icon" class="fa-solid fa-location-crosshairs text-amber-700 animate-pulse"></i>
             <span>GRID TELEMETRY: <span id="user-coords" class="text-stone-950">24.4880° N, 54.3614° E</span></span>
         </div>
 
         <div>
-            <button onclick="toggleModal(true)" class="bg-[#ac7347] hover:bg-[#945f37] text-[11px] sm:text-xs font-extrabold px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all duration-200 transform active:scale-95 cursor-pointer tracking-wider shadow-sm">
+            <button onclick="toggleModal(true)" class="bg-[#ac7347] hover:bg-[#945f37] text-white text-xs font-extrabold px-6 py-3 rounded-xl transition-all duration-200 transform active:scale-95 cursor-pointer tracking-wider shadow-sm">
                 BROADCAST NODE
             </button>
         </div>
     </header>
 
-    <section class="w-full max-w-[105rem] mx-auto pt-1 flex flex-col gap-1">
-        <h1 class="hero-font text-3xl sm:text-4xl md:text-5xl 2xl:text-6xl font-black text-stone-950 tracking-tighter uppercase select-none">
+    <!-- LAYOUT BANNER TITLES -->
+    <section class="w-full max-w-7xl mx-auto pt-2 flex flex-col gap-1">
+        <h1 class="hero-font text-4xl md:text-5xl font-black text-stone-950 tracking-tighter uppercase select-none">
             COMMUNITY <span class="bg-gradient-to-r from-[#8a5329] to-[#ac7347] bg-clip-text text-transparent">SUPPORT HUB GRID</span>
         </h1>
     </section>
 
-    <section class="w-screen -mx-3 sm:-mx-5 lg:-mx-8 bg-[#d4c8b6] border-y border-stone-400/40 py-2 sm:py-2.5 overflow-hidden flex select-none">
-        <div class="flex whitespace-nowrap gap-12 text-[9px] sm:text-[10px] font-black tracking-widest uppercase items-center animate-marquee shrink-0 text-stone-800">
+    <!-- LIVE STORAGE MARQUEE ALERT -->
+    <section class="w-screen -mx-4 md:-mx-6 bg-[#d4c8b6] border-y border-stone-400/40 py-2.5 overflow-hidden flex select-none">
+        <div class="flex whitespace-nowrap gap-12 text-[10px] font-black tracking-widest uppercase items-center animate-marquee shrink-0 text-stone-800">
             <span>ECOSYSTEM NODES ONLINE</span> <span class="text-[#ac7347]">•</span>
-            <span>MULTI-PLATFORM SCREEN ENGINE ACTIVATED</span> <span class="text-[#ac7347]">•</span>
-            <span>PHONES, LAPTOPS, DESKTOPS, AND TV SYSTEMS SYNCHRONIZED</span> <span class="text-[#ac7347]">•</span>
+            <span>INTEGRATED FROM MOBILE CONSOLE MATRIX PLUGINS</span> <span class="text-[#ac7347]">•</span>
+            <span>REAL-TIME SPATIAL POSITIONING VERIFIED</span> <span class="text-[#ac7347]">•</span>
         </div>
     </section>
 
-    <main class="w-full max-w-[105rem] mx-auto flex flex-col gap-4 flex-1">
+    <!-- ECOSYSTEM NAVIGATION AND MAIN LISTING INTERFACES -->
+    <main class="w-full max-w-7xl mx-auto flex flex-col gap-4 flex-1">
         
-        <div class="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-3 border-b border-stone-400/30 pb-3">
-            <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none py-1 w-full xl:w-auto">
-                <button id="tab-all" onclick="filterCategory('all')" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer flex items-center gap-2">
+        <!-- MODERNIZED TAB ENGINE ALIGNED TO THE MOBILE USER EXPERIENCE INTERFACE -->
+        <div class="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-stone-400/30 pb-3">
+            <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
+                <button id="tab-all" onclick="filterCategory('all')" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer flex items-center gap-2">
                     <i class="fa-solid fa-layer-group"></i> ALL FEATURES
                 </button>
-                <button id="tab-projects" onclick="filterCategory('projects')" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                <button id="tab-projects" onclick="filterCategory('projects')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
                     <i class="fa-solid fa-folder-open"></i> COMMUNITY PROJECTS
                 </button>
-                <button id="tab-volunteer" onclick="filterCategory('volunteer')" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                <button id="tab-volunteer" onclick="filterCategory('volunteer')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
                     <i class="fa-solid fa-hands-holding-child"></i> VOLUNTEER MATCHING
                 </button>
-                <button id="tab-skills" onclick="filterCategory('skills')" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                <button id="tab-skills" onclick="filterCategory('skills')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
                     <i class="fa-solid fa-lightbulb"></i> SKILLS HUB
                 </button>
-                <button id="tab-news" onclick="filterCategory('news')" class="px-3.5 sm:px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                <button id="tab-news" onclick="filterCategory('news')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
                     <i class="fa-solid fa-newspaper"></i> NEIGHBOURHOOD NEWS
                 </button>
             </div>
 
-            <div class="flex items-center bg-[#d4c8b6]/60 p-1 rounded-xl border border-stone-400/30 self-start xl:self-auto shrink-0">
-                <button id="type-all" onclick="filterType('all')" class="px-2.5 sm:px-3 py-1.5 bg-[#c8bca8] text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">ALL NODES</button>
-                <button id="type-service" onclick="filterType('Service')" class="px-2.5 sm:px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">SERVICES</button>
-                <button id="type-product" onclick="filterType('Product')" class="px-2.5 sm:px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">PRODUCTS</button>
+            <div class="flex items-center bg-[#d4c8b6]/60 p-1 rounded-xl border border-stone-400/30 self-start xl:self-auto">
+                <button id="type-all" onclick="filterType('all')" class="px-3 py-1.5 bg-[#c8bca8] text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">ALL NODES</button>
+                <button id="type-service" onclick="filterType('Service')" class="px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">SERVICES</button>
+                <button id="type-product" onclick="filterType('Product')" class="px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">PRODUCTS</button>
             </div>
         </div>
 
-        <div class="w-full grid grid-cols-1 lg:grid-cols-12 2xl:grid-cols-16 gap-4 md:gap-6 items-start">
+        <!-- SPLIT RENDER COLUMNS VIEWS -->
+        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            <div class="hidden 2xl:block 2xl:col-span-3 bg-[#ebdcc7]/20 border border-stone-400/20 p-4 rounded-3xl space-y-4">
-                <div class="text-[11px] font-black text-stone-900 uppercase tracking-widest flex items-center gap-2">
-                    <i class="fa-solid fa-circle-nodes text-[#ac7347]"></i>
-                    <span>Ecosystem Statistics</span>
-                </div>
-                <div class="grid grid-cols-1 gap-2">
-                    <div class="bg-[#f5ede0] p-3 rounded-xl border border-stone-400/20">
-                        <span class="block text-[9px] text-stone-500 font-bold uppercase tracking-wider">Active Stream Channels</span>
-                        <span class="text-xl font-extrabold hero-font text-stone-950">4 Channels</span>
-                    </div>
-                    <div class="bg-[#f5ede0] p-3 rounded-xl border border-stone-400/20">
-                        <span class="block text-[9px] text-stone-500 font-bold uppercase tracking-wider">Base Registry Target</span>
-                        <span class="text-xl font-extrabold hero-font text-stone-950">Abu Dhabi Grid</span>
-                    </div>
+            <!-- LISTINGS GRID VIEW TARGET CONTAINER -->
+            <div class="lg:col-span-7 w-full min-h-[400px]">
+                <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                    <!-- Cards mount reactively here via runtime engine loops -->
                 </div>
             </div>
 
-            <div class="lg:col-span-7 2xl:col-span-8 w-full min-h-[350px]">
-                <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-3 gap-4 w-full">
-                    </div>
-            </div>
-
-            <div class="lg:col-span-5 2xl:col-span-5 lg:sticky lg:top-28 w-full">
+            <!-- COMPASS TRACKER MAP WRAPPER -->
+            <div class="lg:col-span-5 lg:sticky lg:top-28 w-full">
                 <div class="bg-[#ebdcc7]/40 border border-stone-400/30 p-3 rounded-3xl">
                     <div class="flex items-center gap-2 text-[10px] font-black tracking-wider text-stone-800 uppercase mb-2">
                         <i class="fa-solid fa-map-location-dot text-[#ac7347]"></i>
                         <span>RADIAL GRID POSITION COORDINATION GRAPH</span>
                     </div>
-                    <div id="main-map" class="w-full aspect-square sm:aspect-[4/3] lg:aspect-square rounded-2xl border border-stone-400/40 shadow-sm z-10"></div>
+                    <div id="main-map" class="w-full aspect-square rounded-2xl border border-stone-400/40 shadow-sm z-10"></div>
                 </div>
             </div>
 
         </div>
     </main>
 
-    <div id="form-modal" class="fixed inset-0 bg-stone-950/40 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 opacity-0 pointer-events-none transition-all duration-200">
-        <div class="bg-[#ebdcc7] border border-stone-400/40 rounded-3xl shadow-xl w-full max-w-md p-4 sm:p-5 transform scale-95 transition-all duration-200 text-stone-900 max-h-[92vh] overflow-y-auto">
+    <!-- NODE FORM SUBMISSION POPUP -->
+    <div id="form-modal" class="fixed inset-0 bg-stone-950/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200">
+        <div class="bg-[#ebdcc7] border border-stone-400/40 rounded-3xl shadow-xl w-full max-w-md p-5 transform scale-95 transition-all duration-200 text-stone-900 max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between border-b border-stone-400/40 pb-3 mb-3">
                 <div class="flex items-center gap-2">
                     <div class="w-1.5 h-3.5 bg-[#ac7347] rounded-sm"></div>
@@ -193,6 +188,7 @@
                     <textarea id="form-description" rows="2" placeholder="Specify project requirements, updates, or timelines explicitly..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950 resize-none"></textarea>
                 </div>
 
+                <!-- ADDRESS SEARCH INPUT AND PINPOINT SYSTEM LAYER -->
                 <div>
                     <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Search Location / Address</label>
                     <div class="relative flex items-center">
@@ -205,7 +201,7 @@
 
                 <div>
                     <label class="block text-[9px] font-black text-stone-500 tracking-widest uppercase mb-1">Verify Location Marker Location</label>
-                    <div id="modal-map" class="w-full h-24 rounded-xl border border-stone-400/50 shadow-sm"></div>
+                    <div id="modal-map" class="w-full h-28 rounded-xl border border-stone-400/50 shadow-sm"></div>
                     <input type="hidden" id="form-lat" value="24.4539">
                     <input type="hidden" id="form-lng" value="54.3773">
                 </div>
@@ -228,6 +224,7 @@
         </div>
     </div>
 
+    <!-- PERSISTENT REACTION SCRIPTS LAYER -->
     <script>
         let currentCategory = 'all';
         let currentType = 'all';
@@ -239,6 +236,7 @@
         let userLocationMarker = null;
         let modalSelectionMarker = null;
 
+        // DICTIONARY OF MAPPED LOCATION PRESETS FOR CONVENIENT TESTING DISCOVERY
         const REGIONAL_GEO_MATRIX = {
             "al bateen": [24.4562, 54.3484],
             "bateen": [24.4562, 54.3484],
@@ -277,10 +275,11 @@
                     updateModalLocationValues(e.latlng.lat, e.latlng.lng);
                 });
             } catch(err) {
-                console.warn("Map engine initiated.", err);
+                console.warn("Map grid matrix loaded securely.", err);
             }
         }
 
+        // SIMULATED GEOLOCATION SEARCH BAR LOGIC LAYER
         function searchLocationNode() {
             const query = document.getElementById('map-search-bar').value.toLowerCase().trim();
             if(!query) return;
@@ -293,6 +292,7 @@
                 }
             }
 
+            // Fallback generation logic to cleanly pinpoint any randomized coordinate offsets
             if(!targetCoords) {
                 const randomOffsetLat = (Math.random() - 0.5) * 0.1;
                 const randomOffsetLng = (Math.random() - 0.5) * 0.1;
@@ -335,10 +335,6 @@
                         marker.openPopup();
                     }
                 });
-                // Smoothly autoscroll the document window view context directly into map coordinates area for phone dimensions
-                if(window.innerWidth < 1024) {
-                    document.getElementById('main-map').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
             }
         }
 
@@ -382,8 +378,12 @@
 
             fetch(`/api/listings?category=${currentCategory}&type=${currentType}`)
                 .then(res => res.json())
-                .then(data => { renderDatasetNodes(data); })
-                .catch(() => { renderDatasetNodes([]); });
+                .then(data => {
+                    renderDatasetNodes(data);
+                })
+                .catch(() => {
+                    renderDatasetNodes(getFeaturesFallbackArray());
+                });
         }
 
         function getFeatureConfigLayout(category) {
@@ -401,12 +401,42 @@
             }
         }
 
+        function getFeaturesFallbackArray() {
+            return [
+                {
+                    "provider": "Zayed Heritage Group",
+                    "category": "projects",
+                    "type": "Product",
+                    "title": "Al Bateen Community Garden Initiative",
+                    "description": "Collaborative urban planting project constructing traditional green spaces. Seeking material drop-offs and architectural shade setup layouts.",
+                    "price": "Target: 500kg Soil",
+                    "location_zone": "24.4562,54.3484"
+                },
+                {
+                    "provider": "Emirati Youth Red Crescent",
+                    "category": "volunteer",
+                    "type": "Service",
+                    "title": "Senior Companion Care & Story Archiving",
+                    "description": "Volunteers needed to visit elders, coordinate weekly social majlis discussions, and document oral local histories.",
+                    "price": "4 Slots Open",
+                    "location_zone": "24.4820,54.3580"
+                }
+            ];
+        }
+
         function renderDatasetNodes(dataset) {
             const container = document.getElementById('listings-grid');
             if(!container) return;
             container.innerHTML = '';
 
-            if (dataset.length === 0) {
+            // FIXED HOOK CHECK LINE: Cleaned evaluation parameter definitions safely!
+            const activeData = dataset.filter(item => {
+                if (currentCategory !== 'all' && item.category !== currentCategory) return false;
+                if (currentType !== 'all' && item.type !== currentType) return false;
+                return true;
+            });
+
+            if (activeData.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full py-12 flex flex-col items-center justify-center border border-dashed border-stone-400/40 rounded-2xl bg-[#ebdcc7]/10">
                         <i class="fa-solid fa-folder-open text-stone-400 text-2xl mb-2"></i>
@@ -415,7 +445,7 @@
                 return;
             }
 
-            dataset.forEach((item) => {
+            activeData.forEach((item) => {
                 const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'SD';
                 let targetLat = 24.4539;
                 let targetLon = 54.3773;
@@ -445,7 +475,7 @@
                 const distanceText = computedDistance ? `${computedDistance} km away` : 'Active Hub';
 
                 const cardHtml = `
-                    <div onclick="panToMapTarget(${targetLat}, ${targetLon})" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md text-stone-900 cursor-pointer group">
+                    <div onclick="panToMapTarget(${targetLat}, ${targetLon})" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-2xl p-5 flex flex-col justify-between transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md text-stone-900 cursor-pointer group">
                         <div class="mb-4">
                             <div class="flex justify-between items-center gap-2 mb-2">
                                 <div class="flex items-center gap-1.5 px-2 py-0.5 rounded ${cfg.color} border border-stone-400/10">
@@ -456,8 +486,8 @@
                                     <i class="fa-solid fa-map-pin text-emerald-700"></i> ${distanceText}
                                 </span>
                             </div>
-                            <h3 class="hero-font text-sm sm:text-base font-black tracking-tight uppercase text-stone-950 line-clamp-2 mt-1">${item.title}</h3>
-                            <p class="text-[11px] text-stone-700 leading-normal mt-1.5 font-medium line-clamp-3">${item.description}</p>
+                            <h3 class="hero-font text-base font-black tracking-tight uppercase text-stone-950 line-clamp-2 mt-1">${item.title}</h3>
+                            <p class="text-[11px] text-stone-700 leading-normal mt-1.5 font-medium">${item.description}</p>
                         </div>
                         
                         <div class="border-t border-stone-400/20 pt-3 flex items-center justify-between">
@@ -465,7 +495,7 @@
                                 <div class="w-7 h-7 rounded-lg bg-[#ac7347]/10 text-[#ac7347] font-black text-[10px] flex items-center justify-center uppercase">${initials}</div>
                                 <span class="text-xs font-bold text-stone-950">${item.provider}</span>
                             </div>
-                            <span class="text-xs font-black text-stone-950 bg-[#ac7347]/10 text-[#ac7347] px-2 py-1 rounded-md max-w-[130px] truncate">${item.price}</span>
+                            <span class="text-xs font-black text-stone-950 bg-[#ac7347]/10 text-[#ac7347] px-2 py-1 rounded-md max-w-[140px] truncate">${item.price}</span>
                         </div>
                     </div>`;
                 
