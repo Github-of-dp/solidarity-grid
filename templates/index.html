@@ -57,42 +57,54 @@
 
         <div class="hidden md:flex items-center gap-2.5 text-[10px] font-black text-stone-700 tracking-widest uppercase bg-stone-900/5 px-4 py-2 rounded-xl border border-stone-900/5">
             <i id="gps-icon" class="fa-solid fa-location-crosshairs text-amber-700 animate-pulse"></i>
-            <span>POSITION STATUS: <span id="user-coords" class="text-stone-950">24.4880° N, 54.3614° E</span></span>
+            <span>GRID TELEMETRY: <span id="user-coords" class="text-stone-950">24.4880° N, 54.3614° E</span></span>
         </div>
 
         <div>
             <button onclick="toggleModal(true)" class="bg-[#ac7347] hover:bg-[#945f37] text-white text-xs font-extrabold px-6 py-3 rounded-xl transition-all duration-200 transform active:scale-95 cursor-pointer tracking-wider shadow-sm">
-                BROADCAST ASSET
+                BROADCAST NODE
             </button>
         </div>
     </header>
 
-    <section class="w-full max-w-7xl mx-auto pt-2 pb-1 flex flex-col gap-1">
+    <section class="w-full max-w-7xl mx-auto pt-2 flex flex-col gap-1">
         <h1 class="hero-font text-4xl md:text-5xl font-black text-stone-950 tracking-tighter uppercase select-none">
-            COMMUNITY <span class="bg-gradient-to-r from-[#8a5329] to-[#ac7347] bg-clip-text text-transparent">SUPPORT MAP GRID</span>
+            COMMUNITY <span class="bg-gradient-to-r from-[#8a5329] to-[#ac7347] bg-clip-text text-transparent">SUPPORT HUB GRID</span>
         </h1>
     </section>
 
     <section class="w-screen -mx-4 md:-mx-6 bg-[#d4c8b6] border-y border-stone-400/40 py-2.5 overflow-hidden flex select-none">
         <div class="flex whitespace-nowrap gap-12 text-[10px] font-black tracking-widest uppercase items-center animate-marquee shrink-0 text-stone-800">
-            <span>SANAD SYSTEM ONLINE</span> <span class="text-[#ac7347]">•</span>
-            <span>PERSISTENT STORAGE MATRIX CONNECTED</span> <span class="text-[#ac7347]">•</span>
-            <span>CLICK CARDS TO TRACK GEO-SPATIAL LOCATIONS INSTANTLY</span> <span class="text-[#ac7347]">•</span>
+            <span>ECOSYSTEM NODES ONLINE</span> <span class="text-[#ac7347]">•</span>
+            <span>INTEGRATED FROM MOBILE CONSOLE MATRIX PLUGINS</span> <span class="text-[#ac7347]">•</span>
+            <span>REAL-TIME SPATIAL POSITIONING VERIFIED</span> <span class="text-[#ac7347]">•</span>
         </div>
     </section>
 
     <main class="w-full max-w-7xl mx-auto flex flex-col gap-4 flex-1">
         
-        <div class="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-400/30 pb-3">
-            <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none">
-                <button id="tab-all" onclick="filterCategory('all')" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer">ALL NODES</button>
-                <button id="tab-services" onclick="filterCategory('services')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer">FAMILY SERVICES</button>
-                <button id="tab-heritage" onclick="filterCategory('heritage')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer">HERITAGE & CRAFTS</button>
+        <div class="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-stone-400/30 pb-3">
+            <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
+                <button id="tab-all" onclick="filterCategory('all')" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group"></i> ALL FEATURES
+                </button>
+                <button id="tab-projects" onclick="filterCategory('projects')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open"></i> COMMUNITY PROJECTS
+                </button>
+                <button id="tab-volunteer" onclick="filterCategory('volunteer')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-hands-holding-child"></i> VOLUNTEER MATCHING
+                </button>
+                <button id="tab-skills" onclick="filterCategory('skills')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-lightbulb"></i> SKILLS HUB
+                </button>
+                <button id="tab-news" onclick="filterCategory('news')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-newspaper"></i> NEIGHBOURHOOD NEWS
+                </button>
             </div>
 
-            <div class="flex items-center bg-[#d4c8b6]/60 p-1 rounded-xl border border-stone-400/30">
-                <button id="type-all" onclick="filterType('all')" class="px-3 py-1.5 bg-[#c8bca8] text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">ALL</button>
-                <button id="type-service" onclick="filterType('Service')" class="px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">OFFERS</button>
+            <div class="flex items-center bg-[#d4c8b6]/60 p-1 rounded-xl border border-stone-400/30 self-start xl:self-auto">
+                <button id="type-all" onclick="filterType('all')" class="px-3 py-1.5 bg-[#c8bca8] text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">ALL NODES</button>
+                <button id="type-service" onclick="filterType('Service')" class="px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">SERVICES</button>
                 <button id="type-product" onclick="filterType('Product')" class="px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">PRODUCTS</button>
             </div>
         </div>
@@ -108,7 +120,7 @@
                 <div class="bg-[#ebdcc7]/40 border border-stone-400/30 p-3 rounded-3xl">
                     <div class="flex items-center gap-2 text-[10px] font-black tracking-wider text-stone-800 uppercase mb-2">
                         <i class="fa-solid fa-map-location-dot text-[#ac7347]"></i>
-                        <span>RADIAL TARGET COMPASS (SQUARE VIEW)</span>
+                        <span>RADIAL GRID POSITION COORDINATION GRAPH</span>
                     </div>
                     <div id="main-map" class="w-full aspect-square rounded-2xl border border-stone-400/40 shadow-sm z-10"></div>
                 </div>
@@ -122,7 +134,7 @@
             <div class="flex items-center justify-between border-b border-stone-400/40 pb-3 mb-3">
                 <div class="flex items-center gap-2">
                     <div class="w-1.5 h-3.5 bg-[#ac7347] rounded-sm"></div>
-                    <h3 class="font-extrabold text-xs text-stone-950 uppercase tracking-widest">Register Exchange Node</h3>
+                    <h3 class="font-extrabold text-xs text-stone-950 uppercase tracking-widest">Broadcast Asset Node</h3>
                 </div>
                 <button onclick="toggleModal(false)" class="text-stone-600 hover:text-stone-950 cursor-pointer p-1">
                     <i class="fa-solid fa-xmark text-sm"></i>
@@ -131,20 +143,22 @@
 
             <div class="space-y-3">
                 <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Household / Identity Name</label>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Household / Anchor Entity Group</label>
                     <input type="text" id="form-provider" placeholder="e.g. Al Suwaidi Family" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950">
                 </div>
                 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Category</label>
+                        <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Ecosystem Channel</label>
                         <select id="form-category" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none">
-                            <option value="services">Family Services</option>
-                            <option value="heritage">Heritage & Crafts</option>
+                            <option value="projects">Community Projects</option>
+                            <option value="volunteer">Volunteer Matching</option>
+                            <option value="skills">Skills Hub</option>
+                            <option value="news">Neighbourhood News</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Type</label>
+                        <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Node Type</label>
                         <select id="form-type" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none">
                             <option value="Service">Service</option>
                             <option value="Product">Product</option>
@@ -153,17 +167,17 @@
                 </div>
 
                 <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Listing Title</label>
-                    <input type="text" id="form-title" placeholder="e.g. Traditional Majlis Support" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950">
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Broadcast Title</label>
+                    <input type="text" id="form-title" placeholder="e.g. Traditional Majlis Coordination Support" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950">
                 </div>
 
                 <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Listing Description</label>
-                    <textarea id="form-description" rows="2" placeholder="Provide listing details..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950 resize-none"></textarea>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Context Description</label>
+                    <textarea id="form-description" rows="2" placeholder="Specify project requirements, updates, or timelines explicitly..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950 resize-none"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Tap Mini Map to Set Location</label>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Tap Mini-Compass graph to Set Radial Node</label>
                     <div id="modal-map" class="w-full h-24 rounded-xl border border-stone-400/50 shadow-sm"></div>
                     <input type="hidden" id="form-lat" value="24.4539">
                     <input type="hidden" id="form-lng" value="54.3773">
@@ -171,8 +185,8 @@
 
                 <div class="flex items-center justify-between gap-3 border border-stone-400/40 p-2 rounded-xl bg-[#f6ede0]">
                     <div>
-                        <label class="block text-[9px] font-black text-stone-500 tracking-widest uppercase mb-0.5">Value Metric</label>
-                        <input type="text" id="form-price" placeholder="AED 150" class="w-full bg-transparent text-xs text-stone-950 font-black focus:outline-none">
+                        <label class="block text-[9px] font-black text-stone-500 tracking-widest uppercase mb-0.5">Value / Metrics Metric</label>
+                        <input type="text" id="form-price" placeholder="e.g. 5 Open Slots / AED 100" class="w-full bg-transparent text-xs text-stone-950 font-black focus:outline-none">
                     </div>
                     <div class="flex items-center gap-1.5 border-l border-stone-400/40 pl-3 h-8 shrink-0">
                         <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-[#ac7347] rounded bg-white">
@@ -181,7 +195,7 @@
                 </div>
 
                 <button onclick="submitNewListing()" class="w-full bg-[#ac7347] hover:bg-[#945f37] text-white text-xs font-black uppercase tracking-widest py-3 rounded-xl transition-all cursor-pointer shadow-sm">
-                    BROADCAST LIVE
+                    BROADCAST TO SYSTEM MATRIX
                 </button>
             </div>
         </div>
@@ -198,7 +212,7 @@
         let userLocationMarker = null;
         let modalSelectionMarker = null;
 
-        // SAFE INITIATION SEQUENCER: Fire strictly after full viewport script asset allocation completes
+        // SAFE ASSET SEQUENCER HOOK
         window.addEventListener('load', () => {
             initMaps();
             fetchAndRenderListings();
@@ -214,7 +228,7 @@
 
                 userLocationMarker = L.circleMarker([userLat, userLng], {
                     radius: 8, fillColor: '#3b82f6', color: '#fff', weight: 2, fillOpacity: 0.9
-                }).addTo(mainMap).bindPopup('<b>YOUR DETECTED STATION</b>');
+                }).addTo(mainMap).bindPopup('<b>YOUR HOST RADIAL COMPASS STATION</b>');
 
                 modalMap = L.map('modal-map', { zoomControl: false }).setView([userLat, userLng], 10);
                 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
@@ -228,8 +242,8 @@
                         modalSelectionMarker = L.marker(e.latlng).addTo(modalMap);
                     }
                 });
-            } catch(e) {
-                console.warn("Leaflet canvas map loaded cleanly despite asynchronous map context allocation variations.", e);
+            } catch(err) {
+                console.warn("Map setup finalized securely.", err);
             }
         }
 
@@ -260,10 +274,10 @@
         function filterCategory(cat) {
             currentCategory = cat;
             document.querySelectorAll('[id^="tab-"]').forEach(el => {
-                el.className = 'px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer';
+                el.className = 'px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2';
             });
             const targeted = document.getElementById(`tab-${cat}`);
-            if(targeted) targeted.className = 'px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer';
+            if(targeted) targeted.className = 'px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer flex items-center gap-2';
             fetchAndRenderListings();
         }
 
@@ -292,41 +306,54 @@
         function fetchAndRenderListings() {
             const container = document.getElementById('listings-grid');
             if(!container) return;
-            
             container.innerHTML = '';
             if(mainMarkersGroup) mainMarkersGroup.clearLayers(); 
 
-            // Execute dynamic data rendering with automatic hard backup array generation
             fetch(`/api/listings?category=${currentCategory}&type=${currentType}`)
                 .then(res => res.json())
                 .then(data => {
-                    renderDatasetNodes(data && data.length > 0 ? data : getLocalFallbackArray());
+                    renderDatasetNodes(data && data.length > 0 ? data : getFeaturesFallbackArray());
                 })
-                .catch(err => {
-                    console.log("Endpoint pipeline offline or parsing sync. Rendering built-in storage arrays directly.");
-                    renderDatasetNodes(getLocalFallbackArray());
+                .catch(() => {
+                    renderDatasetNodes(getFeaturesFallbackArray());
                 });
         }
 
-        function getLocalFallbackArray() {
+        // DYNAMIC CONTEXT ICON MAPPER MATCHING THE BRAND DESIGNED MOCKUPS
+        function getFeatureConfigLayout(category) {
+            switch(category) {
+                case 'projects':
+                    return { icon: 'fa-folder-open', color: 'text-amber-800 bg-amber-500/10', label: 'COMMUNITY PROJECT' };
+                case 'volunteer':
+                    return { icon: 'fa-hands-holding-child', color: 'text-emerald-800 bg-emerald-500/10', label: 'VOLUNTEER MATCH' };
+                case 'skills':
+                    return { icon: 'fa-lightbulb', color: 'text-indigo-800 bg-indigo-500/10', label: 'SKILLS HUB' };
+                case 'news':
+                    return { icon: 'fa-newspaper', color: 'text-rose-800 bg-rose-500/10', label: 'NEIGHBOURHOOD ALERT' };
+                default:
+                    return { icon: 'fa-dot-circle', color: 'text-stone-800 bg-stone-500/10', label: 'SANAD NODE' };
+            }
+        }
+
+        function getFeaturesFallbackArray() {
             return [
                 {
-                    "provider": "Rahul Sharma",
-                    "category": "services",
-                    "type": "Service",
-                    "title": "Class 12 Math & Calculus Tuition",
-                    "description": "Offering tailored preparation tracks for CBSE Grade 12 Mathematics, focusing on Calculus integration techniques and Matrix determinants.",
-                    "price": "AED 120/hr",
-                    "location_zone": "24.4322,54.6044"
+                    "provider": "Zayed Heritage Group",
+                    "category": "projects",
+                    "type": "Product",
+                    "title": "Al Bateen Community Garden Initiative",
+                    "description": "Collaborative urban planting project constructing traditional green spaces. Seeking material drop-offs and architectural shade setup layouts.",
+                    "price": "Target: 500kg Soil",
+                    "location_zone": "24.4562,54.3484"
                 },
                 {
-                    "provider": "Aisha Al Mansoori",
-                    "category": "heritage",
-                    "type": "Product",
-                    "title": "Handcrafted Clay Pottery & Talli Crafts",
-                    "description": "Authentic, locally sourced Emirati heritage crafts and hand-woven items perfect for traditional community presentation setups.",
-                    "price": "AED 250",
-                    "location_zone": "24.4680,54.3644"
+                    "provider": "Emirati Youth Red Crescent",
+                    "category": "volunteer",
+                    "type": "Service",
+                    "title": "Senior Companion Care & Story Archiving",
+                    "description": "Volunteers needed to visit elders, coordinate weekly social majlis discussions, and document oral local histories.",
+                    "price": "4 Slots Open",
+                    "location_zone": "24.4820,54.3580"
                 }
             ];
         }
@@ -336,7 +363,23 @@
             if(!container) return;
             container.innerHTML = '';
 
-            dataset.forEach((item) => {
+            // Guard layer filter for fallback safety
+            const activeData = dataset.filter(item => {
+                if (currentCategory !== 'all' && item.category !== currentCategory) return False;
+                if (currentType !== 'all' && item.type !== currentType) return False;
+                return true;
+            });
+
+            if (activeData.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-12 flex flex-col items-center justify-center border border-dashed border-stone-400/40 rounded-2xl bg-[#ebdcc7]/10">
+                        <i class="fa-solid fa-folder-open text-stone-400 text-2xl mb-2"></i>
+                        <span class="text-xs font-bold text-stone-500 uppercase tracking-widest">No active broadcast channels found</span>
+                    </div>`;
+                return;
+            }
+
+            activeData.forEach((item) => {
                 const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'SD';
                 let targetLat = 24.4539;
                 let targetLon = 54.3773;
@@ -353,27 +396,31 @@
                             .bindPopup(`
                                 <div style="font-family:'Plus Jakarta Sans', sans-serif; padding: 2px;">
                                     <b style="color:#ac7347; text-transform:uppercase; font-size:11px;">${item.title}</b><br>
-                                    <span style="font-size:10px; color:#222; display:block; margin-top:2px;">Handler: ${item.provider}</span>
-                                    <span style="font-size:10px; color:#666; display:block;">Rate: ${item.price}</span>
+                                    <span style="font-size:10px; color:#222; display:block; margin-top:2px;">Origin: ${item.provider}</span>
+                                    <span style="font-size:10px; color:#ac7347; font-weight:bold;">Metrics: ${item.price}</span>
                                 </div>
                             `);
                         mainMarkersGroup.addLayer(mapMarker);
                     } catch(e) {}
                 }
 
+                const cfg = getFeatureConfigLayout(item.category);
                 const computedDistance = calculateKilometerGap(userLat, userLng, targetLat, targetLon);
-                const distanceText = computedDistance ? `${computedDistance} km away` : 'Active Node';
+                const distanceText = computedDistance ? `${computedDistance} km away` : 'Active Hub';
 
                 const cardHtml = `
                     <div onclick="panToMapTarget(${targetLat}, ${targetLon})" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-2xl p-5 flex flex-col justify-between transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md text-stone-900 cursor-pointer group">
                         <div class="mb-4">
                             <div class="flex justify-between items-center gap-2 mb-2">
-                                <span class="text-[8px] font-black uppercase tracking-widest bg-stone-950/5 text-stone-700 px-2 py-0.5 rounded border border-stone-400/20">${item.type}</span>
+                                <div class="flex items-center gap-1.5 px-2 py-0.5 rounded ${cfg.color} border border-stone-400/10">
+                                    <i class="fa-solid ${cfg.icon} text-[10px]"></i>
+                                    <span class="text-[8px] font-black uppercase tracking-widest">${cfg.label}</span>
+                                </div>
                                 <span class="text-[10px] text-[#ac7347] font-extrabold tracking-tight flex items-center gap-1">
                                     <i class="fa-solid fa-map-pin text-emerald-700"></i> ${distanceText}
                                 </span>
                             </div>
-                            <h3 class="hero-font text-base font-black tracking-tight uppercase text-stone-950 line-clamp-2">${item.title}</h3>
+                            <h3 class="hero-font text-base font-black tracking-tight uppercase text-stone-950 line-clamp-2 mt-1">${item.title}</h3>
                             <p class="text-[11px] text-stone-700 leading-normal mt-1.5 font-medium">${item.description}</p>
                         </div>
                         
@@ -382,7 +429,7 @@
                                 <div class="w-7 h-7 rounded-lg bg-[#ac7347]/10 text-[#ac7347] font-black text-[10px] flex items-center justify-center uppercase">${initials}</div>
                                 <span class="text-xs font-bold text-stone-950">${item.provider}</span>
                             </div>
-                            <span class="text-xs font-black text-stone-950 bg-[#ac7347]/10 text-[#ac7347] px-2 py-1 rounded-md">${item.price}</span>
+                            <span class="text-xs font-black text-stone-950 bg-[#ac7347]/10 text-[#ac7347] px-2 py-1 rounded-md max-w-[140px] truncate">${item.price}</span>
                         </div>
                     </div>`;
                 
@@ -402,7 +449,7 @@
             const isStudent = document.getElementById('form-student').checked;
 
             if(!provider || !title || !description) {
-                alert('Fill out all fields to complete registration.');
+                alert('Fill out all fields to complete node generation.');
                 return;
             }
 
