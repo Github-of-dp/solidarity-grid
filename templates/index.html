@@ -279,7 +279,6 @@
             }
         }
 
-        // SIMULATED GEOLOCATION SEARCH BAR LOGIC LAYER
         function searchLocationNode() {
             const query = document.getElementById('map-search-bar').value.toLowerCase().trim();
             if(!query) return;
@@ -292,7 +291,6 @@
                 }
             }
 
-            // Fallback generation logic to cleanly pinpoint any randomized coordinate offsets
             if(!targetCoords) {
                 const randomOffsetLat = (Math.random() - 0.5) * 0.1;
                 const randomOffsetLng = (Math.random() - 0.5) * 0.1;
@@ -353,7 +351,7 @@
             document.querySelectorAll('[id^="type-"]').forEach(el => {
                 el.className = 'px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
             });
-            const idMap = type === 'all' ? 'all' : type === 'Service' ? 'service' : 'product';
+            const idMap = type === 'all' ? 'all' : type.toLowerCase();
             const node = document.getElementById(`type-${idMap}`);
             if(node) node.className = 'px-3 py-1.5 bg-[#c8bca8] text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
             fetchAndRenderListings();
@@ -371,11 +369,6 @@
         }
 
         function fetchAndRenderListings() {
-            const container = document.getElementById('listings-grid');
-            if(!container) return;
-            container.innerHTML = '';
-            if(mainMarkersGroup) mainMarkersGroup.clearLayers(); 
-
             fetch(`/api/listings?category=${currentCategory}&type=${currentType}`)
                 .then(res => res.json())
                 .then(data => {
@@ -428,15 +421,9 @@
             const container = document.getElementById('listings-grid');
             if(!container) return;
             container.innerHTML = '';
+            if(mainMarkersGroup) mainMarkersGroup.clearLayers(); 
 
-            // FIXED HOOK CHECK LINE: Cleaned evaluation parameter definitions safely!
-            const activeData = dataset.filter(item => {
-                if (currentCategory !== 'all' && item.category !== currentCategory) return false;
-                if (currentType !== 'all' && item.type !== currentType) return false;
-                return true;
-            });
-
-            if (activeData.length === 0) {
+            if (dataset.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full py-12 flex flex-col items-center justify-center border border-dashed border-stone-400/40 rounded-2xl bg-[#ebdcc7]/10">
                         <i class="fa-solid fa-folder-open text-stone-400 text-2xl mb-2"></i>
@@ -445,7 +432,7 @@
                 return;
             }
 
-            activeData.forEach((item) => {
+            dataset.forEach((item) => {
                 const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'SD';
                 let targetLat = 24.4539;
                 let targetLon = 54.3773;
