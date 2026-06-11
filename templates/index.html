@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanad - Your Neighborhood, Connected</title>
-    <!-- Tailwind CSS for sleek, modern UI -->
+    <title>SANAD ECOSYSTEM MATRIX</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome for clean icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Smooth Infinite Marquee Ticker Styling */
+        /* Your Original Smooth Continuous Infinite Scrolling Ticker Animation */
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -17,47 +15,33 @@
         .animate-marquee {
             display: inline-block;
             white-space: nowrap;
-            animation: marquee 25s linear infinite;
+            animation: marquee 20s linear infinite;
         }
-        /* Custom scrollbar for web app look */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #111827;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #374151;
-            border-radius: 3px;
-        }
+        /* Custom scrollbars matching the matrix system environment */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #1e1e2f; border-radius: 2px; }
     </style>
 </head>
-<body class="bg-gray-950 text-gray-100 font-sans antialiased overflow-x-hidden">
+<body class="bg-[#030303] text-gray-300 font-mono tracking-tight overflow-x-hidden antialiased select-none">
 
-    <!-- ========================================================= -->
-    <!-- 1. DYNAMIC HERO LANDING PAGE WITH SCROLL LOGO TRANSITION -->
-    <!-- ========================================================= -->
-    <div id="homepage" class="min-h-screen flex flex-col items-center justify-center relative px-4 transition-all duration-700 bg-radial from-gray-900 to-gray-950">
-        <!-- Floating background abstract elements matching the slide theme -->
-        <div class="absolute top-1/4 left-10 w-72 h-72 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-1/4 right-10 w-72 h-72 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <!-- Centered Giant Sanad Brand Header -->
-        <div id="hero-brand-container" class="text-center transition-all duration-700 transform translate-y-0 z-50">
-            <h1 id="hero-title" class="text-7xl md:text-9xl font-extrabold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-amber-400 drop-shadow-sm select-none">
+    <div id="homepage-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#030303] transition-all duration-700 ease-in-out p-6">
+        <div class="absolute inset-0 bg-[radial-gradient(#1a1a2e_1px,transparent_1px)] [background-size:16px_16px] opacity-60 pointer-events-none"></div>
+        
+        <div id="center-brand-logo" class="text-center transform transition-all duration-700 ease-in-out scale-100 translate-y-0">
+            <h1 class="text-6xl md:text-8xl font-black text-white tracking-widest bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
                 SANAD
             </h1>
-            <p id="hero-arabic" class="text-3xl md:text-4xl font-semibold text-gray-400 mt-2 tracking-widest">سند</p>
+            <div class="text-2xl md:text-3xl text-gray-600 font-sans font-bold tracking-widest mt-1">سند</div>
         </div>
 
-        <!-- App Core Mission Content -->
-        <div id="hero-content" class="max-w-2xl text-center mt-12 space-y-6 z-10 transition-all duration-500">
-            <h2 class="text-2xl md:text-4xl font-bold text-white tracking-tight">Your Neighborhood, Connected. 🤝</h2>
-            <p class="text-gray-400 text-base md:text-lg leading-relaxed">
-                Discover small businesses, share skills, trade local products, and stay updated with everything happening right outside your front door. Sanad brings the spirit of the community into a simple, interactive digital map.
+        <div id="homepage-explainer" class="max-w-xl text-center mt-10 space-y-6 transition-all duration-500 relative z-10">
+            <h2 class="text-xl md:text-2xl font-bold text-gray-200 tracking-wide border-b border-gray-900 pb-3">Your Neighborhood, Connected. 🤝</h2>
+            <p class="text-xs md:text-sm text-gray-500 leading-relaxed uppercase tracking-wider">
+                Discover small businesses, share skills, trade local products, and stay updated with everything happening right outside your front door. Sanad brings the spirit of the community into a simple, interactive digital map environment.
             </p>
-            <div class="pt-4">
-                <button onclick="enterAppDashboard()" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-amber-600 text-white font-semibold rounded-full shadow-lg hover:shadow-purple-500/20 transform hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-lg">
+            <div class="pt-2">
+                <button onclick="executeSystemScrollTransition()" class="px-6 py-3 border border-white text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)] cursor-pointer">
                     Open Community Map 📍
                 </button>
             </div>
@@ -65,99 +49,82 @@
     </div>
 
 
-    <!-- ========================================================= -->
-    <!-- 2. MAIN APP DASHBOARD INTERFACE CONTAINER (Hidden at Start) -->
-    <!-- ========================================================= -->
-    <div id="app-dashboard" class="hidden min-h-screen flex flex-col bg-gray-950 transition-all duration-500 opacity-0">
+    <div id="main-matrix-app" class="min-h-screen flex flex-col opacity-0 transition-opacity duration-700">
         
-        <!-- Permanent Fixed Header Nav Row -->
-        <header class="bg-gray-900/80 border-b border-gray-800 backdrop-blur-md sticky top-0 z-40 px-6 py-4 flex items-center justify-between">
+        <header class="bg-black border-b border-[#111] px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 sticky top-0 z-40">
             <div class="flex items-center space-x-3">
-                <span class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-amber-400">SANAD</span>
-                <span class="text-xs font-semibold bg-gray-800 text-gray-400 px-2 py-0.5 rounded-full border border-gray-700">سند</span>
+                <span id="nav-target-brand" class="text-lg font-black tracking-widest text-white transition-all duration-500 transform scale-75 opacity-0">SANAD</span>
+                <span class="text-[10px] font-bold border border-[#222] bg-[#090909] px-2 py-0.5 text-gray-500 rounded">سند</span>
             </div>
-            
-            <!-- Unified Dynamic Landmark & Address Search Bar -->
-            <div class="relative w-full max-w-md mx-4">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
-                    <i class="fa-solid fa-location-dot"></i>
+
+            <div class="relative w-full max-w-md">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-600 text-xs">
+                    <i class="fa-solid fa-terminal"></i>
                 </div>
-                <input type="text" id="address-search" onkeyup="filterAddress()" placeholder="Search local landmarks (e.g., Liwa Center)..." class="w-full pl-10 pr-4 py-2 bg-gray-950 border border-gray-800 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors">
+                <input type="text" id="landmark-search-input" onkeyup="processLandmarkFilterQuery()" placeholder="SYS_SEARCH_LOCAL_LANDMARK (e.g. Liwa Center)..." class="w-full bg-[#070707] border border-[#161616] pl-9 pr-4 py-2 text-xs uppercase tracking-wider text-gray-300 placeholder-gray-700 focus:outline-none focus:border-gray-500 rounded">
                 
-                <!-- Live Search Dropdown Suggestions -->
-                <div id="address-dropdown" class="hidden absolute left-0 right-0 mt-2 bg-gray-900 border border-gray-800 rounded-lg shadow-2xl z-50 overflow-hidden">
-                    <button onclick="selectAddress('Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi')" class="w-full text-left px-4 py-3 text-sm hover:bg-gray-800/60 border-b border-gray-800/50 flex flex-col">
-                        <span class="font-semibold text-white">Liwa Center</span>
-                        <span class="text-xs text-gray-400">Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi, UAE</span>
+                <div id="landmark-dropdown-box" class="hidden absolute left-0 right-0 mt-1 bg-black border border-[#1a1a1a] rounded shadow-2xl z-50 overflow-hidden">
+                    <button onclick="injectResolvedAddress('Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi')" class="w-full text-left px-4 py-2.5 text-[11px] hover:bg-[#0c0c14] border-b border-[#111] flex flex-col gap-0.5 uppercase tracking-wider">
+                        <span class="font-bold text-white"><i class="fa-solid fa-location-dot text-purple-500 mr-1"></i> Liwa Center</span>
+                        <span class="text-gray-600 text-[9px]">Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi, UAE</span>
                     </button>
-                    <button onclick="selectAddress('Dunes International School, Mussafah, Abu Dhabi')" class="w-full text-left px-4 py-3 text-sm hover:bg-gray-800/60 border-b border-gray-800/50 flex flex-col">
-                        <span class="font-semibold text-white">Dunes International School</span>
-                        <span class="text-xs text-gray-400">Shabiya 12, Mussafah, Abu Dhabi, UAE</span>
+                    <button onclick="injectResolvedAddress('Dunes International School, Mussafah, Abu Dhabi')" class="w-full text-left px-4 py-2.5 text-[11px] hover:bg-[#0c0c14] border-b border-[#111] flex flex-col gap-0.5 uppercase tracking-wider">
+                        <span class="font-bold text-white"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i> Dunes International School</span>
+                        <span class="text-gray-600 text-[9px]">Shabiya 12, Mussafah, Abu Dhabi, UAE</span>
                     </button>
-                    <button onclick="selectAddress('Corniche Beach Promenade, Al Bateen, Abu Dhabi')" class="w-full text-left px-4 py-3 text-sm hover:bg-gray-800/60 flex flex-col">
-                        <span class="font-semibold text-white">Corniche Beach Promenade</span>
-                        <span class="text-xs text-gray-400">Al Bateen, Abu Dhabi, UAE</span>
+                    <button onclick="injectResolvedAddress('Corniche Beach Promenade, Al Bateen, Abu Dhabi')" class="w-full text-left px-4 py-2.5 text-[11px] hover:bg-[#0c0c14] flex flex-col gap-0.5 uppercase tracking-wider">
+                        <span class="font-bold text-white"><i class="fa-solid fa-location-dot text-teal-500 mr-1"></i> Corniche Beach Promenade</span>
+                        <span class="text-gray-600 text-[9px]">Al Bateen, Abu Dhabi, UAE</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Current Resolved Display Address Text Area -->
-            <div class="hidden md:flex items-center space-x-2 text-xs text-gray-400 max-w-xs text-right">
-                <span id="current-resolved-address" class="truncate font-medium text-purple-400 bg-purple-950/40 border border-purple-900/50 px-3 py-1.5 rounded-md">
+            <div class="text-right max-w-xs truncate hidden md:block">
+                <span id="resolved-address-display-label" class="text-[10px] font-bold text-gray-500 border border-[#161616] bg-[#070707] px-3 py-1.5 rounded uppercase tracking-wider">
                     📍 Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi
                 </span>
             </div>
         </header>
 
-        <!-- ========================================================= -->
-        <!-- 3. SMOOTH CONTINUOUS VIEWPORT COMMUNITY TICKER -->
-        <!-- ========================================================= -->
-        <div class="bg-gradient-to-r from-purple-950 via-gray-900 to-amber-950 border-b border-gray-800 py-2.5 overflow-hidden flex items-center">
-            <div class="animate-marquee text-sm text-gray-300 font-medium tracking-wide">
-                🥖 <span class="text-white font-semibold">Aysha</span> just listed <span class="text-amber-400">Fresh Homemade Sourdough</span> under Products! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                🧵 <span class="text-white font-semibold">Ahmed</span> added <span class="text-purple-400">Tailoring & Alterations</span> to Services! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                📢 <span class="text-rose-400 font-bold">Notice:</span> Community Park Cleanup happening this Saturday at 4 PM! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                🎓 <span class="text-teal-400 font-semibold">Student Discount</span> available for Math Tutoring under Skills!
+        <div class="bg-black border-b border-[#111] py-2 overflow-hidden flex items-center">
+            <div class="animate-marquee text-[11px] uppercase tracking-widest text-gray-400 font-bold">
+                [PRODUCT ADDED] Aysha just listed Fresh Homemade Sourdough under Products! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                [SERVICE ADDED] Ahmed added Tailoring & Alterations to Services! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                [SYSTEM NOTICE] Notice: Community Park Cleanup happening this Saturday at 4 PM! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                [SKILL AVAILABLE] Student Discount available for Math Tutoring under Skills Hub!
             </div>
         </div>
 
-        <!-- Main Dashboard Split Grid Core Workspace -->
-        <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden h-[calc(100vh-113px)]">
+        <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden h-[calc(100vh-109px)]">
             
-            <!-- LEFT WORKSPACE PANEL: Form and Feed Feed Control (7 Columns) -->
-            <div class="lg:col-span-7 flex flex-col border-r border-gray-800 overflow-y-auto p-6 space-y-6">
+            <div class="lg:col-span-7 flex flex-col border-r border-[#111] overflow-y-auto p-6 space-y-6">
                 
-                <!-- "REGISTER NOW!" ACCESSIBLE FORM PANEL -->
-                <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-xl relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-purple-500 to-amber-500"></div>
-                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-circle-plus text-purple-400"></i> Register Now!
-                    </h3>
-                    
-                    <form id="register-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                        <!-- User Type Selection Checkboxes Toggle -->
-                        <div class="flex items-center gap-6 bg-gray-950 p-3 rounded-lg border border-gray-800/60">
+                <div class="bg-black border border-[#161616] p-5 rounded relative shadow-2xl">
+                    <div class="text-[10px] uppercase font-bold tracking-widest text-gray-600 mb-3 border-b border-[#111] pb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-terminal text-gray-500"></i> REGISTER NOW!
+                    </div>
+
+                    <form id="matrix-upload-form" onsubmit="processMatrixPostExecution(event)" class="space-y-4 text-xs">
+                        <div class="flex items-center gap-6 bg-[#050505] p-3 border border-[#111] rounded">
                             <label class="inline-flex items-center cursor-pointer select-none">
-                                <input type="checkbox" id="check-student" class="rounded border-gray-700 text-purple-600 focus:ring-purple-500 bg-gray-900 w-4 h-4 mr-2">
-                                <span class="text-sm text-gray-300 font-medium">I am a Student</span>
+                                <input type="checkbox" id="user-student-flag" class="rounded border-[#222] bg-[#0a0a0a] text-white focus:ring-0 w-3.5 h-3.5 mr-2">
+                                <span class="uppercase font-bold tracking-wider text-gray-400 text-[10px]">I am a Student</span>
                             </label>
                             <label class="inline-flex items-center cursor-pointer select-none">
-                                <input type="checkbox" id="check-resident" checked class="rounded border-gray-700 text-amber-600 focus:ring-amber-500 bg-gray-900 w-4 h-4 mr-2">
-                                <span class="text-sm text-gray-300 font-medium">I am a Resident / Business</span>
+                                <input type="checkbox" id="user-resident-flag" checked class="rounded border-[#222] bg-[#0a0a0a] text-white focus:ring-0 w-3.5 h-3.5 mr-2">
+                                <span class="uppercase font-bold tracking-wider text-gray-400 text-[10px]">I am a Resident / Business</span>
                             </label>
                         </div>
 
-                        <!-- Name and Structural Entity Row Entry -->
                         <div>
-                            <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Your Name / Group Name</label>
-                            <input type="text" id="form-name" required placeholder="Enter full personal name or local business group entity" class="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-lg text-sm focus:outline-none focus:border-purple-500 text-white transition-colors">
+                            <label class="block text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-1">Your Name / Group Name</label>
+                            <input type="text" id="input-entity-identity" required placeholder="ENTER PROFILE OR LOGISTICAL ENTERPRISE IDENTIFICATION NAME" class="w-full bg-[#070707] border border-[#161616] px-3 py-2 text-white placeholder-gray-800 focus:outline-none focus:border-gray-600 rounded uppercase tracking-wider">
                         </div>
 
-                        <!-- Dynamic Types Grid Option Framework -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Types:</label>
-                                <select id="form-type" onchange="toggleServiceDropdown()" class="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-lg text-sm focus:outline-none focus:border-purple-500 text-white transition-colors">
+                                <label class="block text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-1">Types:</label>
+                                <select id="input-matrix-type" onchange="evaluateSubcategoryDropdownDisplay()" class="w-full bg-[#070707] border border-[#161616] px-3 py-2 text-white focus:outline-none focus:border-gray-600 rounded uppercase tracking-wider">
                                     <option value="Notice">📢 Notice</option>
                                     <option value="Service">🛠️ Service</option>
                                     <option value="Product">📦 Product</option>
@@ -165,10 +132,9 @@
                                 </select>
                             </div>
 
-                            <!-- Dynamic Service Database Selection Field Menu Slot -->
-                            <div id="service-subgroup" class="hidden opacity-0 transition-all duration-300">
-                                <label class="block text-xs font-semibold text-purple-400 uppercase tracking-wider mb-1.5">Service Type 👇</label>
-                                <select id="form-sub-service" class="w-full px-3 py-2 bg-gray-950 border border-purple-900/60 rounded-lg text-sm focus:outline-none focus:border-purple-500 text-white transition-colors">
+                            <div id="service-subgroup-wrapper" class="hidden opacity-0 transition-all duration-300">
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Service Type 👇</label>
+                                <select id="input-sub-service-type" class="w-full bg-[#070707] border border-gray-800 px-3 py-2 text-white focus:outline-none focus:border-gray-600 rounded uppercase tracking-wider">
                                     <option value="Cleaner / Domestic Help">🧹 Cleaner / Domestic Help</option>
                                     <option value="Stitching & Tailoring">🪡 Stitching & Tailoring</option>
                                     <option value="Baking & Home Cooking">🎂 Baking & Home Cooking</option>
@@ -179,116 +145,100 @@
                             </div>
                         </div>
 
-                        <!-- Text Information Entry Fields -->
                         <div>
-                            <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Title</label>
-                            <input type="text" id="form-title" required placeholder="Summarize your offer or notice post info headline text" class="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-lg text-sm focus:outline-none focus:border-purple-500 text-white transition-colors">
+                            <label class="block text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-1">Title</label>
+                            <input type="text" id="input-matrix-title" required placeholder="SUMMARIZE DATA VECTOR TITLE PARAMETERS SPECIFICATIONS" class="w-full bg-[#070707] border border-[#161616] px-3 py-2 text-white placeholder-gray-800 focus:outline-none focus:border-gray-600 rounded uppercase tracking-wider">
                         </div>
 
-                        <!-- Action Submit Form Execution Core Interaction Button -->
-                        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-purple-600 to-amber-600 hover:from-purple-500 hover:to-amber-500 text-white font-semibold rounded-lg text-sm shadow-md transition-all duration-200 cursor-pointer">
+                        <button type="submit" class="w-full py-2.5 bg-transparent border border-gray-600 hover:border-white text-white font-bold uppercase tracking-widest rounded text-[10px] transition-colors cursor-pointer">
                             Confirm and Upload Details
                         </button>
                     </form>
                 </div>
 
-                <!-- DYNAMIC COMMUNITY FEED FILTER SYSTEM BOARDS AND TABS -->
                 <div class="space-y-4">
-                    <div class="flex items-center overflow-x-auto gap-2 pb-2 border-b border-gray-800 no-scrollbar">
-                        <button onclick="filterFeed('All')" class="feed-tab active px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all bg-purple-600 text-white">🌐 All Posts</button>
-                        <button onclick="filterFeed('Service')" class="feed-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all bg-gray-900 text-gray-400 border border-gray-800 hover:text-white hover:border-gray-700">🛠️ Services</button>
-                        <button onclick="filterFeed('Product')" class="feed-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all bg-gray-900 text-gray-400 border border-gray-800 hover:text-white hover:border-gray-700">📦 Products</button>
-                        <button onclick="filterFeed('Skill')" class="feed-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all bg-gray-900 text-gray-400 border border-gray-800 hover:text-white hover:border-gray-700">💡 Skills Hub</button>
-                        <button onclick="filterFeed('Notice')" class="feed-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all bg-gray-900 text-gray-400 border border-gray-800 hover:text-white hover:border-gray-700">📢 Neighborhood News</button>
+                    <div class="flex items-center overflow-x-auto gap-2 pb-1 border-b border-[#111] no-scrollbar">
+                        <button onclick="applyBoardContentFiltering('All')" class="board-tab active text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-white bg-white text-black transition-all cursor-pointer rounded-sm">🌐 All Posts</button>
+                        <button onclick="applyBoardContentFiltering('Service')" class="board-tab text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-[#161616] bg-black text-gray-500 hover:text-white hover:border-gray-600 transition-all cursor-pointer rounded-sm">🛠️ Services</button>
+                        <button onclick="applyBoardContentFiltering('Product')" class="board-tab text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-[#161616] bg-black text-gray-500 hover:text-white hover:border-gray-600 transition-all cursor-pointer rounded-sm">📦 Products</button>
+                        <button onclick="applyBoardContentFiltering('Skill')" class="board-tab text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-[#161616] bg-black text-gray-500 hover:text-white hover:border-gray-600 transition-all cursor-pointer rounded-sm">💡 Skills Hub</button>
+                        <button onclick="applyBoardContentFiltering('Notice')" class="board-tab text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-[#161616] bg-black text-gray-500 hover:text-white hover:border-gray-600 transition-all cursor-pointer rounded-sm">📢 Neighborhood News</button>
                     </div>
 
-                    <!-- Dynamic Card Item Feed Container Grid -->
-                    <div id="community-feed-container" class="space-y-3">
-                        <!-- Core Seed Mock Data Card Node Elements -->
-                        <div class="feed-card bg-gray-900 border border-gray-800 p-4 rounded-xl flex items-start justify-between shadow-sm transition-all hover:border-gray-700" data-type="Product">
-                            <div class="space-y-1.5">
-                                <div class="flex items-center gap-2">
-                                    <span class="text-xs px-2 py-0.5 font-bold rounded bg-amber-950 text-amber-400 border border-amber-900/50">📦 Product</span>
-                                    <span class="text-xs text-gray-500 font-medium">📍 Al Danah, Abu Dhabi</span>
+                    <div id="board-matrix-feed-log" class="space-y-2">
+                        <div class="feed-log-node bg-black border border-[#111] p-3.5 flex items-start justify-between transition-colors hover:border-[#222]" data-type="Product">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2 text-[9px] uppercase tracking-wider font-bold">
+                                    <span class="text-amber-500 border border-amber-900/40 bg-amber-950/20 px-1.5 py-0.5 rounded-xs">📦 Product</span>
+                                    <span class="text-gray-600">LOC: AL DANAH SECTOR</span>
                                 </div>
-                                <h4 class="text-base font-bold text-white">Fresh Homemade Sourdough Loaves</h4>
-                                <p class="text-xs text-gray-400">By: <span class="text-gray-300 font-medium">Aysha S. (Resident)</span></p>
+                                <h4 class="text-xs font-bold text-white uppercase tracking-wide">Fresh Homemade Sourdough Loaves</h4>
+                                <p class="text-[10px] text-gray-500">Identity Name: <span class="text-gray-400">Aysha S. (Resident)</span></p>
                             </div>
-                            <span class="text-sm font-black text-amber-400 bg-amber-950/40 px-2.5 py-1 rounded border border-amber-900/30">25 AED</span>
+                            <span class="text-[11px] font-mono font-bold text-amber-500 bg-amber-950/10 px-2 py-0.5 border border-amber-900/30 rounded-xs">25 AED</span>
                         </div>
 
-                        <div class="feed-card bg-gray-900 border border-gray-800 p-4 rounded-xl flex items-start justify-between shadow-sm transition-all hover:border-gray-700" data-type="Service">
-                            <div class="space-y-1.5">
-                                <div class="flex items-center gap-2">
-                                    <span class="text-xs px-2 py-0.5 font-bold rounded bg-purple-950 text-purple-400 border border-purple-900/50">🛠️ Service (Tailoring)</span>
-                                    <span class="text-xs text-gray-500 font-medium">📍 Hamdan Street Area</span>
+                        <div class="feed-log-node bg-black border border-[#111] p-3.5 flex items-start justify-between transition-colors hover:border-[#222]" data-type="Service">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2 text-[9px] uppercase tracking-wider font-bold">
+                                    <span class="text-purple-500 border border-purple-900/40 bg-purple-950/20 px-1.5 py-0.5 rounded-xs">🛠️ Service (Tailoring)</span>
+                                    <span class="text-gray-600">LOC: HAMDAN ST HUB</span>
                                 </div>
-                                <h4 class="text-base font-bold text-white">Stitching, Alterations, & Custom Dress Adjustments</h4>
-                                <p class="text-xs text-gray-400">By: <span class="text-gray-300 font-medium">Ahmed Tailors (Local Group Name)</span></p>
+                                <h4 class="text-xs font-bold text-white uppercase tracking-wide">Stitching, Alterations, & Custom Dress Adjustments</h4>
+                                <p class="text-[10px] text-gray-500">Identity Name: <span class="text-gray-400">Ahmed Tailors (Local Group Name)</span></p>
                             </div>
-                            <span class="text-sm font-black text-purple-400 bg-purple-950/40 px-2.5 py-1 rounded border border-purple-900/30">Contact</span>
+                            <span class="text-[10px] font-bold text-gray-400 border border-[#222] px-2 py-0.5 rounded-xs">OPEN</span>
                         </div>
 
-                        <div class="feed-card bg-gray-900 border border-gray-800 p-4 rounded-xl flex items-start justify-between shadow-sm transition-all hover:border-gray-700" data-type="Skill">
-                            <div class="space-y-1.5">
-                                <div class="flex items-center gap-2">
-                                    <span class="text-xs px-2 py-0.5 font-bold rounded bg-teal-950 text-teal-400 border border-teal-900/50">💡 Skill</span>
-                                    <span class="text-xs text-gray-500 font-medium">📍 Near Liwa Center</span>
+                        <div class="feed-log-node bg-black border border-[#111] p-3.5 flex items-start justify-between transition-colors hover:border-[#222]" data-type="Skill">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2 text-[9px] uppercase tracking-wider font-bold">
+                                    <span class="text-teal-500 border border-teal-900/40 bg-teal-950/20 px-1.5 py-0.5 rounded-xs">💡 Skill</span>
+                                    <span class="text-gray-600">LOC: LIWA CTR COMPLEX</span>
                                 </div>
-                                <h4 class="text-base font-bold text-white">Grade 10 Mathematics Term Exam Tutoring Support</h4>
-                                <p class="text-xs text-gray-400">By: <span class="text-purple-400 font-semibold">[Student]</span> <span class="text-gray-300 font-medium">Rahul Manoj</span></p>
+                                <h4 class="text-xs font-bold text-white uppercase tracking-wide">Grade 10 Mathematics Term Exam Tutoring Support</h4>
+                                <p class="text-[10px] text-gray-500">Identity Name: <span class="text-purple-400 font-bold">[STUDENT]</span> <span class="text-gray-400">Rahul Manoj</span></p>
                             </div>
-                            <span class="text-sm font-black text-teal-400 bg-teal-950/40 px-2.5 py-1 rounded border border-teal-900/30">40 AED/Hr</span>
+                            <span class="text-[11px] font-mono font-bold text-teal-500 bg-teal-950/10 px-2 py-0.5 border border-teal-900/30 rounded-xs">40 AED/H</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- RIGHT WORKSPACE PANEL: Interactive Simulated Community Map Grid Layer View (5 Columns) -->
-            <div class="lg:col-span-5 bg-gray-900 relative p-4 flex flex-col justify-between overflow-hidden">
-                <!-- Abstract Simulated Dark Interface Map Grid Backdrop -->
-                <div class="absolute inset-0 bg-[radial-gradient(#2a2a3a_1px,transparent_1px)] [background-size:24px_24px] opacity-40"></div>
+            <div class="lg:col-span-5 bg-black relative p-4 flex flex-col justify-between overflow-hidden border-t lg:border-t-0 border-[#111]">
+                <div class="absolute inset-0 bg-[radial-gradient(#151522_1px,transparent_1px)] [background-size:20px_20px] opacity-70"></div>
                 
-                <!-- Floating Simulated Visual Map Node Coordinates -->
                 <div class="absolute inset-0 z-0">
-                    <!-- Liwa Center Base Node Cluster Pins -->
-                    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center animate-bounce duration-1000">
-                        <div class="bg-purple-600 text-white rounded-full p-2.5 shadow-xl relative group cursor-pointer">
-                            <i class="fa-solid fa-location-crosshairs text-base"></i>
-                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-gray-950 text-[10px] text-gray-200 px-2 py-1 rounded shadow-xl whitespace-nowrap border border-gray-800 opacity-100 pointer-events-none">
-                                Active Node Cluster: Al Danah (Liwa Center Hub)
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center animate-pulse">
+                        <div class="border border-white bg-black text-white p-2 shadow-2xl relative group rounded-sm">
+                            <i class="fa-solid fa-crosshairs text-xs"></i>
+                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#050505] text-[9px] border border-[#222] text-gray-400 px-2 py-1 whitespace-nowrap opacity-100 uppercase tracking-widest font-mono">
+                                ANCHOR_NODE: LIWA CENTER HUB
                             </div>
                         </div>
-                        <div class="w-3 h-3 bg-purple-500/40 rounded-full mx-auto mt-1 blur-xs animate-ping"></div>
                     </div>
 
-                    <!-- Outer Secondary Network Mesh Ring Track Pinpoints -->
-                    <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-amber-500 rounded-full opacity-60"></div>
-                    <div class="absolute bottom-1/3 right-1/4 w-3.5 h-3.5 bg-teal-500/30 border border-teal-500 rounded-full opacity-70 animate-pulse"></div>
-                    <div class="absolute bottom-1/4 left-1/3 w-2 h-2 bg-purple-400 rounded-full opacity-40"></div>
+                    <div class="absolute top-1/3 left-1/4 w-1.5 h-1.5 bg-gray-700 border border-gray-500 rounded-none transform rotate-45"></div>
+                    <div class="absolute bottom-1/4 right-1/3 w-2 h-2 bg-gray-800 border border-gray-600 rounded-none transform rotate-45"></div>
                     
-                    <!-- SVG Connection Vector Graph Link Paths -->
-                    <svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="25%" y1="25%" x2="50%" y2="33%" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4"/>
-                        <line x1="50%" y1="33%" x2="75%" y2="66%" stroke="#14b8a6" stroke-width="1.5"/>
-                        <line x1="50%" y1="33%" x2="33%" y2="75%" stroke="#a855f7" stroke-width="2"/>
+                    <svg class="absolute inset-0 w-full h-full opacity-30 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="25%" y1="33%" x2="50%" y2="50%" stroke="#444" stroke-width="1" stroke-dasharray="2"/>
+                        <line x1="50%" y1="50%" x2="66%" y2="75%" stroke="#333" stroke-width="1"/>
                     </svg>
                 </div>
 
-                <!-- Floating Simulated Interface Map UI Controls Panel -->
-                <div class="z-10 bg-gray-950/90 border border-gray-800/80 rounded-lg p-3 backdrop-blur-md flex items-center justify-between text-xs text-gray-400">
-                    <span class="font-medium text-gray-300"><i class="fa-solid fa-map-location-dot text-amber-500 mr-1.5"></i> Live Geospatial Neighborhood Matrix View</span>
-                    <span class="text-[10px] font-mono tracking-widest text-gray-600 bg-gray-900 px-2 py-0.5 rounded border border-gray-800">SCALE: HYPER-LOCAL</span>
+                <div class="z-10 bg-black border border-[#161616] p-2.5 flex items-center justify-between text-[10px] uppercase font-bold tracking-widest text-gray-500">
+                    <span><i class="fa-solid fa-display text-gray-600 mr-1.5"></i> Hyper-Local Neighborhood Grid Matrix View</span>
+                    <span class="text-[8px] bg-[#0c0c0c] border border-[#222] px-1.5 py-0.5 text-gray-600">SYS_STATUS: ACTIVE</span>
                 </div>
 
-                <!-- Footnote Interface Status Readout Block Metrics Bar -->
-                <div class="z-10 bg-gray-950/90 border border-gray-800/80 rounded-lg p-3.5 backdrop-blur-sm space-y-1">
-                    <div class="flex justify-between items-center text-xs">
-                        <span class="text-gray-400">Network Connection Density Index:</span>
-                        <span class="font-bold text-emerald-400">92 / 100 Peak Optimal</span>
+                <div class="z-10 bg-black border border-[#161616] p-3.5 space-y-1.5">
+                    <div class="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
+                        <span class="text-gray-500">Network Connection Density Index:</span>
+                        <span class="text-white">92 / 100 System Peak</span>
                     </div>
-                    <div class="w-full bg-gray-900 rounded-full h-1.5 border border-gray-800 overflow-hidden">
-                        <div class="bg-gradient-to-r from-purple-500 to-emerald-500 h-full rounded-full" style="width: 92%"></div>
+                    <div class="w-full bg-[#070707] border border-[#161616] h-1 rounded-none overflow-hidden">
+                        <div class="bg-white h-full" style="width: 92%"></div>
                     </div>
                 </div>
             </div>
@@ -297,92 +247,91 @@
     </div>
 
 
-    <!-- ========================================================= -->
-    <!-- 4. CORE INTERACTIVE APPLICATIONS ARCHITECTURE JAVASCRIPT  -->
-    <!-- ========================================================= -->
     <script>
-        // Trigger App Landing Launch Entry Matrix Action Process
-        function enterAppDashboard() {
-            const homepage = document.getElementById('homepage');
-            const dashboard = document.getElementById('app-dashboard');
-            const brandContainer = document.getElementById('hero-brand-container');
-            const content = document.getElementById('hero-content');
+        // Execute Dynamic Layout System Scrolling Transformations Pipeline
+        function executeSystemScrollTransition() {
+            const overlay = document.getElementById('homepage-overlay');
+            const mainApp = document.getElementById('main-matrix-app');
+            const explainer = document.getElementById('homepage-explainer');
+            const brandLogo = document.getElementById('center-brand-logo');
+            const targetBrand = document.getElementById('nav-target-brand');
 
-            // Trigger structural exit transformations animations
-            content.classList.add('opacity-0', 'scale-95');
-            brandContainer.classList.add('-translate-y-[200px]', 'scale-50', 'opacity-0');
-            homepage.classList.add('opacity-0');
+            // Fire off classic animations transformations configurations
+            explainer.classList.add('opacity-0', 'scale-95');
+            brandLogo.classList.remove('scale-100', 'translate-y-0');
+            brandLogo.classList.add('scale-50', '-translate-y-[300px]', 'opacity-0');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
 
             setTimeout(() => {
-                homepage.classList.add('hidden');
-                dashboard.classList.remove('hidden');
+                overlay.classList.add('hidden');
+                mainApp.classList.remove('opacity-0');
+                mainApp.classList.add('opacity-100');
                 
-                // Trigger smooth fade-in flow sequence initialization controls
+                // Trigger navbar brand inclusion pop effect
                 setTimeout(() => {
-                    dashboard.classList.remove('opacity-0');
-                    dashboard.classList.add('opacity-100');
-                }, 50);
+                    targetBrand.classList.remove('scale-75', 'opacity-0');
+                    targetBrand.classList.add('scale-100', 'opacity-100');
+                }, 150);
             }, 600);
         }
 
-        // Dynamic Sub-Category Dropdown Toggle Controller Hooks
-        function toggleServiceDropdown() {
-            const selectedType = document.getElementById('form-type').value;
-            const serviceDropdown = document.getElementById('service-subgroup');
+        // Evaluate and Trigger Display States For Service Subcategories Select
+        function evaluateSubcategoryDropdownDisplay() {
+            const currentType = document.getElementById('input-matrix-type').value;
+            const subDropdown = document.getElementById('service-subgroup-wrapper');
             
-            if (selectedType === 'Service') {
-                serviceDropdown.classList.remove('hidden');
+            if (currentType === 'Service') {
+                subDropdown.classList.remove('hidden');
                 setTimeout(() => {
-                    serviceDropdown.classList.remove('opacity-0');
-                    serviceDropdown.classList.add('opacity-100');
+                    subDropdown.classList.remove('opacity-0');
+                    subDropdown.classList.add('opacity-100');
                 }, 10);
             } else {
-                serviceDropdown.classList.add('opacity-0');
-                serviceDropdown.classList.remove('opacity-100');
+                subDropdown.classList.add('opacity-0');
+                subDropdown.classList.remove('opacity-100');
                 setTimeout(() => {
-                    serviceDropdown.classList.add('hidden');
+                    subDropdown.classList.add('hidden');
                 }, 300);
             }
         }
 
-        // Landmark Map Search Dropdown Array Filtering Engine Logic
-        function filterAddress() {
-            const input = document.getElementById('address-search').value.toLowerCase();
-            const dropdown = document.getElementById('address-dropdown');
+        // Filter Dropdown Suggestions Options Matching User Text Input Arrays
+        function processLandmarkFilterQuery() {
+            const textQuery = document.getElementById('landmark-search-input').value.toLowerCase();
+            const dropdownBox = document.getElementById('landmark-dropdown-box');
             
-            if (input.length > 1) {
-                dropdown.classList.remove('hidden');
+            if (textQuery.length > 1) {
+                dropdownBox.classList.remove('hidden');
             } else {
-                dropdown.classList.add('hidden');
+                dropdownBox.classList.add('hidden');
             }
         }
 
-        // Execute Selection Actions On Landmark Addresses Pick Options
-        function selectAddress(fullAddressText) {
-            document.getElementById('current-resolved-address').innerText = `📍 ${fullAddressText}`;
-            document.getElementById('address-search').value = fullAddressText.split(',')[0];
-            document.getElementById('address-dropdown').value = "";
-            document.getElementById('address-dropdown').classList.add('hidden');
+        // Change App Address Variables Anchors Across Selection Elements
+        function injectResolvedAddress(targetAddressText) {
+            document.getElementById('resolved-address-display-label').innerText = `📍 ${targetAddressText}`;
+            document.getElementById('landmark-search-input').value = targetAddressText.split(',')[0];
+            document.getElementById('landmark-dropdown-box').classList.add('hidden');
         }
 
-        // Live Feed Tab Interface Display Filtering Engine Process Control
-        function filterFeed(targetType) {
-            const cards = document.querySelectorAll('.feed-card');
-            const tabs = document.querySelectorAll('.feed-tab');
+        // Apply Tab Style Revisions and Log Content Grid Item Array Filters
+        function applyBoardContentFiltering(filterType) {
+            const cards = document.querySelectorAll('.feed-log-node');
+            const tabs = document.querySelectorAll('.board-tab');
 
-            // Reset active styles across array items
+            // Revert all tab items states to basic terminal templates styles
             tabs.forEach(tab => {
-                tab.classList.remove('bg-purple-600', 'text-white');
-                tab.classList.add('bg-gray-900', 'text-gray-400', 'border-gray-800');
+                tab.classList.remove('border-white', 'bg-white', 'text-black');
+                tab.classList.add('border-[#161616]', 'bg-black', 'text-gray-500');
             });
 
-            // Set current target selected item active color
-            event.target.classList.remove('bg-gray-900', 'text-gray-400', 'border-gray-800');
-            event.target.classList.add('bg-purple-600', 'text-white');
+            // Flag targeted event action selector option active
+            event.target.classList.remove('border-[#161616]', 'bg-black', 'text-gray-500');
+            event.target.classList.add('border-white', 'bg-white', 'text-black');
 
-            // Filter cards matching target parameters criteria
+            // Show or hide matrix rows matching parameters parameters
             cards.forEach(card => {
-                if (targetType === 'All' || card.getAttribute('data-type') === targetType) {
+                if (filterType === 'All' || card.getAttribute('data-type') === filterType) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
@@ -390,65 +339,65 @@
             });
         }
 
-        // Process Interactive Form Post Submissions Pipeline Injection
-        function handleFormSubmit(event) {
+        // Commit and Process User Post Upload Requests Actions
+        function processMatrixPostExecution(event) {
             event.preventDefault();
 
-            // Extract form node state content value points
-            const isStudent = document.getElementById('check-student').checked;
-            const groupName = document.getElementById('form-name').value;
-            const primaryType = document.getElementById('form-type').value;
-            const subServiceType = document.getElementById('form-sub-service').value;
-            const entryTitle = document.getElementById('form-title').value;
+            // Pull raw input system parameters state parameters variables
+            const isStudent = document.getElementById('user-student-flag').checked;
+            const profileName = document.getElementById('input-entity-identity').value;
+            const mainType = document.getElementById('input-matrix-type').value;
+            const optionalServiceSub = document.getElementById('input-sub-service-type').value;
+            const postTitle = document.getElementById('input-matrix-title').value;
 
-            // Generate clean dynamic color tags templates
-            let typeLabel = primaryType;
-            let themeStyles = "bg-purple-950 text-purple-400 border-purple-900/50";
-            let costMetricsTag = "Contact";
+            // Define structural styling system layouts categories tags templates
+            let tagLabel = mainType;
+            let visualStyles = "text-purple-500 border-purple-900/40 bg-purple-950/20";
+            let actionTextTag = "OPEN";
 
-            if (primaryType === 'Product') {
-                themeStyles = "bg-amber-950 text-amber-400 border-amber-900/50";
-                costMetricsTag = "Marketplace";
-            } else if (primaryType === 'Skill') {
-                themeStyles = "bg-teal-950 text-teal-400 border-teal-900/50";
-                costMetricsTag = "Lessons";
-            } else if (primaryType === 'Notice') {
-                themeStyles = "bg-rose-950 text-rose-400 border-rose-900/50";
-                costMetricsTag = "Alert";
-            } else if (primaryType === 'Service') {
-                typeLabel = `Service (${subServiceType.split(' ')[0]})`;
+            if (mainType === 'Product') {
+                visualStyles = "text-amber-500 border-amber-900/40 bg-amber-950/20";
+                actionTextTag = "MARKET";
+            } else if (mainType === 'Skill') {
+                visualStyles = "text-teal-500 border-teal-900/40 bg-teal-950/20";
+                actionTextTag = "LOGGED";
+            } else if (mainType === 'Notice') {
+                visualStyles = "text-rose-500 border-rose-900/40 bg-rose-950/20";
+                actionTextTag = "NOTICE";
+            } else if (mainType === 'Service') {
+                tagLabel = `Service (${optionalServiceSub.split(' ')[0]})`;
             }
 
-            // Construct new dynamic template node structural element string text
-            const feedContainer = document.getElementById('community-feed-container');
-            const newPostCard = document.createElement('div');
-            newPostCard.className = "feed-card bg-gray-900 border border-purple-500/40 p-4 rounded-xl flex items-start justify-between shadow-lg transition-all animate-fadeIn transform translate-y-2";
-            newPostCard.setAttribute('data-type', primaryType);
+            // Generate clean dynamic string representation element matrix node card
+            const logContainer = document.getElementById('board-matrix-feed-log');
+            const dynamicNewNode = document.createElement('div');
+            dynamicNewNode.className = "feed-log-node bg-black border border-white p-3.5 flex items-start justify-between transition-all transform translate-y-1";
+            dynamicNewNode.setAttribute('data-type', mainType);
 
-            newPostCard.innerHTML = `
-                <div class="space-y-1.5">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs px-2 py-0.5 font-bold rounded ${themeStyles} border">${typeLabel}</span>
-                        <span class="text-xs text-purple-400 font-semibold tracking-wide">✨ Just Added Now</span>
+            dynamicNewNode.innerHTML = `
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 text-[9px] uppercase tracking-wider font-bold">
+                        <span class="${visualStyles} px-1.5 py-0.5 rounded-xs">${tagLabel}</span>
+                        <span class="text-white font-black tracking-widest border border-white/20 px-1 rounded-xs animate-pulse">NEW_VECTOR</span>
                     </div>
-                    <h4 class="text-base font-bold text-white">${entryTitle}</h4>
-                    <p class="text-xs text-gray-400">By: <span class="text-gray-300 font-medium">${isStudent ? '[Student] ' : ''}${groupName}</span></p>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-wide">${postTitle}</h4>
+                    <p class="text-[10px] text-gray-500">Identity Name: <span class="text-gray-400">${isStudent ? '[STUDENT] ' : ''}${profileName}</span></p>
                 </div>
-                <span class="text-sm font-black text-gray-200 bg-gray-950 px-2.5 py-1 rounded border border-gray-800">${costMetricsTag}</span>
+                <span class="text-[10px] font-bold text-white bg-neutral-900 border border-neutral-700 px-2 py-0.5 rounded-xs">${actionTextTag}</span>
             `;
 
-            // Prep container state grid array list updates
-            feedContainer.insertBefore(newPostCard, feedContainer.firstChild);
+            // Prepend new element card vector inside operational log board feed
+            logContainer.insertBefore(dynamicNewNode, logContainer.firstChild);
 
-            // Smooth element transition pop effect
+            // Execute delayed system visual cooling settling adjustments actions
             setTimeout(() => {
-                newPostCard.classList.remove('translate-y-2', 'border-purple-500/40');
-                newPostCard.classList.add('translate-y-0', 'border-gray-800');
+                dynamicNewNode.classList.remove('translate-y-1', 'border-white');
+                dynamicNewNode.classList.add('border-[#111]');
             }, 800);
 
-            // Flush inputs controls state variables clean
-            document.getElementById('form-title').value = "";
-            document.getElementById('form-name').value = "";
+            // Flush inputs controls components cleanly
+            document.getElementById('input-matrix-title').value = "";
+            document.getElementById('input-entity-identity').value = "";
         }
     </script>
 </body>
