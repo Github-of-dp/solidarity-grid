@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SANAD ECOSYSTEM MATRIX</title>
+    <title>SANAD COMMUNITY PLATFORM</title>
+    <!-- Tailwind CSS Engine -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Developer Core -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Your Original Smooth Continuous Infinite Scrolling Ticker Animation */
+        /* Smooth Continuous Infinite Scrolling Ticker Animation */
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -15,33 +17,42 @@
         .animate-marquee {
             display: inline-block;
             white-space: nowrap;
-            animation: marquee 20s linear infinite;
+            animation: marquee 25s linear infinite;
         }
-        /* Custom scrollbars matching the matrix system environment */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #000000; }
-        ::-webkit-scrollbar-thumb { background: #1e1e2f; border-radius: 2px; }
+        /* Custom scrollbars matching the premium cream editorial palette */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #F7F4EF; }
+        ::-webkit-scrollbar-thumb { background: #DCD7CD; border-radius: 3px; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-[#030303] text-gray-300 font-mono tracking-tight overflow-x-hidden antialiased select-none">
+<body class="bg-[#F7F4EF] text-[#2C2A27] font-sans antialiased select-none overflow-x-hidden">
 
-    <div id="homepage-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#030303] transition-all duration-700 ease-in-out p-6">
-        <div class="absolute inset-0 bg-[radial-gradient(#1a1a2e_1px,transparent_1px)] [background-size:16px_16px] opacity-60 pointer-events-none"></div>
+    <!-- ========================================================= -->
+    <!-- 1. PREMIUM CREAM HOMEPAGE OVERLAY (WITH CENTERED TRANSITION) -->
+    <!-- ========================================================= -->
+    <div id="homepage-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F7F4EF] transition-all duration-700 ease-in-out p-6 border-8 border-[#EFEBE4]">
+        <!-- Soft Minimalist Background Grid lines -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#EFEBE4_1px,transparent_1px),linear-gradient(to_bottom,#EFEBE4_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-50 pointer-events-none"></div>
         
+        <!-- Centered Main Brand Header Block -->
         <div id="center-brand-logo" class="text-center transform transition-all duration-700 ease-in-out scale-100 translate-y-0">
-            <h1 class="text-6xl md:text-8xl font-black text-white tracking-widest bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
+            <h1 class="text-6xl md:text-9xl font-serif font-black text-[#2C2A27] tracking-tight">
                 SANAD
             </h1>
-            <div class="text-2xl md:text-3xl text-gray-600 font-sans font-bold tracking-widest mt-1">سند</div>
+            <div class="text-2xl md:text-3xl text-[#8C857B] font-sans font-medium tracking-widest mt-2">سند</div>
         </div>
 
-        <div id="homepage-explainer" class="max-w-xl text-center mt-10 space-y-6 transition-all duration-500 relative z-10">
-            <h2 class="text-xl md:text-2xl font-bold text-gray-200 tracking-wide border-b border-gray-900 pb-3">Your Neighborhood, Connected. 🤝</h2>
-            <p class="text-xs md:text-sm text-gray-500 leading-relaxed uppercase tracking-wider">
+        <!-- High Excitement Community App Dashboard Explainer -->
+        <div id="homepage-explainer" class="max-w-xl text-center mt-12 space-y-6 transition-all duration-500 relative z-10">
+            <h2 class="text-xl md:text-2xl font-semibold text-[#4A4640] tracking-wide">Your Neighborhood, Connected. 🤝</h2>
+            <p class="text-xs md:text-sm text-[#706A60] leading-relaxed tracking-wide font-normal">
                 Discover small businesses, share skills, trade local products, and stay updated with everything happening right outside your front door. Sanad brings the spirit of the community into a simple, interactive digital map environment.
             </p>
-            <div class="pt-2">
-                <button onclick="executeSystemScrollTransition()" class="px-6 py-3 border border-white text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.1)] cursor-pointer">
+            <div class="pt-4">
+                <button onclick="executeSystemScrollTransition()" class="px-8 py-3.5 bg-[#2C2A27] text-[#F7F4EF] font-semibold text-xs uppercase tracking-widest hover:bg-[#4A4640] transition-all duration-300 rounded shadow-md cursor-pointer">
                     Open Community Map 📍
                 </button>
             </div>
@@ -49,92 +60,109 @@
     </div>
 
 
+    <!-- ========================================================= -->
+    <!-- 2. MAIN APP FRAMEWORK SYSTEM ARCHITECTURE MAP INTERFACE -->
+    <!-- ========================================================= -->
     <div id="main-matrix-app" class="min-h-screen flex flex-col opacity-0 transition-opacity duration-700">
         
-        <header class="bg-black border-b border-[#111] px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 sticky top-0 z-40">
+        <!-- Premium Minimalist Navigation Header -->
+        <header class="bg-[#EFEBE4] border-b border-[#DCD7CD] px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 sticky top-0 z-40">
             <div class="flex items-center space-x-3">
-                <span id="nav-target-brand" class="text-lg font-black tracking-widest text-white transition-all duration-500 transform scale-75 opacity-0">SANAD</span>
-                <span class="text-[10px] font-bold border border-[#222] bg-[#090909] px-2 py-0.5 text-gray-500 rounded">سند</span>
+                <span id="nav-target-brand" class="text-2xl font-serif font-black tracking-tight text-[#2C2A27] transition-all duration-500 transform scale-75 opacity-0">SANAD</span>
+                <span class="text-[10px] font-bold border border-[#DCD7CD] bg-[#F7F4EF] px-2 py-0.5 text-[#706A60] rounded">سند</span>
             </div>
 
+            <!-- Real-Time User Landmark/Address Search Processing Input -->
             <div class="relative w-full max-w-md">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-600 text-xs">
-                    <i class="fa-solid fa-terminal"></i>
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#8C857B] text-xs">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-                <input type="text" id="landmark-search-input" onkeyup="processLandmarkFilterQuery()" placeholder="SYS_SEARCH_LOCAL_LANDMARK (e.g. Liwa Center)..." class="w-full bg-[#070707] border border-[#161616] pl-9 pr-4 py-2 text-xs uppercase tracking-wider text-gray-300 placeholder-gray-700 focus:outline-none focus:border-gray-500 rounded">
+                <input type="text" id="landmark-search-input" onkeyup="processLandmarkFilterQuery()" placeholder="Search local landmarks (e.g. Liwa Center)..." class="w-full bg-[#F7F4EF] border border-[#DCD7CD] pl-9 pr-4 py-2 text-xs tracking-wide text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#8C857B] rounded transition-colors">
                 
-                <div id="landmark-dropdown-box" class="hidden absolute left-0 right-0 mt-1 bg-black border border-[#1a1a1a] rounded shadow-2xl z-50 overflow-hidden">
-                    <button onclick="injectResolvedAddress('Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi')" class="w-full text-left px-4 py-2.5 text-[11px] hover:bg-[#0c0c14] border-b border-[#111] flex flex-col gap-0.5 uppercase tracking-wider">
-                        <span class="font-bold text-white"><i class="fa-solid fa-location-dot text-purple-500 mr-1"></i> Liwa Center</span>
-                        <span class="text-gray-600 text-[9px]">Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi, UAE</span>
+                <!-- Landmark Selection Search Array Feedback Dropdown Box -->
+                <div id="landmark-dropdown-box" class="hidden absolute left-0 right-0 mt-1 bg-[#F7F4EF] border border-[#DCD7CD] rounded shadow-xl z-50 overflow-hidden">
+                    <button onclick="injectResolvedAddress('Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi')" class="w-full text-left px-4 py-3 text-[11px] hover:bg-[#EFEBE4] border-b border-[#EFEBE4] flex flex-col gap-0.5 tracking-wide text-[#2C2A27]">
+                        <span class="font-bold"><i class="fa-solid fa-location-dot text-amber-700 mr-1"></i> Liwa Center</span>
+                        <span class="text-[#706A60] text-[10px]">Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi, UAE</span>
                     </button>
-                    <button onclick="injectResolvedAddress('Dunes International School, Mussafah, Abu Dhabi')" class="w-full text-left px-4 py-2.5 text-[11px] hover:bg-[#0c0c14] border-b border-[#111] flex flex-col gap-0.5 uppercase tracking-wider">
-                        <span class="font-bold text-white"><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i> Dunes International School</span>
-                        <span class="text-gray-600 text-[9px]">Shabiya 12, Mussafah, Abu Dhabi, UAE</span>
+                    <button onclick="injectResolvedAddress('Dunes International School, Mussafah, Abu Dhabi')" class="w-full text-left px-4 py-3 text-[11px] hover:bg-[#EFEBE4] border-b border-[#EFEBE4] flex flex-col gap-0.5 tracking-wide text-[#2C2A27]">
+                        <span class="font-bold"><i class="fa-solid fa-location-dot text-amber-700 mr-1"></i> Dunes International School</span>
+                        <span class="text-[#706A60] text-[10px]">Shabiya 12, Mussafah, Abu Dhabi, UAE</span>
                     </button>
-                    <button onclick="injectResolvedAddress('Corniche Beach Promenade, Al Bateen, Abu Dhabi')" class="w-full text-left px-4 py-2.5 text-[11px] hover:bg-[#0c0c14] flex flex-col gap-0.5 uppercase tracking-wider">
-                        <span class="font-bold text-white"><i class="fa-solid fa-location-dot text-teal-500 mr-1"></i> Corniche Beach Promenade</span>
-                        <span class="text-gray-600 text-[9px]">Al Bateen, Abu Dhabi, UAE</span>
+                    <button onclick="injectResolvedAddress('Corniche Beach Promenade, Al Bateen, Abu Dhabi')" class="w-full text-left px-4 py-3 text-[11px] hover:bg-[#EFEBE4] flex flex-col gap-0.5 tracking-wide text-[#2C2A27]">
+                        <span class="font-bold"><i class="fa-solid fa-location-dot text-amber-700 mr-1"></i> Corniche Beach Promenade</span>
+                        <span class="text-[#706A60] text-[10px]">Al Bateen, Abu Dhabi, UAE</span>
                     </button>
                 </div>
             </div>
 
+            <!-- Current Real Resolved Physical Local Text Address Label -->
             <div class="text-right max-w-xs truncate hidden md:block">
-                <span id="resolved-address-display-label" class="text-[10px] font-bold text-gray-500 border border-[#161616] bg-[#070707] px-3 py-1.5 rounded uppercase tracking-wider">
+                <span id="resolved-address-display-label" class="text-[11px] font-medium text-[#4A4640] border border-[#DCD7CD] bg-[#F7F4EF] px-3 py-1.5 rounded tracking-wide">
                     📍 Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi
                 </span>
             </div>
         </header>
 
-        <div class="bg-black border-b border-[#111] py-2 overflow-hidden flex items-center">
-            <div class="animate-marquee text-[11px] uppercase tracking-widest text-gray-400 font-bold">
-                [PRODUCT ADDED] Aysha just listed Fresh Homemade Sourdough under Products! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                [SERVICE ADDED] Ahmed added Tailoring & Alterations to Services! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                [SYSTEM NOTICE] Notice: Community Park Cleanup happening this Saturday at 4 PM! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                [SKILL AVAILABLE] Student Discount available for Math Tutoring under Skills Hub!
+        <!-- ========================================================= -->
+        <!-- 3. SIMPLIFIED INFINITE SIDE-TO-SIDE MARQUEE NEWS TICKER -->
+        <!-- ========================================================= -->
+        <div class="bg-[#2C2A27] py-2.5 overflow-hidden flex items-center shadow-inner">
+            <div class="animate-marquee text-[11px] tracking-wider text-[#EFEBE4] font-medium">
+                🔥 Aysha just listed Fresh Homemade Sourdough under Products! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                🛠️ Ahmed added Tailoring & Alterations to Services! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                📢 Neighborhood Notice: Community Park Cleanup happening this Saturday at 4 PM! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                🎓 Student Discount available for Math Tutoring under Skills Hub!
             </div>
         </div>
 
-        <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden h-[calc(100vh-109px)]">
+        <!-- Master Interface Screen Row Workspace Split -->
+        <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden h-[calc(100vh-113px)]">
             
-            <div class="lg:col-span-7 flex flex-col border-r border-[#111] overflow-y-auto p-6 space-y-6">
+            <!-- LEFT AREA: Technical Grid Input Panel Form and Community Boards Feed -->
+            <div class="lg:col-span-7 flex flex-col border-r border-[#DCD7CD] overflow-y-auto p-6 space-y-6 bg-[#F7F4EF]">
                 
-                <div class="bg-black border border-[#161616] p-5 rounded relative shadow-2xl">
-                    <div class="text-[10px] uppercase font-bold tracking-widest text-gray-600 mb-3 border-b border-[#111] pb-2 flex items-center gap-1.5">
-                        <i class="fa-solid fa-terminal text-gray-500"></i> REGISTER NOW!
+                <!-- LIGHT BROWN/CREAM STYLE UNIFIED FORM "REGISTER NOW!" PANEL -->
+                <div class="bg-[#EFEBE4] border border-[#DCD7CD] p-6 rounded shadow-sm">
+                    <div class="text-xs uppercase font-bold tracking-widest text-[#4A4640] mb-4 border-b border-[#DCD7CD] pb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-pen-to-square text-[#8C857B]"></i> REGISTER NOW!
                     </div>
 
                     <form id="matrix-upload-form" onsubmit="processMatrixPostExecution(event)" class="space-y-4 text-xs">
-                        <div class="flex items-center gap-6 bg-[#050505] p-3 border border-[#111] rounded">
+                        <!-- Demographics User Configuration Selection Toggles (Checkbox Layout) -->
+                        <div class="flex items-center gap-6 bg-[#F7F4EF] p-3 border border-[#DCD7CD] rounded">
                             <label class="inline-flex items-center cursor-pointer select-none">
-                                <input type="checkbox" id="user-student-flag" class="rounded border-[#222] bg-[#0a0a0a] text-white focus:ring-0 w-3.5 h-3.5 mr-2">
-                                <span class="uppercase font-bold tracking-wider text-gray-400 text-[10px]">I am a Student</span>
+                                <input type="checkbox" id="user-student-flag" class="rounded border-[#DCD7CD] bg-[#F7F4EF] text-[#2C2A27] focus:ring-0 w-4 h-4 mr-2">
+                                <span class="uppercase font-bold tracking-wider text-[#4A4640] text-[10px]">I am a Student</span>
                             </label>
                             <label class="inline-flex items-center cursor-pointer select-none">
-                                <input type="checkbox" id="user-resident-flag" checked class="rounded border-[#222] bg-[#0a0a0a] text-white focus:ring-0 w-3.5 h-3.5 mr-2">
-                                <span class="uppercase font-bold tracking-wider text-gray-400 text-[10px]">I am a Resident / Business</span>
+                                <input type="checkbox" id="user-resident-flag" checked class="rounded border-[#DCD7CD] bg-[#F7F4EF] text-[#2C2A27] focus:ring-0 w-4 h-4 mr-2">
+                                <span class="uppercase font-bold tracking-wider text-[#4A4640] text-[10px]">I am a Resident / Business</span>
                             </label>
                         </div>
 
+                        <!-- Data Anchor Group String Identification Layer Input -->
                         <div>
-                            <label class="block text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-1">Your Name / Group Name</label>
-                            <input type="text" id="input-entity-identity" required placeholder="ENTER PROFILE OR LOGISTICAL ENTERPRISE IDENTIFICATION NAME" class="w-full bg-[#070707] border border-[#161616] px-3 py-2 text-white placeholder-gray-800 focus:outline-none focus:border-gray-600 rounded uppercase tracking-wider">
+                            <label class="block text-[10px] font-bold text-[#706A60] uppercase tracking-widest mb-1">Your Name / Group Name</label>
+                            <input type="text" id="input-entity-identity" required placeholder="e.g., Aysha Bakery or Fatima Al Mansoori" class="w-full bg-[#F7F4EF] border border-[#DCD7CD] px-3 py-2 text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#8C857B] rounded tracking-wide uppercase">
                         </div>
 
+                        <!-- Platform Type Input Matrix & Subcategories Select Matrix Logic Row -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-1">Types:</label>
-                                <select id="input-matrix-type" onchange="evaluateSubcategoryDropdownDisplay()" class="w-full bg-[#070707] border border-[#161616] px-3 py-2 text-white focus:outline-none focus:border-gray-600 rounded uppercase tracking-wider">
+                                <label class="block text-[10px] font-bold text-[#706A60] uppercase tracking-widest mb-1">Listing Type</label>
+                                <select id="input-matrix-type" onchange="evaluateSubcategoryDropdownDisplay()" class="w-full bg-[#F7F4EF] border border-[#DCD7CD] px-3 py-2 text-[#2C2A27] focus:outline-none focus:border-[#8C857B] rounded tracking-wide font-medium">
                                     <option value="Notice">📢 Notice</option>
                                     <option value="Service">🛠️ Service</option>
                                     <option value="Product">📦 Product</option>
-                                    <option value="Skill">💡 Skill</option>
+                                    <option value="Skill">💡 Skill Hub</option>
                                 </select>
                             </div>
 
+                            <!-- Cascading Dynamic Sub-Category Dropdown Framework Area -->
                             <div id="service-subgroup-wrapper" class="hidden opacity-0 transition-all duration-300">
-                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Service Type 👇</label>
-                                <select id="input-sub-service-type" class="w-full bg-[#070707] border border-gray-800 px-3 py-2 text-white focus:outline-none focus:border-gray-600 rounded uppercase tracking-wider">
+                                <label class="block text-[10px] font-bold text-[#4A4640] uppercase tracking-widest mb-1">Service Sub-category 👇</label>
+                                <select id="input-sub-service-type" class="w-full bg-[#F7F4EF] border border-[#8C857B] px-3 py-2 text-[#2C2A27] focus:outline-none focus:border-[#4A4640] rounded tracking-wide">
                                     <option value="Cleaner / Domestic Help">🧹 Cleaner / Domestic Help</option>
                                     <option value="Stitching & Tailoring">🪡 Stitching & Tailoring</option>
                                     <option value="Baking & Home Cooking">🎂 Baking & Home Cooking</option>
@@ -145,100 +173,113 @@
                             </div>
                         </div>
 
+                        <!-- Content Core Post Title Entry Form Block -->
                         <div>
-                            <label class="block text-[10px] font-bold text-gray-600 uppercase tracking-widest mb-1">Title</label>
-                            <input type="text" id="input-matrix-title" required placeholder="SUMMARIZE DATA VECTOR TITLE PARAMETERS SPECIFICATIONS" class="w-full bg-[#070707] border border-[#161616] px-3 py-2 text-white placeholder-gray-800 focus:outline-none focus:border-gray-600 rounded uppercase tracking-wider">
+                            <label class="block text-[10px] font-bold text-[#706A60] uppercase tracking-widest mb-1">Title Description</label>
+                            <input type="text" id="input-matrix-title" required placeholder="What are you offering or sharing with the neighborhood?" class="w-full bg-[#F7F4EF] border border-[#DCD7CD] px-3 py-2 text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#8C857B] rounded tracking-wide">
                         </div>
 
-                        <button type="submit" class="w-full py-2.5 bg-transparent border border-gray-600 hover:border-white text-white font-bold uppercase tracking-widest rounded text-[10px] transition-colors cursor-pointer">
+                        <!-- Post Submitting Final Network Commit Form Interaction Control Button -->
+                        <button type="submit" class="w-full py-3 bg-[#2C2A27] hover:bg-[#4A4640] text-[#F7F4EF] font-bold uppercase tracking-widest rounded text-xs transition-colors cursor-pointer shadow-sm">
                             Confirm and Upload Details
                         </button>
                     </form>
                 </div>
 
+                <!-- DYNAMIC APP TABS ARCHITECTURE TO TRACK RECONFIGURED CHANNELS -->
                 <div class="space-y-4">
-                    <div class="flex items-center overflow-x-auto gap-2 pb-1 border-b border-[#111] no-scrollbar">
-                        <button onclick="applyBoardContentFiltering('All')" class="board-tab active text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-white bg-white text-black transition-all cursor-pointer rounded-sm">🌐 All Posts</button>
-                        <button onclick="applyBoardContentFiltering('Service')" class="board-tab text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-[#161616] bg-black text-gray-500 hover:text-white hover:border-gray-600 transition-all cursor-pointer rounded-sm">🛠️ Services</button>
-                        <button onclick="applyBoardContentFiltering('Product')" class="board-tab text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-[#161616] bg-black text-gray-500 hover:text-white hover:border-gray-600 transition-all cursor-pointer rounded-sm">📦 Products</button>
-                        <button onclick="applyBoardContentFiltering('Skill')" class="board-tab text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-[#161616] bg-black text-gray-500 hover:text-white hover:border-gray-600 transition-all cursor-pointer rounded-sm">💡 Skills Hub</button>
-                        <button onclick="applyBoardContentFiltering('Notice')" class="board-tab text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 border border-[#161616] bg-black text-gray-500 hover:text-white hover:border-gray-600 transition-all cursor-pointer rounded-sm">📢 Neighborhood News</button>
+                    <div class="flex items-center overflow-x-auto gap-2 pb-2 border-b border-[#DCD7CD] no-scrollbar">
+                        <button onclick="applyBoardContentFiltering('All')" class="board-tab active text-[11px] font-bold uppercase tracking-wider px-4 py-2 border border-[#2C2A27] bg-[#2C2A27] text-[#F7F4EF] transition-all cursor-pointer rounded">🌐 All Posts</button>
+                        <button onclick="applyBoardContentFiltering('Service')" class="board-tab text-[11px] font-bold uppercase tracking-wider px-4 py-2 border border-[#DCD7CD] bg-[#EFEBE4] text-[#706A60] hover:text-[#2C2A27] hover:border-[#8C857B] transition-all cursor-pointer rounded">🛠️ Services</button>
+                        <button onclick="applyBoardContentFiltering('Product')" class="board-tab text-[11px] font-bold uppercase tracking-wider px-4 py-2 border border-[#DCD7CD] bg-[#EFEBE4] text-[#706A60] hover:text-[#2C2A27] hover:border-[#8C857B] transition-all cursor-pointer rounded">📦 Products</button>
+                        <button onclick="applyBoardContentFiltering('Skill')" class="board-tab text-[11px] font-bold uppercase tracking-wider px-4 py-2 border border-[#DCD7CD] bg-[#EFEBE4] text-[#706A60] hover:text-[#2C2A27] hover:border-[#8C857B] transition-all cursor-pointer rounded">💡 Skills Hub</button>
+                        <button onclick="applyBoardContentFiltering('Notice')" class="board-tab text-[11px] font-bold uppercase tracking-wider px-4 py-2 border border-[#DCD7CD] bg-[#EFEBE4] text-[#706A60] hover:text-[#2C2A27] hover:border-[#8C857B] transition-all cursor-pointer rounded">📢 Notices</button>
                     </div>
 
-                    <div id="board-matrix-feed-log" class="space-y-2">
-                        <div class="feed-log-node bg-black border border-[#111] p-3.5 flex items-start justify-between transition-colors hover:border-[#222]" data-type="Product">
+                    <!-- Simplified Community Feed Log Board Cards Matrix Group -->
+                    <div id="board-matrix-feed-log" class="space-y-3">
+                        <!-- Mock Operational Feeds Card Matrix Elements -->
+                        <div class="feed-log-node bg-[#EFEBE4] border border-[#DCD7CD] p-4 flex items-start justify-between transition-all hover:border-[#8C857B] rounded shadow-xs" data-type="Product">
                             <div class="space-y-1">
-                                <div class="flex items-center gap-2 text-[9px] uppercase tracking-wider font-bold">
-                                    <span class="text-amber-500 border border-amber-900/40 bg-amber-950/20 px-1.5 py-0.5 rounded-xs">📦 Product</span>
-                                    <span class="text-gray-600">LOC: AL DANAH SECTOR</span>
+                                <div class="flex items-center gap-2 text-[10px] uppercase tracking-wider font-bold">
+                                    <span class="text-amber-800 border border-amber-300 bg-amber-100 px-2 py-0.5 rounded">📦 Product</span>
+                                    <span class="text-[#706A60]">📍 Al Danah Sector</span>
                                 </div>
-                                <h4 class="text-xs font-bold text-white uppercase tracking-wide">Fresh Homemade Sourdough Loaves</h4>
-                                <p class="text-[10px] text-gray-500">Identity Name: <span class="text-gray-400">Aysha S. (Resident)</span></p>
+                                <h4 class="text-sm font-bold text-[#2C2A27] tracking-tight">Fresh Homemade Sourdough Loaves</h4>
+                                <p class="text-[11px] text-[#706A60]">Listed by: <span class="text-[#2C2A27] font-medium">Aysha S. (Resident)</span></p>
                             </div>
-                            <span class="text-[11px] font-mono font-bold text-amber-500 bg-amber-950/10 px-2 py-0.5 border border-amber-900/30 rounded-xs">25 AED</span>
+                            <span class="text-xs font-bold text-amber-900 bg-amber-100 px-2.5 py-1 border border-amber-200 rounded">25 AED</span>
                         </div>
 
-                        <div class="feed-log-node bg-black border border-[#111] p-3.5 flex items-start justify-between transition-colors hover:border-[#222]" data-type="Service">
+                        <div class="feed-log-node bg-[#EFEBE4] border border-[#DCD7CD] p-4 flex items-start justify-between transition-all hover:border-[#8C857B] rounded shadow-xs" data-type="Service">
                             <div class="space-y-1">
-                                <div class="flex items-center gap-2 text-[9px] uppercase tracking-wider font-bold">
-                                    <span class="text-purple-500 border border-purple-900/40 bg-purple-950/20 px-1.5 py-0.5 rounded-xs">🛠️ Service (Tailoring)</span>
-                                    <span class="text-gray-600">LOC: HAMDAN ST HUB</span>
+                                <div class="flex items-center gap-2 text-[10px] uppercase tracking-wider font-bold">
+                                    <span class="text-indigo-800 border border-indigo-300 bg-indigo-100 px-2 py-0.5 rounded">🛠️ Service (Tailoring)</span>
+                                    <span class="text-[#706A60]">📍 Hamdan St Hub</span>
                                 </div>
-                                <h4 class="text-xs font-bold text-white uppercase tracking-wide">Stitching, Alterations, & Custom Dress Adjustments</h4>
-                                <p class="text-[10px] text-gray-500">Identity Name: <span class="text-gray-400">Ahmed Tailors (Local Group Name)</span></p>
+                                <h4 class="text-sm font-bold text-[#2C2A27] tracking-tight">Stitching, Alterations, & Custom Dress Adjustments</h4>
+                                <p class="text-[11px] text-[#706A60]">Listed by: <span class="text-[#2C2A27] font-medium">Ahmed Tailors (Local Business)</span></p>
                             </div>
-                            <span class="text-[10px] font-bold text-gray-400 border border-[#222] px-2 py-0.5 rounded-xs">OPEN</span>
+                            <span class="text-[10px] font-bold text-indigo-900 bg-indigo-100 border border-indigo-200 px-2.5 py-1 rounded">AVAILABLE</span>
                         </div>
 
-                        <div class="feed-log-node bg-black border border-[#111] p-3.5 flex items-start justify-between transition-colors hover:border-[#222]" data-type="Skill">
+                        <div class="feed-log-node bg-[#EFEBE4] border border-[#DCD7CD] p-4 flex items-start justify-between transition-all hover:border-[#8C857B] rounded shadow-xs" data-type="Skill">
                             <div class="space-y-1">
-                                <div class="flex items-center gap-2 text-[9px] uppercase tracking-wider font-bold">
-                                    <span class="text-teal-500 border border-teal-900/40 bg-teal-950/20 px-1.5 py-0.5 rounded-xs">💡 Skill</span>
-                                    <span class="text-gray-600">LOC: LIWA CTR COMPLEX</span>
+                                <div class="flex items-center gap-2 text-[10px] uppercase tracking-wider font-bold">
+                                    <span class="text-emerald-800 border border-emerald-300 bg-emerald-100 px-2 py-0.5 rounded">💡 Skill Hub</span>
+                                    <span class="text-[#706A60]">📍 Liwa Ctr Complex</span>
                                 </div>
-                                <h4 class="text-xs font-bold text-white uppercase tracking-wide">Grade 10 Mathematics Term Exam Tutoring Support</h4>
-                                <p class="text-[10px] text-gray-500">Identity Name: <span class="text-purple-400 font-bold">[STUDENT]</span> <span class="text-gray-400">Rahul Manoj</span></p>
+                                <h4 class="text-sm font-bold text-[#2C2A27] tracking-tight">Grade 10 Mathematics Term Exam Tutoring Support</h4>
+                                <p class="text-[11px] text-[#706A60]">Listed by: <span class="text-emerald-700 font-bold">[STUDENT]</span> <span class="text-[#2C2A27] font-medium">Rahul Manoj</span></p>
                             </div>
-                            <span class="text-[11px] font-mono font-bold text-teal-500 bg-teal-950/10 px-2 py-0.5 border border-teal-900/30 rounded-xs">40 AED/H</span>
+                            <span class="text-xs font-bold text-emerald-900 bg-emerald-100 px-2.5 py-1 border border-emerald-200 rounded">40 AED/H</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-5 bg-black relative p-4 flex flex-col justify-between overflow-hidden border-t lg:border-t-0 border-[#111]">
-                <div class="absolute inset-0 bg-[radial-gradient(#151522_1px,transparent_1px)] [background-size:20px_20px] opacity-70"></div>
+            <!-- RIGHT AREA: Elegant Minimalist Mock Map Framework Graphic View -->
+            <div class="lg:col-span-5 bg-[#EFEBE4] relative p-4 flex flex-col justify-between overflow-hidden border-t lg:border-t-0 border-[#DCD7CD]">
+                <!-- Canvas Soft Grid Layout Line Overlay Map Backing -->
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#DCD7CD_1px,transparent_1px),linear-gradient(to_bottom,#DCD7CD_1px,transparent_1px)] bg-[size:30px_30px] opacity-30"></div>
                 
+                <!-- Dynamic Map Floating Anchor Points and Pin Visuals -->
                 <div class="absolute inset-0 z-0">
+                    <!-- Liwa Center Absolute Anchor Tracking Node Pin Location -->
                     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center animate-pulse">
-                        <div class="border border-white bg-black text-white p-2 shadow-2xl relative group rounded-sm">
-                            <i class="fa-solid fa-crosshairs text-xs"></i>
-                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#050505] text-[9px] border border-[#222] text-gray-400 px-2 py-1 whitespace-nowrap opacity-100 uppercase tracking-widest font-mono">
-                                ANCHOR_NODE: LIWA CENTER HUB
+                        <div class="bg-[#2C2A27] text-[#F7F4EF] p-2.5 shadow-xl relative group rounded">
+                            <i class="fa-solid fa-location-crosshairs text-sm"></i>
+                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#2C2A27] text-[10px] text-[#F7F4EF] px-2 py-1 whitespace-nowrap uppercase tracking-wider font-sans font-semibold rounded shadow-md">
+                                ACTIVE HUB: LIWA CENTER
                             </div>
                         </div>
                     </div>
 
-                    <div class="absolute top-1/3 left-1/4 w-1.5 h-1.5 bg-gray-700 border border-gray-500 rounded-none transform rotate-45"></div>
-                    <div class="absolute bottom-1/4 right-1/3 w-2 h-2 bg-gray-800 border border-gray-600 rounded-none transform rotate-45"></div>
+                    <!-- Surrounding Interactive Map Coordinates Simulation Points -->
+                    <div class="absolute top-1/4 left-1/3 w-2.5 h-2.5 bg-[#8C857B] rounded-full shadow-xs"></div>
+                    <div class="absolute bottom-1/3 right-1/4 w-3 h-3 bg-[#A69F94] rounded-full shadow-xs"></div>
                     
-                    <svg class="absolute inset-0 w-full h-full opacity-30 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="25%" y1="33%" x2="50%" y2="50%" stroke="#444" stroke-width="1" stroke-dasharray="2"/>
-                        <line x1="50%" y1="50%" x2="66%" y2="75%" stroke="#333" stroke-width="1"/>
+                    <!-- Structural Connection Mesh Line SVGs -->
+                    <svg class="absolute inset-0 w-full h-full opacity-40 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="33%" y1="25%" x2="50%" y2="50%" stroke="#8C857B" stroke-width="1.5" stroke-dasharray="3"/>
+                        <line x1="50%" y1="50%" x2="75%" y2="66%" stroke="#8C857B" stroke-width="1.5"/>
                     </svg>
                 </div>
 
-                <div class="z-10 bg-black border border-[#161616] p-2.5 flex items-center justify-between text-[10px] uppercase font-bold tracking-widest text-gray-500">
-                    <span><i class="fa-solid fa-display text-gray-600 mr-1.5"></i> Hyper-Local Neighborhood Grid Matrix View</span>
-                    <span class="text-[8px] bg-[#0c0c0c] border border-[#222] px-1.5 py-0.5 text-gray-600">SYS_STATUS: ACTIVE</span>
+                <!-- Upper Mapping Framework Descriptive Premium UI Banner Panel -->
+                <div class="z-10 bg-[#F7F4EF] border border-[#DCD7CD] p-3 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-[#4A4640] rounded shadow-xs">
+                    <span><i class="fa-solid fa-map text-[#8C857B] mr-1.5"></i> Live Neighborhood Map Grid</span>
+                    <span class="text-[9px] bg-[#EFEBE4] border border-[#DCD7CD] px-2 py-0.5 text-[#706A60] rounded-sm">CONNECTED</span>
                 </div>
 
-                <div class="z-10 bg-black border border-[#161616] p-3.5 space-y-1.5">
-                    <div class="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
-                        <span class="text-gray-500">Network Connection Density Index:</span>
-                        <span class="text-white">92 / 100 System Peak</span>
+                <!-- Lower Matrix Metrics Database Validation Track Block Area Bar -->
+                <div class="z-10 bg-[#F7F4EF] border border-[#DCD7CD] p-4 space-y-2 rounded shadow-xs">
+                    <div class="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-[#4A4640]">
+                        <span>Local Activity Index:</span>
+                        <span class="text-[#2C2A27]">High Dynamics (92%)</span>
                     </div>
-                    <div class="w-full bg-[#070707] border border-[#161616] h-1 rounded-none overflow-hidden">
-                        <div class="bg-white h-full" style="width: 92%"></div>
+                    <div class="w-full bg-[#EFEBE4] h-1.5 rounded overflow-hidden">
+                        <div class="bg-[#2C2A27] h-full" style="width: 92%"></div>
                     </div>
                 </div>
             </div>
@@ -247,8 +288,11 @@
     </div>
 
 
+    <!-- ========================================================= -->
+    <!-- 4. CORE FUNCTIONALITIES APPLICATION ACTIONS ARCHITECTURE -->
+    <!-- ========================================================= -->
     <script>
-        // Execute Dynamic Layout System Scrolling Transformations Pipeline
+        // Execute Dynamic Layout Screen Scrolling Transformations Pipeline
         function executeSystemScrollTransition() {
             const overlay = document.getElementById('homepage-overlay');
             const mainApp = document.getElementById('main-matrix-app');
@@ -256,10 +300,10 @@
             const brandLogo = document.getElementById('center-brand-logo');
             const targetBrand = document.getElementById('nav-target-brand');
 
-            // Fire off classic animations transformations configurations
+            // Fire off clean premium sliding transformations 
             explainer.classList.add('opacity-0', 'scale-95');
             brandLogo.classList.remove('scale-100', 'translate-y-0');
-            brandLogo.classList.add('scale-50', '-translate-y-[300px]', 'opacity-0');
+            brandLogo.classList.add('scale-50', '-translate-y-[350px]', 'opacity-0');
             overlay.classList.add('opacity-0', 'pointer-events-none');
 
             setTimeout(() => {
@@ -319,17 +363,17 @@
             const cards = document.querySelectorAll('.feed-log-node');
             const tabs = document.querySelectorAll('.board-tab');
 
-            // Revert all tab items states to basic terminal templates styles
+            // Revert all tab items states to basic clean template design styles
             tabs.forEach(tab => {
-                tab.classList.remove('border-white', 'bg-white', 'text-black');
-                tab.classList.add('border-[#161616]', 'bg-black', 'text-gray-500');
+                tab.classList.remove('border-[#2C2A27]', 'bg-[#2C2A27]', 'text-[#F7F4EF]');
+                tab.classList.add('border-[#DCD7CD]', 'bg-[#EFEBE4]', 'text-[#706A60]');
             });
 
             // Flag targeted event action selector option active
-            event.target.classList.remove('border-[#161616]', 'bg-black', 'text-gray-500');
-            event.target.classList.add('border-white', 'bg-white', 'text-black');
+            event.target.classList.remove('border-[#DCD7CD]', 'bg-[#EFEBE4]', 'text-[#706A60]');
+            event.target.classList.add('border-[#2C2A27]', 'bg-[#2C2A27]', 'text-[#F7F4EF]');
 
-            // Show or hide matrix rows matching parameters parameters
+            // Show or hide board item row cards matching selection fields
             cards.forEach(card => {
                 if (filterType === 'All' || card.getAttribute('data-type') === filterType) {
                     card.style.display = 'flex';
@@ -343,7 +387,7 @@
         function processMatrixPostExecution(event) {
             event.preventDefault();
 
-            // Pull raw input system parameters state parameters variables
+            // Pull raw input parameters state variables
             const isStudent = document.getElementById('user-student-flag').checked;
             const profileName = document.getElementById('input-entity-identity').value;
             const mainType = document.getElementById('input-matrix-type').value;
@@ -352,48 +396,48 @@
 
             // Define structural styling system layouts categories tags templates
             let tagLabel = mainType;
-            let visualStyles = "text-purple-500 border-purple-900/40 bg-purple-950/20";
-            let actionTextTag = "OPEN";
+            let visualStyles = "text-indigo-800 border-indigo-300 bg-indigo-100";
+            let actionTextTag = "ACTIVE";
 
             if (mainType === 'Product') {
-                visualStyles = "text-amber-500 border-amber-900/40 bg-amber-950/20";
+                visualStyles = "text-amber-800 border-amber-300 bg-amber-100";
                 actionTextTag = "MARKET";
             } else if (mainType === 'Skill') {
-                visualStyles = "text-teal-500 border-teal-900/40 bg-teal-950/20";
-                actionTextTag = "LOGGED";
+                visualStyles = "text-emerald-800 border-emerald-300 bg-emerald-100";
+                actionTextTag = "SKILL HUB";
             } else if (mainType === 'Notice') {
-                visualStyles = "text-rose-500 border-rose-900/40 bg-rose-950/20";
+                visualStyles = "text-rose-800 border-rose-300 bg-rose-100";
                 actionTextTag = "NOTICE";
             } else if (mainType === 'Service') {
                 tagLabel = `Service (${optionalServiceSub.split(' ')[0]})`;
             }
 
-            // Generate clean dynamic string representation element matrix node card
+            // Generate clean dynamic element card layout node
             const logContainer = document.getElementById('board-matrix-feed-log');
             const dynamicNewNode = document.createElement('div');
-            dynamicNewNode.className = "feed-log-node bg-black border border-white p-3.5 flex items-start justify-between transition-all transform translate-y-1";
+            dynamicNewNode.className = "feed-log-node bg-[#EFEBE4] border-2 border-[#2C2A27] p-4 flex items-start justify-between transition-all transform translate-y-1 rounded shadow-md";
             dynamicNewNode.setAttribute('data-type', mainType);
 
             dynamicNewNode.innerHTML = `
                 <div class="space-y-1">
-                    <div class="flex items-center gap-2 text-[9px] uppercase tracking-wider font-bold">
-                        <span class="${visualStyles} px-1.5 py-0.5 rounded-xs">${tagLabel}</span>
-                        <span class="text-white font-black tracking-widest border border-white/20 px-1 rounded-xs animate-pulse">NEW_VECTOR</span>
+                    <div class="flex items-center gap-2 text-[10px] uppercase tracking-wider font-bold">
+                        <span class="${visualStyles} px-2 py-0.5 rounded">${tagLabel}</span>
+                        <span class="text-white bg-[#2C2A27] px-1.5 py-0.5 rounded text-[8px] tracking-widest font-black animate-pulse">JUST ADDED</span>
                     </div>
-                    <h4 class="text-xs font-bold text-white uppercase tracking-wide">${postTitle}</h4>
-                    <p class="text-[10px] text-gray-500">Identity Name: <span class="text-gray-400">${isStudent ? '[STUDENT] ' : ''}${profileName}</span></p>
+                    <h4 class="text-sm font-bold text-[#2C2A27] tracking-tight">${postTitle}</h4>
+                    <p class="text-[11px] text-[#706A60]">Listed by: <span class="text-[#2C2A27] font-medium">${isStudent ? '[STUDENT] ' : ''}${profileName}</span></p>
                 </div>
-                <span class="text-[10px] font-bold text-white bg-neutral-900 border border-neutral-700 px-2 py-0.5 rounded-xs">${actionTextTag}</span>
+                <span class="text-xs font-bold text-[#2C2A27] bg-[#F7F4EF] border border-[#DCD7CD] px-2.5 py-1 rounded">${actionTextTag}</span>
             `;
 
-            // Prepend new element card vector inside operational log board feed
+            // Prepend new element card inside feed list
             logContainer.insertBefore(dynamicNewNode, logContainer.firstChild);
 
-            // Execute delayed system visual cooling settling adjustments actions
+            // Smoothly ease the highlight border off back to basic layout styling after insertion
             setTimeout(() => {
-                dynamicNewNode.classList.remove('translate-y-1', 'border-white');
-                dynamicNewNode.classList.add('border-[#111]');
-            }, 800);
+                dynamicNewNode.classList.remove('translate-y-1', 'border-[#2C2A27]', 'border-2');
+                dynamicNewNode.classList.add('border-[#DCD7CD]', 'border');
+            }, 1000);
 
             // Flush inputs controls components cleanly
             document.getElementById('input-matrix-title').value = "";
