@@ -3,556 +3,411 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SANAD COMMUNITY HUB</title>
-    <!-- Tailwind CSS Engine -->
+    <title>SANAD COMMUNITY SUPPORT HUB GRID</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome Developer Core -->
+    <!-- FontAwesome Core Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Leaflet Open-Source Mapping CSS Stylesheet Core -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Leaflet Mapping Stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        /* Smooth Continuous Infinite Scrolling Ticker Animation */
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+        /* Exact background texture matching image_db9cb9.jpg */
+        body {
+            background-color: #EFEBE3;
+            background-image: 
+                linear-gradient(to right, #E6DFD3 1px, transparent 1px),
+                linear-gradient(to bottom, #E6DFD3 1px, transparent 1px);
+            background-size: 24px 24px;
         }
-        .animate-marquee {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 22s linear infinite;
+        /* Custom map container adjustments */
+        .leaflet-container {
+            font-family: inherit;
+            background-color: #CADCE5 !important;
         }
-        /* Custom scrollbars matching the warm cream layout palette */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #F7F4EF; }
-        ::-webkit-scrollbar-thumb { background: #DCD7CD; border-radius: 3px; }
-        
+        /* Hide scrollbars for crisp aesthetic dashboards */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* Thematic adjustments to embed Leaflet map neatly into the sand layout */
-        .leaflet-container {
-            background: #EFEBE4 !important;
-            font-family: inherit;
-        }
-        .leaflet-popup-content-wrapper {
-            background-color: #2C2A27 !important;
-            color: #F7F4EF !important;
-            border-radius: 2px !important;
-            font-size: 11px !important;
-        }
-        .leaflet-popup-tip {
-            background-color: #2C2A27 !important;
-        }
     </style>
 </head>
-<body class="bg-[#F7F4EF] text-[#2C2A27] font-sans antialiased overflow-x-hidden h-screen flex flex-col select-none">
+<body class="text-[#2C2A27] min-h-screen flex flex-col antialiased selection:bg-[#B3A99B]">
 
-    <!-- ========================================================= -->
-    <!-- 1. FULL CANVAS HOMEPAGE OVERLAY (THE ORIGINAL LOGO DROP) -->
-    <!-- ========================================================= -->
-    <div id="homepage-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F7F4EF] transition-all duration-700 ease-in-out p-6 border-[12px] border-[#EFEBE4]">
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,#EFEBE4_1px,transparent_1px),linear-gradient(to_bottom,#EFEBE4_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-60 pointer-events-none"></div>
-        
-        <!-- The Original High-Impact Block Brand Logo Look -->
-        <div id="center-brand-logo" class="text-center transform transition-all duration-700 ease-in-out scale-100 translate-y-0">
-            <div class="bg-[#2C2A27] text-[#F7F4EF] px-12 py-6 rounded-none shadow-[4px_4px_0px_#8C857B] inline-block">
-                <h1 class="text-7xl md:text-9xl font-black tracking-tighter leading-none">SANAD</h1>
-                <div class="text-xl md:text-2xl text-[#A69F94] font-bold tracking-[0.4em] mt-2 mr-[-0.4em]">سند</div>
+    <!-- ========================================== -->
+    <!-- 1. TOP HEADER CONSOLE BANNER               -->
+    <!-- ========================================== -->
+    <header class="w-full max-w-7xl mx-auto px-4 pt-6 pb-2">
+        <div class="bg-[#F6F2EB] border border-[#DDD6C9] rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xs">
+            <div class="flex items-center gap-3">
+                <div class="bg-[#2C2A27] text-[#EFEBE3] px-3 py-1.5 rounded-lg text-xs font-black tracking-wider flex items-center gap-1">
+                    <span>SANAD</span>
+                    <span class="text-[9px] text-[#B3A99B] font-normal">سند</span>
+                </div>
+                <div class="bg-[#EAE3D5] text-[#766E61] px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center gap-1.5">
+                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse"></span>
+                    GRID TELEMETRY: <span id="telemetry-coords">24.4686° N, 54.3646° E</span>
+                </div>
             </div>
+            <button onclick="toggleRegisterModal()" class="px-5 py-2 bg-[#A97C50] text-white rounded-full font-bold text-xs uppercase tracking-wider shadow-sm hover:bg-[#8F653E] transition-colors cursor-pointer">
+                <i class="fa-solid fa-tower-broadcast mr-1"></i> Broadcast Node
+            </button>
         </div>
 
-        <!-- Community App Dashboard Explainer -->
-        <div id="homepage-explainer" class="max-w-xl text-center mt-12 space-y-6 transition-all duration-500 relative z-10">
-            <h2 class="text-xl md:text-2xl font-bold text-[#4A4640] tracking-wide">Your Neighborhood, Connected. 🤝</h2>
-            <p class="text-xs md:text-sm text-[#706A60] leading-relaxed tracking-wide font-medium">
-                Discover small businesses, share skills, trade local products, and stay updated with everything happening right outside your front door. Sanad brings the spirit of the community into a simple, interactive digital map environment.
-            </p>
-            <div class="pt-2">
-                <button onclick="executeSystemScrollTransition()" class="px-8 py-4 bg-[#2C2A27] text-[#F7F4EF] font-bold text-xs uppercase tracking-widest hover:bg-[#4A4640] transition-all duration-300 rounded shadow-[3px_3px_0px_#DCD7CD] cursor-pointer">
-                    Enter Dashboard Map 📍
+        <div class="mt-6 mb-2">
+            <h1 class="text-4xl md:text-5xl font-black tracking-tight text-[#2C2A27] uppercase">
+                Community <span class="text-[#A97C50]">Support Hub Grid</span>
+            </h1>
+        </div>
+
+        <!-- System Pipeline Sub-Header Status Ribbon -->
+        <div class="border-y border-[#DDD6C9] py-2 flex items-center gap-6 overflow-x-auto text-[10px] font-bold tracking-widest text-[#857B6D] uppercase no-scrollbar">
+            <span class="flex items-center gap-1 whitespace-nowrap"><span class="w-1 h-1 bg-green-600 rounded-full"></span> NODES ONLINE</span>
+            <span>•</span>
+            <span class="whitespace-nowrap">INTEGRATED FROM MOBILE CONSOLE MATRIX PLUGINS</span>
+            <span>•</span>
+            <span class="whitespace-nowrap">REAL-TIME SPATIAL POSITIONING VERIFIED</span>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- 2. FILTER MANAGEMENT BAR                   -->
+    <!-- ========================================== -->
+    <nav class="w-full max-w-7xl mx-auto px-4 mt-4 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+            <button onclick="filterNodes('all')" class="filter-btn px-4 py-1.5 bg-[#A97C50] text-white font-bold rounded-full text-xs uppercase tracking-wide cursor-pointer transition-all">
+                📦 All Features
+            </button>
+            <button onclick="filterNodes('Community Project')" class="filter-btn px-4 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-xs uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
+                📁 Community Projects
+            </button>
+            <button onclick="filterNodes('Volunteer Match')" class="filter-btn px-4 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-xs uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
+                🤝 Volunteer Matching
+            </button>
+            <button onclick="filterNodes('Skills Hub')" class="filter-btn px-4 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-xs uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
+                💡 Skills Hub
+            </button>
+        </div>
+        
+        <div class="bg-[#EAE3D5] p-1 rounded-full border border-[#DDD6C9] flex items-center gap-1 text-[9px] font-black uppercase tracking-wider text-[#5C5449]">
+            <span class="px-2 py-0.5 bg-[#F6F2EB] rounded-full shadow-xs">ALL NODES</span>
+            <span class="px-2">SERVICES</span>
+            <span class="px-2">PRODUCTS</span>
+        </div>
+    </nav>
+
+    <!-- ========================================== -->
+    <!-- 3. SPLIT MAIN INTERFACE ENVIRONMENT        -->
+    <!-- ========================================== -->
+    <main class="w-full max-w-7xl mx-auto px-4 my-6 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- LEFT COLUMN: STREAM NODES GALLERY -->
+        <div id="nodes-gallery-stream" class="col-span-1 lg:col-span-7 space-y-4 max-h-[70vh] overflow-y-auto pr-2 no-scrollbar">
+            
+            <!-- Node Card 1 -->
+            <div onclick="panToMapNode(24.4712, 54.3262, 'Al Bateen Community Garden Initiative')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Community Project">
+                <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
+                    <span class="bg-[#FFEFE2] text-[#A97C50] border border-[#F5DBC4] px-2 py-0.5 rounded-md">📁 Community Project</span>
+                    <span class="text-[#857B6D]"><i class="fa-solid fa-location-arrow mr-1 text-[#A97C50]"></i> 3.8 km away</span>
+                </div>
+                <h3 class="text-base font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50] transition-colors">Al Bateen Community Garden Initiative</h3>
+                <p class="text-xs text-[#5C5449] mt-1.5 leading-relaxed font-medium">
+                    Collaborative urban planting project constructing traditional green spaces. Seeking material drop-offs and architectural shade setup layouts.
+                </p>
+                <div class="mt-4 flex items-center justify-between border-t border-[#EAE3D5] pt-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[9px] font-black uppercase text-[#5C5449]">ZA</div>
+                        <span class="text-[11px] font-bold text-[#2C2A27]">Zayed Heritage Group</span>
+                    </div>
+                    <span class="bg-[#EAE3D5] text-[#2C2A27] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">Target: 500kg Soil</span>
+                </div>
+            </div>
+
+            <!-- Node Card 2 -->
+            <div onclick="panToMapNode(24.4644, 54.3820, 'Senior Companion Care & Story Archiving')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Volunteer Match">
+                <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
+                    <span class="bg-[#E2F5E9] text-[#2E7D32] border border-[#C8E6C9] px-2 py-0.5 rounded-md">🤝 Volunteer Match</span>
+                    <span class="text-[#857B6D]"><i class="fa-solid fa-location-arrow mr-1 text-[#A97C50]"></i> 0.8 km away</span>
+                </div>
+                <h3 class="text-base font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50] transition-colors">Senior Companion Care & Story Archiving</h3>
+                <p class="text-xs text-[#5C5449] mt-1.5 leading-relaxed font-medium">
+                    Volunteers needed to visit elders, coordinate weekly social majlis discussions, and document oral local histories.
+                </p>
+                <div class="mt-4 flex items-center justify-between border-t border-[#EAE3D5] pt-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[9px] font-black uppercase text-[#5C5449]">EM</div>
+                        <span class="text-[11px] font-bold text-[#2C2A27]">Emirati Youth Red Crescent</span>
+                    </div>
+                    <span class="bg-[#EAE3D5] text-[#2C2A27] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">4 Slots Open</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: INTERACTIVE GEOGRAPHIC RADIAL MAP -->
+        <div class="col-span-1 lg:col-span-5 bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-2xl shadow-xs flex flex-col h-[520px]">
+            <div class="text-[10px] font-black uppercase tracking-wider text-[#5C5449] mb-3 flex items-center gap-1.5">
+                <i class="fa-solid fa-circle-nodes text-[#A97C50]"></i> Radial Grid Position Coordination Graph
+            </div>
+            
+            <!-- Map Viewport -->
+            <div id="leaflet-map-canvas" class="w-full flex-1 rounded-xl border border-[#DDD6C9] overflow-hidden shadow-inner"></div>
+        </div>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- 4. MODAL: MAP POSITION BROADCAST FORM       -->
+    <!-- ========================================== -->
+    <div id="broadcast-modal" class="fixed inset-0 z-50 bg-[#2C2A27]/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+        <div class="bg-[#F6F2EB] border border-[#DDD6C9] max-w-lg w-full rounded-2xl shadow-xl p-6 relative flex flex-col max-h-[90vh]">
+            
+            <button onclick="toggleRegisterModal()" class="absolute top-4 right-4 text-[#857B6D] hover:text-[#2C2A27] text-sm cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="mb-4">
+                <h2 class="text-lg font-black uppercase tracking-tight text-[#2C2A27]">Deploy New Hub Node</h2>
+                <p class="text-[11px] text-[#857B6D] font-medium">Click the map canvas below to set your exact physical deployment coordinates.</p>
+            </div>
+
+            <!-- Mini Map Selection Component inside Form -->
+            <div class="w-full h-44 bg-[#EAE3D5] border border-[#DDD6C9] rounded-xl overflow-hidden relative mb-4">
+                <div id="modal-map-picker" class="w-full h-full"></div>
+            </div>
+
+            <form onsubmit="submitFormNode(event)" class="space-y-3 text-xs overflow-y-auto pr-1">
+                <!-- Lat/Lng Outputs (Dynamically loaded by clicking) -->
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Target Latitude</label>
+                        <input type="text" id="form-lat" required readonly placeholder="Click map above" class="w-full bg-[#EAE3D5] border border-[#DDD6C9] px-3 py-2 rounded-lg font-mono text-[#2C2A27] focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Target Longitude</label>
+                        <input type="text" id="form-lng" required readonly placeholder="Click map above" class="w-full bg-[#EAE3D5] border border-[#DDD6C9] px-3 py-2 rounded-lg font-mono text-[#2C2A27] focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Node/Initiative Title</label>
+                    <input type="text" id="form-title" required placeholder="e.g., Al Danah Community Tool Share" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] focus:outline-none focus:border-[#A97C50]">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Classification Matrix</label>
+                        <select id="form-category" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg font-bold text-[#5C5449] focus:outline-none focus:border-[#A97C50]">
+                            <option value="Community Project">📁 Community Project</option>
+                            <option value="Volunteer Match">🤝 Volunteer Match</option>
+                            <option value="Skills Hub">💡 Skills Hub</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Broadcast Target / Capacity</label>
+                        <input type="text" id="form-target" required placeholder="e.g., 5 Helpers Needed" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] focus:outline-none focus:border-[#A97C50]">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Operational Summary Log</label>
+                    <textarea id="form-desc" rows="2" required placeholder="Describe the community support setup..." class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] focus:outline-none focus:border-[#A97C50]"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-2.5 bg-[#2C2A27] hover:bg-[#433F3A] text-white font-bold uppercase tracking-widest text-[11px] rounded-xl transition-all cursor-pointer">
+                    Publish Network Node 🚀
                 </button>
-            </div>
+            </form>
         </div>
     </div>
 
-
-    <!-- ========================================================= -->
-    <!-- 2. MAIN HUB INTERFACE NAV DESIGNATION -->
-    <!-- ========================================================= -->
-    <div id="main-matrix-app" class="h-screen flex flex-col opacity-0 transition-opacity duration-700 overflow-hidden">
-        
-        <!-- Top Navigation Bar Header Console -->
-        <header class="bg-[#EFEBE4] border-b border-[#DCD7CD] px-6 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-4 z-40 shrink-0">
-            <div class="flex items-center space-x-3">
-                <!-- Mini Logo Box Replicated on Entry -->
-                <div id="nav-target-brand" class="bg-[#2C2A27] text-[#F7F4EF] px-3 py-1 text-sm font-black tracking-tight transform scale-75 opacity-0 transition-all duration-500">
-                    SANAD <span class="text-[9px] text-[#A69F94] ml-1 font-normal">سند</span>
-                </div>
-            </div>
-
-            <!-- Real-Time User Landmark Search Bar Entry -->
-            <div class="relative w-full max-w-md">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#8C857B] text-xs">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <input type="text" id="landmark-search-input" onkeyup="processLandmarkFilterQuery()" placeholder="Search local landmarks (e.g. Liwa Center)..." class="w-full bg-[#F7F4EF] border border-[#DCD7CD] pl-9 pr-4 py-2 text-xs tracking-wide text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#8C857B] rounded transition-colors">
-                
-                <!-- Landmark Dropdown Suggestions Options Vector -->
-                <div id="landmark-dropdown-box" class="hidden absolute left-0 right-0 mt-1 bg-[#F7F4EF] border border-[#DCD7CD] rounded shadow-xl z-50 overflow-hidden">
-                    <button onclick="injectResolvedAddress('Liwa Center', 24.4892, 54.3598, 'Hamdan Street, Abu Dhabi')" class="w-full text-left px-4 py-3 text-[11px] hover:bg-[#EFEBE4] border-b border-[#EFEBE4] flex flex-col gap-0.5 tracking-wide text-[#2C2A27]">
-                        <span class="font-bold text-[#2C2A27]"><i class="fa-solid fa-location-dot text-amber-800 mr-1"></i> Liwa Center</span>
-                        <span class="text-[#706A60] text-[10px]">Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi, UAE</span>
-                    </button>
-                    <button onclick="injectResolvedAddress('Dunes International School', 24.3644, 54.5126, 'Shabiya 12, Mussafah, Abu Dhabi')" class="w-full text-left px-4 py-3 text-[11px] hover:bg-[#EFEBE4] border-b border-[#EFEBE4] flex flex-col gap-0.5 tracking-wide text-[#2C2A27]">
-                        <span class="font-bold text-[#2C2A27]"><i class="fa-solid fa-location-dot text-amber-800 mr-1"></i> Dunes International School</span>
-                        <span class="text-[#706A60] text-[10px]">Shabiya 12, Mussafah, Abu Dhabi, UAE</span>
-                    </button>
-                    <button onclick="injectResolvedAddress('Corniche Beach Promenade', 24.4712, 54.3262, 'Al Bateen, Abu Dhabi')" class="w-full text-left px-4 py-3 text-[11px] hover:bg-[#EFEBE4] flex flex-col gap-0.5 tracking-wide text-[#2C2A27]">
-                        <span class="font-bold text-[#2C2A27]"><i class="fa-solid fa-location-dot text-amber-800 mr-1"></i> Corniche Beach Promenade</span>
-                        <span class="text-[#706A60] text-[10px]">Al Bateen, Abu Dhabi, UAE</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Current Real Resolved Physical Local Text Address Label -->
-            <div class="text-right max-w-xs truncate">
-                <span id="resolved-address-display-label" class="text-[11px] font-bold text-[#4A4640] border border-[#DCD7CD] bg-[#F7F4EF] px-3 py-1.5 rounded tracking-wide">
-                    📍 Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi
-                </span>
-            </div>
-        </header>
-
-        <!-- ========================================================= -->
-        <!-- 3. INFINITE SIDE-TO-SIDE MARQUEE NEWS TICKER -->
-        <!-- ========================================================= -->
-        <div class="bg-[#2C2A27] py-2 overflow-hidden flex items-center shadow-md shrink-0">
-            <div class="animate-marquee text-[11px] tracking-wider text-[#EFEBE4] font-semibold">
-                🔥 Aysha just listed Fresh Homemade Sourdough under Products! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                🛠️ Ahmed added Tailoring & Alterations to Services! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                📢 Neighborhood Notice: Community Park Cleanup happening this Saturday at 4 PM! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                🎓 Student Discount available for Math Tutoring under Skills Hub!
-            </div>
-        </div>
-
-        <!-- ========================================================= -->
-        <!-- 4. THREE-COLUMN DASHBOARD GRID LAYOUT ENVIRONMENT -->
-        <!-- ========================================================= -->
-        <div class="flex-1 grid grid-cols-1 xl:grid-cols-12 overflow-hidden bg-[#F7F4EF]">
-            
-            <!-- COLUMN 1 (xl:col-span-4): THE WORKSPACE CONTROL ENTRY FORM PANEL -->
-            <div class="xl:col-span-4 border-r border-[#DCD7CD] p-5 overflow-y-auto flex flex-col space-y-4 bg-[#F7F4EF]">
-                <div class="bg-[#EFEBE4] border border-[#DCD7CD] p-5 rounded shadow-xs">
-                    <div class="text-xs uppercase font-black tracking-widest text-[#2C2A27] mb-4 border-b border-[#DCD7CD] pb-2 flex items-center gap-1.5">
-                        <i class="fa-solid fa-square-plus text-[#8C857B]"></i> REGISTER NOW!
-                    </div>
-
-                    <form id="matrix-upload-form" onsubmit="processMatrixPostExecution(event)" class="space-y-4 text-xs">
-                        <!-- Demographics Selection Toggles -->
-                        <div class="grid grid-cols-2 gap-2 bg-[#F7F4EF] p-2.5 border border-[#DCD7CD] rounded">
-                            <label class="inline-flex items-center cursor-pointer select-none">
-                                <input type="checkbox" id="user-student-flag" class="rounded border-[#DCD7CD] bg-[#F7F4EF] text-[#2C2A27] focus:ring-0 w-3.5 h-3.5 mr-2">
-                                <span class="uppercase font-bold text-[#4A4640] text-[9px] tracking-wider">I am a Student</span>
-                            </label>
-                            <label class="inline-flex items-center cursor-pointer select-none">
-                                <input type="checkbox" id="user-resident-flag" checked class="rounded border-[#DCD7CD] bg-[#F7F4EF] text-[#2C2A27] focus:ring-0 w-3.5 h-3.5 mr-2">
-                                <span class="uppercase font-bold text-[#4A4640] text-[9px] tracking-wider">I am a Resident</span>
-                            </label>
-                        </div>
-
-                        <!-- Identity Input -->
-                        <div>
-                            <label class="block text-[10px] font-bold text-[#706A60] uppercase tracking-widest mb-1">Your Name / Group Name</label>
-                            <input type="text" id="input-entity-identity" required placeholder="e.g., Aysha Bakery or Fatima Al Mansoori" class="w-full bg-[#F7F4EF] border border-[#DCD7CD] px-3 py-2 text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#8C857B] rounded uppercase tracking-wide">
-                        </div>
-
-                        <!-- Selection Matrices -->
-                        <div class="grid grid-cols-1 gap-3">
-                            <div>
-                                <label class="block text-[10px] font-bold text-[#706A60] uppercase tracking-widest mb-1">Listing Category</label>
-                                <select id="input-matrix-type" onchange="evaluateSubcategoryDropdownDisplay()" class="w-full bg-[#F7F4EF] border border-[#DCD7CD] px-3 py-2 text-[#2C2A27] focus:outline-none focus:border-[#8C857B] rounded font-semibold uppercase">
-                                    <option value="Notice">📢 Notice</option>
-                                    <option value="Service">🛠️ Service</option>
-                                    <option value="Product">📦 Product</option>
-                                    <option value="Skill">💡 Skill Hub</option>
-                                </select>
-                            </div>
-
-                            <!-- Dynamic Sub-Category Dropdown Wrapper -->
-                            <div id="service-subgroup-wrapper" class="hidden opacity-0 transition-all duration-300 space-y-3">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-[#2C2A27] uppercase tracking-widest mb-1">Service Classification 👇</label>
-                                    <select id="input-sub-service-type" onchange="evaluateOtherClassificationInput()" class="w-full bg-[#F7F4EF] border border-[#8C857B] px-3 py-2 text-[#2C2A27] focus:outline-none focus:border-[#4A4640] rounded font-medium">
-                                        <option value="Cleaner / Domestic Help">🧹 Cleaner / Domestic Help</option>
-                                        <option value="Stitching & Tailoring">🪡 Stitching & Tailoring</option>
-                                        <option value="Baking & Home Cooking">🎂 Baking & Home Cooking</option>
-                                        <option value="Small-scale Repairs / Handyman">🔧 Small-scale Repairs / Handyman</option>
-                                        <option value="Delivery & Moving Assist">📦 Delivery & Moving Assist</option>
-                                        <option value="Car Washing">🚗 Car Washing</option>
-                                        <option value="Other">✨ Other (Specify Below)</option>
-                                    </select>
-                                </div>
-                                
-                                <!-- Dynamic "Other" Custom Specification Text Input -->
-                                <div id="custom-service-field-wrapper" class="hidden opacity-0 transition-all duration-300">
-                                    <label class="block text-[10px] font-bold text-[#8C857B] uppercase tracking-widest mb-1">Specify Custom Service Type</label>
-                                    <input type="text" id="input-custom-service-type" placeholder="e.g., Pet Grooming, AC Repair" class="w-full bg-[#F7F4EF] border-2 border-dashed border-[#8C857B] px-3 py-2 text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#2C2A27] rounded tracking-wide">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Description Title -->
-                        <div>
-                            <label class="block text-[10px] font-bold text-[#706A60] uppercase tracking-widest mb-1">Title Description</label>
-                            <input type="text" id="input-matrix-title" required placeholder="What are you offering or sharing?" class="w-full bg-[#F7F4EF] border border-[#DCD7CD] px-3 py-2 text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#8C857B] rounded tracking-wide">
-                        </div>
-
-                        <!-- Upload Activation Button -->
-                        <button type="submit" class="w-full py-3 bg-[#2C2A27] hover:bg-[#4A4640] text-[#F7F4EF] font-bold uppercase tracking-widest rounded text-xs transition-colors cursor-pointer shadow-sm">
-                            Confirm and Upload Details
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- COLUMN 2 (xl:col-span-4): THE LIVE FEED LOG CARDS GALLERY -->
-            <div class="xl:col-span-4 border-r border-[#DCD7CD] p-5 overflow-y-auto flex flex-col space-y-4 bg-[#EFEBE4]">
-                
-                <!-- Filter Tabs Infrastructure Layer -->
-                <div class="flex items-center overflow-x-auto gap-1 pb-2 border-b border-[#DCD7CD] no-scrollbar shrink-0">
-                    <button onclick="applyBoardContentFiltering('All')" class="board-tab active text-[9px] font-black uppercase tracking-wider px-2.5 py-2 border border-[#2C2A27] bg-[#2C2A27] text-[#F7F4EF] rounded transition-all cursor-pointer whitespace-nowrap">🌐 All</button>
-                    <button onclick="applyBoardContentFiltering('Service')" class="board-tab text-[9px] font-black uppercase tracking-wider px-2.5 py-2 border border-[#DCD7CD] bg-[#F7F4EF] text-[#706A60] hover:text-[#2C2A27] rounded transition-all cursor-pointer whitespace-nowrap">🛠️ Services</button>
-                    <button onclick="applyBoardContentFiltering('Product')" class="board-tab text-[9px] font-black uppercase tracking-wider px-2.5 py-2 border border-[#DCD7CD] bg-[#F7F4EF] text-[#706A60] hover:text-[#2C2A27] rounded transition-all cursor-pointer whitespace-nowrap">📦 Products</button>
-                    <button onclick="applyBoardContentFiltering('Skill')" class="board-tab text-[9px] font-black uppercase tracking-wider px-2.5 py-2 border border-[#DCD7CD] bg-[#F7F4EF] text-[#706A60] hover:text-[#2C2A27] rounded transition-all cursor-pointer whitespace-nowrap">💡 Skills</button>
-                    <button onclick="applyBoardContentFiltering('Notice')" class="board-tab text-[9px] font-black uppercase tracking-wider px-2.5 py-2 border border-[#DCD7CD] bg-[#F7F4EF] text-[#706A60] hover:text-[#2C2A27] rounded transition-all cursor-pointer whitespace-nowrap">📢 Notices</button>
-                </div>
-
-                <!-- Feed Output Scroll Vector Container -->
-                <div id="board-matrix-feed-log" class="flex-1 space-y-3 overflow-y-auto pr-1">
-                    
-                    <!-- Card 1 (Liwa Center Anchor Point) -->
-                    <div onclick="navigateToGeographicMarker(24.4892, 54.3598, 'Fresh Homemade Sourdough Loaves by Aysha')" class="feed-log-node cursor-pointer bg-[#F7F4EF] border border-[#DCD7CD] p-4 flex items-start justify-between transition-all hover:border-[#2C2A27] hover:shadow-md rounded-sm" data-type="Product">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-1.5 text-[9px] uppercase tracking-wider font-bold">
-                                <span class="text-amber-800 border border-amber-300 bg-amber-100 px-1.5 py-0.5 rounded">📦 Product</span>
-                                <span class="text-[#706A60]"><i class="fa-solid fa-location-dot"></i> Liwa Center</span>
-                            </div>
-                            <h4 class="text-xs font-bold text-[#2C2A27] tracking-tight uppercase">Fresh Homemade Sourdough Loaves</h4>
-                            <p class="text-[10px] text-[#706A60]">Listed by: <span class="text-[#2C2A27] font-semibold">Aysha S. (Resident)</span></p>
-                        </div>
-                        <span class="text-[10px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 border border-amber-200 rounded">25 AED</span>
-                    </div>
-
-                    <!-- Card 2 (Hamdan St Hub Alignment) -->
-                    <div onclick="navigateToGeographicMarker(24.4892, 54.3598, 'Stitching & Alterations by Ahmed')" class="feed-log-node cursor-pointer bg-[#F7F4EF] border border-[#DCD7CD] p-4 flex items-start justify-between transition-all hover:border-[#2C2A27] hover:shadow-md rounded-sm" data-type="Service">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-1.5 text-[9px] uppercase tracking-wider font-bold">
-                                <span class="text-indigo-800 border border-indigo-300 bg-indigo-100 px-1.5 py-0.5 rounded">🛠️ Service (Tailoring)</span>
-                                <span class="text-[#706A60]"><i class="fa-solid fa-location-dot"></i> Hamdan St Hub</span>
-                            </div>
-                            <h4 class="text-xs font-bold text-[#2C2A27] tracking-tight uppercase">Stitching, Alterations & Custom Adjustments</h4>
-                            <p class="text-[10px] text-[#706A60]">Listed by: <span class="text-[#2C2A27] font-semibold">Ahmed Tailors (Business)</span></p>
-                        </div>
-                        <span class="text-[9px] font-bold text-indigo-900 bg-indigo-100 border border-indigo-200 px-2 py-0.5 rounded">ACTIVE</span>
-                    </div>
-
-                    <!-- Card 3 (Dunes International School Alignment) -->
-                    <div onclick="navigateToGeographicMarker(24.3644, 54.5126, 'Math Exam Tutoring Support by Rahul Manoj')" class="feed-log-node cursor-pointer bg-[#F7F4EF] border border-[#DCD7CD] p-4 flex items-start justify-between transition-all hover:border-[#2C2A27] hover:shadow-md rounded-sm" data-type="Skill">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-1.5 text-[9px] uppercase tracking-wider font-bold">
-                                <span class="text-emerald-800 border border-emerald-300 bg-emerald-100 px-1.5 py-0.5 rounded">💡 Skill Hub</span>
-                                <span class="text-[#706A60]"><i class="fa-solid fa-location-dot"></i> Dunes International School</span>
-                            </div>
-                            <h4 class="text-xs font-bold text-[#2C2A27] tracking-tight uppercase">Grade 10 Mathematics Exam Tutoring Support</h4>
-                            <p class="text-[10px] text-[#706A60]">Listed by: <span class="text-emerald-700 font-bold">[STUDENT]</span> <span class="text-[#2C2A27] font-semibold">Rahul Manoj</span></p>
-                        </div>
-                        <span class="text-[10px] font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 border border-emerald-200 rounded">40 AED/H</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- COLUMN 3 (xl:col-span-4): THE FULL DEDICATED INTERACTIVE LIVE MAP VIEW CANVAS -->
-            <div class="xl:col-span-4 bg-[#EFEBE4] relative flex flex-col justify-between overflow-hidden">
-                <!-- Leaflet Interactive Map Viewport Layer Container -->
-                <div id="interactive-leaflet-viewport" class="w-full h-full absolute inset-0 z-10"></div>
-                
-                <!-- Lower Map System Activity Index Bar Display Overlay -->
-                <div class="absolute bottom-4 left-4 right-4 z-20 bg-[#F7F4EF] border border-[#DCD7CD] p-3 space-y-1.5 rounded shadow-xl">
-                    <div class="flex justify-between items-center text-[10px] font-black uppercase tracking-wider text-[#4A4640]">
-                        <span><i class="fa-solid fa-earth-americas animate-spin text-[#8C857B] mr-1"></i> Density Index:</span>
-                        <span class="text-[#2C2A27]">92% ACTIVE IN UAE</span>
-                    </div>
-                    <div class="w-full bg-[#EFEBE4] h-1 rounded-none overflow-hidden">
-                        <div class="bg-[#2C2A27] h-full" style="width: 92%"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- ========================================================= -->
-    <!-- 5. APPLICATIVE ENGINE OPERATIONS SCRIPT MATRIX -->
-    <!-- ========================================================= -->
-    <!-- Leaflet JS Engine Vector Binary Source -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- ========================================== -->
+    <!-- 5. JAVASCRIPT SYSTEM PIPELINE              -->
+    <!-- ========================================== -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Global Map State Architecture Pointers
-        let mapInstanceGlobal = null;
-        let activeAnchorCoordinates = { lat: 24.4892, lng: 54.3598, label: 'Liwa Center', desc: 'Hamdan Street' };
-        let activeMapMarkersArray = [];
+        let mainMap = null;
+        let modalMap = null;
+        let pickerMarker = null;
+        let activeMarkers = [];
 
-        // Initialize Map Grid Canvas Infrastructure Setup
-        function buildMapCanvasMatrix() {
-            // Target the Abu Dhabi city center zone natively
-            mapInstanceGlobal = L.map('interactive-leaflet-viewport', {
-                center: [24.45, 54.40],
+        // App Boot-up Sequence
+        window.addEventListener('DOMContentLoaded', () => {
+            initMainAppMap();
+        });
+
+        // Initialize Main Map Container Setup
+        function initMainAppMap() {
+            // Center tracking over Abu Dhabi Central Coordinates
+            mainMap = L.map('leaflet-map-canvas', {
+                center: [24.4686, 54.3646],
                 zoom: 12,
-                zoomControl: false
+                zoomControl: true
             });
 
-            // Feed high contrast street mapping data tiles
+            // Voyager high-contrast maps tile integration matching aesthetic layout
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-                subdomains: 'abcd',
-                maxZoom: 20
-            }).addTo(mapInstanceGlobal);
+                maxZoom: 19
+            }).addTo(mainMap);
 
-            // Seed initial map anchor points markers tracking base layout items
-            dropGeographicMapPinMarker(24.4892, 54.3598, '<b>Liwa Center Hub</b><br>Fresh Sourdough / Tailoring Listings');
-            dropGeographicMapPinMarker(24.3644, 54.5126, '<b>Dunes International School</b><br>Rahul Manoj Math Skill Hub');
+            // Populate Default Starting Markers
+            seedMapNode(24.4712, 54.3262, "Al Bateen Community Garden Initiative");
+            seedMapNode(24.4644, 54.3820, "Senior Companion Care & Story Archiving");
         }
 
-        // Drop operational marker flags onto structural map coordinate nodes
-        function dropGeographicMapPinMarker(lat, lng, popupContentHTML) {
-            const pinMarker = L.marker([lat, lng]).addTo(mapInstanceGlobal)
-                .bindPopup(popupContentHTML);
-            activeMapMarkersArray.push({ lat, lng, marker: pinMarker });
-        }
-
-        // Navigate directly to coordinate locations when a user triggers a card interaction
-        function navigateToGeographicMarker(lat, lng, contentLabel) {
-            if (!mapInstanceGlobal) return;
+        // Drop Pin Anchors to Array Mapping System
+        function seedMapNode(lat, lng, title) {
+            let markerInstance = L.marker([lat, lng]).addTo(mainMap)
+                .bindPopup(`<div class='p-1 font-sans'><b class='text-xs uppercase text-[#2C2A27]'>${title}</b></div>`);
             
-            // Execute elegant translation vector transition
-            mapInstanceGlobal.flyTo([lat, lng], 15, {
+            activeMarkers.push({ lat, lng, marker: markerInstance });
+        }
+
+        // Navigate View to Coordinates when clicking Stream Cards
+        function panToMapNode(lat, lng, title) {
+            if (!mainMap) return;
+
+            // Beautiful micro pan-to vectors
+            mainMap.flyTo([lat, lng], 14, {
                 animate: true,
-                duration: 1.8
+                duration: 1.5
             });
 
-            // Find matching marker reference to instantly open popover data frames
+            // Update Header Telemetry readout dynamically
+            document.getElementById('telemetry-coords').innerText = `${lat.toFixed(4)}° N, ${lng.toFixed(4)}° E`;
+
+            // Open popup instantly upon landing
             setTimeout(() => {
-                activeMapMarkersArray.forEach(node => {
-                    if (Math.abs(node.lat - lat) < 0.001 && Math.abs(node.lng - lng) < 0.001) {
+                activeMarkers.forEach(node => {
+                    if (Math.abs(node.lat - lat) < 0.0001 && Math.abs(node.lng - lng) < 0.0001) {
                         node.marker.openPopup();
                     }
                 });
-            }, 1900);
+            }, 1600);
         }
 
-        // Execute Dynamic Layout Screen Scrolling Transitions Pipeline
-        function executeSystemScrollTransition() {
-            const overlay = document.getElementById('homepage-overlay');
-            const mainApp = document.getElementById('main-matrix-app');
-            const explainer = document.getElementById('homepage-explainer');
-            const brandLogo = document.getElementById('center-brand-logo');
-            const targetBrand = document.getElementById('nav-target-brand');
+        // Handle Active Modal Map Interactive Form Initializer
+        function toggleRegisterModal() {
+            const modal = document.getElementById('broadcast-modal');
+            modal.classList.toggle('hidden');
 
-            // Fire structural scrolling animations transformations
-            explainer.classList.add('opacity-0', 'scale-95');
-            brandLogo.classList.remove('scale-100', 'translate-y-0');
-            brandLogo.classList.add('scale-50', '-translate-y-[400px]', 'opacity-0');
-            overlay.classList.add('opacity-0', 'pointer-events-none');
-
-            setTimeout(() => {
-                overlay.classList.add('hidden');
-                mainApp.classList.remove('opacity-0');
-                mainApp.classList.add('opacity-100');
-                
-                // Wake up and build map instance framework cleanly after layout engine settles
-                buildMapCanvasMatrix();
-
-                // Pop the header mini-logo box indicator view
+            if (!modal.classList.contains('hidden') && !modalMap) {
+                // Short timeout gives layout a frame to calculate bounds smoothly
                 setTimeout(() => {
-                    targetBrand.classList.remove('scale-75', 'opacity-0');
-                    targetBrand.classList.add('scale-100', 'opacity-100');
-                }, 150);
-            }, 600);
-        }
+                    modalMap = L.map('modal-map-picker', {
+                        center: [24.4686, 54.3646],
+                        zoom: 11,
+                        zoomControl: false
+                    });
 
-        // Evaluate and Trigger Display States For Service Subcategories Select
-        function evaluateSubcategoryDropdownDisplay() {
-            const currentType = document.getElementById('input-matrix-type').value;
-            const subDropdown = document.getElementById('service-subgroup-wrapper');
-            
-            if (currentType === 'Service') {
-                subDropdown.classList.remove('hidden');
-                setTimeout(() => {
-                    subDropdown.classList.remove('opacity-0');
-                    subDropdown.classList.add('opacity-100');
-                }, 10);
-            } else {
-                subDropdown.classList.add('opacity-0');
-                subDropdown.classList.remove('opacity-100');
-                setTimeout(() => {
-                    subDropdown.classList.add('hidden');
-                }, 300);
-                document.getElementById('custom-service-field-wrapper').classList.add('hidden', 'opacity-0');
-                document.getElementById('input-sub-service-type').value = "Cleaner / Domestic Help";
+                    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
+
+                    // Hooking Core Feature: Register Position Click Detection Tracker
+                    modalMap.on('click', function(e) {
+                        const clickedLat = e.latlng.lat;
+                        const clickedLng = e.latlng.lng;
+
+                        // Fill Form Values Automatically
+                        document.getElementById('form-lat').value = clickedLat.toFixed(6);
+                        document.getElementById('form-lng').value = clickedLng.toFixed(6);
+
+                        // If map pointer exists, move it. Otherwise create a new red indicator pin
+                        if (pickerMarker) {
+                            pickerMarker.setLatLng(e.latlng);
+                        } else {
+                            pickerMarker = L.marker(e.latlng, {
+                                draggable: true
+                            }).addTo(modalMap);
+                            
+                            // Track if user drags the pin instead of tapping
+                            pickerMarker.on('dragend', function(event) {
+                                let changedPos = pickerMarker.getLatLng();
+                                document.getElementById('form-lat').value = changedPos.lat.toFixed(6);
+                                document.getElementById('form-lng').value = changedPos.lng.toFixed(6);
+                            });
+                        }
+                    });
+                }, 200);
             }
         }
 
-        // Evaluate "Other" Option Selection to Reveal Custom Input Text Field
-        function evaluateOtherClassificationInput() {
-            const subTypeSelection = document.getElementById('input-sub-service-type').value;
-            const customFieldWrapper = document.getElementById('custom-service-field-wrapper');
-            const customInput = document.getElementById('input-custom-service-type');
+        // Stream Feed Filter Log Engine
+        function filterNodes(category) {
+            const cards = document.querySelectorAll('.node-card');
+            const buttons = document.querySelectorAll('.filter-btn');
 
-            if (subTypeSelection === 'Other') {
-                customFieldWrapper.classList.remove('hidden');
-                customInput.setAttribute('required', 'true');
-                setTimeout(() => {
-                    customFieldWrapper.classList.remove('opacity-0');
-                    customFieldWrapper.classList.add('opacity-100');
-                }, 10);
-            } else {
-                customFieldWrapper.classList.add('opacity-0');
-                customFieldWrapper.classList.remove('opacity-100');
-                customInput.removeAttribute('required');
-                setTimeout(() => {
-                    customFieldWrapper.classList.add('hidden');
-                }, 300);
-            }
-        }
-
-        // Filter Dropdown Suggestions Options Matching User Text Input Arrays
-        function processLandmarkFilterQuery() {
-            const textQuery = document.getElementById('landmark-search-input').value.toLowerCase();
-            const dropdownBox = document.getElementById('landmark-dropdown-box');
-            
-            if (textQuery.length > 1) {
-                dropdownBox.classList.remove('hidden');
-            } else {
-                dropdownBox.classList.add('hidden');
-            }
-        }
-
-        // Change App Address Variables Anchors Across Selection Elements
-        function injectResolvedAddress(targetLabel, lat, lng, shortDesc) {
-            document.getElementById('resolved-address-display-label').innerText = `📍 ${targetLabel}, ${shortDesc}`;
-            document.getElementById('landmark-search-input').value = targetLabel;
-            document.getElementById('landmark-dropdown-box').classList.add('hidden');
-            
-            // Keep the selected positional markers loaded globally
-            activeAnchorCoordinates = { lat, lng, label: targetLabel, desc: shortDesc };
-
-            // Instantly fly to search query selection points
-            mapInstanceGlobal.flyTo([lat, lng], 14, { animate: true });
-        }
-
-        // Apply Tab Style Revisions and Log Content Grid Item Array Filters
-        function applyBoardContentFiltering(filterType) {
-            const cards = document.querySelectorAll('.feed-log-node');
-            const tabs = document.querySelectorAll('.board-tab');
-
-            tabs.forEach(tab => {
-                tab.classList.remove('border-[#2C2A27]', 'bg-[#2C2A27]', 'text-[#F7F4EF]');
-                tab.classList.add('border-[#DCD7CD]', 'bg-[#F7F4EF]', 'text-[#706A60]');
+            buttons.forEach(btn => {
+                btn.classList.replace('bg-[#A97C50]', 'bg-[#F6F2EB]');
+                btn.classList.replace('text-white', 'text-[#5C5449]');
             });
 
             if (event && event.target) {
-                event.target.classList.remove('border-[#DCD7CD]', 'bg-[#F7F4EF]', 'text-[#706A60]');
-                event.target.classList.add('border-[#2C2A27]', 'bg-[#2C2A27]', 'text-[#F7F4EF]');
+                event.target.classList.replace('bg-[#F6F2EB]', 'bg-[#A97C50]');
+                event.target.classList.replace('text-[#5C5449]', 'text-white');
             }
 
             cards.forEach(card => {
-                if (filterType === 'All' || card.getAttribute('data-type') === filterType) {
-                    card.style.display = 'flex';
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
                 }
             });
         }
 
-        // Commit and Process User Post Upload Requests Actions
-        function processMatrixPostExecution(event) {
-            event.preventDefault();
+        // Process Node Registration Array Submissions Execution
+        function submitFormNode(e) {
+            e.preventDefault();
 
-            const isStudent = document.getElementById('user-student-flag').checked;
-            const profileName = document.getElementById('input-entity-identity').value;
-            const mainType = document.getElementById('input-matrix-type').value;
-            const selectedServiceSub = document.getElementById('input-sub-service-type').value;
-            const customServiceSub = document.getElementById('input-custom-service-type').value;
-            const postTitle = document.getElementById('input-matrix-title').value;
+            const latVal = parseFloat(document.getElementById('form-lat').value);
+            const lngVal = parseFloat(document.getElementById('form-lng').value);
+            const titleVal = document.getElementById('form-title').value;
+            const catVal = document.getElementById('form-category').value;
+            const targetVal = document.getElementById('form-target').value;
+            const descVal = document.getElementById('form-desc').value;
 
-            let tagLabel = mainType;
-            let visualStyles = "text-indigo-800 border-indigo-300 bg-indigo-100";
-            let actionTextTag = "ACTIVE";
+            // Compute styling presets
+            let matchBadgeStyle = "bg-[#FFEFE2] text-[#A97C50] border border-[#F5DBC4]";
+            if (catVal === 'Volunteer Match') matchBadgeStyle = "bg-[#E2F5E9] text-[#2E7D32] border border-[#C8E6C9]";
+            if (catVal === 'Skills Hub') matchBadgeStyle = "bg-[#EAE8F9] text-[#512DA8] border border-[#D1C4E9]";
 
-            if (mainType === 'Product') {
-                visualStyles = "text-amber-800 border-amber-300 bg-amber-100";
-                actionTextTag = "MARKET";
-            } else if (mainType === 'Skill') {
-                visualStyles = "text-emerald-800 border-emerald-300 bg-emerald-100";
-                actionTextTag = "SKILL HUB";
-            } else if (mainType === 'Notice') {
-                visualStyles = "text-rose-800 border-rose-300 bg-rose-100";
-                actionTextTag = "NOTICE";
-            } else if (mainType === 'Service') {
-                if (selectedServiceSub === 'Other' && customServiceSub.trim() !== "") {
-                    tagLabel = `Service (${customServiceSub.trim()})`;
-                } else {
-                    tagLabel = `Service (${selectedServiceSub.split(' ')[0]})`;
-                }
-            }
+            // Inject node structure into Stream View List
+            const gallery = document.getElementById('nodes-gallery-stream');
+            const nodeElement = document.createElement('div');
+            nodeElement.className = "node-card bg-[#F6F2EB] border-2 border-[#A97C50] p-5 rounded-2xl shadow-md transition-all cursor-pointer group";
+            nodeElement.setAttribute('data-category', catVal);
+            nodeElement.onclick = () => panToMapNode(latVal, lngVal, titleVal);
 
-            // Capture positional snapshot arrays from our active coordinate object pointers
-            const latTarget = activeAnchorCoordinates.lat;
-            const lngTarget = activeAnchorCoordinates.lng;
-            const locName = activeAnchorCoordinates.label;
-
-            // Build dynamic insertion container card node with programmatic onclick tracker
-            const logContainer = document.getElementById('board-matrix-feed-log');
-            const dynamicNewNode = document.createElement('div');
-            dynamicNewNode.className = "feed-log-node cursor-pointer bg-[#F7F4EF] border-2 border-[#2C2A27] p-4 flex items-start justify-between transition-all transform translate-y-1 rounded-sm shadow-md";
-            dynamicNewNode.setAttribute('data-type', mainType);
-            
-            // Set dynamic click redirection values explicitly matching snapshot locations
-            dynamicNewNode.onclick = function() {
-                navigateToGeographicMarker(latTarget, lngTarget, postTitle);
-            };
-
-            dynamicNewNode.innerHTML = `
-                <div class="space-y-1">
-                    <div class="flex items-center gap-1.5 text-[9px] uppercase tracking-wider font-bold">
-                        <span class="${visualStyles} px-1.5 py-0.5 rounded">${tagLabel}</span>
-                        <span class="text-[#706A60]"><i class="fa-solid fa-location-dot"></i> ${locName}</span>
-                    </div>
-                    <h4 class="text-xs font-bold text-[#2C2A27] uppercase tracking-wide">${postTitle}</h4>
-                    <p class="text-[10px] text-[#706A60]">Listed by: <span class="text-[#2C2A27] font-semibold">${isStudent ? '[STUDENT] ' : ''}${profileName}</span></p>
+            nodeElement.innerHTML = `
+                <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
+                    <span class="${matchBadgeStyle}">${catVal}</span>
+                    <span class="text-[#857B6D]"><i class="fa-solid fa-location-arrow mr-1 text-[#A97C50]"></i> Just Added</span>
                 </div>
-                <span class="text-[10px] font-bold text-[#2C2A27] bg-[#EFEBE4] border border-[#DCD7CD] px-2 py-0.5 rounded">${actionTextTag}</span>
+                <h3 class="text-base font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50]">${titleVal}</h3>
+                <p class="text-xs text-[#5C5449] mt-1.5 leading-relaxed font-medium">${descVal}</p>
+                <div class="mt-4 flex items-center justify-between border-t border-[#EAE3D5] pt-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[9px] font-black uppercase text-[#5C5449]">NEW</div>
+                        <span class="text-[11px] font-bold text-[#2C2A27]">Local Network Node</span>
+                    </div>
+                    <span class="bg-[#EAE3D5] text-[#2C2A27] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">${targetVal}</span>
+                </div>
             `;
 
-            logContainer.insertBefore(dynamicNewNode, logContainer.firstChild);
+            gallery.insertBefore(nodeElement, gallery.firstChild);
 
-            // Drop a matching live pin indicator on our leaflet workspace map automatically
-            dropGeographicMapPinMarker(latTarget, lngTarget, `<b>${postTitle}</b><br>By ${profileName} (${locName})`);
+            // Seed onto primary live map grid canvas instantly
+            seedMapNode(latVal, lngVal, titleVal);
+            toggleRegisterModal();
+            panToMapNode(latVal, lngVal, titleVal);
 
-            // Pan view map instantly to celebrate the listing injection points
-            navigateToGeographicMarker(latTarget, lngTarget, postTitle);
-
-            setTimeout(() => {
-                dynamicNewNode.classList.remove('translate-y-1', 'border-[#2C2A27]', 'border-2');
-                dynamicNewNode.classList.add('border-[#DCD7CD]', 'border');
-            }, 1000);
-
-            // Flush inputs fields cleanly
-            document.getElementById('input-matrix-title').value = "";
-            document.getElementById('input-entity-identity').value = "";
-            document.getElementById('input-custom-service-type').value = "";
-            document.getElementById('custom-service-field-wrapper').classList.add('hidden', 'opacity-0');
-            document.getElementById('input-sub-service-type').value = "Cleaner / Domestic Help";
+            // Clear inputs
+            document.getElementById('form-title').value = "";
+            document.getElementById('form-target').value = "";
+            document.getElementById('form-desc').value = "";
+            document.getElementById('form-lat').value = "";
+            document.getElementById('form-lng').value = "";
+            if (pickerMarker) {
+                modalMap.removeLayer(pickerMarker);
+                pickerMarker = null;
+            }
         }
     </script>
 </body>
