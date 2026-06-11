@@ -3,499 +3,582 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SANAD COMMUNITY HUB</title>
-    <!-- Tailwind CSS Engine -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome Developer Core -->
+    <title>Sanad — Community Exchange Grid</title>
+   
+    <!-- STABLE TAILWIND PLAYBACK ENGINE -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+    <!-- LEAFLET GEOSPATIAL MAPS FRAMEWORK STACK -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+
     <style>
-        /* Smooth Continuous Infinite Scrolling Ticker Animation */
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&family=Space+Grotesk:wght=500;700&display=swap');
+       
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #dfd5c6;
+            background-image:
+                linear-gradient(rgba(130, 90, 50, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(130, 90, 50, 0.04) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+
+        .hero-font { font-family: 'Space Grotesk', sans-serif; }
+        .cyber-header {
+            background: rgba(240, 232, 218, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(150, 110, 80, 0.2);
+        }
+        .leaflet-container {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            border-radius: 24px;
+        }
         @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
         }
-        .animate-marquee {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 22s linear infinite;
-        }
-        /* Custom scrollbars matching the warm cream layout palette */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #F7F4EF; }
-        ::-webkit-scrollbar-thumb { background: #DCD7CD; border-radius: 3px; }
-        
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .animate-marquee { animation: marquee 35s linear infinite; }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-[#F7F4EF] text-[#2C2A27] font-sans antialiased overflow-x-hidden h-screen flex flex-col select-none">
+<body class="text-stone-900 antialiased min-h-screen flex flex-col p-4 md:p-6 gap-6">
 
-    <!-- ========================================================= -->
-    <!-- 1. FULL CANVAS HOMEPAGE OVERLAY (THE ORIGINAL LOGO DROP) -->
-    <!-- ========================================================= -->
-    <div id="homepage-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#F7F4EF] transition-all duration-700 ease-in-out p-6 border-[12px] border-[#EFEBE4]">
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,#EFEBE4_1px,transparent_1px),linear-gradient(to_bottom,#EFEBE4_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-60 pointer-events-none"></div>
-        
-        <!-- The Original High-Impact Block Brand Logo Look -->
-        <div id="center-brand-logo" class="text-center transform transition-all duration-700 ease-in-out scale-100 translate-y-0">
-            <div class="bg-[#2C2A27] text-[#F7F4EF] px-12 py-6 rounded-none shadow-[4px_4px_0px_#8C857B] inline-block">
-                <h1 class="text-7xl md:text-9xl font-black tracking-tighter leading-none">SANAD</h1>
-                <div class="text-xl md:text-2xl text-[#A69F94] font-bold tracking-[0.4em] mt-2 mr-[-0.4em]">سند</div>
+
+    <!-- SYSTEM LOGO HEADER -->
+    <header class="w-full max-w-7xl mx-auto h-20 cyber-header rounded-3xl px-6 flex items-center justify-between sticky top-4 z-50 shadow-sm">
+        <div class="flex items-center gap-4">
+            <div class="h-12 w-12 bg-transparent rounded-xl flex items-center justify-center overflow-hidden shrink-0">
+                <img src="/static/Logo.png" alt="Sanad Logo" class="object-contain h-full w-full" onerror="this.src='https://placehold.co/100x100?text=SANAD'">
+            </div>
+            <div class="flex flex-col">
+                <span class="text-base font-black tracking-widest text-stone-950 leading-none">SANAD</span>
+                <span class="text-[11px] text-[#a06a42] font-bold tracking-widest uppercase mt-0.5">سند</span>
             </div>
         </div>
 
-        <!-- Community App Dashboard Explainer -->
-        <div id="homepage-explainer" class="max-w-xl text-center mt-12 space-y-6 transition-all duration-500 relative z-10">
-            <h2 class="text-xl md:text-2xl font-bold text-[#4A4640] tracking-wide">Your Neighborhood, Connected. 🤝</h2>
-            <p class="text-xs md:text-sm text-[#706A60] leading-relaxed tracking-wide font-medium">
-                Discover small businesses, share skills, trade local products, and stay updated with everything happening right outside your front door. Sanad brings the spirit of the community into a simple, interactive digital map environment.
-            </p>
-            <div class="pt-2">
-                <button onclick="executeSystemScrollTransition()" class="px-8 py-4 bg-[#2C2A27] text-[#F7F4EF] font-bold text-xs uppercase tracking-widest hover:bg-[#4A4640] transition-all duration-300 rounded shadow-[3px_3px_0px_#DCD7CD] cursor-pointer">
-                    Enter Dashboard Map 📍
+
+        <div class="hidden md:flex items-center gap-2.5 text-[10px] font-black text-stone-700 tracking-widest uppercase bg-stone-900/5 px-4 py-2 rounded-xl border border-stone-900/5">
+            <i id="gps-icon" class="fa-solid fa-location-crosshairs text-amber-700 animate-pulse"></i>
+            <span>GRID TELEMETRY: <span id="user-coords" class="text-stone-950">24.4880° N, 54.3614° E</span></span>
+        </div>
+
+
+        <div>
+            <button onclick="toggleModal(true)" class="bg-[#ac7347] hover:bg-[#945f37] text-white text-xs font-extrabold px-6 py-3 rounded-xl transition-all duration-200 transform active:scale-95 cursor-pointer tracking-wider shadow-sm">
+                BROADCAST NODE
+            </button>
+        </div>
+    </header>
+
+
+    <!-- LAYOUT BANNER TITLES -->
+    <section class="w-full max-w-7xl mx-auto pt-2 flex flex-col gap-1">
+        <h1 class="hero-font text-4xl md:text-5xl font-black text-stone-950 tracking-tighter uppercase select-none">
+            COMMUNITY <span class="bg-gradient-to-r from-[#8a5329] to-[#ac7347] bg-clip-text text-transparent">SUPPORT HUB GRID</span>
+        </h1>
+    </section>
+
+
+    <!-- LIVE STORAGE MARQUEE ALERT -->
+    <section class="w-screen -mx-4 md:-mx-6 bg-[#d4c8b6] border-y border-stone-400/40 py-2.5 overflow-hidden flex select-none">
+        <div class="flex whitespace-nowrap gap-12 text-[10px] font-black tracking-widest uppercase items-center animate-marquee shrink-0 text-stone-800">
+            <span>ECOSYSTEM NODES ONLINE</span> <span class="text-[#ac7347]">•</span>
+            <span>INTEGRATED FROM MOBILE CONSOLE MATRIX PLUGINS</span> <span class="text-[#ac7347]">•</span>
+            <span>REAL-TIME SPATIAL POSITIONING VERIFIED</span> <span class="text-[#ac7347]">•</span>
+        </div>
+    </section>
+
+
+    <!-- ECOSYSTEM NAVIGATION AND MAIN LISTING INTERFACES -->
+    <main class="w-full max-w-7xl mx-auto flex flex-col gap-4 flex-1">
+       
+        <!-- MODERNIZED TAB ENGINE ALIGNED TO THE MOBILE USER EXPERIENCE INTERFACE -->
+        <div class="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-stone-400/30 pb-3">
+            <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
+                <button id="tab-all" onclick="filterCategory('all')" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group"></i> ALL FEATURES
+                </button>
+                <button id="tab-projects" onclick="filterCategory('projects')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open"></i> COMMUNITY PROJECTS
+                </button>
+                <button id="tab-volunteer" onclick="filterCategory('volunteer')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-hands-holding-child"></i> VOLUNTEER MATCHING
+                </button>
+                <button id="tab-skills" onclick="filterCategory('skills')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-lightbulb"></i> SKILLS HUB
+                </button>
+                <button id="tab-news" onclick="filterCategory('news')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-newspaper"></i> NEIGHBOURHOOD NEWS
+                </button>
+            </div>
+
+
+            <div class="flex items-center bg-[#d4c8b6]/60 p-1 rounded-xl border border-stone-400/30 self-start xl:self-auto">
+                <button id="type-all" onclick="filterType('all')" class="px-3 py-1.5 bg-[#c8bca8] text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">ALL NODES</button>
+                <button id="type-service" onclick="filterType('Service')" class="px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">SERVICES</button>
+                <button id="type-product" onclick="filterType('Product')" class="px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">PRODUCTS</button>
+            </div>
+        </div>
+
+
+        <!-- SPLIT RENDER COLUMNS VIEWS -->
+        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+           
+            <!-- LISTINGS GRID VIEW TARGET CONTAINER -->
+            <div class="lg:col-span-7 w-full min-h-[400px]">
+                <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+                    <!-- Cards mount reactively here via runtime engine loops -->
+                </div>
+            </div>
+
+
+            <!-- COMPASS TRACKER MAP WRAPPER -->
+            <div class="lg:col-span-5 lg:sticky lg:top-28 w-full">
+                <div class="bg-[#ebdcc7]/40 border border-stone-400/30 p-3 rounded-3xl">
+                    <div class="flex items-center gap-2 text-[10px] font-black tracking-wider text-stone-800 uppercase mb-2">
+                        <i class="fa-solid fa-map-location-dot text-[#ac7347]"></i>
+                        <span>RADIAL GRID POSITION COORDINATION GRAPH</span>
+                    </div>
+                    <div id="main-map" class="w-full aspect-square rounded-2xl border border-stone-400/40 shadow-sm z-10"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+
+    <!-- NODE FORM SUBMISSION POPUP -->
+    <div id="form-modal" class="fixed inset-0 bg-stone-950/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200">
+        <div class="bg-[#ebdcc7] border border-stone-400/40 rounded-3xl shadow-xl w-full max-w-md p-5 transform scale-95 transition-all duration-200 text-stone-900 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-stone-400/40 pb-3 mb-3">
+                <div class="flex items-center gap-2">
+                    <div class="w-1.5 h-3.5 bg-[#ac7347] rounded-sm"></div>
+                    <h3 class="font-extrabold text-xs text-stone-950 uppercase tracking-widest">Broadcast Asset Node</h3>
+                </div>
+                <button onclick="toggleModal(false)" class="text-stone-600 hover:text-stone-950 cursor-pointer p-1">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+
+
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Household / Anchor Entity Group</label>
+                    <input type="text" id="form-provider" placeholder="e.g. Al Suwaidi Family" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950">
+                </div>
+               
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Ecosystem Channel</label>
+                        <select id="form-category" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none">
+                            <option value="projects">Community Projects</option>
+                            <option value="volunteer">Volunteer Matching</option>
+                            <option value="skills">Skills Hub</option>
+                            <option value="news">Neighbourhood News</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Node Type</label>
+                        <select id="form-type" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none">
+                            <option value="Service">Service</option>
+                            <option value="Product">Product</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Broadcast Title</label>
+                    <input type="text" id="form-title" placeholder="e.g. Traditional Majlis Coordination Support" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950">
+                </div>
+
+
+                <div>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Context Description</label>
+                    <textarea id="form-description" rows="2" placeholder="Specify project requirements, updates, or timelines explicitly..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950 resize-none"></textarea>
+                </div>
+
+
+                <!-- ADDRESS SEARCH INPUT AND PINPOINT SYSTEM LAYER -->
+                <div>
+                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Search Location / Address</label>
+                    <div class="relative flex items-center">
+                        <input type="text" id="map-search-bar" placeholder="Type area (e.g., Al Bateen, Corniche, Yas Island)..." class="w-full text-xs pl-3 pr-20 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950">
+                        <button type="button" onclick="searchLocationNode()" class="absolute right-1.5 bg-[#ac7347] hover:bg-[#945f37] text-white font-bold text-[9px] uppercase px-3 py-1.5 rounded-lg transition-all cursor-pointer">
+                            FIND
+                        </button>
+                    </div>
+                </div>
+
+
+                <div>
+                    <label class="block text-[9px] font-black text-stone-500 tracking-widest uppercase mb-1">Verify Location Marker Location</label>
+                    <div id="modal-map" class="w-full h-28 rounded-xl border border-stone-400/50 shadow-sm"></div>
+                    <input type="hidden" id="form-lat" value="24.4539">
+                    <input type="hidden" id="form-lng" value="54.3773">
+                </div>
+
+
+                <div class="flex items-center justify-between gap-3 border border-stone-400/40 p-2 rounded-xl bg-[#f6ede0]">
+                    <div>
+                        <label class="block text-[9px] font-black text-stone-500 tracking-widest uppercase mb-0.5">Value / Metrics Metric</label>
+                        <input type="text" id="form-price" placeholder="e.g. 5 Open Slots / AED 100" class="w-full bg-transparent text-xs text-stone-950 font-black focus:outline-none">
+                    </div>
+                    <div class="flex items-center gap-1.5 border-l border-stone-400/40 pl-3 h-8 shrink-0">
+                        <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-[#ac7347] rounded bg-white">
+                        <label for="form-student" class="text-[9px] font-black text-stone-600 tracking-widest uppercase cursor-pointer">Student?</label>
+                    </div>
+                </div>
+
+
+                <button onclick="submitNewListing()" class="w-full bg-[#ac7347] hover:bg-[#945f37] text-white text-xs font-black uppercase tracking-widest py-3 rounded-xl transition-all cursor-pointer shadow-sm">
+                    CONFORM AND BROADCAST TO SYSTEM MATRIX
                 </button>
             </div>
         </div>
     </div>
 
 
-    <!-- ========================================================= -->
-    <!-- 2. MAIN HUB INTERFACE NAV DESIGNATION -->
-    <!-- ========================================================= -->
-    <div id="main-matrix-app" class="h-screen flex flex-col opacity-0 transition-opacity duration-700 overflow-hidden">
-        
-        <!-- Top Navigation Bar Header Console -->
-        <header class="bg-[#EFEBE4] border-b border-[#DCD7CD] px-6 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-4 z-40 shrink-0">
-            <div class="flex items-center space-x-3">
-                <!-- Mini Logo Box Replicated on Entry -->
-                <div id="nav-target-brand" class="bg-[#2C2A27] text-[#F7F4EF] px-3 py-1 text-sm font-black tracking-tight transform scale-75 opacity-0 transition-all duration-500">
-                    SANAD <span class="text-[9px] text-[#A69F94] ml-1 font-normal">سند</span>
-                </div>
-            </div>
-
-            <!-- Real-Time User Landmark Search Bar Entry -->
-            <div class="relative w-full max-w-md">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#8C857B] text-xs">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <input type="text" id="landmark-search-input" onkeyup="processLandmarkFilterQuery()" placeholder="Search local landmarks (e.g. Liwa Center)..." class="w-full bg-[#F7F4EF] border border-[#DCD7CD] pl-9 pr-4 py-2 text-xs tracking-wide text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#8C857B] rounded transition-colors">
-                
-                <!-- Landmark Dropdown Suggestions -->
-                <div id="landmark-dropdown-box" class="hidden absolute left-0 right-0 mt-1 bg-[#F7F4EF] border border-[#DCD7CD] rounded shadow-xl z-50 overflow-hidden">
-                    <button onclick="injectResolvedAddress('Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi')" class="w-full text-left px-4 py-3 text-[11px] hover:bg-[#EFEBE4] border-b border-[#EFEBE4] flex flex-col gap-0.5 tracking-wide text-[#2C2A27]">
-                        <span class="font-bold text-[#2C2A27]"><i class="fa-solid fa-location-dot text-amber-800 mr-1"></i> Liwa Center</span>
-                        <span class="text-[#706A60] text-[10px]">Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi, UAE</span>
-                    </button>
-                    <button onclick="injectResolvedAddress('Dunes International School, Mussafah, Abu Dhabi')" class="w-full text-left px-4 py-3 text-[11px] hover:bg-[#EFEBE4] border-b border-[#EFEBE4] flex flex-col gap-0.5 tracking-wide text-[#2C2A27]">
-                        <span class="font-bold text-[#2C2A27]"><i class="fa-solid fa-location-dot text-amber-800 mr-1"></i> Dunes International School</span>
-                        <span class="text-[#706A60] text-[10px]">Shabiya 12, Mussafah, Abu Dhabi, UAE</span>
-                    </button>
-                    <button onclick="injectResolvedAddress('Corniche Beach Promenade, Al Bateen, Abu Dhabi')" class="w-full text-left px-4 py-3 text-[11px] hover:bg-[#EFEBE4] flex flex-col gap-0.5 tracking-wide text-[#2C2A27]">
-                        <span class="font-bold text-[#2C2A27]"><i class="fa-solid fa-location-dot text-amber-800 mr-1"></i> Corniche Beach Promenade</span>
-                        <span class="text-[#706A60] text-[10px]">Al Bateen, Abu Dhabi, UAE</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Current Real Resolved Physical Local Text Address Label -->
-            <div class="text-right max-w-xs truncate">
-                <span id="resolved-address-display-label" class="text-[11px] font-bold text-[#4A4640] border border-[#DCD7CD] bg-[#F7F4EF] px-3 py-1.5 rounded tracking-wide">
-                    📍 Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi
-                </span>
-            </div>
-        </header>
-
-        <!-- ========================================================= -->
-        <!-- 3. INFINITE SIDE-TO-SIDE MARQUEE NEWS TICKER -->
-        <!-- ========================================================= -->
-        <div class="bg-[#2C2A27] py-2 overflow-hidden flex items-center shadow-md shrink-0">
-            <div class="animate-marquee text-[11px] tracking-wider text-[#EFEBE4] font-semibold">
-                🔥 Aysha just listed Fresh Homemade Sourdough under Products! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                🛠️ Ahmed added Tailoring & Alterations to Services! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                📢 Neighborhood Notice: Community Park Cleanup happening this Saturday at 4 PM! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                🎓 Student Discount available for Math Tutoring under Skills Hub!
-            </div>
-        </div>
-
-        <!-- ========================================================= -->
-        <!-- 4. THREE-COLUMN DASHBOARD GRID LAYOUT ENVIRONMENT -->
-        <!-- ========================================================= -->
-        <div class="flex-1 grid grid-cols-1 xl:grid-cols-12 overflow-hidden bg-[#F7F4EF]">
-            
-            <!-- COLUMN 1 (xl:col-span-4): THE WORKSPACE CONTROL ENTRY FORM PANEL -->
-            <div class="xl:col-span-4 border-r border-[#DCD7CD] p-5 overflow-y-auto flex flex-col space-y-4 bg-[#F7F4EF]">
-                <div class="bg-[#EFEBE4] border border-[#DCD7CD] p-5 rounded shadow-xs">
-                    <div class="text-xs uppercase font-black tracking-widest text-[#2C2A27] mb-4 border-b border-[#DCD7CD] pb-2 flex items-center gap-1.5">
-                        <i class="fa-solid fa-square-plus text-[#8C857B]"></i> REGISTER NOW!
-                    </div>
-
-                    <form id="matrix-upload-form" onsubmit="processMatrixPostExecution(event)" class="space-y-4 text-xs">
-                        <!-- Demographics Selection Toggles -->
-                        <div class="grid grid-cols-2 gap-2 bg-[#F7F4EF] p-2.5 border border-[#DCD7CD] rounded">
-                            <label class="inline-flex items-center cursor-pointer select-none">
-                                <input type="checkbox" id="user-student-flag" class="rounded border-[#DCD7CD] bg-[#F7F4EF] text-[#2C2A27] focus:ring-0 w-3.5 h-3.5 mr-2">
-                                <span class="uppercase font-bold text-[#4A4640] text-[9px] tracking-wider">I am a Student</span>
-                            </label>
-                            <label class="inline-flex items-center cursor-pointer select-none">
-                                <input type="checkbox" id="user-resident-flag" checked class="rounded border-[#DCD7CD] bg-[#F7F4EF] text-[#2C2A27] focus:ring-0 w-3.5 h-3.5 mr-2">
-                                <span class="uppercase font-bold text-[#4A4640] text-[9px] tracking-wider">I am a Resident</span>
-                            </label>
-                        </div>
-
-                        <!-- Identity Input -->
-                        <div>
-                            <label class="block text-[10px] font-bold text-[#706A60] uppercase tracking-widest mb-1">Your Name / Group Name</label>
-                            <input type="text" id="input-entity-identity" required placeholder="e.g., Aysha Bakery or Fatima Al Mansoori" class="w-full bg-[#F7F4EF] border border-[#DCD7CD] px-3 py-2 text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#8C857B] rounded uppercase tracking-wide">
-                        </div>
-
-                        <!-- Selection Matrices -->
-                        <div class="grid grid-cols-1 gap-3">
-                            <div>
-                                <label class="block text-[10px] font-bold text-[#706A60] uppercase tracking-widest mb-1">Listing Category</label>
-                                <select id="input-matrix-type" onchange="evaluateSubcategoryDropdownDisplay()" class="w-full bg-[#F7F4EF] border border-[#DCD7CD] px-3 py-2 text-[#2C2A27] focus:outline-none focus:border-[#8C857B] rounded font-semibold uppercase">
-                                    <option value="Notice">📢 Notice</option>
-                                    <option value="Service">🛠️ Service</option>
-                                    <option value="Product">📦 Product</option>
-                                    <option value="Skill">💡 Skill Hub</option>
-                                </select>
-                            </div>
-
-                            <!-- Dynamic Sub-Category Dropdown Wrapper -->
-                            <div id="service-subgroup-wrapper" class="hidden opacity-0 transition-all duration-300 space-y-3">
-                                <div>
-                                    <label class="block text-[10px] font-bold text-[#2C2A27] uppercase tracking-widest mb-1">Service Classification 👇</label>
-                                    <select id="input-sub-service-type" onchange="evaluateOtherClassificationInput()" class="w-full bg-[#F7F4EF] border border-[#8C857B] px-3 py-2 text-[#2C2A27] focus:outline-none focus:border-[#4A4640] rounded font-medium">
-                                        <option value="Cleaner / Domestic Help">🧹 Cleaner / Domestic Help</option>
-                                        <option value="Stitching & Tailoring">🪡 Stitching & Tailoring</option>
-                                        <option value="Baking & Home Cooking">🎂 Baking & Home Cooking</option>
-                                        <option value="Small-scale Repairs / Handyman">🔧 Small-scale Repairs / Handyman</option>
-                                        <option value="Delivery & Moving Assist">📦 Delivery & Moving Assist</option>
-                                        <option value="Car Washing">🚗 Car Washing</option>
-                                        <option value="Other">✨ Other (Specify Below)</option>
-                                    </select>
-                                </div>
-                                
-                                <!-- Dynamic "Other" Custom Specification Text Input -->
-                                <div id="custom-service-field-wrapper" class="hidden opacity-0 transition-all duration-300">
-                                    <label class="block text-[10px] font-bold text-[#8C857B] uppercase tracking-widest mb-1">Specify Custom Service Type</label>
-                                    <input type="text" id="input-custom-service-type" placeholder="e.g., Pet Grooming, AC Repair" class="w-full bg-[#F7F4EF] border-2 border-dashed border-[#8C857B] px-3 py-2 text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#2C2A27] rounded tracking-wide">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Description Title -->
-                        <div>
-                            <label class="block text-[10px] font-bold text-[#706A60] uppercase tracking-widest mb-1">Title Description</label>
-                            <input type="text" id="input-matrix-title" required placeholder="What are you offering or sharing?" class="w-full bg-[#F7F4EF] border border-[#DCD7CD] px-3 py-2 text-[#2C2A27] placeholder-[#A69F94] focus:outline-none focus:border-[#8C857B] rounded tracking-wide">
-                        </div>
-
-                        <!-- Upload Activation Button -->
-                        <button type="submit" class="w-full py-3 bg-[#2C2A27] hover:bg-[#4A4640] text-[#F7F4EF] font-bold uppercase tracking-widest rounded text-xs transition-colors cursor-pointer shadow-sm">
-                            Confirm and Upload Details
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- COLUMN 2 (xl:col-span-4): THE LIVE FEED LOG CARDS GALLERY -->
-            <div class="xl:col-span-4 border-r border-[#DCD7CD] p-5 overflow-y-auto flex flex-col space-y-4 bg-[#EFEBE4]">
-                
-                <!-- Filter Tabs Infrastructure Layer -->
-                <div class="flex items-center overflow-x-auto gap-1 pb-2 border-b border-[#DCD7CD] no-scrollbar shrink-0">
-                    <button onclick="applyBoardContentFiltering('All')" class="board-tab active text-[9px] font-black uppercase tracking-wider px-2.5 py-2 border border-[#2C2A27] bg-[#2C2A27] text-[#F7F4EF] rounded transition-all cursor-pointer whitespace-nowrap">🌐 All</button>
-                    <button onclick="applyBoardContentFiltering('Service')" class="board-tab text-[9px] font-black uppercase tracking-wider px-2.5 py-2 border border-[#DCD7CD] bg-[#F7F4EF] text-[#706A60] hover:text-[#2C2A27] rounded transition-all cursor-pointer whitespace-nowrap">🛠️ Services</button>
-                    <button onclick="applyBoardContentFiltering('Product')" class="board-tab text-[9px] font-black uppercase tracking-wider px-2.5 py-2 border border-[#DCD7CD] bg-[#F7F4EF] text-[#706A60] hover:text-[#2C2A27] rounded transition-all cursor-pointer whitespace-nowrap">📦 Products</button>
-                    <button onclick="applyBoardContentFiltering('Skill')" class="board-tab text-[9px] font-black uppercase tracking-wider px-2.5 py-2 border border-[#DCD7CD] bg-[#F7F4EF] text-[#706A60] hover:text-[#2C2A27] rounded transition-all cursor-pointer whitespace-nowrap">💡 Skills</button>
-                    <button onclick="applyBoardContentFiltering('Notice')" class="board-tab text-[9px] font-black uppercase tracking-wider px-2.5 py-2 border border-[#DCD7CD] bg-[#F7F4EF] text-[#706A60] hover:text-[#2C2A27] rounded transition-all cursor-pointer whitespace-nowrap">📢 Notices</button>
-                </div>
-
-                <!-- Feed Output Scroll Vector Container -->
-                <div id="board-matrix-feed-log" class="flex-1 space-y-3 overflow-y-auto pr-1">
-                    <!-- Card 1 -->
-                    <div class="feed-log-node bg-[#F7F4EF] border border-[#DCD7CD] p-4 flex items-start justify-between transition-all hover:border-[#8C857B] rounded-sm shadow-xs" data-type="Product">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-1.5 text-[9px] uppercase tracking-wider font-bold">
-                                <span class="text-amber-800 border border-amber-300 bg-amber-100 px-1.5 py-0.5 rounded">📦 Product</span>
-                                <span class="text-[#706A60]">Al Danah Sector</span>
-                            </div>
-                            <h4 class="text-xs font-bold text-[#2C2A27] tracking-tight uppercase">Fresh Homemade Sourdough Loaves</h4>
-                            <p class="text-[10px] text-[#706A60]">Listed by: <span class="text-[#2C2A27] font-semibold">Aysha S. (Resident)</span></p>
-                        </div>
-                        <span class="text-[10px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 border border-amber-200 rounded">25 AED</span>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="feed-log-node bg-[#F7F4EF] border border-[#DCD7CD] p-4 flex items-start justify-between transition-all hover:border-[#8C857B] rounded-sm shadow-xs" data-type="Service">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-1.5 text-[9px] uppercase tracking-wider font-bold">
-                                <span class="text-indigo-800 border border-indigo-300 bg-indigo-100 px-1.5 py-0.5 rounded">🛠️ Service (Tailoring)</span>
-                                <span class="text-[#706A60]">Hamdan St Hub</span>
-                            </div>
-                            <h4 class="text-xs font-bold text-[#2C2A27] tracking-tight uppercase">Stitching, Alterations & Custom Adjustments</h4>
-                            <p class="text-[10px] text-[#706A60]">Listed by: <span class="text-[#2C2A27] font-semibold">Ahmed Tailors (Business)</span></p>
-                        </div>
-                        <span class="text-[9px] font-bold text-indigo-900 bg-indigo-100 border border-indigo-200 px-2 py-0.5 rounded">ACTIVE</span>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="feed-log-node bg-[#F7F4EF] border border-[#DCD7CD] p-4 flex items-start justify-between transition-all hover:border-[#8C857B] rounded-sm shadow-xs" data-type="Skill">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-1.5 text-[9px] uppercase tracking-wider font-bold">
-                                <span class="text-emerald-800 border border-emerald-300 bg-emerald-100 px-1.5 py-0.5 rounded">💡 Skill Hub</span>
-                                <span class="text-[#706A60]">Liwa Ctr Complex</span>
-                            </div>
-                            <h4 class="text-xs font-bold text-[#2C2A27] tracking-tight uppercase">Grade 10 Mathematics Exam Tutoring Support</h4>
-                            <p class="text-[10px] text-[#706A60]">Listed by: <span class="text-emerald-700 font-bold">[STUDENT]</span> <span class="text-[#2C2A27] font-semibold">Rahul Manoj</span></p>
-                        </div>
-                        <span class="text-[10px] font-bold text-emerald-900 bg-emerald-100 px-2 py-0.5 border border-emerald-200 rounded">40 AED/H</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- COLUMN 3 (xl:col-span-4): THE FULL DEDICATED INTERACTIVE MAP VIEW -->
-            <div class="xl:col-span-4 bg-[#EFEBE4] relative p-4 flex flex-col justify-between overflow-hidden">
-                <!-- Canvas Soft Grid Layout Line Overlay Map Backing -->
-                <div class="absolute inset-0 bg-[linear-gradient(to_right,#DCD7CD_1px,transparent_1px),linear-gradient(to_bottom,#DCD7CD_1px,transparent_1px)] bg-[size:25px_25px] opacity-35"></div>
-                
-                <!-- Dynamic Map Floating Anchor Points and Pin Visuals -->
-                <div class="absolute inset-0 z-0">
-                    <!-- Liwa Center Absolute Anchor Tracking Node Pin Location -->
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center animate-pulse">
-                        <div class="bg-[#2C2A27] text-[#F7F4EF] p-3 shadow-xl relative group rounded-sm">
-                            <i class="fa-solid fa-location-crosshairs text-base"></i>
-                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#2C2A27] text-[9px] text-[#F7F4EF] px-2 py-1.5 whitespace-nowrap uppercase tracking-widest font-bold rounded shadow-md">
-                                LIVE ANCHOR: LIWA CENTER
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ambient Nodes Grid Pins -->
-                    <div class="absolute top-1/4 left-1/4 w-3 h-3 bg-[#8C857B] rounded-full"></div>
-                    <div class="absolute bottom-1/3 right-1/4 w-2.5 h-2.5 bg-[#A69F94] rounded-full"></div>
-                    
-                    <!-- Mapping Network Vectors Connecting Lines -->
-                    <svg class="absolute inset-0 w-full h-full opacity-40 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="25%" y1="25%" x2="50%" y2="50%" stroke="#2C2A27" stroke-width="1.5" stroke-dasharray="4"/>
-                        <line x1="50%" y1="50%" x2="75%" y2="66%" stroke="#2C2A27" stroke-width="1.5"/>
-                    </svg>
-                </div>
-
-                <!-- Upper Map Branding Banner Display -->
-                <div class="z-10 bg-[#F7F4EF] border border-[#DCD7CD] p-3 flex items-center justify-between text-[10px] font-black uppercase tracking-wider text-[#4A4640] rounded shadow-xs">
-                    <span><i class="fa-solid fa-earth-americas text-[#8C857B] mr-1.5"></i> NEIGHBORHOOD GEOLOCATION GRID</span>
-                    <span class="text-[8px] bg-[#EFEBE4] border border-[#DCD7CD] px-2 py-0.5 text-[#706A60] rounded-xs font-bold">ONLINE</span>
-                </div>
-
-                <!-- Lower Map System Activity Index Bar -->
-                <div class="z-10 bg-[#F7F4EF] border border-[#DCD7CD] p-4 space-y-2 rounded shadow-xs">
-                    <div class="flex justify-between items-center text-[10px] font-black uppercase tracking-wider text-[#4A4640]">
-                        <span>Local Activity Density:</span>
-                        <span class="text-[#2C2A27]">92% ACTIVE</span>
-                    </div>
-                    <div class="w-full bg-[#EFEBE4] h-1.5 rounded-none overflow-hidden">
-                        <div class="bg-[#2C2A27] h-full" style="width: 92%"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- ========================================================= -->
-    <!-- 5. APPLICATIVE ENGINE OPERATIONS SCRIPT MATRIX -->
-    <!-- ========================================================= -->
+    <!-- PERSISTENT REACTION SCRIPTS LAYER -->
     <script>
-        // Execute Dynamic Layout Screen Scrolling Transitions Pipeline
-        function executeSystemScrollTransition() {
-            const overlay = document.getElementById('homepage-overlay');
-            const mainApp = document.getElementById('main-matrix-app');
-            const explainer = document.getElementById('homepage-explainer');
-            const brandLogo = document.getElementById('center-brand-logo');
-            const targetBrand = document.getElementById('nav-target-brand');
+        let currentCategory = 'all';
+        let currentType = 'all';
+        let userLat = 24.4880;
+        let userLng = 54.3614;
 
-            // Fire structural scrolling animations transformations
-            explainer.classList.add('opacity-0', 'scale-95');
-            brandLogo.classList.remove('scale-100', 'translate-y-0');
-            brandLogo.classList.add('scale-50', '-translate-y-[400px]', 'opacity-0');
-            overlay.classList.add('opacity-0', 'pointer-events-none');
 
-            setTimeout(() => {
-                overlay.classList.add('hidden');
-                mainApp.classList.remove('opacity-0');
-                mainApp.classList.add('opacity-100');
-                
-                // Pop the header mini-logo box indicator view
-                setTimeout(() => {
-                    targetBrand.classList.remove('scale-75', 'opacity-0');
-                    targetBrand.classList.add('scale-100', 'opacity-100');
-                }, 150);
-            }, 600);
-        }
+        let mainMap, modalMap;
+        let mainMarkersGroup = L.layerGroup();
+        let userLocationMarker = null;
+        let modalSelectionMarker = null;
 
-        // Evaluate and Trigger Display States For Service Subcategories Select
-        function evaluateSubcategoryDropdownDisplay() {
-            const currentType = document.getElementById('input-matrix-type').value;
-            const subDropdown = document.getElementById('service-subgroup-wrapper');
-            
-            if (currentType === 'Service') {
-                subDropdown.classList.remove('hidden');
-                setTimeout(() => {
-                    subDropdown.classList.remove('opacity-0');
-                    subDropdown.classList.add('opacity-100');
-                }, 10);
-            } else {
-                subDropdown.classList.add('opacity-0');
-                subDropdown.classList.remove('opacity-100');
-                setTimeout(() => {
-                    subDropdown.classList.add('hidden');
-                }, 300);
-                // Clean custom field state as well if service is deselected
-                document.getElementById('custom-service-field-wrapper').classList.add('hidden', 'opacity-0');
-                document.getElementById('input-sub-service-type').value = "Cleaner / Domestic Help";
+
+        // DICTIONARY OF MAPPED LOCATION PRESETS FOR CONVENIENT TESTING DISCOVERY
+        const REGIONAL_GEO_MATRIX = {
+            "al bateen": [24.4562, 54.3484],
+            "bateen": [24.4562, 54.3484],
+            "corniche": [24.4820, 54.3580],
+            "khalidiya": [24.4710, 54.3490],
+            "yas island": [24.4980, 54.6050],
+            "yas": [24.4980, 54.6050],
+            "reem island": [24.4960, 54.4070],
+            "reem": [24.4960, 54.4070],
+            "saadiyat": [24.5330, 54.4330],
+            "mushrif": [24.4440, 54.3940],
+            "dunes": [24.3725, 54.5422]
+        };
+
+
+        window.addEventListener('load', () => {
+            initMaps();
+            fetchAndRenderListings();
+        });
+
+
+        function initMaps() {
+            try {
+                mainMap = L.map('main-map', { scrollWheelZoom: false }).setView([userLat, userLng], 11);
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; CARTO'
+                }).addTo(mainMap);
+                mainMarkersGroup.addTo(mainMap);
+
+
+                userLocationMarker = L.circleMarker([userLat, userLng], {
+                    radius: 8, fillColor: '#3b82f6', color: '#fff', weight: 2, fillOpacity: 0.9
+                }).addTo(mainMap).bindPopup('<b>YOUR HOST RADIAL COMPASS STATION</b>');
+
+
+                modalMap = L.map('modal-map', { zoomControl: false }).setView([userLat, userLng], 10);
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
+
+
+                modalMap.on('click', (e) => {
+                    updateModalLocationValues(e.latlng.lat, e.latlng.lng);
+                });
+            } catch(err) {
+                console.warn("Map grid matrix loaded securely.", err);
             }
         }
 
-        // Evaluate "Other" Option Selection to Reveal Custom Input Text Field
-        function evaluateOtherClassificationInput() {
-            const subTypeSelection = document.getElementById('input-sub-service-type').value;
-            const customFieldWrapper = document.getElementById('custom-service-field-wrapper');
-            const customInput = document.getElementById('input-custom-service-type');
 
-            if (subTypeSelection === 'Other') {
-                customFieldWrapper.classList.remove('hidden');
-                customInput.setAttribute('required', 'true');
-                setTimeout(() => {
-                    customFieldWrapper.classList.remove('opacity-0');
-                    customFieldWrapper.classList.add('opacity-100');
-                }, 10);
-            } else {
-                customFieldWrapper.classList.add('opacity-0');
-                customFieldWrapper.classList.remove('opacity-100');
-                customInput.removeAttribute('required');
-                setTimeout(() => {
-                    customFieldWrapper.classList.add('hidden');
-                }, 300);
-            }
-        }
+        function searchLocationNode() {
+            const query = document.getElementById('map-search-bar').value.toLowerCase().trim();
+            if(!query) return;
 
-        // Filter Dropdown Suggestions Options Matching User Text Input Arrays
-        function processLandmarkFilterQuery() {
-            const textQuery = document.getElementById('landmark-search-input').value.toLowerCase();
-            const dropdownBox = document.getElementById('landmark-dropdown-box');
-            
-            if (textQuery.length > 1) {
-                dropdownBox.classList.remove('hidden');
-            } else {
-                dropdownBox.classList.add('hidden');
-            }
-        }
 
-        // Change App Address Variables Anchors Across Selection Elements
-        function injectResolvedAddress(targetAddressText) {
-            document.getElementById('resolved-address-display-label').innerText = `📍 ${targetAddressText}`;
-            document.getElementById('landmark-search-input').value = targetAddressText.split(',')[0];
-            document.getElementById('landmark-dropdown-box').classList.add('hidden');
-        }
-
-        // Apply Tab Style Revisions and Log Content Grid Item Array Filters
-        function applyBoardContentFiltering(filterType) {
-            const cards = document.querySelectorAll('.feed-log-node');
-            const tabs = document.querySelectorAll('.board-tab');
-
-            // Reset tab selectors template states
-            tabs.forEach(tab => {
-                tab.classList.remove('border-[#2C2A27]', 'bg-[#2C2A27]', 'text-[#F7F4EF]');
-                tab.classList.add('border-[#DCD7CD]', 'bg-[#F7F4EF]', 'text-[#706A60]');
-            });
-
-            // Set current target active style
-            if (event && event.target) {
-                event.target.classList.remove('border-[#DCD7CD]', 'bg-[#F7F4EF]', 'text-[#706A60]');
-                event.target.classList.add('border-[#2C2A27]', 'bg-[#2C2A27]', 'text-[#F7F4EF]');
-            }
-
-            // Show or hide elements row filters parameters
-            cards.forEach(card => {
-                if (filterType === 'All' || card.getAttribute('data-type') === filterType) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Commit and Process User Post Upload Requests Actions
-        function processMatrixPostExecution(event) {
-            event.preventDefault();
-
-            // Pull inputs information data variables
-            const isStudent = document.getElementById('user-student-flag').checked;
-            const profileName = document.getElementById('input-entity-identity').value;
-            const mainType = document.getElementById('input-matrix-type').value;
-            const selectedServiceSub = document.getElementById('input-sub-service-type').value;
-            const customServiceSub = document.getElementById('input-custom-service-type').value;
-            const postTitle = document.getElementById('input-matrix-title').value;
-
-            // Define thematic layout configurations parameters
-            let tagLabel = mainType;
-            let visualStyles = "text-indigo-800 border-indigo-300 bg-indigo-100";
-            let actionTextTag = "ACTIVE";
-
-            if (mainType === 'Product') {
-                visualStyles = "text-amber-800 border-amber-300 bg-amber-100";
-                actionTextTag = "MARKET";
-            } else if (mainType === 'Skill') {
-                visualStyles = "text-emerald-800 border-emerald-300 bg-emerald-100";
-                actionTextTag = "SKILL HUB";
-            } else if (mainType === 'Notice') {
-                visualStyles = "text-rose-800 border-rose-300 bg-rose-100";
-                actionTextTag = "NOTICE";
-            } else if (mainType === 'Service') {
-                // If "Other" is picked, grab the value from custom input box field
-                if (selectedServiceSub === 'Other' && customServiceSub.trim() !== "") {
-                    tagLabel = `Service (${customServiceSub.trim()})`;
-                } else {
-                    tagLabel = `Service (${selectedServiceSub.split(' ')[0]})`;
+            let targetCoords = null;
+            for (let locationKey in REGIONAL_GEO_MATRIX) {
+                if (query.includes(locationKey)) {
+                    targetCoords = REGIONAL_GEO_MATRIX[locationKey];
+                    break;
                 }
             }
 
-            // Build dynamic insertion container node
-            const logContainer = document.getElementById('board-matrix-feed-log');
-            const dynamicNewNode = document.createElement('div');
-            dynamicNewNode.className = "feed-log-node bg-[#F7F4EF] border-2 border-[#2C2A27] p-4 flex items-start justify-between transition-all transform translate-y-1 rounded-sm shadow-md";
-            dynamicNewNode.setAttribute('data-type', mainType);
 
-            dynamicNewNode.innerHTML = `
-                <div class="space-y-1">
-                    <div class="flex items-center gap-1.5 text-[9px] uppercase tracking-wider font-bold">
-                        <span class="${visualStyles} px-1.5 py-0.5 rounded">${tagLabel}</span>
-                        <span class="text-[#F7F4EF] bg-[#2C2A27] px-1 rounded text-[8px] tracking-widest font-black animate-pulse">ADDED</span>
-                    </div>
-                    <h4 class="text-xs font-bold text-[#2C2A27] uppercase tracking-wide">${postTitle}</h4>
-                    <p class="text-[10px] text-[#706A60]">Listed by: <span class="text-[#2C2A27] font-semibold">${isStudent ? '[STUDENT] ' : ''}${profileName}</span></p>
-                </div>
-                <span class="text-[10px] font-bold text-[#2C2A27] bg-[#EFEBE4] border border-[#DCD7CD] px-2 py-0.5 rounded">${actionTextTag}</span>
-            `;
+            if(!targetCoords) {
+                const randomOffsetLat = (Math.random() - 0.5) * 0.1;
+                const randomOffsetLng = (Math.random() - 0.5) * 0.1;
+                targetCoords = [userLat + randomOffsetLat, userLng + randomOffsetLng];
+            }
 
-            // Prepend layout element node card inside viewport log column list array
-            logContainer.insertBefore(dynamicNewNode, logContainer.firstChild);
 
-            // Ease the insertion highlight off
-            setTimeout(() => {
-                dynamicNewNode.classList.remove('translate-y-1', 'border-[#2C2A27]', 'border-2');
-                dynamicNewNode.classList.add('border-[#DCD7CD]', 'border');
-            }, 1000);
+            modalMap.setView(targetCoords, 13, { animate: true });
+            updateModalLocationValues(targetCoords[0], targetCoords[1]);
+        }
 
-            // Flush inputs fields cleanly
-            document.getElementById('input-matrix-title').value = "";
-            document.getElementById('input-entity-identity').value = "";
-            document.getElementById('input-custom-service-type').value = "";
-            
-            // Recollapse custom fields back to defaults
-            document.getElementById('custom-service-field-wrapper').classList.add('hidden', 'opacity-0');
-            document.getElementById('input-sub-service-type').value = "Cleaner / Domestic Help";
+
+        function updateModalLocationValues(lat, lng) {
+            document.getElementById('form-lat').value = lat;
+            document.getElementById('form-lng').value = lng;
+           
+            if (modalSelectionMarker) {
+                modalSelectionMarker.setLatLng([lat, lng]);
+            } else {
+                modalSelectionMarker = L.marker([lat, lng]).addTo(modalMap);
+            }
+        }
+
+
+        function toggleModal(open) {
+            const modal = document.getElementById('form-modal');
+            const inner = modal.querySelector('div');
+            if(open) {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                inner.classList.remove('scale-95');
+                setTimeout(() => { if(modalMap) modalMap.invalidateSize(); }, 200);
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                inner.classList.add('scale-95');
+            }
+        }
+
+
+        function panToMapTarget(lat, lng) {
+            if(mainMap && lat && lng) {
+                mainMap.setView([lat, lng], 14, { animate: true, duration: 1.0 });
+                mainMarkersGroup.eachLayer((marker) => {
+                    if(marker.getLatLng().lat === parseFloat(lat) && marker.getLatLng().lng === parseFloat(lng)) {
+                        marker.openPopup();
+                    }
+                });
+            }
+        }
+
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('[id^="tab-"]').forEach(el => {
+                el.className = 'px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2';
+            });
+            const targeted = document.getElementById(`tab-${cat}`);
+            if(targeted) targeted.className = 'px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer flex items-center gap-2';
+            fetchAndRenderListings();
+        }
+
+
+        function filterType(type) {
+            currentType = type;
+            document.querySelectorAll('[id^="type-"]').forEach(el => {
+                el.className = 'px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
+            });
+            const idMap = type === 'all' ? 'all' : type.toLowerCase();
+            const node = document.getElementById(`type-${idMap}`);
+            if(node) node.className = 'px-3 py-1.5 bg-[#c8bca8] text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
+            fetchAndRenderListings();
+        }
+
+
+        function calculateKilometerGap(lat1, lon1, lat2, lon2) {
+            if (!lat2 || !lon2) return null;
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return (R * c).toFixed(1);
+        }
+
+
+        function fetchAndRenderListings() {
+            fetch(`/api/listings?category=${currentCategory}&type=${currentType}`)
+                .then(res => res.json())
+                .then(data => {
+                    renderDatasetNodes(data);
+                })
+                .catch(() => {
+                    renderDatasetNodes(getFeaturesFallbackArray());
+                });
+        }
+
+
+        function getFeatureConfigLayout(category) {
+            switch(category) {
+                case 'projects':
+                    return { icon: 'fa-folder-open', color: 'text-amber-800 bg-amber-500/10', label: 'COMMUNITY PROJECT' };
+                case 'volunteer':
+                    return { icon: 'fa-hands-holding-child', color: 'text-emerald-800 bg-emerald-500/10', label: 'VOLUNTEER MATCH' };
+                case 'skills':
+                    return { icon: 'fa-lightbulb', color: 'text-indigo-800 bg-indigo-500/10', label: 'SKILLS HUB' };
+                case 'news':
+                    return { icon: 'fa-newspaper', color: 'text-rose-800 bg-rose-500/10', label: 'NEIGHBOURHOOD ALERT' };
+                default:
+                    return { icon: 'fa-dot-circle', color: 'text-stone-800 bg-stone-500/10', label: 'SANAD NODE' };
+            }
+        }
+
+
+        function getFeaturesFallbackArray() {
+            return [
+                {
+                    "provider": "Zayed Heritage Group",
+                    "category": "projects",
+                    "type": "Product",
+                    "title": "Al Bateen Community Garden Initiative",
+                    "description": "Collaborative urban planting project constructing traditional green spaces. Seeking material drop-offs and architectural shade setup layouts.",
+                    "price": "Target: 500kg Soil",
+                    "location_zone": "24.4562,54.3484"
+                },
+                {
+                    "provider": "Emirati Youth Red Crescent",
+                    "category": "volunteer",
+                    "type": "Service",
+                    "title": "Senior Companion Care & Story Archiving",
+                    "description": "Volunteers needed to visit elders, coordinate weekly social majlis discussions, and document oral local histories.",
+                    "price": "4 Slots Open",
+                    "location_zone": "24.4820,54.3580"
+                }
+            ];
+        }
+
+
+        function renderDatasetNodes(dataset) {
+            const container = document.getElementById('listings-grid');
+            if(!container) return;
+            container.innerHTML = '';
+            if(mainMarkersGroup) mainMarkersGroup.clearLayers();
+
+
+            if (dataset.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-12 flex flex-col items-center justify-center border border-dashed border-stone-400/40 rounded-2xl bg-[#ebdcc7]/10">
+                        <i class="fa-solid fa-folder-open text-stone-400 text-2xl mb-2"></i>
+                        <span class="text-xs font-bold text-stone-500 uppercase tracking-widest">No active broadcast channels found</span>
+                    </div>`;
+                return;
+            }
+
+
+            dataset.forEach((item) => {
+                const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'SD';
+                let targetLat = 24.4539;
+                let targetLon = 54.3773;
+               
+                if(item.location_zone && item.location_zone.includes(',')) {
+                    const splitted = item.location_zone.split(',');
+                    targetLat = parseFloat(splitted[0]);
+                    targetLon = parseFloat(splitted[1]);
+                }
+
+
+                if (mainMarkersGroup) {
+                    try {
+                        const mapMarker = L.marker([targetLat, targetLon])
+                            .bindPopup(`
+                                <div style="font-family:'Plus Jakarta Sans', sans-serif; padding: 2px;">
+                                    <b style="color:#ac7347; text-transform:uppercase; font-size:11px;">${item.title}</b><br>
+                                    <span style="font-size:10px; color:#222; display:block; margin-top:2px;">Origin: ${item.provider}</span>
+                                    <span style="font-size:10px; color:#ac7347; font-weight:bold;">Metrics: ${item.price}</span>
+                                </div>
+                            `);
+                        mainMarkersGroup.addLayer(mapMarker);
+                    } catch(e) {}
+                }
+
+
+                const cfg = getFeatureConfigLayout(item.category);
+                const computedDistance = calculateKilometerGap(userLat, userLng, targetLat, targetLon);
+                const distanceText = computedDistance ? `${computedDistance} km away` : 'Active Hub';
+
+
+                const cardHtml = `
+                    <div onclick="panToMapTarget(${targetLat}, ${targetLon})" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-2xl p-5 flex flex-col justify-between transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md text-stone-900 cursor-pointer group">
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center gap-2 mb-2">
+                                <div class="flex items-center gap-1.5 px-2 py-0.5 rounded ${cfg.color} border border-stone-400/10">
+                                    <i class="fa-solid ${cfg.icon} text-[10px]"></i>
+                                    <span class="text-[8px] font-black uppercase tracking-widest">${cfg.label}</span>
+                                </div>
+                                <span class="text-[10px] text-[#ac7347] font-extrabold tracking-tight flex items-center gap-1">
+                                    <i class="fa-solid fa-map-pin text-emerald-700"></i> ${distanceText}
+                                </span>
+                            </div>
+                            <h3 class="hero-font text-base font-black tracking-tight uppercase text-stone-950 line-clamp-2 mt-1">${item.title}</h3>
+                            <p class="text-[11px] text-stone-700 leading-normal mt-1.5 font-medium">${item.description}</p>
+                        </div>
+                       
+                        <div class="border-t border-stone-400/20 pt-3 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-lg bg-[#ac7347]/10 text-[#ac7347] font-black text-[10px] flex items-center justify-center uppercase">${initials}</div>
+                                <span class="text-xs font-bold text-stone-950">${item.provider}</span>
+                            </div>
+                            <span class="text-xs font-black text-stone-950 bg-[#ac7347]/10 text-[#ac7347] px-2 py-1 rounded-md max-w-[140px] truncate">${item.price}</span>
+                        </div>
+                    </div>`;
+               
+                container.innerHTML += cardHtml;
+            });
+        }
+
+
+        function submitNewListing() {
+            const provider = document.getElementById('form-provider').value;
+            const category = document.getElementById('form-category').value;
+            const type = document.getElementById('form-type').value;
+            const title = document.getElementById('form-title').value;
+            const description = document.getElementById('form-description').value;
+            const price = document.getElementById('form-price').value;
+            const chosenLat = document.getElementById('form-lat').value;
+            const chosenLng = document.getElementById('form-lng').value;
+            const isStudent = document.getElementById('form-student').checked;
+
+
+            if(!provider || !title || !description) {
+                alert('Fill out all fields to complete node generation.');
+                return;
+            }
+
+
+            fetch('/api/listings/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    provider, category, type, title, description, price,
+                    location_zone: `${chosenLat},${chosenLng}`,
+                    is_student: isStudent ? 'true' : 'false'
+                })
+            })
+            .then(res => res.json())
+            .then(res => {
+                if(res.success) {
+                    document.getElementById('form-title').value = '';
+                    document.getElementById('form-description').value = '';
+                    document.getElementById('form-price').value = '';
+                    document.getElementById('map-search-bar').value = '';
+                    if(modalSelectionMarker) { modalMap.removeLayer(modalSelectionMarker); modalSelectionMarker = null; }
+                    toggleModal(false);
+                    fetchAndRenderListings();
+                }
+            });
         }
     </script>
 </body>
 </html>
+
