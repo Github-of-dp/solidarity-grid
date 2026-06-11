@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanad Community Support HUB GRID</title>
+    <!-- Tailwind CSS Engine -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Core Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet Mapping Stylesheet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         /* Cream and Sand grid texture backdrop */
@@ -57,34 +60,146 @@
             font-family: inherit;
             background-color: #CADCE5 !important;
         }
+
+        /* Premium Neo-Glassmorphism Styles */
+        .glassy-card {
+            background: rgba(246, 242, 235, 0.65);
+            backdrop-filter: blur(14px) saturate(110%);
+            -webkit-backdrop-filter: blur(14px) saturate(110%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(44, 42, 39, 0.04);
+        }
+        .glassy-dark-card {
+            background: rgba(44, 42, 39, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 <body class="text-[#2C2A27] min-h-screen flex flex-col antialiased select-none overflow-x-hidden">
 
-    <div id="welcome-portal-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#EFEBE3] transition-all duration-700 ease-in-out p-6">
+    <!-- ========================================== -->
+    <!-- 1. FULL CANVAS ENTRY ARCHITECTURE (HOME)   -->
+    <!-- ========================================== -->
+    <div id="welcome-portal-overlay" class="fixed inset-0 z-50 flex flex-col justify-between bg-[#EFEBE3] transition-all duration-700 ease-in-out p-4 md:p-8 overflow-y-auto">
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#E6DFD3_1px,transparent_1px),linear-gradient(to_bottom,#E6DFD3_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
         
-        <div id="portal-hero-logo" class="text-center transform transition-all duration-700 ease-in-out scale-100 translate-y-0 relative z-10">
-            <div class="bg-[#2C2A27] p-6 rounded-none shadow-[6px_6px_0px_#A97C50] inline-block max-w-xs md:max-w-sm">
-                <img src="static/Logo.png" alt="SANAD" class="w-full h-auto object-contain mx-auto" onerror="this.onerror=null; this.outerHTML='<div class=\'text-center py-4 px-10\'><h1 class=\'text-6xl font-black text-[#EFEBE3] tracking-tighter\'>SANAD</h1><div class=\'text-sm text-[#B3A99B] font-bold tracking-[0.4em] mt-1\'>سند</div></div>';">
+        <!-- Welcome Top Header Bar Component -->
+        <header class="w-full flex justify-between items-center relative z-10 shrink-0 mb-6">
+            <div class="glassy-card px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-[#A97C50]">
+                🚀 System v2.4 Active
             </div>
+            <div class="glassy-card px-4 py-2 rounded-full text-[10px] font-bold text-[#5C5449] flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Regional Node: Abu Dhabi
+            </div>
+        </header>
+
+        <!-- Main Multi-Column Glassy Presentation Workspace Grid -->
+        <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center my-auto relative z-10">
+            
+            <!-- LEFT SIDEBAR: Active Analytics & System Pulse Tracker -->
+            <div id="portal-left-sidebar" class="col-span-1 lg:col-span-3 space-y-4 order-2 lg:order-1 transition-all duration-500">
+                <div class="glassy-card p-5 rounded-2xl border border-white/40">
+                    <h3 class="text-[10px] font-black tracking-wider text-[#A97C50] uppercase mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-simple"></i> Local Grid Metrics
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center border-b border-[#EAE3D5] pb-2">
+                            <span class="text-xs font-semibold text-[#5C5449]">Active Hub Nodes</span>
+                            <span class="text-xs font-black text-[#2C2A27]">142 Verified</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-[#EAE3D5] pb-2">
+                            <span class="text-xs font-semibold text-[#5C5449]">Skills Exchanged</span>
+                            <span class="text-xs font-black text-[#2C2A27]">480 Hours</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-semibold text-[#5C5449]">Match Fulfillment</span>
+                            <span class="text-xs font-black text-emerald-700">94.2%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glassy-card p-5 rounded-2xl border border-white/40">
+                    <h4 class="text-[10px] font-black tracking-wider text-[#5C5449] uppercase mb-2">Live Activity Log</h4>
+                    <ul class="text-[11px] space-y-2 text-[#5C5449] font-medium">
+                        <li class="flex items-start gap-1.5"><span class="text-[#A97C50]">📍</span> <span>New node mapped inside Mussafah Sector 12</span></li>
+                        <li class="flex items-start gap-1.5"><span class="text-[#A97C50]">📍</span> <span>Sourdough stock updated at Liwa Center</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CENTRAL CENTER PIECE: The Main Console with Glassy Treatment -->
+            <div id="portal-central-hero" class="col-span-1 lg:col-span-6 text-center space-y-6 order-1 lg:order-2 transform transition-all duration-700 ease-in-out">
+                
+                <!-- Central Logo Container Box -->
+                <div id="portal-hero-logo" class="inline-block transform transition-all duration-700 ease-in-out scale-100 translate-y-0">
+                    <div class="bg-[#2C2A27] p-6 rounded-3xl shadow-[6px_6px_0px_#A97C50] inline-block max-w-xs md:max-w-sm border border-white/10">
+                        <img src="static/Logo.png" alt="SANAD" class="w-full h-auto object-contain mx-auto" onerror="this.onerror=null; this.outerHTML='<div class=\'text-center py-4 px-10\'><h1 class=\'text-6xl font-black text-[#EFEBE3] tracking-tighter\'>SANAD</h1><div class=\'text-sm text-[#B3A99B] font-bold tracking-[0.4em] mt-1\'>سند</div></div>';">
+                    </div>
+                </div>
+
+                <!-- Descriptive Glassy Central Card Layout -->
+                <div id="portal-hero-explainer" class="glassy-card p-6 md:p-8 rounded-3xl border border-white/60 shadow-xl space-y-5 transition-all duration-500">
+                    <h2 class="text-xl md:text-2xl font-black text-[#2C2A27] uppercase tracking-wide">
+                        Your Neighborhood Support Network 🤝
+                    </h2>
+                    <p class="text-xs md:text-sm text-[#5C5449] leading-relaxed font-medium">
+                        Discover nearby skills, coordinate mutual support initiatives, find locally crafted products, or share announcements. Sanad bridges hyper-local physical coordinates with instant neighborhood coordination.
+                    </p>
+                    <div class="pt-2">
+                        <button onclick="collapsePortalGateways()" class="px-8 py-4 bg-[#A97C50] hover:bg-[#8F653E] text-white font-black text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-[4px_4px_0px_#2C2A27] hover:shadow-[2px_2px_0px_#2C2A27] active:translate-y-0.5 cursor-pointer w-full sm:w-auto">
+                            Enter Dashboard Map 📍
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDEBAR: Category Matrix Breakdown & Quick Nav Shortcuts -->
+            <div id="portal-right-sidebar" class="col-span-1 lg:col-span-3 space-y-4 order-3 transition-all duration-500">
+                <div class="glassy-card p-5 rounded-2xl border border-white/40">
+                    <h3 class="text-[10px] font-black tracking-wider text-[#A97C50] uppercase mb-3">
+                        ⚡ Quick Channels
+                    </h3>
+                    <div class="grid grid-cols-2 gap-2 text-center">
+                        <div class="p-3 bg-white/50 rounded-xl border border-white/30 text-xs font-bold hover:bg-white/80 transition-colors">
+                            <span class="block text-base mb-1">🛠️</span> Services
+                        </div>
+                        <div class="p-3 bg-white/50 rounded-xl border border-white/30 text-xs font-bold hover:bg-white/80 transition-colors">
+                            <span class="block text-base mb-1">📦</span> Products
+                        </div>
+                        <div class="p-3 bg-white/50 rounded-xl border border-white/30 text-xs font-bold hover:bg-white/80 transition-colors">
+                            <span class="block text-base mb-1">💡</span> Skill Hub
+                        </div>
+                        <div class="p-3 bg-white/50 rounded-xl border border-white/30 text-xs font-bold hover:bg-white/80 transition-colors">
+                            <span class="block text-base mb-1">📢</span> Notices
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glassy-dark-card p-5 rounded-2xl text-white shadow-lg">
+                    <div class="text-[9px] font-black text-[#A97C50] uppercase tracking-widest mb-1">Core Architecture</div>
+                    <p class="text-[11px] leading-relaxed text-[#D6D2C9] font-medium">
+                        Sanad utilizes localized mapping arrays to pair collective skill graphs without central platform intermediaries.
+                    </p>
+                </div>
+            </div>
+
         </div>
 
-        <div id="portal-hero-explainer" class="max-w-xl text-center mt-8 space-y-6 transition-all duration-500 relative z-10 bg-[#F6F2EB]/90 backdrop-blur-xs p-6 rounded-2xl border border-[#DDD6C9] shadow-xs">
-            <h2 class="text-xl md:text-2xl font-black text-[#2C2A27] uppercase tracking-wide">Your Neighborhood Support Network 🤝</h2>
-            <p class="text-xs md:text-sm text-[#5C5449] leading-relaxed font-medium">
-                Discover nearby skills, coordinate mutual support initiatives, find locally crafted products, or share announcements. Sanad bridges hyper-local physical coordinates with instant neighborhood coordination.
-            </p>
-            <div class="pt-2">
-                <button onclick="collapsePortalGateways()" class="px-8 py-4 bg-[#A97C50] hover:bg-[#8F653E] text-white font-black text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-[4px_4px_0px_#2C2A27] active:translate-y-0.5 cursor-pointer">
-                    Enter Dashboard Map 📍
-                </button>
-            </div>
-        </div>
+        <!-- Welcome Bottom Footer Ecosystem Layer -->
+        <footer class="w-full text-center relative z-10 shrink-0 mt-6 text-[10px] font-bold text-[#857B6D] tracking-wider uppercase">
+            © 2026 Sanad Hyperlocal Grid Management Engine Inc.
+        </footer>
     </div>
 
+    <!-- ========================================== -->
+    <!-- 2. MAIN HUB APPLICATION DASHBOARD SURFACE  -->
+    <!-- ========================================== -->
     <div id="core-matrix-dashboard" class="opacity-0 transition-opacity duration-700 h-screen flex flex-col overflow-hidden">
         
+        <!-- Top Console Banner Workspace Layout -->
         <header class="w-full max-w-7xl mx-auto px-4 pt-4 pb-1 shrink-0">
             <div class="bg-[#F6F2EB] border border-[#DDD6C9] rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xs">
                 <div class="flex items-center gap-3">
@@ -109,6 +224,7 @@
             </div>
         </header>
 
+        <!-- Clean, Single-Line Full Viewport Marquee Ribbon -->
         <div class="w-screen border-y border-[#DDD6C9] py-2.5 overflow-hidden bg-[#F6F2EB] shrink-0 flex items-center relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
             <div class="animate-marquee-continuous text-[10px] font-bold tracking-widest text-[#857B6D] uppercase whitespace-nowrap flex items-center gap-4">
                 <span>⚡ Cleaner service listed by Al Danah Resident</span><span class="text-[#A97C50]">•</span>
@@ -117,6 +233,7 @@
                 <span>🎂 Custom Birthday Baking services open in Mussafah</span><span class="text-[#A97C50]">•</span>
                 <span>📢 Neighborhood Notice: Park clean-up coordination mapping active</span><span class="text-[#A97C50]">•</span>
                 <span>🎓 Grade 10 Math Exam tutoring skill node posted online</span>
+                <!-- Exact Duplicated Block for Infinite Clean Reset Animation Alignment -->
                 <span class="text-[#A97C50]">•</span>
                 <span>⚡ Cleaner service listed by Al Danah Resident</span><span class="text-[#A97C50]">•</span>
                 <span>🍞 Fresh Sourdough available under Products inside Liwa Center</span><span class="text-[#A97C50]">•</span>
@@ -127,6 +244,9 @@
             </div>
         </div>
 
+        <!-- ========================================== -->
+        <!-- 3. FILTER BAR NAVIGATION INTERFACES        -->
+        <!-- ========================================== -->
         <nav class="w-full max-w-7xl mx-auto px-4 mt-3 flex flex-wrap items-center justify-between gap-4 shrink-0">
             <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
                 <button onclick="filterNodes('all')" class="filter-btn px-4 py-1.5 bg-[#A97C50] text-white font-bold rounded-full text-xs uppercase tracking-wide cursor-pointer transition-all">
@@ -153,10 +273,15 @@
             </div>
         </nav>
 
+        <!-- ========================================== -->
+        <!-- 4. SPLIT DASHBOARD LAYOUT GRID             -->
+        <!-- ========================================== -->
         <main class="w-full max-w-7xl mx-auto px-4 my-4 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 overflow-hidden items-stretch">
             
+            <!-- LEFT HAND LISTINGS FEED LOGGER -->
             <div id="nodes-gallery-stream" class="col-span-1 lg:col-span-7 space-y-4 overflow-y-auto pr-2 no-scrollbar pb-6">
                 
+                <!-- Marquee Item 1 Mapping Card -->
                 <div onclick="panToMapNode(24.4735, 54.3742, 'Professional Home Cleaning Assistance')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Service">
                     <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
                         <span class="bg-[#E2F5E9] text-[#2E7D32] border border-[#C8E6C9] px-2 py-0.5 rounded-md">🛠️ Service (Cleaner)</span>
@@ -175,6 +300,7 @@
                     </div>
                 </div>
 
+                <!-- Marquee Item 2 Mapping Card -->
                 <div onclick="panToMapNode(24.4892, 54.3598, 'Fresh Homemade Sourdough Loaves')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Product">
                     <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
                         <span class="bg-[#FFEFE2] text-[#A97C50] border border-[#F5DBC4] px-2 py-0.5 rounded-md">📦 Product</span>
@@ -193,6 +319,7 @@
                     </div>
                 </div>
 
+                <!-- Marquee Item 3 Mapping Card -->
                 <div onclick="panToMapNode(24.3601, 54.5050, 'Custom Stitching & Traditional Tailoring')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Service">
                     <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
                         <span class="bg-[#E2F5E9] text-[#2E7D32] border border-[#C8E6C9] px-2 py-0.5 rounded-md">🛠️ Service (Tailoring)</span>
@@ -211,6 +338,7 @@
                     </div>
                 </div>
 
+                <!-- Marquee Item 4 Mapping Card -->
                 <div onclick="panToMapNode(24.3644, 54.5126, 'Custom Birthday Baking & Pastry Design')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Service">
                     <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
                         <span class="bg-[#E2F5E9] text-[#2E7D32] border border-[#C8E6C9] px-2 py-0.5 rounded-md">🛠️ Service (Baking)</span>
@@ -229,6 +357,7 @@
                     </div>
                 </div>
 
+                <!-- Marquee Item 5 Mapping Card -->
                 <div onclick="panToMapNode(24.4686, 54.3646, 'Community Park Clean-Up Coordination')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Notice">
                     <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
                         <span class="bg-rose-100 text-rose-700 border border-rose-200 px-2 py-0.5 rounded-md">📢 Notice</span>
@@ -247,6 +376,7 @@
                     </div>
                 </div>
 
+                <!-- Marquee Item 6 Mapping Card -->
                 <div onclick="panToMapNode(24.3644, 54.5126, 'Grade 10 Mathematics Exam Tutoring Support')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Skill">
                     <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
                         <span class="bg-[#EAE8F9] text-[#512DA8] border border-[#D1C4E9] px-2 py-0.5 rounded-md">💡 Skill Hub</span>
@@ -267,6 +397,7 @@
 
             </div>
 
+            <!-- RIGHT HAND MAP VIEWPORT VISUALIZATION PANEL -->
             <div class="col-span-1 lg:col-span-5 bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-2xl shadow-xs flex flex-col min-h-[400px] lg:h-full mb-6 relative">
                 <div class="text-[10px] font-black uppercase tracking-wider text-[#5C5449] mb-3 flex items-center gap-1.5">
                     <i class="fa-solid fa-circle-nodes text-[#A97C50]"></i> Radial Grid Position Coordination Graph
@@ -277,6 +408,9 @@
         </main>
     </div>
 
+    <!-- ========================================== -->
+    <!-- 5. REGISTER NOW SYSTEM REGISTRATION FORM    -->
+    <!-- ========================================== -->
     <div id="broadcast-modal" class="fixed inset-0 bg-[#2C2A27]/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
         <div class="bg-[#F6F2EB] border-2 border-[#2C2A27] max-w-lg w-full rounded-2xl shadow-2xl p-6 relative flex flex-col max-h-[92vh]">
             
@@ -289,6 +423,7 @@
                 <p class="text-[11px] text-[#857B6D] font-medium">Select status, type your address, or drop a pointer pin directly inside the map matrix.</p>
             </div>
 
+            <!-- Profile Status Buttons -->
             <div class="grid grid-cols-2 gap-2 bg-[#EAE3D5] p-2 rounded-xl mb-3 border border-[#DDD6C9]">
                 <label class="flex items-center justify-center gap-2 py-1.5 bg-white rounded-lg cursor-pointer text-[10px] font-black uppercase tracking-wider text-[#2C2A27]">
                     <input type="radio" name="profile-class" id="status-student" class="accent-[#A97C50]" checked>
@@ -300,12 +435,14 @@
                 </label>
             </div>
 
+            <!-- Modal Map Picker Canvas Container Box -->
             <div class="w-full h-36 bg-[#EAE3D5] border border-[#DDD6C9] rounded-xl overflow-hidden relative mb-3">
                 <div id="modal-map-picker" class="w-full h-full relative"></div>
             </div>
 
             <form onsubmit="submitFormNode(event)" class="space-y-3 text-xs overflow-y-auto pr-1 no-scrollbar">
                 
+                <!-- LIVE GLOBAL ADDRESS SEARCH SYSTEM -->
                 <div class="relative">
                     <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Neighborhood Location / Address Lookup</label>
                     <div class="flex gap-1.5">
@@ -314,6 +451,7 @@
                             <span>Find</span>
                         </button>
                     </div>
+                    <!-- Selection Suggestion Result List Drawer Box -->
                     <div id="address-suggestions-box" class="hidden absolute left-0 right-0 mt-1 bg-white border-2 border-[#2C2A27] rounded-lg shadow-xl z-[999999] max-h-40 overflow-y-auto divide-y divide-[#EFEBE3]"></div>
                 </div>
 
@@ -380,6 +518,9 @@
         </div>
     </div>
 
+    <!-- ========================================== -->
+    <!-- 6. APPLICATIVE INTERACTION JS VECTOR       -->
+    <!-- ========================================== -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         let mainMap = null;
@@ -393,8 +534,13 @@
             const signature = document.getElementById('nav-brand-signature');
             const heroLogo = document.getElementById('portal-hero-logo');
             const heroExplainer = document.getElementById('portal-hero-explainer');
+            const leftSidebar = document.getElementById('portal-left-sidebar');
+            const rightSidebar = document.getElementById('portal-right-sidebar');
 
+            // Complex side panel glassy fading transition sequence
             heroExplainer.classList.add('opacity-0', 'scale-90');
+            leftSidebar.classList.add('opacity-0', '-translate-x-12');
+            rightSidebar.classList.add('opacity-0', 'translate-x-12');
             heroLogo.classList.add('scale-50', '-translate-y-[40vh]', 'opacity-0');
             overlay.classList.add('opacity-0', 'pointer-events-none');
 
