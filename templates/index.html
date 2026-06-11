@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SANAD COMMUNITY SUPPORT HUB GRID</title>
-    <!-- Tailwind CSS Engine -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome Core Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Leaflet Mapping Stylesheet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         /* Cream and Sand grid texture backdrop */
@@ -20,7 +17,7 @@
             background-size: 24px 24px;
         }
 
-        /* Seamless edge-to-edge linear running marquee loop */
+        /* Seamless edge-to-edge single line running marquee loop */
         @keyframes linearMarquee {
             0% { transform: translateX(0%); }
             100% { transform: translateX(-50%); }
@@ -28,17 +25,17 @@
         .animate-marquee-continuous {
             display: flex;
             width: max-content;
-            animation: linearMarquee 30s linear infinite;
+            animation: linearMarquee 35s linear infinite;
         }
 
-        /* Explicit layer stacking logic to prevent Leaflet frame bleedthrough */
+        /* Strict layer stacking logic to completely prevent Leaflet frame bleedthrough */
         #leaflet-map-canvas {
             z-index: 10 !important;
         }
         #broadcast-modal {
-            z-index: 10000 !important;
+            z-index: 99999 !important;
         }
-        /* Ensure Leaflet controls don't peek out over the modal overlay mesh */
+        /* Lock down map internal layout components underneath modal layer */
         .leaflet-pane, .leaflet-top, .leaflet-bottom {
             z-index: 10 !important;
         }
@@ -64,20 +61,15 @@
 </head>
 <body class="text-[#2C2A27] min-h-screen flex flex-col antialiased select-none overflow-x-hidden">
 
-    <!-- ========================================== -->
-    <!-- 1. FULL CANVAS ENTRY ARCHITECTURE LAYER     -->
-    <!-- ========================================== -->
     <div id="welcome-portal-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#EFEBE3] transition-all duration-700 ease-in-out p-6">
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,#E6DFD3_1px,transparent_1px),linear-gradient(to_bottom,#E6DFD3_1px,transparent_1px)] bg-[size:24px_24px] opacity-100 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#E6DFD3_1px,transparent_1px),linear-gradient(to_bottom,#E6DFD3_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
         
-        <!-- Centralized Branding Image Element Component Container Layout -->
         <div id="portal-hero-logo" class="text-center transform transition-all duration-700 ease-in-out scale-100 translate-y-0 relative z-10">
             <div class="bg-[#2C2A27] p-6 rounded-none shadow-[6px_6px_0px_#A97C50] inline-block max-w-xs md:max-w-sm">
-                <img src="Logo.png" alt="SANAD" class="w-full h-auto object-contain mx-auto" onerror="this.onerror=null; this.parentElement.innerHTML='<h1 class=\'text-7xl font-black text-[#EFEBE3] tracking-tighter\'>SANAD</h1>';">
+                <img src="static/Logo.png" alt="SANAD" class="w-full h-auto object-contain mx-auto" onerror="this.onerror=null; this.outerHTML='<div class=\'text-center py-4 px-10\'><h1 class=\'text-6xl font-black text-[#EFEBE3] tracking-tighter\'>SANAD</h1><div class=\'text-sm text-[#B3A99B] font-bold tracking-[0.4em] mt-1\'>سند</div></div>';">
             </div>
         </div>
 
-        <!-- Descriptive Copy Explainer Block -->
         <div id="portal-hero-explainer" class="max-w-xl text-center mt-8 space-y-6 transition-all duration-500 relative z-10 bg-[#F6F2EB]/90 backdrop-blur-xs p-6 rounded-2xl border border-[#DDD6C9] shadow-xs">
             <h2 class="text-xl md:text-2xl font-black text-[#2C2A27] uppercase tracking-wide">Your Neighborhood Support Network 🤝</h2>
             <p class="text-xs md:text-sm text-[#5C5449] leading-relaxed font-medium">
@@ -91,12 +83,8 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- 2. MAIN HUB APPLICATION DASHBOARD SURFACE  -->
-    <!-- ========================================== -->
     <div id="core-matrix-dashboard" class="opacity-0 transition-opacity duration-700 h-screen flex flex-col overflow-hidden">
         
-        <!-- Top Console Banner Workspace Layout -->
         <header class="w-full max-w-7xl mx-auto px-4 pt-4 pb-1 shrink-0">
             <div class="bg-[#F6F2EB] border border-[#DDD6C9] rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xs">
                 <div class="flex items-center gap-3">
@@ -106,7 +94,6 @@
                     <div class="bg-[#EAE3D5] text-[#766E61] px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center gap-2 max-w-sm md:max-w-md lg:max-w-xl truncate">
                         <span class="inline-block w-1.5 h-1.5 shrink-0 rounded-full bg-emerald-600 animate-pulse"></span>
                         <span class="font-black text-[#5C5449]">MY LOCATION:</span>
-                        <!-- Persistent User Location Field: Retains value permanently -->
                         <span class="text-[#2C2A27] truncate font-medium">Liwa Center, Hamdan Street, Abu Dhabi</span>
                     </div>
                 </div>
@@ -122,39 +109,24 @@
             </div>
         </header>
 
-        <!-- Screen Edge-to-Edge Continuous Running Marquee Banner Frame -->
-        <div class="w-screen border-y border-[#DDD6C9] py-2 overflow-hidden bg-[#F6F2EB] shrink-0 flex items-center relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-            <div class="animate-marquee-continuous text-[10px] font-bold tracking-widest text-[#857B6D] uppercase gap-12">
-                <span>⚡ Cleaner service listed by Al Danah Resident</span>
-                <span>•</span>
-                <span>🍞 Fresh Sourdough available under Products inside Liwa Center</span>
-                <span>•</span>
-                <span>🪡 Stitching & Tailoring services added by Shabiya Resident</span>
-                <span>•</span>
-                <span>🎂 Custom Birthday Baking services open in Mussafah</span>
-                <span>•</span>
-                <span>📢 Neighborhood Notice: Park clean-up coordination mapping active</span>
-                <span>•</span>
+        <div class="w-screen border-y border-[#DDD6C9] py-2.5 overflow-hidden bg-[#F6F2EB] shrink-0 flex items-center relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+            <div class="animate-marquee-continuous text-[10px] font-bold tracking-widest text-[#857B6D] uppercase whitespace-nowrap flex items-center gap-4">
+                <span>⚡ Cleaner service listed by Al Danah Resident</span><span class="text-[#A97C50]">•</span>
+                <span>🍞 Fresh Sourdough available under Products inside Liwa Center</span><span class="text-[#A97C50]">•</span>
+                <span>🪡 Stitching & Tailoring services added by Shabiya Resident</span><span class="text-[#A97C50]">•</span>
+                <span>🎂 Custom Birthday Baking services open in Mussafah</span><span class="text-[#A97C50]">•</span>
+                <span>📢 Neighborhood Notice: Park clean-up coordination mapping active</span><span class="text-[#A97C50]">•</span>
                 <span>🎓 Grade 10 Math Exam tutoring skill node posted online</span>
-                <!-- Repeat Node Arrays -->
-                <span>•</span>
-                <span>⚡ Cleaner service listed by Al Danah Resident</span>
-                <span>•</span>
-                <span>🍞 Fresh Sourdough available under Products inside Liwa Center</span>
-                <span>•</span>
-                <span>🪡 Stitching & Tailoring services added by Shabiya Resident</span>
-                <span>•</span>
-                <span>🎂 Custom Birthday Baking services open in Mussafah</span>
-                <span>•</span>
-                <span>📢 Neighborhood Notice: Park clean-up coordination mapping active</span>
-                <span>•</span>
+                <span class="text-[#A97C50]">•</span>
+                <span>⚡ Cleaner service listed by Al Danah Resident</span><span class="text-[#A97C50]">•</span>
+                <span>🍞 Fresh Sourdough available under Products inside Liwa Center</span><span class="text-[#A97C50]">•</span>
+                <span>🪡 Stitching & Tailoring services added by Shabiya Resident</span><span class="text-[#A97C50]">•</span>
+                <span>🎂 Custom Birthday Baking services open in Mussafah</span><span class="text-[#A97C50]">•</span>
+                <span>📢 Neighborhood Notice: Park clean-up coordination mapping active</span><span class="text-[#A97C50]">•</span>
                 <span>🎓 Grade 10 Math Exam tutoring skill node posted online</span>
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- 3. FILTER BAR NAVIGATION INTERFACES        -->
-        <!-- ========================================== -->
         <nav class="w-full max-w-7xl mx-auto px-4 mt-3 flex flex-wrap items-center justify-between gap-4 shrink-0">
             <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
                 <button onclick="filterNodes('all')" class="filter-btn px-4 py-1.5 bg-[#A97C50] text-white font-bold rounded-full text-xs uppercase tracking-wide cursor-pointer transition-all">
@@ -181,15 +153,10 @@
             </div>
         </nav>
 
-        <!-- ========================================== -->
-        <!-- 4. SPLIT DASHBOARD LAYOUT GRID             -->
-        <!-- ========================================== -->
         <main class="w-full max-w-7xl mx-auto px-4 my-4 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 overflow-hidden items-stretch">
             
-            <!-- LEFT HAND LISTINGS FEED LOGGER -->
             <div id="nodes-gallery-stream" class="col-span-1 lg:col-span-7 space-y-4 overflow-y-auto pr-2 no-scrollbar pb-6">
                 
-                <!-- Preseeded Item 1 -->
                 <div onclick="panToMapNode(24.4892, 54.3598, 'Fresh Homemade Sourdough Loaves')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Product">
                     <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
                         <span class="bg-[#FFEFE2] text-[#A97C50] border border-[#F5DBC4] px-2 py-0.5 rounded-md">📦 Product</span>
@@ -208,7 +175,6 @@
                     </div>
                 </div>
 
-                <!-- Preseeded Item 2 -->
                 <div onclick="panToMapNode(24.3644, 54.5126, 'Grade 10 Mathematics Exam Tutoring Support')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Skill">
                     <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
                         <span class="bg-[#EAE8F9] text-[#512DA8] border border-[#D1C4E9] px-2 py-0.5 rounded-md">💡 Skill Hub</span>
@@ -229,7 +195,6 @@
 
             </div>
 
-            <!-- RIGHT HAND MAP VIEWPORT VISUALIZATION PANEL -->
             <div class="col-span-1 lg:col-span-5 bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-2xl shadow-xs flex flex-col min-h-[400px] lg:h-full mb-6 relative">
                 <div class="text-[10px] font-black uppercase tracking-wider text-[#5C5449] mb-3 flex items-center gap-1.5">
                     <i class="fa-solid fa-circle-nodes text-[#A97C50]"></i> Radial Grid Position Coordination Graph
@@ -240,11 +205,8 @@
         </main>
     </div>
 
-    <!-- ========================================== -->
-    <!-- 5. REGISTER NOW SYSTEM REGISTRATION FORM    -->
-    <!-- ========================================== -->
     <div id="broadcast-modal" class="fixed inset-0 bg-[#2C2A27]/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-        <div class="bg-[#F6F2EB] border-2 border-[#2C2A27] max-w-lg w-full rounded-2xl shadow-2xl p-6 relative flex flex-col max-h-[90vh] z-50">
+        <div class="bg-[#F6F2EB] border-2 border-[#2C2A27] max-w-lg w-full rounded-2xl shadow-2xl p-6 relative flex flex-col max-h-[92vh]">
             
             <button onclick="toggleRegisterModal()" class="absolute top-4 right-4 text-[#857B6D] hover:text-[#2C2A27] text-lg cursor-pointer p-1">
                 <i class="fa-solid fa-xmark"></i>
@@ -252,10 +214,9 @@
 
             <div class="mb-3">
                 <h2 class="text-base font-black uppercase tracking-tight text-[#2C2A27]">Register New Hub Node</h2>
-                <p class="text-[11px] text-[#857B6D] font-medium">Select status, find location below or pin positions directly inside the map.</p>
+                <p class="text-[11px] text-[#857B6D] font-medium">Select status, type your address, or drop a pointer pin directly inside the map matrix.</p>
             </div>
 
-            <!-- Profile Status Buttons -->
             <div class="grid grid-cols-2 gap-2 bg-[#EAE3D5] p-2 rounded-xl mb-3 border border-[#DDD6C9]">
                 <label class="flex items-center justify-center gap-2 py-1.5 bg-white rounded-lg cursor-pointer text-[10px] font-black uppercase tracking-wider text-[#2C2A27]">
                     <input type="radio" name="profile-class" id="status-student" class="accent-[#A97C50]" checked>
@@ -267,32 +228,31 @@
                 </label>
             </div>
 
-            <!-- Form Position Picker Canvas Map Frame Box -->
-            <div class="w-full h-32 bg-[#EAE3D5] border border-[#DDD6C9] rounded-xl overflow-hidden relative mb-3">
+            <div class="w-full h-36 bg-[#EAE3D5] border border-[#DDD6C9] rounded-xl overflow-hidden relative mb-3">
                 <div id="modal-map-picker" class="w-full h-full relative"></div>
             </div>
 
             <form onsubmit="submitFormNode(event)" class="space-y-3 text-xs overflow-y-auto pr-1 no-scrollbar">
                 
-                <!-- Neighborhood Address Search Lookup Query Field -->
                 <div class="relative">
                     <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Neighborhood Location / Address Lookup</label>
                     <div class="flex gap-1.5">
-                        <input type="text" id="form-address-text" required placeholder="Type landmark (e.g. Liwa Center, Dunes School, Shabiya)..." class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] focus:outline-none focus:border-[#A97C50]">
-                        <button type="button" onclick="executeTextGeocodeResolver()" class="px-3 bg-[#EAE3D5] hover:bg-[#DDD6C9] border border-[#DDD6C9] rounded-lg font-bold text-[10px] uppercase tracking-wider transition-colors cursor-pointer">Find</button>
+                        <input type="text" id="form-address-text" required placeholder="Type any real location (e.g. World Trade Center, Al Hosn, Shabiya)..." class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] focus:outline-none focus:border-[#A97C50]">
+                        <button type="button" id="geocode-search-btn" onclick="executeLiveGlobalGeocoding()" class="px-4 bg-[#2C2A27] hover:bg-[#433F3A] text-white rounded-lg font-bold text-[10px] uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-1 min-w-[70px]">
+                            <span>Find</span>
+                        </button>
                     </div>
-                    <!-- Dropdown Matching Target Sandbox Panel Row -->
-                    <div id="address-suggestions-box" class="hidden absolute left-0 right-0 mt-1 bg-white border-2 border-[#DDD6C9] rounded-lg shadow-lg z-[20000] max-h-36 overflow-y-auto divide-y divide-[#EFEBE3]"></div>
+                    <div id="address-suggestions-box" class="hidden absolute left-0 right-0 mt-1 bg-white border-2 border-[#2C2A27] rounded-lg shadow-xl z-[999999] max-h-40 overflow-y-auto divide-y divide-[#EFEBE3]"></div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Target Latitude</label>
-                        <input type="text" id="form-lat" required readonly placeholder="Click modal map" class="w-full bg-[#EAE3D5] border border-[#DDD6C9] px-3 py-1.5 rounded-lg font-mono text-[#2C2A27] text-[11px]">
+                        <input type="text" id="form-lat" required readonly placeholder="Awaiting location match" class="w-full bg-[#EAE3D5] border border-[#DDD6C9] px-3 py-1.5 rounded-lg font-mono text-[#2C2A27] text-[11px]">
                     </div>
                     <div>
                         <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Target Longitude</label>
-                        <input type="text" id="form-lng" required readonly placeholder="Click modal map" class="w-full bg-[#EAE3D5] border border-[#DDD6C9] px-3 py-1.5 rounded-lg font-mono text-[#2C2A27] text-[11px]">
+                        <input type="text" id="form-lng" required readonly placeholder="Awaiting location match" class="w-full bg-[#EAE3D5] border border-[#DDD6C9] px-3 py-1.5 rounded-lg font-mono text-[#2C2A27] text-[11px]">
                     </div>
                 </div>
 
@@ -348,23 +308,12 @@
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- 6. APPLICATIVE INTERACTION JS VECTOR       -->
-    <!-- ========================================== -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         let mainMap = null;
         let modalMap = null;
         let pickerMarker = null;
         let activeMarkers = [];
-
-        // Complete robust local geocoding array maps
-        const localAddressDatabase = [
-            { name: "Liwa Center", lat: 24.4892, lng: 54.3598, fullAddress: "Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi" },
-            { name: "Dunes International School", lat: 24.3644, lng: 54.5126, fullAddress: "Dunes International School, Shabiya 12, Mussafah, Abu Dhabi" },
-            { name: "Al Danah Mall", lat: 24.4735, lng: 54.3742, fullAddress: "Al Danah Hypermarket Hub, Muroor Road, Abu Dhabi" },
-            { name: "Mussafah Shabiya Zone", lat: 24.3601, lng: 54.5050, fullAddress: "Shabiya Residential Block, Sector 12, Mussafah, Abu Dhabi" }
-        ];
 
         function collapsePortalGateways() {
             const overlay = document.getElementById('welcome-portal-overlay');
@@ -413,7 +362,6 @@
             activeMarkers.push({ lat, lng, marker: markerInstance, address: textAddress });
         }
 
-        // Retains absolute top header location tracking telemetry completely untouched
         function panToMapNode(lat, lng, title) {
             if (!mainMap) return;
 
@@ -439,12 +387,13 @@
                 setTimeout(() => {
                     modalMap = L.map('modal-map-picker', {
                         center: [24.4686, 54.3646],
-                        zoom: 11,
+                        zoom: 12,
                         zoomControl: false
                     });
 
                     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
 
+                    // Drop pin instantly wherever user clicks on modal map picker matrix
                     modalMap.on('click', function(e) {
                         assignFormCoordinates(e.latlng.lat, e.latlng.lng);
                     });
@@ -452,7 +401,7 @@
             } else if (!modal.classList.contains('hidden') && modalMap) {
                 setTimeout(() => {
                     modalMap.invalidateSize();
-                }, 200);
+                }, 250);
             }
         }
 
@@ -472,54 +421,61 @@
             }
         }
 
-        // Substring and token array matching logic for address lookups
-        document.getElementById('form-address-text').addEventListener('input', function() {
-            const inputVal = this.value.toLowerCase().trim();
+        // LIVE LIVE GLOBAL MAP GEOCODING INTEGRATION FOR REAL PLACES
+        async function executeLiveGlobalGeocoding() {
+            const inputField = document.getElementById('form-address-text');
+            const searchBtn = document.getElementById('geocode-search-btn');
             const container = document.getElementById('address-suggestions-box');
+            const query = inputField.value.trim();
+
+            if (!query) return;
+
+            searchBtn.disabled = true;
+            searchBtn.innerHTML = "<i class='fa-solid fa-spinner animate-spin text-xs'></i>";
             container.innerHTML = "";
 
-            if (inputVal.length < 2) {
-                container.classList.add('hidden');
-                return;
+            try {
+                // Query live map parameters from OpenStreetMap geocoding core
+                const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ', Abu Dhabi')}&limit=4`);
+                const results = await response.json();
+
+                if (results && results.length > 0) {
+                    container.classList.remove('hidden');
+                    results.forEach(place => {
+                        const row = document.createElement('div');
+                        row.className = "p-3 bg-white hover:bg-[#F6F2EB] cursor-pointer text-[11px] font-medium border-b border-[#EFEBE3] transition-colors text-[#2C2A27]";
+                        row.innerHTML = `📍 <span class='font-bold text-[#A97C50]'>${place.display_name.split(',')[0]}</span> <br> <span class='text-[10px] text-[#766E61]'>${place.display_name}</span>`;
+                        
+                        row.onclick = function() {
+                            const lat = parseFloat(place.lat);
+                            const lon = parseFloat(place.lon);
+                            inputField.value = place.display_name;
+                            assignFormCoordinates(lat, lon);
+                            modalMap.flyTo([lat, lon], 15);
+                            container.classList.add('hidden');
+                        };
+                        container.appendChild(row);
+                    });
+                } else {
+                    container.classList.remove('hidden');
+                    container.innerHTML = "<div class='p-3 text-[11px] font-bold text-rose-600 text-center bg-white'>❌ No matches found. Try pin clicking directly on the map structure.</div>";
+                    setTimeout(() => container.classList.add('hidden'), 3500);
+                }
+            } catch (err) {
+                console.error("Geocoding pipeline fault:", err);
+            } finally {
+                searchBtn.disabled = false;
+                searchBtn.innerText = "Find";
             }
+        }
 
-            const filteringMatches = localAddressDatabase.filter(item => 
-                item.name.toLowerCase().includes(inputVal) || 
-                item.fullAddress.toLowerCase().includes(inputVal)
-            );
-
-            if (filteringMatches.length > 0) {
-                container.classList.remove('hidden');
-                filteringMatches.forEach(match => {
-                    const optionRow = document.createElement('div');
-                    optionRow.className = "p-2.5 hover:bg-[#F6F2EB] bg-white cursor-pointer text-[11px] font-medium transition-colors border-b border-[#EFEBE3]";
-                    optionRow.innerHTML = `🌟 <b>${match.name}</b> <br> <span class='text-[10px] text-[#857B6D]'>${match.fullAddress}</span>`;
-                    optionRow.onclick = function() {
-                        document.getElementById('form-address-text').value = match.fullAddress;
-                        assignFormCoordinates(match.lat, match.lng);
-                        modalMap.flyTo([match.lat, match.lng], 14);
-                        container.classList.add('hidden');
-                    };
-                    container.appendChild(optionRow);
-                });
-            } else {
+        // Close search list if clicked outside form boundaries
+        document.addEventListener('click', function(e) {
+            const container = document.getElementById('address-suggestions-box');
+            if (e.target.id !== 'form-address-text' && e.target.id !== 'geocode-search-btn') {
                 container.classList.add('hidden');
             }
         });
-
-        function executeTextGeocodeResolver() {
-            const textString = document.getElementById('form-address-text').value.toLowerCase().trim();
-            const findFallback = localAddressDatabase.find(x => 
-                x.fullAddress.toLowerCase().includes(textString) || 
-                x.name.toLowerCase().includes(textString)
-            );
-            if(findFallback) {
-                document.getElementById('form-address-text').value = findFallback.fullAddress;
-                assignFormCoordinates(findFallback.lat, findFallback.lng);
-                modalMap.flyTo([findFallback.lat, findFallback.lng], 14);
-                document.getElementById('address-suggestions-box').classList.add('hidden');
-            }
-        }
 
         function evaluateConditionalSubcategoryRouting() {
             const activeCategory = document.getElementById('form-category').value;
@@ -609,7 +565,7 @@
             toggleRegisterModal();
             panToMapNode(lat, lng, title);
 
-            // Flush out inputs fields
+            // Flush inputs fields
             document.getElementById('form-title').value = "";
             document.getElementById('form-target').value = "";
             document.getElementById('form-desc').value = "";
