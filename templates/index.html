@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sanad Community Support GRID HUB</title>
+    <title>Sanad Community Support HUB GRID</title>
+    <!-- Tailwind CSS Engine -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Core Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet Mapping Stylesheet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         /* Cream and Sand grid texture backdrop */
@@ -102,6 +105,9 @@
 </head>
 <body class="text-[#2C2A27] min-h-screen w-full flex flex-col antialiased overflow-x-hidden">
 
+    <!-- ========================================== -->
+    <!-- 1. FULL CANVAS ENTRY ARCHITECTURE (HOME)   -->
+    <!-- ========================================== -->
     <div id="welcome-portal-overlay" class="fixed inset-0 z-50 flex flex-col justify-between bg-[#EFEBE3] transition-all duration-700 ease-in-out p-4 md:p-8 overflow-y-auto">
         
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#E6DFD3_1px,transparent_1px),linear-gradient(to_bottom,#E6DFD3_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
@@ -111,6 +117,7 @@
             <div class="absolute bottom-[15%] right-[5%] w-72 md:w-[450px] h-72 md:h-[450px] rounded-full bg-[#DBCBB1] filter blur-[80px] animate-ambient-2"></div>
         </div>
         
+        <!-- Welcome Top Header Bar -->
         <header class="w-full flex justify-between items-center relative z-10 shrink-0 mb-6 gap-2 opacity-0 animate-fade-up">
             <div class="premium-glass px-3.5 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#A97C50]">
                 🌍 Sanad Impact Initiative
@@ -121,8 +128,10 @@
             </div>
         </header>
 
+        <!-- Main Multi-Column Premium Presentation Grid -->
         <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center my-auto relative z-10 py-4">
             
+            <!-- LEFT PANEL: Mission & Sustainability -->
             <div id="portal-left-sidebar" class="col-span-1 lg:col-span-4 space-y-4 order-2 lg:order-1 opacity-0 animate-fade-up animation-delay-200 transition-all duration-500">
                 <div class="premium-glass p-5 rounded-2xl">
                     <h3 class="text-[10px] font-black tracking-wider text-[#A97C50] uppercase mb-2 flex items-center gap-2">
@@ -156,6 +165,7 @@
                 </div>
             </div>
 
+            <!-- CENTRAL CARD: Logo and Core CTA -->
             <div id="portal-central-hero" class="col-span-1 lg:col-span-5 text-center space-y-5 order-1 lg:order-2 opacity-0 animate-fade-up">
                 <div id="portal-hero-logo" class="inline-block transform transition-all duration-500 hover:scale-103 active:scale-97 cursor-pointer group">
                     <div class="bg-[#2C2A27] p-5 md:p-6 rounded-3xl shadow-[0_20px_40px_rgba(44,42,39,0.12)] inline-block w-48 sm:w-56 md:w-64 border border-white/10 relative overflow-hidden">
@@ -179,6 +189,7 @@
                 </div>
             </div>
 
+            <!-- RIGHT PANEL: Channels & Micro Info -->
             <div id="portal-right-sidebar" class="col-span-1 lg:col-span-3 space-y-4 order-3 opacity-0 animate-fade-up animation-delay-400 transition-all duration-500">
                 <div class="premium-glass p-5 rounded-2xl">
                     <h3 class="text-[10px] font-black tracking-wider text-[#A97C50] uppercase mb-3">
@@ -210,13 +221,19 @@
 
         </div>
 
+        <!-- Welcome Footer -->
         <footer class="w-full text-center relative z-10 shrink-0 mt-6 text-[9px] font-bold text-[#857B6D] tracking-wider uppercase opacity-0 animate-fade-up animation-delay-400">
             © 2026 Sanad Hyperlocal Grid Management Engine Inc.
         </footer>
     </div>
 
-    <div id="core-matrix-dashboard" class="opacity-0 transition-opacity duration-700 h-screen flex flex-col overflow-hidden hidden">
+    <!-- ========================================== -->
+    <!-- 2. MAIN HUB APPLICATION DASHBOARD SURFACE  -->
+    <!-- ========================================== -->
+    <!-- Changed initial style classes to ensure it transitions perfectly into view -->
+    <div id="core-matrix-dashboard" class="hidden opacity-0 transition-opacity duration-700 h-screen flex flex-col overflow-hidden">
         
+        <!-- Top Console Header Workspace -->
         <header class="w-full max-w-7xl mx-auto px-4 pt-4 pb-1 shrink-0">
             <div class="bg-[#F6F2EB] border border-[#DDD6C9] rounded-2xl p-3 md:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs">
                 <div class="flex items-center gap-2 w-full sm:w-auto">
@@ -241,6 +258,7 @@
             </div>
         </header>
 
+        <!-- Marquee Ribbon -->
         <div class="w-screen border-y border-[#DDD6C9] py-2 overflow-hidden bg-[#F6F2EB] shrink-0 flex items-center relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
             <div class="animate-marquee-continuous text-[9px] md:text-[10px] font-bold tracking-widest text-[#857B6D] uppercase whitespace-nowrap flex items-center gap-4">
                 <span>⚡ Cleaner service listed by Al Danah Resident</span><span class="text-[#A97C50]">•</span>
@@ -249,6 +267,7 @@
                 <span>🎂 Custom Birthday Baking services open in Mussafah</span><span class="text-[#A97C50]">•</span>
                 <span>📢 Neighborhood Notice: Park clean-up mapping active</span><span class="text-[#A97C50]">•</span>
                 <span>🎓 Grade 10 Math Exam tutoring skill node active</span>
+                <!-- Duplicate Alignment Array -->
                 <span class="text-[#A97C50]">•</span>
                 <span>⚡ Cleaner service listed by Al Danah Resident</span><span class="text-[#A97C50]">•</span>
                 <span>🍞 Fresh Sourdough available inside Liwa Center</span><span class="text-[#A97C50]">•</span>
@@ -259,6 +278,7 @@
             </div>
         </div>
 
+        <!-- Filter Bar Navigation Section -->
         <nav class="w-full max-w-7xl mx-auto px-4 mt-3 shrink-0">
             <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
                 <button onclick="filterNodes('all')" class="filter-btn shrink-0 px-3 py-1.5 bg-[#A97C50] text-white font-bold rounded-full text-[10px] uppercase tracking-wide cursor-pointer transition-all">
@@ -279,10 +299,13 @@
             </div>
         </nav>
 
+        <!-- Adaptive Split Dashboard Layout Workspace Grid -->
         <main class="w-full max-w-7xl mx-auto px-4 my-3 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 overflow-hidden items-stretch min-h-0">
             
+            <!-- LEFT COLUMN: Dynamic Listings Stream (Scrolls independently) -->
             <div id="nodes-gallery-stream" class="col-span-1 lg:col-span-7 space-y-3 overflow-y-auto no-scrollbar pb-4 order-2 lg:order-1 h-full">
                 
+                <!-- seeded item 1 -->
                 <div onclick="panToMapNode(24.4735, 54.3742, 'Professional Home Cleaning Assistance')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-xl hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Service">
                     <div class="flex items-center justify-between text-[9px] font-black uppercase tracking-wider mb-1.5">
                         <span class="bg-[#E2F5E9] text-[#2E7D32] px-2 py-0.5 rounded-md">🛠️ Service (Cleaner)</span>
@@ -299,6 +322,7 @@
                     </div>
                 </div>
 
+                <!-- seeded item 2 -->
                 <div onclick="panToMapNode(24.4892, 54.3598, 'Fresh Homemade Sourdough Loaves')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-xl hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Product">
                     <div class="flex items-center justify-between text-[9px] font-black uppercase tracking-wider mb-1.5">
                         <span class="bg-[#FFEFE2] text-[#A97C50] px-2 py-0.5 rounded-md">📦 Product</span>
@@ -315,6 +339,7 @@
                     </div>
                 </div>
 
+                <!-- seeded item 3 -->
                 <div onclick="panToMapNode(24.3601, 54.5050, 'Custom Stitching & Traditional Tailoring')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-xl hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Service">
                     <div class="flex items-center justify-between text-[9px] font-black uppercase tracking-wider mb-1.5">
                         <span class="bg-[#E2F5E9] text-[#2E7D32] px-2 py-0.5 rounded-md">🛠️ Service (Tailoring)</span>
@@ -331,6 +356,7 @@
                     </div>
                 </div>
 
+                <!-- seeded item 4 -->
                 <div onclick="panToMapNode(24.4686, 54.3646, 'Community Park Clean-Up Coordination')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-xl hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Notice">
                     <div class="flex items-center justify-between text-[9px] font-black uppercase tracking-wider mb-1.5">
                         <span class="bg-rose-100 text-rose-700 px-2 py-0.5 rounded-md">📢 Notice</span>
@@ -348,6 +374,7 @@
                 </div>
             </div>
 
+            <!-- RIGHT COLUMN: Adaptive Map Interface Canvas -->
             <div class="col-span-1 lg:col-span-5 bg-[#F6F2EB] border border-[#DDD6C9] p-3 rounded-2xl flex flex-col h-[280px] sm:h-[350px] lg:h-full order-1 lg:order-2 shrink-0">
                 <div class="text-[10px] font-black uppercase tracking-wider text-[#5C5449] mb-2 flex items-center gap-1.5">
                     <i class="fa-solid fa-circle-nodes text-[#A97C50]"></i> Grid Location Array
@@ -358,6 +385,9 @@
         </main>
     </div>
 
+    <!-- ========================================== -->
+    <!-- 3. MOBILE ADAPTIVE FORM MODAL INTERFACE    -->
+    <!-- ========================================== -->
     <div id="broadcast-modal" class="fixed inset-0 bg-[#2C2A27]/50 backdrop-blur-xs flex items-center justify-center p-3 md:p-4 hidden">
         <div class="bg-[#F6F2EB] border-2 border-[#2C2A27] max-w-lg w-full rounded-2xl p-4 md:p-6 relative flex flex-col max-h-[95vh] sm:max-h-[90vh]">
             
@@ -370,6 +400,7 @@
                 <p class="text-[10px] md:text-[11px] text-[#857B6D] font-medium leading-tight">Drop a map pin indicator directly inside the quadrant matrix layout below.</p>
             </div>
 
+            <!-- Form Workspace wrapper (Self-contained internal scroll layer) -->
             <div class="space-y-3 overflow-y-auto pr-1 no-scrollbar text-xs flex-1">
                 
                 <div class="grid grid-cols-2 gap-2 bg-[#EAE3D5] p-1.5 rounded-xl border border-[#DDD6C9]">
@@ -462,6 +493,9 @@
         </div>
     </div>
 
+    <!-- ========================================== -->
+    <!-- 4. CORE INTERACTIVE JAVASCRIPT SYSTEM      -->
+    <!-- ========================================== -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         let mainMap = null;
@@ -485,7 +519,13 @@
 
             setTimeout(() => {
                 overlay.classList.add('hidden');
+                
+                // FIXED LAYOUT TRIGGER SEQUENCE:
+                // Remove hidden first, wait 10ms for DOM adjustment, then bump opacity
                 dashboard.classList.remove('hidden');
+                setTimeout(() => {
+                    dashboard.classList.replace('opacity-0', 'opacity-100');
+                }, 10);
                 
                 // Trigger maps setup sequence
                 initMainAppMap();
