@@ -31,6 +31,31 @@
             animation: linearMarquee 35s linear infinite;
         }
 
+        /* Fluid Soft Ambient Float Animations */
+        @keyframes ambientFloat {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(40px, -60px) scale(1.15); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-ambient-1 {
+            animation: ambientFloat 18s ease-in-out infinite;
+        }
+        .animate-ambient-2 {
+            animation: ambientFloat 24s ease-in-out infinite 2s;
+        }
+
+        /* Staggered Smooth Kinetic Entrance Effects */
+        @keyframes fadeUpEntrance {
+            0% { opacity: 0; transform: translateY(24px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUpEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animation-delay-200 { animation-delay: 200ms; }
+        .animation-delay-400 { animation-delay: 400ms; }
+
         /* Strict layer stacking logic to completely prevent Leaflet frame bleedthrough */
         #leaflet-map-canvas {
             z-index: 10 !important;
@@ -38,7 +63,6 @@
         #broadcast-modal {
             z-index: 99999 !important;
         }
-        /* Lock down map internal layout components underneath modal layer */
         .leaflet-pane, .leaflet-top, .leaflet-bottom {
             z-index: 10 !important;
         }
@@ -61,19 +85,23 @@
             background-color: #CADCE5 !important;
         }
 
-        /* Premium Neo-Glassmorphism Styles */
-        .glassy-card {
-            background: rgba(246, 242, 235, 0.65);
-            backdrop-filter: blur(14px) saturate(110%);
-            -webkit-backdrop-filter: blur(14px) saturate(110%);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px 0 rgba(44, 42, 39, 0.04);
+        /* Premium Ultra-Glossmorphism Archetype with Warm Light Reflections */
+        .premium-glass {
+            background: linear-gradient(135deg, rgba(246, 242, 235, 0.75) 0%, rgba(238, 231, 219, 0.6) 100%);
+            backdrop-filter: blur(20px) saturate(125%);
+            -webkit-backdrop-filter: blur(20px) saturate(125%);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            box-shadow: 
+                0 4px 30px rgba(44, 42, 39, 0.03),
+                inset 0 1px 2px rgba(255, 255, 255, 0.6),
+                inset 0 -1px 2px rgba(44, 42, 39, 0.02);
         }
-        .glassy-dark-card {
-            background: rgba(44, 42, 39, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .premium-dark-glass {
+            background: linear-gradient(135deg, rgba(44, 42, 39, 0.88) 0%, rgba(28, 27, 25, 0.82) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
         }
     </style>
 </head>
@@ -83,27 +111,35 @@
     <!-- 1. FULL CANVAS ENTRY ARCHITECTURE (HOME)   -->
     <!-- ========================================== -->
     <div id="welcome-portal-overlay" class="fixed inset-0 z-50 flex flex-col justify-between bg-[#EFEBE3] transition-all duration-700 ease-in-out p-4 md:p-8 overflow-y-auto">
+        
+        <!-- Animated Geometric Core Grid Backdrop Layer -->
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#E6DFD3_1px,transparent_1px),linear-gradient(to_bottom,#E6DFD3_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
         
+        <!-- Warm Empathetic Ambient Fluid Lighting Backdrop Blurs -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none mix-blend-multiply opacity-50">
+            <div class="absolute top-[20%] left-[15%] w-72 md:w-96 h-72 md:h-96 rounded-full bg-[#E5D2B8] filter blur-[80px] animate-ambient-1"></div>
+            <div class="absolute bottom-[25%] right-[10%] w-80 md:w-[450px] h-80 md:h-[450px] rounded-full bg-[#DBCBB1] filter blur-[100px] animate-ambient-2"></div>
+        </div>
+        
         <!-- Welcome Top Header Bar Component -->
-        <header class="w-full flex justify-between items-center relative z-10 shrink-0 mb-6">
-            <div class="glassy-card px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-[#A97C50]">
+        <header class="w-full flex justify-between items-center relative z-10 shrink-0 mb-6 opacity-0 animate-fade-up">
+            <div class="premium-glass px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-[#A97C50] shadow-xs">
                 🚀 System v2.4 Active
             </div>
-            <div class="glassy-card px-4 py-2 rounded-full text-[10px] font-bold text-[#5C5449] flex items-center gap-2">
+            <div class="premium-glass px-4 py-2 rounded-full text-[10px] font-bold text-[#5C5449] flex items-center gap-2 shadow-xs">
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 Regional Node: Abu Dhabi
             </div>
         </header>
 
-        <!-- Main Multi-Column Glassy Presentation Workspace Grid -->
+        <!-- Main Multi-Column Premium Glassy Presentation Workspace Grid -->
         <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center my-auto relative z-10">
             
             <!-- LEFT SIDEBAR: Active Analytics & System Pulse Tracker -->
-            <div id="portal-left-sidebar" class="col-span-1 lg:col-span-3 space-y-4 order-2 lg:order-1 transition-all duration-500">
-                <div class="glassy-card p-5 rounded-2xl border border-white/40">
+            <div id="portal-left-sidebar" class="col-span-1 lg:col-span-3 space-y-4 order-2 lg:order-1 opacity-0 animate-fade-up animation-delay-200 transition-all duration-500">
+                <div class="premium-glass p-5 rounded-2xl group hover:border-[#A97C50]/40 hover:shadow-md transition-all duration-300">
                     <h3 class="text-[10px] font-black tracking-wider text-[#A97C50] uppercase mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-chart-simple"></i> Local Grid Metrics
+                        <i class="fa-solid fa-chart-simple text-xs animate-pulse"></i> Local Grid Metrics
                     </h3>
                     <div class="space-y-3">
                         <div class="flex justify-between items-center border-b border-[#EAE3D5] pb-2">
@@ -121,35 +157,39 @@
                     </div>
                 </div>
 
-                <div class="glassy-card p-5 rounded-2xl border border-white/40">
-                    <h4 class="text-[10px] font-black tracking-wider text-[#5C5449] uppercase mb-2">Live Activity Log</h4>
+                <div class="premium-glass p-5 rounded-2xl group hover:border-[#A97C50]/40 hover:shadow-md transition-all duration-300">
+                    <h4 class="text-[10px] font-black tracking-wider text-[#5C5449] uppercase mb-2 flex items-center gap-1.5">
+                        <span class="flex h-1.5 w-1.5 rounded-full bg-[#A97C50]"></span> Live Activity Log
+                    </h4>
                     <ul class="text-[11px] space-y-2 text-[#5C5449] font-medium">
-                        <li class="flex items-start gap-1.5"><span class="text-[#A97C50]">📍</span> <span>New node mapped inside Mussafah Sector 12</span></li>
-                        <li class="flex items-start gap-1.5"><span class="text-[#A97C50]">📍</span> <span>Sourdough stock updated at Liwa Center</span></li>
+                        <li class="flex items-start gap-1.5"><span class="text-[#A97C50] text-xs">📍</span> <span>New node mapped inside Mussafah Sector 12</span></li>
+                        <li class="flex items-start gap-1.5"><span class="text-[#A97C50] text-xs">📍</span> <span>Sourdough stock updated at Liwa Center</span></li>
                     </ul>
                 </div>
             </div>
 
             <!-- CENTRAL CENTER PIECE: The Main Console with Glassy Treatment -->
-            <div id="portal-central-hero" class="col-span-1 lg:col-span-6 text-center space-y-6 order-1 lg:order-2 transform transition-all duration-700 ease-in-out">
+            <div id="portal-central-hero" class="col-span-1 lg:col-span-6 text-center space-y-6 order-1 lg:order-2 opacity-0 animate-fade-up">
                 
                 <!-- Central Logo Container Box -->
-                <div id="portal-hero-logo" class="inline-block transform transition-all duration-700 ease-in-out scale-100 translate-y-0">
-                    <div class="bg-[#2C2A27] p-6 rounded-3xl shadow-[6px_6px_0px_#A97C50] inline-block max-w-xs md:max-w-sm border border-white/10">
-                        <img src="static/Logo.png" alt="SANAD" class="w-full h-auto object-contain mx-auto" onerror="this.onerror=null; this.outerHTML='<div class=\'text-center py-4 px-10\'><h1 class=\'text-6xl font-black text-[#EFEBE3] tracking-tighter\'>SANAD</h1><div class=\'text-sm text-[#B3A99B] font-bold tracking-[0.4em] mt-1\'>سند</div></div>';">
+                <div id="portal-hero-logo" class="inline-block transform transition-all duration-500 hover:scale-105 active:scale-95 cursor-pointer group">
+                    <div class="bg-[#2C2A27] p-6 rounded-3xl shadow-[0_20px_40px_rgba(44,42,39,0.15)] group-hover:shadow-[0_25px_50px_rgba(169,124,80,0.25)] inline-block max-w-xs md:max-w-sm border border-white/10 relative overflow-hidden transition-all duration-500">
+                        <!-- Delicate Glass Gloss Light Flare Line Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none"></div>
+                        <img src="static/Logo.png" alt="SANAD" class="w-full h-auto object-contain mx-auto relative z-10" onerror="this.onerror=null; this.outerHTML='<div class=\'text-center py-4 px-10 relative z-10\'><h1 class=\'text-6xl font-black text-[#EFEBE3] tracking-tighter transition-colors group-hover:text-white\'>SANAD</h1><div class=\'text-sm text-[#B3A99B] font-bold tracking-[0.4em] mt-1\'>سند</div></div>';">
                     </div>
                 </div>
 
                 <!-- Descriptive Glassy Central Card Layout -->
-                <div id="portal-hero-explainer" class="glassy-card p-6 md:p-8 rounded-3xl border border-white/60 shadow-xl space-y-5 transition-all duration-500">
+                <div id="portal-hero-explainer" class="premium-glass p-6 md:p-8 rounded-3xl shadow-[0_15px_35px_rgba(44,42,39,0.04)] border-white/70 space-y-5 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(44,42,39,0.08)]">
                     <h2 class="text-xl md:text-2xl font-black text-[#2C2A27] uppercase tracking-wide">
                         Your Neighborhood Support Network 🤝
                     </h2>
-                    <p class="text-xs md:text-sm text-[#5C5449] leading-relaxed font-medium">
+                    <p class="text-xs md:text-sm text-[#5C5449] leading-relaxed font-medium px-2">
                         Discover nearby skills, coordinate mutual support initiatives, find locally crafted products, or share announcements. Sanad bridges hyper-local physical coordinates with instant neighborhood coordination.
                     </p>
                     <div class="pt-2">
-                        <button onclick="collapsePortalGateways()" class="px-8 py-4 bg-[#A97C50] hover:bg-[#8F653E] text-white font-black text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-[4px_4px_0px_#2C2A27] hover:shadow-[2px_2px_0px_#2C2A27] active:translate-y-0.5 cursor-pointer w-full sm:w-auto">
+                        <button onclick="collapsePortalGateways()" class="px-8 py-4 bg-[#A97C50] hover:bg-[#8F653E] text-white font-black text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-[0_6px_20px_rgba(169,124,80,0.3)] hover:shadow-[0_4px_10px_rgba(44,42,39,0.2)] hover:-translate-y-0.5 active:translate-y-0.5 cursor-pointer w-full sm:w-auto">
                             Enter Dashboard Map 📍
                         </button>
                     </div>
@@ -157,30 +197,31 @@
             </div>
 
             <!-- RIGHT SIDEBAR: Category Matrix Breakdown & Quick Nav Shortcuts -->
-            <div id="portal-right-sidebar" class="col-span-1 lg:col-span-3 space-y-4 order-3 transition-all duration-500">
-                <div class="glassy-card p-5 rounded-2xl border border-white/40">
+            <div id="portal-right-sidebar" class="col-span-1 lg:col-span-3 space-y-4 order-3 opacity-0 animate-fade-up animation-delay-400 transition-all duration-500">
+                <div class="premium-glass p-5 rounded-2xl group hover:border-[#A97C50]/40 hover:shadow-md transition-all duration-300">
                     <h3 class="text-[10px] font-black tracking-wider text-[#A97C50] uppercase mb-3">
                         ⚡ Quick Channels
                     </h3>
                     <div class="grid grid-cols-2 gap-2 text-center">
-                        <div class="p-3 bg-white/50 rounded-xl border border-white/30 text-xs font-bold hover:bg-white/80 transition-colors">
+                        <div class="p-3 bg-white/40 rounded-xl border border-white/50 text-xs font-bold hover:bg-white/90 hover:shadow-xs transition-all duration-200 cursor-pointer">
                             <span class="block text-base mb-1">🛠️</span> Services
                         </div>
-                        <div class="p-3 bg-white/50 rounded-xl border border-white/30 text-xs font-bold hover:bg-white/80 transition-colors">
+                        <div class="p-3 bg-white/40 rounded-xl border border-white/50 text-xs font-bold hover:bg-white/90 hover:shadow-xs transition-all duration-200 cursor-pointer">
                             <span class="block text-base mb-1">📦</span> Products
                         </div>
-                        <div class="p-3 bg-white/50 rounded-xl border border-white/30 text-xs font-bold hover:bg-white/80 transition-colors">
+                        <div class="p-3 bg-white/40 rounded-xl border border-white/50 text-xs font-bold hover:bg-white/90 hover:shadow-xs transition-all duration-200 cursor-pointer">
                             <span class="block text-base mb-1">💡</span> Skill Hub
                         </div>
-                        <div class="p-3 bg-white/50 rounded-xl border border-white/30 text-xs font-bold hover:bg-white/80 transition-colors">
+                        <div class="p-3 bg-white/40 rounded-xl border border-white/50 text-xs font-bold hover:bg-white/90 hover:shadow-xs transition-all duration-200 cursor-pointer">
                             <span class="block text-base mb-1">📢</span> Notices
                         </div>
                     </div>
                 </div>
 
-                <div class="glassy-dark-card p-5 rounded-2xl text-white shadow-lg">
-                    <div class="text-[9px] font-black text-[#A97C50] uppercase tracking-widest mb-1">Core Architecture</div>
-                    <p class="text-[11px] leading-relaxed text-[#D6D2C9] font-medium">
+                <div class="premium-dark-glass p-5 rounded-2xl text-white shadow-lg relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
+                    <div class="text-[9px] font-black text-[#A97C50] uppercase tracking-widest mb-1 relative z-10">Core Architecture</div>
+                    <p class="text-[11px] leading-relaxed text-[#D6D2C9] font-medium relative z-10 transition-colors group-hover:text-white">
                         Sanad utilizes localized mapping arrays to pair collective skill graphs without central platform intermediaries.
                     </p>
                 </div>
@@ -189,7 +230,7 @@
         </div>
 
         <!-- Welcome Bottom Footer Ecosystem Layer -->
-        <footer class="w-full text-center relative z-10 shrink-0 mt-6 text-[10px] font-bold text-[#857B6D] tracking-wider uppercase">
+        <footer class="w-full text-center relative z-10 shrink-0 mt-6 text-[10px] font-bold text-[#857B6D] tracking-wider uppercase opacity-0 animate-fade-up animation-delay-400">
             © 2026 Sanad Hyperlocal Grid Management Engine Inc.
         </footer>
     </div>
@@ -538,10 +579,10 @@
             const rightSidebar = document.getElementById('portal-right-sidebar');
 
             // Complex side panel glassy fading transition sequence
-            heroExplainer.classList.add('opacity-0', 'scale-90');
-            leftSidebar.classList.add('opacity-0', '-translate-x-12');
-            rightSidebar.classList.add('opacity-0', 'translate-x-12');
-            heroLogo.classList.add('scale-50', '-translate-y-[40vh]', 'opacity-0');
+            heroExplainer.classList.add('opacity-0', 'scale-95', 'blur-md');
+            leftSidebar.classList.add('opacity-0', '-translate-x-16', 'blur-md');
+            rightSidebar.classList.add('opacity-0', 'translate-x-16', 'blur-md');
+            heroLogo.classList.add('scale-50', '-translate-y-[40vh]', 'opacity-0', 'blur-md');
             overlay.classList.add('opacity-0', 'pointer-events-none');
 
             setTimeout(() => {
