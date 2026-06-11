@@ -3,530 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanad — Community Exchange Grid</title>
-    
-    <!-- STABLE TAILWIND PLAYBACK ENGINE -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sanad - Your Neighborhood, Connected</title>
+    <!-- Tailwind CSS for sleek, modern UI -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome for clean icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- LEAFLET GEOSPATIAL MAPS FRAMEWORK STACK -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&family=Space+Grotesk:wght=500;700&display=swap');
-        
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #dfd5c6; 
-            background-image: 
-                linear-gradient(rgba(130, 90, 50, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(130, 90, 50, 0.04) 1px, transparent 1px);
-            background-size: 30px 30px;
-        }
-
-        .hero-font { font-family: 'Space Grotesk', sans-serif; }
-        .cyber-header {
-            background: rgba(240, 232, 218, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(150, 110, 80, 0.2);
-        }
-        .leaflet-container {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            border-radius: 24px;
-        }
+        /* Smooth Infinite Marquee Ticker Styling */
         @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
-        .animate-marquee { animation: marquee 35s linear infinite; }
-        .scrollbar-none::-webkit-scrollbar { display: none; }
-        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+        /* Custom scrollbar for web app look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 3px;
+        }
     </style>
 </head>
-<body class="text-stone-900 antialiased min-h-screen flex flex-col p-4 md:p-6 gap-6">
+<body class="bg-gray-950 text-gray-100 font-sans antialiased overflow-x-hidden">
 
-    <!-- SYSTEM LOGO HEADER -->
-    <header class="w-full max-w-7xl mx-auto h-20 cyber-header rounded-3xl px-6 flex items-center justify-between sticky top-4 z-50 shadow-sm">
-        <div class="flex items-center gap-4">
-            <div class="h-12 w-12 bg-transparent rounded-xl flex items-center justify-center overflow-hidden shrink-0">
-                <img src="/static/Logo.png" alt="Sanad Logo" class="object-contain h-full w-full" onerror="this.src='https://placehold.co/100x100?text=SANAD'">
-            </div>
-            <div class="flex flex-col">
-                <span class="text-base font-black tracking-widest text-stone-950 leading-none">SANAD</span>
-                <span class="text-[11px] text-[#a06a42] font-bold tracking-widest uppercase mt-0.5">سند</span>
-            </div>
+    <!-- ========================================================= -->
+    <!-- 1. DYNAMIC HERO LANDING PAGE WITH SCROLL LOGO TRANSITION -->
+    <!-- ========================================================= -->
+    <div id="homepage" class="min-h-screen flex flex-col items-center justify-center relative px-4 transition-all duration-700 bg-radial from-gray-900 to-gray-950">
+        <!-- Floating background abstract elements matching the slide theme -->
+        <div class="absolute top-1/4 left-10 w-72 h-72 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-10 w-72 h-72 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Centered Giant Sanad Brand Header -->
+        <div id="hero-brand-container" class="text-center transition-all duration-700 transform translate-y-0 z-50">
+            <h1 id="hero-title" class="text-7xl md:text-9xl font-extrabold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-amber-400 drop-shadow-sm select-none">
+                SANAD
+            </h1>
+            <p id="hero-arabic" class="text-3xl md:text-4xl font-semibold text-gray-400 mt-2 tracking-widest">سند</p>
         </div>
 
-        <div class="hidden md:flex items-center gap-2.5 text-[10px] font-black text-stone-700 tracking-widest uppercase bg-stone-900/5 px-4 py-2 rounded-xl border border-stone-900/5">
-            <i id="gps-icon" class="fa-solid fa-location-crosshairs text-amber-700 animate-pulse"></i>
-            <span>GRID TELEMETRY: <span id="user-coords" class="text-stone-950">24.4880° N, 54.3614° E</span></span>
-        </div>
-
-        <div>
-            <button onclick="toggleModal(true)" class="bg-[#ac7347] hover:bg-[#945f37] text-white text-xs font-extrabold px-6 py-3 rounded-xl transition-all duration-200 transform active:scale-95 cursor-pointer tracking-wider shadow-sm">
-                BROADCAST NODE
-            </button>
-        </div>
-    </header>
-
-    <!-- LAYOUT BANNER TITLES -->
-    <section class="w-full max-w-7xl mx-auto pt-2 flex flex-col gap-1">
-        <h1 class="hero-font text-4xl md:text-5xl font-black text-stone-950 tracking-tighter uppercase select-none">
-            COMMUNITY <span class="bg-gradient-to-r from-[#8a5329] to-[#ac7347] bg-clip-text text-transparent">SUPPORT HUB GRID</span>
-        </h1>
-    </section>
-
-    <!-- LIVE STORAGE MARQUEE ALERT -->
-    <section class="w-screen -mx-4 md:-mx-6 bg-[#d4c8b6] border-y border-stone-400/40 py-2.5 overflow-hidden flex select-none">
-        <div class="flex whitespace-nowrap gap-12 text-[10px] font-black tracking-widest uppercase items-center animate-marquee shrink-0 text-stone-800">
-            <span>ECOSYSTEM NODES ONLINE</span> <span class="text-[#ac7347]">•</span>
-            <span>INTEGRATED FROM MOBILE CONSOLE MATRIX PLUGINS</span> <span class="text-[#ac7347]">•</span>
-            <span>REAL-TIME SPATIAL POSITIONING VERIFIED</span> <span class="text-[#ac7347]">•</span>
-        </div>
-    </section>
-
-    <!-- ECOSYSTEM NAVIGATION AND MAIN LISTING INTERFACES -->
-    <main class="w-full max-w-7xl mx-auto flex flex-col gap-4 flex-1">
-        
-        <!-- MODERNIZED TAB ENGINE ALIGNED TO THE MOBILE USER EXPERIENCE INTERFACE -->
-        <div class="w-full flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-stone-400/30 pb-3">
-            <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
-                <button id="tab-all" onclick="filterCategory('all')" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer flex items-center gap-2">
-                    <i class="fa-solid fa-layer-group"></i> ALL FEATURES
-                </button>
-                <button id="tab-projects" onclick="filterCategory('projects')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
-                    <i class="fa-solid fa-folder-open"></i> COMMUNITY PROJECTS
-                </button>
-                <button id="tab-volunteer" onclick="filterCategory('volunteer')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
-                    <i class="fa-solid fa-hands-holding-child"></i> VOLUNTEER MATCHING
-                </button>
-                <button id="tab-skills" onclick="filterCategory('skills')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
-                    <i class="fa-solid fa-lightbulb"></i> SKILLS HUB
-                </button>
-                <button id="tab-news" onclick="filterCategory('news')" class="px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2">
-                    <i class="fa-solid fa-newspaper"></i> NEIGHBOURHOOD NEWS
-                </button>
-            </div>
-
-            <div class="flex items-center bg-[#d4c8b6]/60 p-1 rounded-xl border border-stone-400/30 self-start xl:self-auto">
-                <button id="type-all" onclick="filterType('all')" class="px-3 py-1.5 bg-[#c8bca8] text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">ALL NODES</button>
-                <button id="type-service" onclick="filterType('Service')" class="px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">SERVICES</button>
-                <button id="type-product" onclick="filterType('Product')" class="px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer">PRODUCTS</button>
-            </div>
-        </div>
-
-        <!-- SPLIT RENDER COLUMNS VIEWS -->
-        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            
-            <!-- LISTINGS GRID VIEW TARGET CONTAINER -->
-            <div class="lg:col-span-7 w-full min-h-[400px]">
-                <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-                    <!-- Cards mount reactively here via runtime engine loops -->
-                </div>
-            </div>
-
-            <!-- COMPASS TRACKER MAP WRAPPER -->
-            <div class="lg:col-span-5 lg:sticky lg:top-28 w-full">
-                <div class="bg-[#ebdcc7]/40 border border-stone-400/30 p-3 rounded-3xl">
-                    <div class="flex items-center gap-2 text-[10px] font-black tracking-wider text-stone-800 uppercase mb-2">
-                        <i class="fa-solid fa-map-location-dot text-[#ac7347]"></i>
-                        <span>RADIAL GRID POSITION COORDINATION GRAPH</span>
-                    </div>
-                    <div id="main-map" class="w-full aspect-square rounded-2xl border border-stone-400/40 shadow-sm z-10"></div>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- NODE FORM SUBMISSION POPUP -->
-    <div id="form-modal" class="fixed inset-0 bg-stone-950/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-200">
-        <div class="bg-[#ebdcc7] border border-stone-400/40 rounded-3xl shadow-xl w-full max-w-md p-5 transform scale-95 transition-all duration-200 text-stone-900 max-h-[90vh] overflow-y-auto">
-            <div class="flex items-center justify-between border-b border-stone-400/40 pb-3 mb-3">
-                <div class="flex items-center gap-2">
-                    <div class="w-1.5 h-3.5 bg-[#ac7347] rounded-sm"></div>
-                    <h3 class="font-extrabold text-xs text-stone-950 uppercase tracking-widest">Broadcast Asset Node</h3>
-                </div>
-                <button onclick="toggleModal(false)" class="text-stone-600 hover:text-stone-950 cursor-pointer p-1">
-                    <i class="fa-solid fa-xmark text-sm"></i>
-                </button>
-            </div>
-
-            <div class="space-y-3">
-                <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Household / Anchor Entity Group</label>
-                    <input type="text" id="form-provider" placeholder="e.g. Al Suwaidi Family" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950">
-                </div>
-                
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Ecosystem Channel</label>
-                        <select id="form-category" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none">
-                            <option value="projects">Community Projects</option>
-                            <option value="volunteer">Volunteer Matching</option>
-                            <option value="skills">Skills Hub</option>
-                            <option value="news">Neighbourhood News</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Node Type</label>
-                        <select id="form-type" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none">
-                            <option value="Service">Service</option>
-                            <option value="Product">Product</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Broadcast Title</label>
-                    <input type="text" id="form-title" placeholder="e.g. Traditional Majlis Coordination Support" class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950">
-                </div>
-
-                <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Context Description</label>
-                    <textarea id="form-description" rows="2" placeholder="Specify project requirements, updates, or timelines explicitly..." class="w-full text-xs px-3 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950 resize-none"></textarea>
-                </div>
-
-                <!-- ADDRESS SEARCH INPUT AND PINPOINT SYSTEM LAYER -->
-                <div>
-                    <label class="block text-[9px] font-black text-stone-700 uppercase tracking-widest mb-1">Search Location / Address</label>
-                    <div class="relative flex items-center">
-                        <input type="text" id="map-search-bar" placeholder="Type area (e.g., Al Bateen, Corniche, Yas Island)..." class="w-full text-xs pl-3 pr-20 py-2 bg-[#f6ede0] border border-stone-400/40 rounded-xl focus:outline-none text-stone-950">
-                        <button type="button" onclick="searchLocationNode()" class="absolute right-1.5 bg-[#ac7347] hover:bg-[#945f37] text-white font-bold text-[9px] uppercase px-3 py-1.5 rounded-lg transition-all cursor-pointer">
-                            FIND
-                        </button>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-[9px] font-black text-stone-500 tracking-widest uppercase mb-1">Verify Location Marker Location</label>
-                    <div id="modal-map" class="w-full h-28 rounded-xl border border-stone-400/50 shadow-sm"></div>
-                    <input type="hidden" id="form-lat" value="24.4539">
-                    <input type="hidden" id="form-lng" value="54.3773">
-                </div>
-
-                <div class="flex items-center justify-between gap-3 border border-stone-400/40 p-2 rounded-xl bg-[#f6ede0]">
-                    <div>
-                        <label class="block text-[9px] font-black text-stone-500 tracking-widest uppercase mb-0.5">Value / Metrics Metric</label>
-                        <input type="text" id="form-price" placeholder="e.g. 5 Open Slots / AED 100" class="w-full bg-transparent text-xs text-stone-950 font-black focus:outline-none">
-                    </div>
-                    <div class="flex items-center gap-1.5 border-l border-stone-400/40 pl-3 h-8 shrink-0">
-                        <input type="checkbox" id="form-student" class="w-3.5 h-3.5 accent-[#ac7347] rounded bg-white">
-                        <label for="form-student" class="text-[9px] font-black text-stone-600 tracking-widest uppercase cursor-pointer">Student?</label>
-                    </div>
-                </div>
-
-                <button onclick="submitNewListing()" class="w-full bg-[#ac7347] hover:bg-[#945f37] text-white text-xs font-black uppercase tracking-widest py-3 rounded-xl transition-all cursor-pointer shadow-sm">
-                    CONFORM AND BROADCAST TO SYSTEM MATRIX
+        <!-- App Core Mission Content -->
+        <div id="hero-content" class="max-w-2xl text-center mt-12 space-y-6 z-10 transition-all duration-500">
+            <h2 class="text-2xl md:text-4xl font-bold text-white tracking-tight">Your Neighborhood, Connected. 🤝</h2>
+            <p class="text-gray-400 text-base md:text-lg leading-relaxed">
+                Discover small businesses, share skills, trade local products, and stay updated with everything happening right outside your front door. Sanad brings the spirit of the community into a simple, interactive digital map.
+            </p>
+            <div class="pt-4">
+                <button onclick="enterAppDashboard()" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-amber-600 text-white font-semibold rounded-full shadow-lg hover:shadow-purple-500/20 transform hover:-translate-y-0.5 transition-all duration-200 cursor-pointer text-lg">
+                    Open Community Map 📍
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- PERSISTENT REACTION SCRIPTS LAYER -->
-    <script>
-        let currentCategory = 'all';
-        let currentType = 'all';
-        let userLat = 24.4880;
-        let userLng = 54.3614;
 
-        let mainMap, modalMap;
-        let mainMarkersGroup = L.layerGroup();
-        let userLocationMarker = null;
-        let modalSelectionMarker = null;
-
-        // DICTIONARY OF MAPPED LOCATION PRESETS FOR CONVENIENT TESTING DISCOVERY
-        const REGIONAL_GEO_MATRIX = {
-            "al bateen": [24.4562, 54.3484],
-            "bateen": [24.4562, 54.3484],
-            "corniche": [24.4820, 54.3580],
-            "khalidiya": [24.4710, 54.3490],
-            "yas island": [24.4980, 54.6050],
-            "yas": [24.4980, 54.6050],
-            "reem island": [24.4960, 54.4070],
-            "reem": [24.4960, 54.4070],
-            "saadiyat": [24.5330, 54.4330],
-            "mushrif": [24.4440, 54.3940],
-            "dunes": [24.3725, 54.5422]
-        };
-
-        window.addEventListener('load', () => {
-            initMaps();
-            fetchAndRenderListings();
-        });
-
-        function initMaps() {
-            try {
-                mainMap = L.map('main-map', { scrollWheelZoom: false }).setView([userLat, userLng], 11);
-                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-                    attribution: '&copy; CARTO'
-                }).addTo(mainMap);
-                mainMarkersGroup.addTo(mainMap);
-
-                userLocationMarker = L.circleMarker([userLat, userLng], {
-                    radius: 8, fillColor: '#3b82f6', color: '#fff', weight: 2, fillOpacity: 0.9
-                }).addTo(mainMap).bindPopup('<b>YOUR HOST RADIAL COMPASS STATION</b>');
-
-                modalMap = L.map('modal-map', { zoomControl: false }).setView([userLat, userLng], 10);
-                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(modalMap);
-
-                modalMap.on('click', (e) => {
-                    updateModalLocationValues(e.latlng.lat, e.latlng.lng);
-                });
-            } catch(err) {
-                console.warn("Map grid matrix loaded securely.", err);
-            }
-        }
-
-        function searchLocationNode() {
-            const query = document.getElementById('map-search-bar').value.toLowerCase().trim();
-            if(!query) return;
-
-            let targetCoords = null;
-            for (let locationKey in REGIONAL_GEO_MATRIX) {
-                if (query.includes(locationKey)) {
-                    targetCoords = REGIONAL_GEO_MATRIX[locationKey];
-                    break;
-                }
-            }
-
-            if(!targetCoords) {
-                const randomOffsetLat = (Math.random() - 0.5) * 0.1;
-                const randomOffsetLng = (Math.random() - 0.5) * 0.1;
-                targetCoords = [userLat + randomOffsetLat, userLng + randomOffsetLng];
-            }
-
-            modalMap.setView(targetCoords, 13, { animate: true });
-            updateModalLocationValues(targetCoords[0], targetCoords[1]);
-        }
-
-        function updateModalLocationValues(lat, lng) {
-            document.getElementById('form-lat').value = lat;
-            document.getElementById('form-lng').value = lng;
+    <!-- ========================================================= -->
+    <!-- 2. MAIN APP DASHBOARD INTERFACE CONTAINER (Hidden at Start) -->
+    <!-- ========================================================= -->
+    <div id="app-dashboard" class="hidden min-h-screen flex flex-col bg-gray-950 transition-all duration-500 opacity-0">
+        
+        <!-- Permanent Fixed Header Nav Row -->
+        <header class="bg-gray-900/80 border-b border-gray-800 backdrop-blur-md sticky top-0 z-40 px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-amber-400">SANAD</span>
+                <span class="text-xs font-semibold bg-gray-800 text-gray-400 px-2 py-0.5 rounded-full border border-gray-700">سند</span>
+            </div>
             
-            if (modalSelectionMarker) {
-                modalSelectionMarker.setLatLng([lat, lng]);
-            } else {
-                modalSelectionMarker = L.marker([lat, lng]).addTo(modalMap);
-            }
-        }
-
-        function toggleModal(open) {
-            const modal = document.getElementById('form-modal');
-            const inner = modal.querySelector('div');
-            if(open) {
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                inner.classList.remove('scale-95');
-                setTimeout(() => { if(modalMap) modalMap.invalidateSize(); }, 200);
-            } else {
-                modal.classList.add('opacity-0', 'pointer-events-none');
-                inner.classList.add('scale-95');
-            }
-        }
-
-        function panToMapTarget(lat, lng) {
-            if(mainMap && lat && lng) {
-                mainMap.setView([lat, lng], 14, { animate: true, duration: 1.0 });
-                mainMarkersGroup.eachLayer((marker) => {
-                    if(marker.getLatLng().lat === parseFloat(lat) && marker.getLatLng().lng === parseFloat(lng)) {
-                        marker.openPopup();
-                    }
-                });
-            }
-        }
-
-        function filterCategory(cat) {
-            currentCategory = cat;
-            document.querySelectorAll('[id^="tab-"]').forEach(el => {
-                el.className = 'px-4 py-2 rounded-xl text-xs font-bold text-stone-700 hover:text-stone-950 transition-all cursor-pointer flex items-center gap-2';
-            });
-            const targeted = document.getElementById(`tab-${cat}`);
-            if(targeted) targeted.className = 'px-4 py-2 rounded-xl text-xs font-extrabold bg-[#ac7347] text-white transition-all cursor-pointer flex items-center gap-2';
-            fetchAndRenderListings();
-        }
-
-        function filterType(type) {
-            currentType = type;
-            document.querySelectorAll('[id^="type-"]').forEach(el => {
-                el.className = 'px-3 py-1.5 text-stone-700 hover:text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
-            });
-            const idMap = type === 'all' ? 'all' : type.toLowerCase();
-            const node = document.getElementById(`type-${idMap}`);
-            if(node) node.className = 'px-3 py-1.5 bg-[#c8bca8] text-stone-950 text-[9px] font-black tracking-wider uppercase rounded-lg transition-all cursor-pointer';
-            fetchAndRenderListings();
-        }
-
-        function calculateKilometerGap(lat1, lon1, lat2, lon2) {
-            if (!lat2 || !lon2) return null;
-            const R = 6371; 
-            const dLat = (lat2 - lat1) * Math.PI / 180;
-            const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-            return (R * c).toFixed(1);
-        }
-
-        function fetchAndRenderListings() {
-            fetch(`/api/listings?category=${currentCategory}&type=${currentType}`)
-                .then(res => res.json())
-                .then(data => {
-                    renderDatasetNodes(data);
-                })
-                .catch(() => {
-                    renderDatasetNodes(getFeaturesFallbackArray());
-                });
-        }
-
-        function getFeatureConfigLayout(category) {
-            switch(category) {
-                case 'projects':
-                    return { icon: 'fa-folder-open', color: 'text-amber-800 bg-amber-500/10', label: 'COMMUNITY PROJECT' };
-                case 'volunteer':
-                    return { icon: 'fa-hands-holding-child', color: 'text-emerald-800 bg-emerald-500/10', label: 'VOLUNTEER MATCH' };
-                case 'skills':
-                    return { icon: 'fa-lightbulb', color: 'text-indigo-800 bg-indigo-500/10', label: 'SKILLS HUB' };
-                case 'news':
-                    return { icon: 'fa-newspaper', color: 'text-rose-800 bg-rose-500/10', label: 'NEIGHBOURHOOD ALERT' };
-                default:
-                    return { icon: 'fa-dot-circle', color: 'text-stone-800 bg-stone-500/10', label: 'SANAD NODE' };
-            }
-        }
-
-        function getFeaturesFallbackArray() {
-            return [
-                {
-                    "provider": "Zayed Heritage Group",
-                    "category": "projects",
-                    "type": "Product",
-                    "title": "Al Bateen Community Garden Initiative",
-                    "description": "Collaborative urban planting project constructing traditional green spaces. Seeking material drop-offs and architectural shade setup layouts.",
-                    "price": "Target: 500kg Soil",
-                    "location_zone": "24.4562,54.3484"
-                },
-                {
-                    "provider": "Emirati Youth Red Crescent",
-                    "category": "volunteer",
-                    "type": "Service",
-                    "title": "Senior Companion Care & Story Archiving",
-                    "description": "Volunteers needed to visit elders, coordinate weekly social majlis discussions, and document oral local histories.",
-                    "price": "4 Slots Open",
-                    "location_zone": "24.4820,54.3580"
-                }
-            ];
-        }
-
-        function renderDatasetNodes(dataset) {
-            const container = document.getElementById('listings-grid');
-            if(!container) return;
-            container.innerHTML = '';
-            if(mainMarkersGroup) mainMarkersGroup.clearLayers(); 
-
-            if (dataset.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full py-12 flex flex-col items-center justify-center border border-dashed border-stone-400/40 rounded-2xl bg-[#ebdcc7]/10">
-                        <i class="fa-solid fa-folder-open text-stone-400 text-2xl mb-2"></i>
-                        <span class="text-xs font-bold text-stone-500 uppercase tracking-widest">No active broadcast channels found</span>
-                    </div>`;
-                return;
-            }
-
-            dataset.forEach((item) => {
-                const initials = item.provider ? item.provider.substring(0, 2).toUpperCase() : 'SD';
-                let targetLat = 24.4539;
-                let targetLon = 54.3773;
+            <!-- Unified Dynamic Landmark & Address Search Bar -->
+            <div class="relative w-full max-w-md mx-4">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <input type="text" id="address-search" onkeyup="filterAddress()" placeholder="Search local landmarks (e.g., Liwa Center)..." class="w-full pl-10 pr-4 py-2 bg-gray-950 border border-gray-800 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors">
                 
-                if(item.location_zone && item.location_zone.includes(',')) {
-                    const splitted = item.location_zone.split(',');
-                    targetLat = parseFloat(splitted[0]);
-                    targetLon = parseFloat(splitted[1]);
-                }
+                <!-- Live Search Dropdown Suggestions -->
+                <div id="address-dropdown" class="hidden absolute left-0 right-0 mt-2 bg-gray-900 border border-gray-800 rounded-lg shadow-2xl z-50 overflow-hidden">
+                    <button onclick="selectAddress('Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi')" class="w-full text-left px-4 py-3 text-sm hover:bg-gray-800/60 border-b border-gray-800/50 flex flex-col">
+                        <span class="font-semibold text-white">Liwa Center</span>
+                        <span class="text-xs text-gray-400">Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi, UAE</span>
+                    </button>
+                    <button onclick="selectAddress('Dunes International School, Mussafah, Abu Dhabi')" class="w-full text-left px-4 py-3 text-sm hover:bg-gray-800/60 border-b border-gray-800/50 flex flex-col">
+                        <span class="font-semibold text-white">Dunes International School</span>
+                        <span class="text-xs text-gray-400">Shabiya 12, Mussafah, Abu Dhabi, UAE</span>
+                    </button>
+                    <button onclick="selectAddress('Corniche Beach Promenade, Al Bateen, Abu Dhabi')" class="w-full text-left px-4 py-3 text-sm hover:bg-gray-800/60 flex flex-col">
+                        <span class="font-semibold text-white">Corniche Beach Promenade</span>
+                        <span class="text-xs text-gray-400">Al Bateen, Abu Dhabi, UAE</span>
+                    </button>
+                </div>
+            </div>
 
-                if (mainMarkersGroup) {
-                    try {
-                        const mapMarker = L.marker([targetLat, targetLon])
-                            .bindPopup(`
-                                <div style="font-family:'Plus Jakarta Sans', sans-serif; padding: 2px;">
-                                    <b style="color:#ac7347; text-transform:uppercase; font-size:11px;">${item.title}</b><br>
-                                    <span style="font-size:10px; color:#222; display:block; margin-top:2px;">Origin: ${item.provider}</span>
-                                    <span style="font-size:10px; color:#ac7347; font-weight:bold;">Metrics: ${item.price}</span>
-                                </div>
-                            `);
-                        mainMarkersGroup.addLayer(mapMarker);
-                    } catch(e) {}
-                }
+            <!-- Current Resolved Display Address Text Area -->
+            <div class="hidden md:flex items-center space-x-2 text-xs text-gray-400 max-w-xs text-right">
+                <span id="current-resolved-address" class="truncate font-medium text-purple-400 bg-purple-950/40 border border-purple-900/50 px-3 py-1.5 rounded-md">
+                    📍 Liwa Center, Hamdan Bin Mohammed Street, Al Danah, Abu Dhabi
+                </span>
+            </div>
+        </header>
 
-                const cfg = getFeatureConfigLayout(item.category);
-                const computedDistance = calculateKilometerGap(userLat, userLng, targetLat, targetLon);
-                const distanceText = computedDistance ? `${computedDistance} km away` : 'Active Hub';
+        <!-- ========================================================= -->
+        <!-- 3. SMOOTH CONTINUOUS VIEWPORT COMMUNITY TICKER -->
+        <!-- ========================================================= -->
+        <div class="bg-gradient-to-r from-purple-950 via-gray-900 to-amber-950 border-b border-gray-800 py-2.5 overflow-hidden flex items-center">
+            <div class="animate-marquee text-sm text-gray-300 font-medium tracking-wide">
+                🥖 <span class="text-white font-semibold">Aysha</span> just listed <span class="text-amber-400">Fresh Homemade Sourdough</span> under Products! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                🧵 <span class="text-white font-semibold">Ahmed</span> added <span class="text-purple-400">Tailoring & Alterations</span> to Services! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                📢 <span class="text-rose-400 font-bold">Notice:</span> Community Park Cleanup happening this Saturday at 4 PM! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                🎓 <span class="text-teal-400 font-semibold">Student Discount</span> available for Math Tutoring under Skills!
+            </div>
+        </div>
 
-                const cardHtml = `
-                    <div onclick="panToMapTarget(${targetLat}, ${targetLon})" class="bg-gradient-to-br from-[#f5ede0] to-[#ebdcc7] border border-stone-400/30 rounded-2xl p-5 flex flex-col justify-between transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md text-stone-900 cursor-pointer group">
-                        <div class="mb-4">
-                            <div class="flex justify-between items-center gap-2 mb-2">
-                                <div class="flex items-center gap-1.5 px-2 py-0.5 rounded ${cfg.color} border border-stone-400/10">
-                                    <i class="fa-solid ${cfg.icon} text-[10px]"></i>
-                                    <span class="text-[8px] font-black uppercase tracking-widest">${cfg.label}</span>
-                                </div>
-                                <span class="text-[10px] text-[#ac7347] font-extrabold tracking-tight flex items-center gap-1">
-                                    <i class="fa-solid fa-map-pin text-emerald-700"></i> ${distanceText}
-                                </span>
-                            </div>
-                            <h3 class="hero-font text-base font-black tracking-tight uppercase text-stone-950 line-clamp-2 mt-1">${item.title}</h3>
-                            <p class="text-[11px] text-stone-700 leading-normal mt-1.5 font-medium">${item.description}</p>
-                        </div>
-                        
-                        <div class="border-t border-stone-400/20 pt-3 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <div class="w-7 h-7 rounded-lg bg-[#ac7347]/10 text-[#ac7347] font-black text-[10px] flex items-center justify-center uppercase">${initials}</div>
-                                <span class="text-xs font-bold text-stone-950">${item.provider}</span>
-                            </div>
-                            <span class="text-xs font-black text-stone-950 bg-[#ac7347]/10 text-[#ac7347] px-2 py-1 rounded-md max-w-[140px] truncate">${item.price}</span>
-                        </div>
-                    </div>`;
+        <!-- Main Dashboard Split Grid Core Workspace -->
+        <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden h-[calc(100vh-113px)]">
+            
+            <!-- LEFT WORKSPACE PANEL: Form and Feed Feed Control (7 Columns) -->
+            <div class="lg:col-span-7 flex flex-col border-r border-gray-800 overflow-y-auto p-6 space-y-6">
                 
-                container.innerHTML += cardHtml;
+                <!-- "REGISTER NOW!" ACCESSIBLE FORM PANEL -->
+                <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-purple-500 to-amber-500"></div>
+                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-plus text-purple-400"></i> Register Now!
+                    </h3>
+                    
+                    <form id="register-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <!-- User Type Selection Checkboxes Toggle -->
+                        <div class="flex items-center gap-6 bg-gray-950 p-3 rounded-lg border border-gray-800/60">
+                            <label class="inline-flex items-center cursor-pointer select-none">
+                                <input type="checkbox" id="check-student" class="rounded border-gray-700 text-purple-600 focus:ring-purple-500 bg-gray-900 w-4 h-4 mr-2">
+                                <span class="text-sm text-gray-300 font-medium">I am a Student</span>
+                            </label>
+                            <label class="inline-flex items-center cursor-pointer select-none">
+                                <input type="checkbox" id="check-resident" checked class="rounded border-gray-700 text-amber-600 focus:ring-amber-500 bg-gray-900 w-4 h-4 mr-2">
+                                <span class="text-sm text-gray-300 font-medium">I am a Resident / Business</span>
+                            </label>
+                        </div>
+
+                        <!-- Name and Structural Entity Row Entry -->
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Your Name / Group Name</label>
+                            <input type="text" id="form-name" required placeholder="Enter full personal name or local business group entity" class="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-lg text-sm focus:outline-none focus:border-purple-500 text-white transition-colors">
+                        </div>
+
+                        <!-- Dynamic Types Grid Option Framework -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Types:</label>
+                                <select id="form-type" onchange="toggleServiceDropdown()" class="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-lg text-sm focus:outline-none focus:border-purple-500 text-white transition-colors">
+                                    <option value="Notice">📢 Notice</option>
+                                    <option value="Service">🛠️ Service</option>
+                                    <option value="Product">📦 Product</option>
+                                    <option value="Skill">💡 Skill</option>
+                                </select>
+                            </div>
+
+                            <!-- Dynamic Service Database Selection Field Menu Slot -->
+                            <div id="service-subgroup" class="hidden opacity-0 transition-all duration-300">
+                                <label class="block text-xs font-semibold text-purple-400 uppercase tracking-wider mb-1.5">Service Type 👇</label>
+                                <select id="form-sub-service" class="w-full px-3 py-2 bg-gray-950 border border-purple-900/60 rounded-lg text-sm focus:outline-none focus:border-purple-500 text-white transition-colors">
+                                    <option value="Cleaner / Domestic Help">🧹 Cleaner / Domestic Help</option>
+                                    <option value="Stitching & Tailoring">🪡 Stitching & Tailoring</option>
+                                    <option value="Baking & Home Cooking">🎂 Baking & Home Cooking</option>
+                                    <option value="Small-scale Repairs / Handyman">🔧 Small-scale Repairs / Handyman</option>
+                                    <option value="Delivery & Moving Assist">📦 Delivery & Moving Assist</option>
+                                    <option value="Car Washing">🚗 Car Washing</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Text Information Entry Fields -->
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1.5">Title</label>
+                            <input type="text" id="form-title" required placeholder="Summarize your offer or notice post info headline text" class="w-full px-3 py-2 bg-gray-950 border border-gray-800 rounded-lg text-sm focus:outline-none focus:border-purple-500 text-white transition-colors">
+                        </div>
+
+                        <!-- Action Submit Form Execution Core Interaction Button -->
+                        <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-purple-600 to-amber-600 hover:from-purple-500 hover:to-amber-500 text-white font-semibold rounded-lg text-sm shadow-md transition-all duration-200 cursor-pointer">
+                            Confirm and Upload Details
+                        </button>
+                    </form>
+                </div>
+
+                <!-- DYNAMIC COMMUNITY FEED FILTER SYSTEM BOARDS AND TABS -->
+                <div class="space-y-4">
+                    <div class="flex items-center overflow-x-auto gap-2 pb-2 border-b border-gray-800 no-scrollbar">
+                        <button onclick="filterFeed('All')" class="feed-tab active px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all bg-purple-600 text-white">🌐 All Posts</button>
+                        <button onclick="filterFeed('Service')" class="feed-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all bg-gray-900 text-gray-400 border border-gray-800 hover:text-white hover:border-gray-700">🛠️ Services</button>
+                        <button onclick="filterFeed('Product')" class="feed-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all bg-gray-900 text-gray-400 border border-gray-800 hover:text-white hover:border-gray-700">📦 Products</button>
+                        <button onclick="filterFeed('Skill')" class="feed-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all bg-gray-900 text-gray-400 border border-gray-800 hover:text-white hover:border-gray-700">💡 Skills Hub</button>
+                        <button onclick="filterFeed('Notice')" class="feed-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all bg-gray-900 text-gray-400 border border-gray-800 hover:text-white hover:border-gray-700">📢 Neighborhood News</button>
+                    </div>
+
+                    <!-- Dynamic Card Item Feed Container Grid -->
+                    <div id="community-feed-container" class="space-y-3">
+                        <!-- Core Seed Mock Data Card Node Elements -->
+                        <div class="feed-card bg-gray-900 border border-gray-800 p-4 rounded-xl flex items-start justify-between shadow-sm transition-all hover:border-gray-700" data-type="Product">
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs px-2 py-0.5 font-bold rounded bg-amber-950 text-amber-400 border border-amber-900/50">📦 Product</span>
+                                    <span class="text-xs text-gray-500 font-medium">📍 Al Danah, Abu Dhabi</span>
+                                </div>
+                                <h4 class="text-base font-bold text-white">Fresh Homemade Sourdough Loaves</h4>
+                                <p class="text-xs text-gray-400">By: <span class="text-gray-300 font-medium">Aysha S. (Resident)</span></p>
+                            </div>
+                            <span class="text-sm font-black text-amber-400 bg-amber-950/40 px-2.5 py-1 rounded border border-amber-900/30">25 AED</span>
+                        </div>
+
+                        <div class="feed-card bg-gray-900 border border-gray-800 p-4 rounded-xl flex items-start justify-between shadow-sm transition-all hover:border-gray-700" data-type="Service">
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs px-2 py-0.5 font-bold rounded bg-purple-950 text-purple-400 border border-purple-900/50">🛠️ Service (Tailoring)</span>
+                                    <span class="text-xs text-gray-500 font-medium">📍 Hamdan Street Area</span>
+                                </div>
+                                <h4 class="text-base font-bold text-white">Stitching, Alterations, & Custom Dress Adjustments</h4>
+                                <p class="text-xs text-gray-400">By: <span class="text-gray-300 font-medium">Ahmed Tailors (Local Group Name)</span></p>
+                            </div>
+                            <span class="text-sm font-black text-purple-400 bg-purple-950/40 px-2.5 py-1 rounded border border-purple-900/30">Contact</span>
+                        </div>
+
+                        <div class="feed-card bg-gray-900 border border-gray-800 p-4 rounded-xl flex items-start justify-between shadow-sm transition-all hover:border-gray-700" data-type="Skill">
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs px-2 py-0.5 font-bold rounded bg-teal-950 text-teal-400 border border-teal-900/50">💡 Skill</span>
+                                    <span class="text-xs text-gray-500 font-medium">📍 Near Liwa Center</span>
+                                </div>
+                                <h4 class="text-base font-bold text-white">Grade 10 Mathematics Term Exam Tutoring Support</h4>
+                                <p class="text-xs text-gray-400">By: <span class="text-purple-400 font-semibold">[Student]</span> <span class="text-gray-300 font-medium">Rahul Manoj</span></p>
+                            </div>
+                            <span class="text-sm font-black text-teal-400 bg-teal-950/40 px-2.5 py-1 rounded border border-teal-900/30">40 AED/Hr</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT WORKSPACE PANEL: Interactive Simulated Community Map Grid Layer View (5 Columns) -->
+            <div class="lg:col-span-5 bg-gray-900 relative p-4 flex flex-col justify-between overflow-hidden">
+                <!-- Abstract Simulated Dark Interface Map Grid Backdrop -->
+                <div class="absolute inset-0 bg-[radial-gradient(#2a2a3a_1px,transparent_1px)] [background-size:24px_24px] opacity-40"></div>
+                
+                <!-- Floating Simulated Visual Map Node Coordinates -->
+                <div class="absolute inset-0 z-0">
+                    <!-- Liwa Center Base Node Cluster Pins -->
+                    <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center animate-bounce duration-1000">
+                        <div class="bg-purple-600 text-white rounded-full p-2.5 shadow-xl relative group cursor-pointer">
+                            <i class="fa-solid fa-location-crosshairs text-base"></i>
+                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-gray-950 text-[10px] text-gray-200 px-2 py-1 rounded shadow-xl whitespace-nowrap border border-gray-800 opacity-100 pointer-events-none">
+                                Active Node Cluster: Al Danah (Liwa Center Hub)
+                            </div>
+                        </div>
+                        <div class="w-3 h-3 bg-purple-500/40 rounded-full mx-auto mt-1 blur-xs animate-ping"></div>
+                    </div>
+
+                    <!-- Outer Secondary Network Mesh Ring Track Pinpoints -->
+                    <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-amber-500 rounded-full opacity-60"></div>
+                    <div class="absolute bottom-1/3 right-1/4 w-3.5 h-3.5 bg-teal-500/30 border border-teal-500 rounded-full opacity-70 animate-pulse"></div>
+                    <div class="absolute bottom-1/4 left-1/3 w-2 h-2 bg-purple-400 rounded-full opacity-40"></div>
+                    
+                    <!-- SVG Connection Vector Graph Link Paths -->
+                    <svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="25%" y1="25%" x2="50%" y2="33%" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4"/>
+                        <line x1="50%" y1="33%" x2="75%" y2="66%" stroke="#14b8a6" stroke-width="1.5"/>
+                        <line x1="50%" y1="33%" x2="33%" y2="75%" stroke="#a855f7" stroke-width="2"/>
+                    </svg>
+                </div>
+
+                <!-- Floating Simulated Interface Map UI Controls Panel -->
+                <div class="z-10 bg-gray-950/90 border border-gray-800/80 rounded-lg p-3 backdrop-blur-md flex items-center justify-between text-xs text-gray-400">
+                    <span class="font-medium text-gray-300"><i class="fa-solid fa-map-location-dot text-amber-500 mr-1.5"></i> Live Geospatial Neighborhood Matrix View</span>
+                    <span class="text-[10px] font-mono tracking-widest text-gray-600 bg-gray-900 px-2 py-0.5 rounded border border-gray-800">SCALE: HYPER-LOCAL</span>
+                </div>
+
+                <!-- Footnote Interface Status Readout Block Metrics Bar -->
+                <div class="z-10 bg-gray-950/90 border border-gray-800/80 rounded-lg p-3.5 backdrop-blur-sm space-y-1">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-gray-400">Network Connection Density Index:</span>
+                        <span class="font-bold text-emerald-400">92 / 100 Peak Optimal</span>
+                    </div>
+                    <div class="w-full bg-gray-900 rounded-full h-1.5 border border-gray-800 overflow-hidden">
+                        <div class="bg-gradient-to-r from-purple-500 to-emerald-500 h-full rounded-full" style="width: 92%"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ========================================================= -->
+    <!-- 4. CORE INTERACTIVE APPLICATIONS ARCHITECTURE JAVASCRIPT  -->
+    <!-- ========================================================= -->
+    <script>
+        // Trigger App Landing Launch Entry Matrix Action Process
+        function enterAppDashboard() {
+            const homepage = document.getElementById('homepage');
+            const dashboard = document.getElementById('app-dashboard');
+            const brandContainer = document.getElementById('hero-brand-container');
+            const content = document.getElementById('hero-content');
+
+            // Trigger structural exit transformations animations
+            content.classList.add('opacity-0', 'scale-95');
+            brandContainer.classList.add('-translate-y-[200px]', 'scale-50', 'opacity-0');
+            homepage.classList.add('opacity-0');
+
+            setTimeout(() => {
+                homepage.classList.add('hidden');
+                dashboard.classList.remove('hidden');
+                
+                // Trigger smooth fade-in flow sequence initialization controls
+                setTimeout(() => {
+                    dashboard.classList.remove('opacity-0');
+                    dashboard.classList.add('opacity-100');
+                }, 50);
+            }, 600);
+        }
+
+        // Dynamic Sub-Category Dropdown Toggle Controller Hooks
+        function toggleServiceDropdown() {
+            const selectedType = document.getElementById('form-type').value;
+            const serviceDropdown = document.getElementById('service-subgroup');
+            
+            if (selectedType === 'Service') {
+                serviceDropdown.classList.remove('hidden');
+                setTimeout(() => {
+                    serviceDropdown.classList.remove('opacity-0');
+                    serviceDropdown.classList.add('opacity-100');
+                }, 10);
+            } else {
+                serviceDropdown.classList.add('opacity-0');
+                serviceDropdown.classList.remove('opacity-100');
+                setTimeout(() => {
+                    serviceDropdown.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Landmark Map Search Dropdown Array Filtering Engine Logic
+        function filterAddress() {
+            const input = document.getElementById('address-search').value.toLowerCase();
+            const dropdown = document.getElementById('address-dropdown');
+            
+            if (input.length > 1) {
+                dropdown.classList.remove('hidden');
+            } else {
+                dropdown.classList.add('hidden');
+            }
+        }
+
+        // Execute Selection Actions On Landmark Addresses Pick Options
+        function selectAddress(fullAddressText) {
+            document.getElementById('current-resolved-address').innerText = `📍 ${fullAddressText}`;
+            document.getElementById('address-search').value = fullAddressText.split(',')[0];
+            document.getElementById('address-dropdown').value = "";
+            document.getElementById('address-dropdown').classList.add('hidden');
+        }
+
+        // Live Feed Tab Interface Display Filtering Engine Process Control
+        function filterFeed(targetType) {
+            const cards = document.querySelectorAll('.feed-card');
+            const tabs = document.querySelectorAll('.feed-tab');
+
+            // Reset active styles across array items
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-purple-600', 'text-white');
+                tab.classList.add('bg-gray-900', 'text-gray-400', 'border-gray-800');
+            });
+
+            // Set current target selected item active color
+            event.target.classList.remove('bg-gray-900', 'text-gray-400', 'border-gray-800');
+            event.target.classList.add('bg-purple-600', 'text-white');
+
+            // Filter cards matching target parameters criteria
+            cards.forEach(card => {
+                if (targetType === 'All' || card.getAttribute('data-type') === targetType) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
             });
         }
 
-        function submitNewListing() {
-            const provider = document.getElementById('form-provider').value;
-            const category = document.getElementById('form-category').value;
-            const type = document.getElementById('form-type').value;
-            const title = document.getElementById('form-title').value;
-            const description = document.getElementById('form-description').value;
-            const price = document.getElementById('form-price').value;
-            const chosenLat = document.getElementById('form-lat').value;
-            const chosenLng = document.getElementById('form-lng').value;
-            const isStudent = document.getElementById('form-student').checked;
+        // Process Interactive Form Post Submissions Pipeline Injection
+        function handleFormSubmit(event) {
+            event.preventDefault();
 
-            if(!provider || !title || !description) {
-                alert('Fill out all fields to complete node generation.');
-                return;
+            // Extract form node state content value points
+            const isStudent = document.getElementById('check-student').checked;
+            const groupName = document.getElementById('form-name').value;
+            const primaryType = document.getElementById('form-type').value;
+            const subServiceType = document.getElementById('form-sub-service').value;
+            const entryTitle = document.getElementById('form-title').value;
+
+            // Generate clean dynamic color tags templates
+            let typeLabel = primaryType;
+            let themeStyles = "bg-purple-950 text-purple-400 border-purple-900/50";
+            let costMetricsTag = "Contact";
+
+            if (primaryType === 'Product') {
+                themeStyles = "bg-amber-950 text-amber-400 border-amber-900/50";
+                costMetricsTag = "Marketplace";
+            } else if (primaryType === 'Skill') {
+                themeStyles = "bg-teal-950 text-teal-400 border-teal-900/50";
+                costMetricsTag = "Lessons";
+            } else if (primaryType === 'Notice') {
+                themeStyles = "bg-rose-950 text-rose-400 border-rose-900/50";
+                costMetricsTag = "Alert";
+            } else if (primaryType === 'Service') {
+                typeLabel = `Service (${subServiceType.split(' ')[0]})`;
             }
 
-            fetch('/api/listings/add', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    provider, category, type, title, description, price, 
-                    location_zone: `${chosenLat},${chosenLng}`,
-                    is_student: isStudent ? 'true' : 'false' 
-                })
-            })
-            .then(res => res.json())
-            .then(res => {
-                if(res.success) {
-                    document.getElementById('form-title').value = '';
-                    document.getElementById('form-description').value = '';
-                    document.getElementById('form-price').value = '';
-                    document.getElementById('map-search-bar').value = '';
-                    if(modalSelectionMarker) { modalMap.removeLayer(modalSelectionMarker); modalSelectionMarker = null; }
-                    toggleModal(false);
-                    fetchAndRenderListings();
-                }
-            });
+            // Construct new dynamic template node structural element string text
+            const feedContainer = document.getElementById('community-feed-container');
+            const newPostCard = document.createElement('div');
+            newPostCard.className = "feed-card bg-gray-900 border border-purple-500/40 p-4 rounded-xl flex items-start justify-between shadow-lg transition-all animate-fadeIn transform translate-y-2";
+            newPostCard.setAttribute('data-type', primaryType);
+
+            newPostCard.innerHTML = `
+                <div class="space-y-1.5">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs px-2 py-0.5 font-bold rounded ${themeStyles} border">${typeLabel}</span>
+                        <span class="text-xs text-purple-400 font-semibold tracking-wide">✨ Just Added Now</span>
+                    </div>
+                    <h4 class="text-base font-bold text-white">${entryTitle}</h4>
+                    <p class="text-xs text-gray-400">By: <span class="text-gray-300 font-medium">${isStudent ? '[Student] ' : ''}${groupName}</span></p>
+                </div>
+                <span class="text-sm font-black text-gray-200 bg-gray-950 px-2.5 py-1 rounded border border-gray-800">${costMetricsTag}</span>
+            `;
+
+            // Prep container state grid array list updates
+            feedContainer.insertBefore(newPostCard, feedContainer.firstChild);
+
+            // Smooth element transition pop effect
+            setTimeout(() => {
+                newPostCard.classList.remove('translate-y-2', 'border-purple-500/40');
+                newPostCard.classList.add('translate-y-0', 'border-gray-800');
+            }, 800);
+
+            // Flush inputs controls state variables clean
+            document.getElementById('form-title').value = "";
+            document.getElementById('form-name').value = "";
         }
     </script>
 </body>
