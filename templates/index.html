@@ -2,13 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanad Community Support HUB GRID</title>
-    <!-- Tailwind CSS Engine -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sanad Community Support GRID HUB</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome Core Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Leaflet Mapping Stylesheet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         /* Cream and Sand grid texture backdrop */
@@ -34,8 +31,8 @@
         /* Fluid Soft Ambient Float Animations */
         @keyframes ambientFloat {
             0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(40px, -60px) scale(1.15); }
-            66% { transform: translate(-30px, 30px) scale(0.9); }
+            33% { transform: translate(20px, -30px) scale(1.1); }
+            66% { transform: translate(-15px, 15px) scale(0.95); }
             100% { transform: translate(0px, 0px) scale(1); }
         }
         .animate-ambient-1 {
@@ -47,11 +44,11 @@
 
         /* Staggered Smooth Kinetic Entrance Effects */
         @keyframes fadeUpEntrance {
-            0% { opacity: 0; transform: translateY(24px); }
+            0% { opacity: 0; transform: translateY(15px); }
             100% { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-up {
-            animation: fadeUpEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeUpEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .animation-delay-200 { animation-delay: 200ms; }
         .animation-delay-400 { animation-delay: 400ms; }
@@ -87,66 +84,56 @@
 
         /* Premium Ultra-Glossmorphism Archetype with Warm Light Reflections */
         .premium-glass {
-            background: linear-gradient(135deg, rgba(246, 242, 235, 0.75) 0%, rgba(238, 231, 219, 0.6) 100%);
+            background: linear-gradient(135deg, rgba(246, 242, 235, 0.8) 0%, rgba(238, 231, 219, 0.65) 100%);
             backdrop-filter: blur(20px) saturate(125%);
             -webkit-backdrop-filter: blur(20px) saturate(125%);
-            border: 1px solid rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             box-shadow: 
-                0 4px 30px rgba(44, 42, 39, 0.03),
-                inset 0 1px 2px rgba(255, 255, 255, 0.6),
-                inset 0 -1px 2px rgba(44, 42, 39, 0.02);
+                0 4px 30px rgba(44, 42, 39, 0.02),
+                inset 0 1px 2px rgba(255, 255, 255, 0.6);
         }
         .premium-dark-glass {
-            background: linear-gradient(135deg, rgba(44, 42, 39, 0.88) 0%, rgba(28, 27, 25, 0.82) 100%);
+            background: linear-gradient(135deg, rgba(44, 42, 39, 0.9) 0%, rgba(28, 27, 25, 0.85) 100%);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
         }
     </style>
 </head>
-<body class="text-[#2C2A27] min-h-screen flex flex-col antialiased select-none overflow-x-hidden">
+<body class="text-[#2C2A27] min-h-screen w-full flex flex-col antialiased overflow-x-hidden">
 
-    <!-- ========================================== -->
-    <!-- 1. FULL CANVAS ENTRY ARCHITECTURE (HOME)   -->
-    <!-- ========================================== -->
     <div id="welcome-portal-overlay" class="fixed inset-0 z-50 flex flex-col justify-between bg-[#EFEBE3] transition-all duration-700 ease-in-out p-4 md:p-8 overflow-y-auto">
         
-        <!-- Animated Geometric Core Grid Backdrop Layer -->
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#E6DFD3_1px,transparent_1px),linear-gradient(to_bottom,#E6DFD3_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
         
-        <!-- Warm Empathetic Ambient Fluid Lighting Backdrop Blurs -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none mix-blend-multiply opacity-50">
-            <div class="absolute top-[20%] left-[15%] w-72 md:w-96 h-72 md:h-96 rounded-full bg-[#E5D2B8] filter blur-[80px] animate-ambient-1"></div>
-            <div class="absolute bottom-[25%] right-[10%] w-80 md:w-[450px] h-80 md:h-[450px] rounded-full bg-[#DBCBB1] filter blur-[100px] animate-ambient-2"></div>
+        <div class="absolute inset-0 overflow-hidden pointer-events-none mix-blend-multiply opacity-40">
+            <div class="absolute top-[10%] left-[5%] w-64 md:w-96 h-64 md:h-96 rounded-full bg-[#E5D2B8] filter blur-[60px] animate-ambient-1"></div>
+            <div class="absolute bottom-[15%] right-[5%] w-72 md:w-[450px] h-72 md:h-[450px] rounded-full bg-[#DBCBB1] filter blur-[80px] animate-ambient-2"></div>
         </div>
         
-        <!-- Welcome Top Header Bar Component -->
-        <header class="w-full flex justify-between items-center relative z-10 shrink-0 mb-6 opacity-0 animate-fade-up">
-            <div class="premium-glass px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-[#A97C50] shadow-xs">
+        <header class="w-full flex justify-between items-center relative z-10 shrink-0 mb-6 gap-2 opacity-0 animate-fade-up">
+            <div class="premium-glass px-3.5 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#A97C50]">
                 🌍 Sanad Impact Initiative
             </div>
-            <div class="premium-glass px-4 py-2 rounded-full text-[10px] font-bold text-[#5C5449] flex items-center gap-2 shadow-xs">
+            <div class="premium-glass px-3.5 py-1.5 rounded-full text-[9px] md:text-[10px] font-bold text-[#5C5449] flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Node Matrix: Active
+                <span class="hidden sm:inline">Node Matrix:</span> Active
             </div>
         </header>
 
-        <!-- Main Multi-Column Premium Glassy Presentation Workspace Grid -->
-        <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center my-auto relative z-10">
+        <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-center my-auto relative z-10 py-4">
             
-            <!-- LEFT SIDEBAR: Who We Are & Sustainability Narrative -->
             <div id="portal-left-sidebar" class="col-span-1 lg:col-span-4 space-y-4 order-2 lg:order-1 opacity-0 animate-fade-up animation-delay-200 transition-all duration-500">
-                <div class="premium-glass p-5 rounded-2xl border-white/80 shadow-xs">
-                    <h3 class="text-[10px] font-black tracking-wider text-[#A97C50] uppercase mb-2.5 flex items-center gap-2">
+                <div class="premium-glass p-5 rounded-2xl">
+                    <h3 class="text-[10px] font-black tracking-wider text-[#A97C50] uppercase mb-2 flex items-center gap-2">
                         <i class="fa-solid fa-leaf text-xs"></i> Who We Are & Our Mission
                     </h3>
-                    <p class="text-[11px] text-[#5C5449] leading-relaxed font-medium">
+                    <p class="text-[11px] md:text-xs text-[#5C5449] leading-relaxed font-medium">
                         Derived from the Arabic word for <strong>"Support"</strong>, <span class="text-[#2C2A27] font-bold">Sanad</span> is a decentralized, circular neighborhood blueprint. We empower communities to minimize carbon prints, reduce logistical dependencies, and unlock secondary asset value right outside their doorsteps.
                     </p>
                 </div>
 
-                <div class="premium-glass p-5 rounded-2xl border-white/80 shadow-xs">
+                <div class="premium-glass p-5 rounded-2xl">
                     <h3 class="text-[10px] font-black tracking-wider text-[#2C2A27] uppercase mb-3 flex items-center gap-2">
                         🌱 Sustainability Frameworks
                     </h3>
@@ -169,60 +156,53 @@
                 </div>
             </div>
 
-            <!-- CENTRAL CENTER PIECE: The Main Console with Glassy Treatment -->
             <div id="portal-central-hero" class="col-span-1 lg:col-span-5 text-center space-y-5 order-1 lg:order-2 opacity-0 animate-fade-up">
-                
-                <!-- Central Logo Container Box -->
-                <div id="portal-hero-logo" class="inline-block transform transition-all duration-500 hover:scale-105 active:scale-95 cursor-pointer group">
-                    <div class="bg-[#2C2A27] p-6 rounded-3xl shadow-[0_20px_40px_rgba(44,42,39,0.15)] group-hover:shadow-[0_25px_50px_rgba(169,124,80,0.25)] inline-block max-w-xs border border-white/10 relative overflow-hidden transition-all duration-500">
-                        <!-- Delicate Glass Gloss Light Flare Line Overlay -->
+                <div id="portal-hero-logo" class="inline-block transform transition-all duration-500 hover:scale-103 active:scale-97 cursor-pointer group">
+                    <div class="bg-[#2C2A27] p-5 md:p-6 rounded-3xl shadow-[0_20px_40px_rgba(44,42,39,0.12)] inline-block w-48 sm:w-56 md:w-64 border border-white/10 relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none"></div>
-                        <img src="static/Logo.png" alt="SANAD" class="w-full h-auto object-contain mx-auto relative z-10" onerror="this.onerror=null; this.outerHTML='<div class=\'text-center py-3 px-8 relative z-10\'><h1 class=\'text-5xl font-black text-[#EFEBE3] tracking-tighter transition-colors group-hover:text-white\'>SANAD</h1><div class=\'text-xs text-[#B3A99B] font-bold tracking-[0.4em] mt-1\'>سند</div></div>';">
+                        <img src="static/Logo.png" alt="SANAD" class="w-full h-auto object-contain mx-auto relative z-10" onerror="this.onerror=null; this.outerHTML='<div class=\'text-center py-2 px-4 relative z-10\'><h1 class=\'text-4xl md:text-5xl font-black text-[#EFEBE3] tracking-tighter\'>SANAD</h1><div class=\'text-[10px] text-[#B3A99B] font-bold tracking-[0.4em] mt-1\'>سند</div></div>';">
                     </div>
                 </div>
 
-                <!-- Descriptive Glassy Central Card Layout -->
-                <div id="portal-hero-explainer" class="premium-glass p-6 rounded-3xl shadow-[0_15px_35px_rgba(44,42,39,0.04)] border-white/70 space-y-4 transition-all duration-500 hover:shadow-[0_20px_40px_rgba(44,42,39,0.08)]">
-                    <h2 class="text-lg md:text-xl font-black text-[#2C2A27] uppercase tracking-wide">
+                <div id="portal-hero-explainer" class="premium-glass p-5 md:p-6 rounded-3xl space-y-4">
+                    <h2 class="text-base md:text-lg font-black text-[#2C2A27] uppercase tracking-wide">
                         Your Neighborhood Support Network 🤝
                     </h2>
-                    <p class="text-xs text-[#5C5449] leading-relaxed font-medium px-1">
+                    <p class="text-[11px] md:text-xs text-[#5C5449] leading-relaxed font-medium">
                         Discover nearby skills, coordinate mutual support initiatives, find locally crafted products, or share announcements. Sanad bridges hyper-local physical coordinates with instant neighborhood coordination.
                     </p>
                     <div class="pt-1">
-                        <button onclick="collapsePortalGateways()" class="px-8 py-3.5 bg-[#A97C50] hover:bg-[#8F653E] text-white font-black text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-[0_6px_20px_rgba(169,124,80,0.3)] hover:shadow-[0_4px_10px_rgba(44,42,39,0.2)] hover:-translate-y-0.5 active:translate-y-0.5 cursor-pointer w-full sm:w-auto">
+                        <button onclick="collapsePortalGateways()" class="w-full sm:w-auto px-8 py-3.5 bg-[#A97C50] hover:bg-[#8F653E] text-white font-black text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-md cursor-pointer">
                             Enter Dashboard Map 📍
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- RIGHT SIDEBAR: Category Matrix Breakdown & Quick Nav Shortcuts -->
             <div id="portal-right-sidebar" class="col-span-1 lg:col-span-3 space-y-4 order-3 opacity-0 animate-fade-up animation-delay-400 transition-all duration-500">
-                <div class="premium-glass p-5 rounded-2xl group hover:border-[#A97C50]/40 hover:shadow-md transition-all duration-300">
+                <div class="premium-glass p-5 rounded-2xl">
                     <h3 class="text-[10px] font-black tracking-wider text-[#A97C50] uppercase mb-3">
                         ⚡ Quick Channels
                     </h3>
                     <div class="grid grid-cols-2 gap-2 text-center">
-                        <div class="p-3 bg-white/40 rounded-xl border border-white/50 text-xs font-bold hover:bg-white/90 hover:shadow-xs transition-all duration-200 cursor-pointer">
-                            <span class="block text-base mb-1">🛠️</span> Services
+                        <div class="p-2.5 bg-white/40 rounded-xl border border-white/50 text-[11px] font-bold hover:bg-white/90 transition-all cursor-pointer">
+                            <span class="block text-sm mb-0.5">🛠️</span> Services
                         </div>
-                        <div class="p-3 bg-white/40 rounded-xl border border-white/50 text-xs font-bold hover:bg-white/90 hover:shadow-xs transition-all duration-200 cursor-pointer">
-                            <span class="block text-base mb-1">📦</span> Products
+                        <div class="p-2.5 bg-white/40 rounded-xl border border-white/50 text-[11px] font-bold hover:bg-white/90 transition-all cursor-pointer">
+                            <span class="block text-sm mb-0.5">📦</span> Products
                         </div>
-                        <div class="p-3 bg-white/40 rounded-xl border border-white/50 text-xs font-bold hover:bg-white/90 hover:shadow-xs transition-all duration-200 cursor-pointer">
-                            <span class="block text-base mb-1">💡</span> Skill Hub
+                        <div class="p-2.5 bg-white/40 rounded-xl border border-white/50 text-[11px] font-bold hover:bg-white/90 transition-all cursor-pointer">
+                            <span class="block text-sm mb-0.5">💡</span> Skill Hub
                         </div>
-                        <div class="p-3 bg-white/40 rounded-xl border border-white/50 text-xs font-bold hover:bg-white/90 hover:shadow-xs transition-all duration-200 cursor-pointer">
-                            <span class="block text-base mb-1">📢</span> Notices
+                        <div class="p-2.5 bg-white/40 rounded-xl border border-white/50 text-[11px] font-bold hover:bg-white/90 transition-all cursor-pointer">
+                            <span class="block text-sm mb-0.5">📢</span> Notices
                         </div>
                     </div>
                 </div>
 
-                <div class="premium-dark-glass p-5 rounded-2xl text-white shadow-lg relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
-                    <div class="text-[9px] font-black text-[#A97C50] uppercase tracking-widest mb-1 relative z-10">Core Architecture</div>
-                    <p class="text-[11px] leading-relaxed text-[#D6D2C9] font-medium relative z-10 transition-colors group-hover:text-white">
+                <div class="premium-dark-glass p-5 rounded-2xl text-white shadow-md">
+                    <div class="text-[9px] font-black text-[#A97C50] uppercase tracking-widest mb-1">Core Architecture</div>
+                    <p class="text-[11px] leading-relaxed text-[#D6D2C9] font-medium">
                         Sanad utilizes localized mapping arrays to pair collective skill graphs without central platform intermediaries.
                     </p>
                 </div>
@@ -230,339 +210,258 @@
 
         </div>
 
-        <!-- Welcome Bottom Footer Ecosystem Layer -->
-        <footer class="w-full text-center relative z-10 shrink-0 mt-6 text-[10px] font-bold text-[#857B6D] tracking-wider uppercase opacity-0 animate-fade-up animation-delay-400">
+        <footer class="w-full text-center relative z-10 shrink-0 mt-6 text-[9px] font-bold text-[#857B6D] tracking-wider uppercase opacity-0 animate-fade-up animation-delay-400">
             © 2026 Sanad Hyperlocal Grid Management Engine Inc.
         </footer>
     </div>
 
-    <!-- ========================================== -->
-    <!-- 2. MAIN HUB APPLICATION DASHBOARD SURFACE  -->
-    <!-- ========================================== -->
-    <div id="core-matrix-dashboard" class="opacity-0 transition-opacity duration-700 h-screen flex flex-col overflow-hidden">
+    <div id="core-matrix-dashboard" class="opacity-0 transition-opacity duration-700 h-screen flex flex-col overflow-hidden hidden">
         
-        <!-- Top Console Banner Workspace Layout -->
         <header class="w-full max-w-7xl mx-auto px-4 pt-4 pb-1 shrink-0">
-            <div class="bg-[#F6F2EB] border border-[#DDD6C9] rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xs">
-                <div class="flex items-center gap-3">
-                    <div id="nav-brand-signature" class="bg-[#2C2A27] text-[#EFEBE3] px-3 py-1.5 rounded-lg text-xs font-black tracking-wider opacity-0 transform scale-70 transition-all duration-500 flex items-center gap-1">
+            <div class="bg-[#F6F2EB] border border-[#DDD6C9] rounded-2xl p-3 md:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs">
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <div id="nav-brand-signature" class="bg-[#2C2A27] text-[#EFEBE3] px-2.5 py-1 rounded-lg text-xs font-black tracking-wider shrink-0">
                         <span>SANAD</span>
                     </div>
-                    <div class="bg-[#EAE3D5] text-[#766E61] px-4 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase flex items-center gap-2 max-w-sm md:max-w-md lg:max-w-xl truncate">
-                        <span class="inline-block w-1.5 h-1.5 shrink-0 rounded-full bg-emerald-600 animate-pulse"></span>
-                        <span class="font-black text-[#5C5449]">MY LOCATION:</span>
-                        <span class="text-[#2C2A27] truncate font-medium">Liwa Center, Hamdan Street, Abu Dhabi</span>
+                    <div class="bg-[#EAE3D5] text-[#766E61] px-3 py-1.5 rounded-full text-[9px] md:text-[10px] font-bold tracking-wider uppercase flex items-center gap-2 min-w-0 flex-1 sm:max-w-md">
+                        <span class="inline-block w-1.5 h-1.5 shrink-0 rounded-full bg-emerald-600"></span>
+                        <span class="font-black text-[#5C5449] shrink-0 hidden xs:inline">LOCATION:</span>
+                        <span class="text-[#2C2A27] truncate font-medium">Liwa Center, Hamdan St, Abu Dhabi</span>
                     </div>
                 </div>
-                <button onclick="toggleRegisterModal()" class="px-5 py-2.5 bg-[#A97C50] text-white rounded-full font-bold text-xs uppercase tracking-wider shadow-sm hover:bg-[#8F653E] transition-colors cursor-pointer">
-                    <i class="fa-solid fa-plus mr-1"></i> Register Now!
+                <button onclick="toggleRegisterModal()" class="w-full sm:w-auto px-4 py-2 bg-[#A97C50] text-white rounded-full font-bold text-xs uppercase tracking-wider hover:bg-[#8F653E] transition-colors cursor-pointer text-center shrink-0">
+                    <i class="fa-solid fa-plus mr-1"></i> Register Node
                 </button>
             </div>
 
-            <div class="mt-4 mb-1">
-                <h1 class="text-3xl md:text-4xl font-black tracking-tight text-[#2C2A27] uppercase">
-                    Community <span class="text-[#A97C50]">Support Hub Grid</span>
+            <div class="mt-3 mb-1">
+                <h1 class="text-2xl md:text-3xl font-black tracking-tight text-[#2C2A27] uppercase">
+                    Community <span class="text-[#A97C50]">Hub Grid</span>
                 </h1>
             </div>
         </header>
 
-        <!-- Clean, Single-Line Full Viewport Marquee Ribbon -->
-        <div class="w-screen border-y border-[#DDD6C9] py-2.5 overflow-hidden bg-[#F6F2EB] shrink-0 flex items-center relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-            <div class="animate-marquee-continuous text-[10px] font-bold tracking-widest text-[#857B6D] uppercase whitespace-nowrap flex items-center gap-4">
+        <div class="w-screen border-y border-[#DDD6C9] py-2 overflow-hidden bg-[#F6F2EB] shrink-0 flex items-center relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+            <div class="animate-marquee-continuous text-[9px] md:text-[10px] font-bold tracking-widest text-[#857B6D] uppercase whitespace-nowrap flex items-center gap-4">
                 <span>⚡ Cleaner service listed by Al Danah Resident</span><span class="text-[#A97C50]">•</span>
-                <span>🍞 Fresh Sourdough available under Products inside Liwa Center</span><span class="text-[#A97C50]">•</span>
+                <span>🍞 Fresh Sourdough available inside Liwa Center</span><span class="text-[#A97C50]">•</span>
                 <span>🪡 Stitching & Tailoring services added by Shabiya Resident</span><span class="text-[#A97C50]">•</span>
                 <span>🎂 Custom Birthday Baking services open in Mussafah</span><span class="text-[#A97C50]">•</span>
-                <span>📢 Neighborhood Notice: Park clean-up coordination mapping active</span><span class="text-[#A97C50]">•</span>
-                <span>🎓 Grade 10 Math Exam tutoring skill node posted online</span>
-                <!-- Exact Duplicated Block for Infinite Clean Reset Animation Alignment -->
+                <span>📢 Neighborhood Notice: Park clean-up mapping active</span><span class="text-[#A97C50]">•</span>
+                <span>🎓 Grade 10 Math Exam tutoring skill node active</span>
                 <span class="text-[#A97C50]">•</span>
                 <span>⚡ Cleaner service listed by Al Danah Resident</span><span class="text-[#A97C50]">•</span>
-                <span>🍞 Fresh Sourdough available under Products inside Liwa Center</span><span class="text-[#A97C50]">•</span>
+                <span>🍞 Fresh Sourdough available inside Liwa Center</span><span class="text-[#A97C50]">•</span>
                 <span>🪡 Stitching & Tailoring services added by Shabiya Resident</span><span class="text-[#A97C50]">•</span>
                 <span>🎂 Custom Birthday Baking services open in Mussafah</span><span class="text-[#A97C50]">•</span>
-                <span>📢 Neighborhood Notice: Park clean-up coordination mapping active</span><span class="text-[#A97C50]">•</span>
-                <span>🎓 Grade 10 Math Exam tutoring skill node posted online</span>
+                <span>📢 Neighborhood Notice: Park clean-up mapping active</span><span class="text-[#A97C50]">•</span>
+                <span>🎓 Grade 10 Math Exam tutoring skill node active</span>
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- 3. FILTER BAR NAVIGATION INTERFACES        -->
-        <!-- ========================================== -->
-        <nav class="w-full max-w-7xl mx-auto px-4 mt-3 flex flex-wrap items-center justify-between gap-4 shrink-0">
-            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
-                <button onclick="filterNodes('all')" class="filter-btn px-4 py-1.5 bg-[#A97C50] text-white font-bold rounded-full text-xs uppercase tracking-wide cursor-pointer transition-all">
-                    🌐 All Features
+        <nav class="w-full max-w-7xl mx-auto px-4 mt-3 shrink-0">
+            <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1">
+                <button onclick="filterNodes('all')" class="filter-btn shrink-0 px-3 py-1.5 bg-[#A97C50] text-white font-bold rounded-full text-[10px] uppercase tracking-wide cursor-pointer transition-all">
+                    🌐 All Nodes
                 </button>
-                <button onclick="filterNodes('Service')" class="filter-btn px-4 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-xs uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
+                <button onclick="filterNodes('Service')" class="filter-btn shrink-0 px-3 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-[10px] uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
                     🛠️ Services
                 </button>
-                <button onclick="filterNodes('Product')" class="filter-btn px-4 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-xs uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
+                <button onclick="filterNodes('Product')" class="filter-btn shrink-0 px-3 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-[10px] uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
                     📦 Products
                 </button>
-                <button onclick="filterNodes('Skill')" class="filter-btn px-4 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-xs uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
-                    💡 Skills Hub
+                <button onclick="filterNodes('Skill')" class="filter-btn shrink-0 px-3 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-[10px] uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
+                    💡 Skills
                 </button>
-                <button onclick="filterNodes('Notice')" class="filter-btn px-4 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-xs uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
+                <button onclick="filterNodes('Notice')" class="filter-btn shrink-0 px-3 py-1.5 bg-[#F6F2EB] border border-[#DDD6C9] text-[#5C5449] font-bold rounded-full text-[10px] uppercase tracking-wide hover:bg-[#EAE3D5] cursor-pointer transition-all">
                     📢 Notices
                 </button>
             </div>
-            
-            <div class="bg-[#EAE3D5] p-1 rounded-full border border-[#DDD6C9] flex items-center gap-1 text-[9px] font-black uppercase tracking-wider text-[#5C5449]">
-                <button onclick="filterNodes('all')" class="px-2 py-0.5 bg-[#F6F2EB] rounded-full shadow-xs uppercase font-bold text-[#2C2A27]">All Nodes</button>
-                <button onclick="filterNodes('Service')" class="px-2 font-bold uppercase hover:text-[#2C2A27]">Services</button>
-                <button onclick="filterNodes('Product')" class="px-2 font-bold uppercase hover:text-[#2C2A27]">Products</button>
-            </div>
         </nav>
 
-        <!-- ========================================== -->
-        <!-- 4. SPLIT DASHBOARD LAYOUT GRID             -->
-        <!-- ========================================== -->
-        <main class="w-full max-w-7xl mx-auto px-4 my-4 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 overflow-hidden items-stretch">
+        <main class="w-full max-w-7xl mx-auto px-4 my-3 flex-1 grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6 overflow-hidden items-stretch min-h-0">
             
-            <!-- LEFT HAND LISTINGS FEED LOGGER -->
-            <div id="nodes-gallery-stream" class="col-span-1 lg:col-span-7 space-y-4 overflow-y-auto pr-2 no-scrollbar pb-6">
+            <div id="nodes-gallery-stream" class="col-span-1 lg:col-span-7 space-y-3 overflow-y-auto no-scrollbar pb-4 order-2 lg:order-1 h-full">
                 
-                <!-- Marquee Item 1 Mapping Card -->
-                <div onclick="panToMapNode(24.4735, 54.3742, 'Professional Home Cleaning Assistance')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Service">
-                    <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
-                        <span class="bg-[#E2F5E9] text-[#2E7D32] border border-[#C8E6C9] px-2 py-0.5 rounded-md">🛠️ Service (Cleaner)</span>
+                <div onclick="panToMapNode(24.4735, 54.3742, 'Professional Home Cleaning Assistance')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-xl hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Service">
+                    <div class="flex items-center justify-between text-[9px] font-black uppercase tracking-wider mb-1.5">
+                        <span class="bg-[#E2F5E9] text-[#2E7D32] px-2 py-0.5 rounded-md">🛠️ Service (Cleaner)</span>
                         <span class="text-[#857B6D]"><i class="fa-solid fa-location-dot text-[#A97C50] mr-1"></i> Al Danah</span>
                     </div>
-                    <h3 class="text-base font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50] transition-colors">Professional Home Cleaning Assistance</h3>
-                    <p class="text-xs text-[#5C5449] mt-1.5 leading-relaxed font-medium">
-                        Reliable and meticulous household organizing, dusting, and eco-friendly deep cleaning available over weekends.
-                    </p>
-                    <div class="mt-4 flex items-center justify-between border-t border-[#EAE3D5] pt-3">
+                    <h3 class="text-sm font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50]">Professional Home Cleaning</h3>
+                    <p class="text-xs text-[#5C5449] mt-1 leading-relaxed font-medium">Reliable household organizing and eco-friendly deep cleaning available over weekends.</p>
+                    <div class="mt-3 flex items-center justify-between border-t border-[#EAE3D5] pt-2.5">
                         <div class="flex items-center gap-2">
-                            <div class="w-6 h-6 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[9px] font-black uppercase text-[#2E7D32]">RE</div>
-                            <span class="text-[11px] font-bold text-[#2C2A27]">Mariam K. (Resident)</span>
+                            <div class="w-5 h-5 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[8px] font-black text-[#2E7D32]">RE</div>
+                            <span class="text-[11px] font-bold text-[#2C2A27]">Mariam K.</span>
                         </div>
-                        <span class="bg-[#E2F5E9] text-[#2E7D32] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">30 AED/H</span>
+                        <span class="bg-[#E2F5E9] text-[#2E7D32] px-2 py-0.5 rounded-md text-[10px] font-bold">30 AED/H</span>
                     </div>
                 </div>
 
-                <!-- Marquee Item 2 Mapping Card -->
-                <div onclick="panToMapNode(24.4892, 54.3598, 'Fresh Homemade Sourdough Loaves')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Product">
-                    <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
-                        <span class="bg-[#FFEFE2] text-[#A97C50] border border-[#F5DBC4] px-2 py-0.5 rounded-md">📦 Product</span>
+                <div onclick="panToMapNode(24.4892, 54.3598, 'Fresh Homemade Sourdough Loaves')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-xl hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Product">
+                    <div class="flex items-center justify-between text-[9px] font-black uppercase tracking-wider mb-1.5">
+                        <span class="bg-[#FFEFE2] text-[#A97C50] px-2 py-0.5 rounded-md">📦 Product</span>
                         <span class="text-[#857B6D]"><i class="fa-solid fa-location-dot text-[#A97C50] mr-1"></i> Liwa Center</span>
                     </div>
-                    <h3 class="text-base font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50] transition-colors">Fresh Homemade Sourdough Loaves</h3>
-                    <p class="text-xs text-[#5C5449] mt-1.5 leading-relaxed font-medium">
-                        Artisanal loaves baked fresh daily using organic local ingredients. Crisp crust with light pillowy crumb.
-                    </p>
-                    <div class="mt-4 flex items-center justify-between border-t border-[#EAE3D5] pt-3">
+                    <h3 class="text-sm font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50]">Fresh Homemade Sourdough Loaves</h3>
+                    <p class="text-xs text-[#5C5449] mt-1 leading-relaxed font-medium">Artisanal loaves baked fresh daily using organic local ingredients.</p>
+                    <div class="mt-3 flex items-center justify-between border-t border-[#EAE3D5] pt-2.5">
                         <div class="flex items-center gap-2">
-                            <div class="w-6 h-6 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[9px] font-black uppercase text-[#5C5449]">RE</div>
-                            <span class="text-[11px] font-bold text-[#2C2A27]">Aysha Bakery (Resident)</span>
+                            <div class="w-5 h-5 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[8px] font-black text-[#5C5449]">RE</div>
+                            <span class="text-[11px] font-bold text-[#2C2A27]">Aysha Bakery</span>
                         </div>
-                        <span class="bg-[#EAE3D5] text-[#2C2A27] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">25 AED</span>
+                        <span class="bg-[#EAE3D5] text-[#2C2A27] px-2 py-0.5 rounded-md text-[10px] font-bold">25 AED</span>
                     </div>
                 </div>
 
-                <!-- Marquee Item 3 Mapping Card -->
-                <div onclick="panToMapNode(24.3601, 54.5050, 'Custom Stitching & Traditional Tailoring')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Service">
-                    <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
-                        <span class="bg-[#E2F5E9] text-[#2E7D32] border border-[#C8E6C9] px-2 py-0.5 rounded-md">🛠️ Service (Tailoring)</span>
-                        <span class="text-[#857B6D]"><i class="fa-solid fa-location-dot text-[#A97C50] mr-1"></i> Shabiya Resident</span>
+                <div onclick="panToMapNode(24.3601, 54.5050, 'Custom Stitching & Traditional Tailoring')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-xl hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Service">
+                    <div class="flex items-center justify-between text-[9px] font-black uppercase tracking-wider mb-1.5">
+                        <span class="bg-[#E2F5E9] text-[#2E7D32] px-2 py-0.5 rounded-md">🛠️ Service (Tailoring)</span>
+                        <span class="text-[#857B6D]"><i class="fa-solid fa-location-dot text-[#A97C50] mr-1"></i> Shabiya</span>
                     </div>
-                    <h3 class="text-base font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50] transition-colors">Custom Stitching & Traditional Tailoring</h3>
-                    <p class="text-xs text-[#5C5449] mt-1.5 leading-relaxed font-medium">
-                        Bespoke dress modifications, alterations, patching, and traditional dress lining customized perfectly to size.
-                    </p>
-                    <div class="mt-4 flex items-center justify-between border-t border-[#EAE3D5] pt-3">
+                    <h3 class="text-sm font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50]">Custom Stitching & Tailoring</h3>
+                    <p class="text-xs text-[#5C5449] mt-1 leading-relaxed font-medium">Bespoke modifications, alterations, patching, and traditional dress lining.</p>
+                    <div class="mt-3 flex items-center justify-between border-t border-[#EAE3D5] pt-2.5">
                         <div class="flex items-center gap-2">
-                            <div class="w-6 h-6 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[9px] font-black uppercase text-[#2E7D32]">RE</div>
-                            <span class="text-[11px] font-bold text-[#2C2A27]">Fatima Studio (Resident)</span>
+                            <div class="w-5 h-5 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[8px] font-black text-[#2E7D32]">RE</div>
+                            <span class="text-[11px] font-bold text-[#2C2A27]">Fatima Studio</span>
                         </div>
-                        <span class="bg-[#EAE3D5] text-[#2C2A27] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">Varies</span>
+                        <span class="bg-[#EAE3D5] text-[#2C2A27] px-2 py-0.5 rounded-md text-[10px] font-bold">Varies</span>
                     </div>
                 </div>
 
-                <!-- Marquee Item 4 Mapping Card -->
-                <div onclick="panToMapNode(24.3644, 54.5126, 'Custom Birthday Baking & Pastry Design')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Service">
-                    <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
-                        <span class="bg-[#E2F5E9] text-[#2E7D32] border border-[#C8E6C9] px-2 py-0.5 rounded-md">🛠️ Service (Baking)</span>
-                        <span class="text-[#857B6D]"><i class="fa-solid fa-location-dot text-[#A97C50] mr-1"></i> Mussafah</span>
-                    </div>
-                    <h3 class="text-base font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50] transition-colors">Custom Birthday Baking & Pastry Design</h3>
-                    <p class="text-xs text-[#5C5449] mt-1.5 leading-relaxed font-medium">
-                        Custom multi-tiered celebration cakes, customized themes, and assorted organic cupcakes available on pre-order.
-                    </p>
-                    <div class="mt-4 flex items-center justify-between border-t border-[#EAE3D5] pt-3">
-                        <div class="flex items-center gap-2">
-                            <div class="w-6 h-6 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[9px] font-black uppercase text-[#2E7D32]">RE</div>
-                            <span class="text-[11px] font-bold text-[#2C2A27]">Zainab Confectionery (Resident)</span>
-                        </div>
-                        <span class="bg-[#EAE3D5] text-[#2C2A27] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">120 AED</span>
-                    </div>
-                </div>
-
-                <!-- Marquee Item 5 Mapping Card -->
-                <div onclick="panToMapNode(24.4686, 54.3646, 'Community Park Clean-Up Coordination')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Notice">
-                    <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
-                        <span class="bg-rose-100 text-rose-700 border border-rose-200 px-2 py-0.5 rounded-md">📢 Notice</span>
+                <div onclick="panToMapNode(24.4686, 54.3646, 'Community Park Clean-Up Coordination')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-xl hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Notice">
+                    <div class="flex items-center justify-between text-[9px] font-black uppercase tracking-wider mb-1.5">
+                        <span class="bg-rose-100 text-rose-700 px-2 py-0.5 rounded-md">📢 Notice</span>
                         <span class="text-[#857B6D]"><i class="fa-solid fa-location-dot text-[#A97C50] mr-1"></i> Capital Area</span>
                     </div>
-                    <h3 class="text-base font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50] transition-colors">Community Park Clean-Up Coordination</h3>
-                    <p class="text-xs text-[#5C5449] mt-1.5 leading-relaxed font-medium">
-                        Join your local neighbors this coming Saturday morning to gather recycling materials and plant shrubs in the central block.
-                    </p>
-                    <div class="mt-4 flex items-center justify-between border-t border-[#EAE3D5] pt-3">
+                    <h3 class="text-sm font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50]">Park Clean-Up Coordination</h3>
+                    <p class="text-xs text-[#5C5449] mt-1 leading-relaxed font-medium">Join neighbors this Saturday morning to gather recycling materials and plant shrubs.</p>
+                    <div class="mt-3 flex items-center justify-between border-t border-[#EAE3D5] pt-2.5">
                         <div class="flex items-center gap-2">
-                            <div class="w-6 h-6 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[9px] font-black uppercase text-rose-700">📢</div>
-                            <span class="text-[11px] font-bold text-[#2C2A27]">Green Abu Dhabi Committee</span>
+                            <div class="w-5 h-5 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[8px] font-black text-rose-700">📢</div>
+                            <span class="text-[11px] font-bold text-[#2C2A27]">Green Abu Dhabi</span>
                         </div>
-                        <span class="bg-[#EAE3D5] text-[#2C2A27] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">Volunteer</span>
+                        <span class="bg-[#EAE3D5] text-[#2C2A27] px-2 py-0.5 rounded-md text-[10px] font-bold">Volunteer</span>
                     </div>
                 </div>
-
-                <!-- Marquee Item 6 Mapping Card -->
-                <div onclick="panToMapNode(24.3644, 54.5126, 'Grade 10 Mathematics Exam Tutoring Support')" class="node-card bg-[#F6F2EB] border border-[#DDD6C9] p-5 rounded-2xl shadow-xs hover:border-[#A97C50] transition-all cursor-pointer group" data-category="Skill">
-                    <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
-                        <span class="bg-[#EAE8F9] text-[#512DA8] border border-[#D1C4E9] px-2 py-0.5 rounded-md">💡 Skill Hub</span>
-                        <span class="text-[#857B6D]"><i class="fa-solid fa-location-dot text-[#A97C50] mr-1"></i> Mussafah</span>
-                    </div>
-                    <h3 class="text-base font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50] transition-colors">Grade 10 Mathematics Exam Tutoring Support</h3>
-                    <p class="text-xs text-[#5C5449] mt-1.5 leading-relaxed font-medium">
-                        Targeted mathematics curriculum breakdown and peer problem-solving sessions focusing on core algebra vectors.
-                    </p>
-                    <div class="mt-4 flex items-center justify-between border-t border-[#EAE3D5] pt-3">
-                        <div class="flex items-center gap-2">
-                            <div class="w-6 h-6 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[9px] font-black uppercase text-[#512DA8]">ST</div>
-                            <span class="text-[11px] font-bold text-[#2C2A27]">Rahul Manoj (Student)</span>
-                        </div>
-                        <span class="bg-[#EAE3D5] text-[#2C2A27] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">40 AED/H</span>
-                    </div>
-                </div>
-
             </div>
 
-            <!-- RIGHT HAND MAP VIEWPORT VISUALIZATION PANEL -->
-            <div class="col-span-1 lg:col-span-5 bg-[#F6F2EB] border border-[#DDD6C9] p-4 rounded-2xl shadow-xs flex flex-col min-h-[400px] lg:h-full mb-6 relative">
-                <div class="text-[10px] font-black uppercase tracking-wider text-[#5C5449] mb-3 flex items-center gap-1.5">
-                    <i class="fa-solid fa-circle-nodes text-[#A97C50]"></i> Radial Grid Position Coordination Graph
+            <div class="col-span-1 lg:col-span-5 bg-[#F6F2EB] border border-[#DDD6C9] p-3 rounded-2xl flex flex-col h-[280px] sm:h-[350px] lg:h-full order-1 lg:order-2 shrink-0">
+                <div class="text-[10px] font-black uppercase tracking-wider text-[#5C5449] mb-2 flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-nodes text-[#A97C50]"></i> Grid Location Array
                 </div>
-                <div id="leaflet-map-canvas" class="w-full flex-1 rounded-xl border border-[#DDD6C9] overflow-hidden shadow-inner min-h-[340px] relative"></div>
+                <div id="leaflet-map-canvas" class="w-full flex-1 rounded-xl border border-[#DDD6C9] overflow-hidden min-h-0 relative"></div>
             </div>
 
         </main>
     </div>
 
-    <!-- ========================================== -->
-    <!-- 5. REGISTER NOW SYSTEM REGISTRATION FORM    -->
-    <!-- ========================================== -->
-    <div id="broadcast-modal" class="fixed inset-0 bg-[#2C2A27]/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-        <div class="bg-[#F6F2EB] border-2 border-[#2C2A27] max-w-lg w-full rounded-2xl shadow-2xl p-6 relative flex flex-col max-h-[92vh]">
+    <div id="broadcast-modal" class="fixed inset-0 bg-[#2C2A27]/50 backdrop-blur-xs flex items-center justify-center p-3 md:p-4 hidden">
+        <div class="bg-[#F6F2EB] border-2 border-[#2C2A27] max-w-lg w-full rounded-2xl p-4 md:p-6 relative flex flex-col max-h-[95vh] sm:max-h-[90vh]">
             
-            <button onclick="toggleRegisterModal()" class="absolute top-4 right-4 text-[#857B6D] hover:text-[#2C2A27] text-lg cursor-pointer p-1">
+            <button onclick="toggleRegisterModal()" class="absolute top-3 right-3 text-[#857B6D] hover:text-[#2C2A27] text-lg cursor-pointer p-1 z-20">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
-            <div class="mb-3">
-                <h2 class="text-base font-black uppercase tracking-tight text-[#2C2A27]">Register New Hub Node</h2>
-                <p class="text-[11px] text-[#857B6D] font-medium">Select status, type your address, or drop a pointer pin directly inside the map matrix.</p>
+            <div class="mb-3 pr-6">
+                <h2 class="text-sm md:text-base font-black uppercase tracking-tight text-[#2C2A27]">Register New Hub Node</h2>
+                <p class="text-[10px] md:text-[11px] text-[#857B6D] font-medium leading-tight">Drop a map pin indicator directly inside the quadrant matrix layout below.</p>
             </div>
 
-            <!-- Profile Status Buttons -->
-            <div class="grid grid-cols-2 gap-2 bg-[#EAE3D5] p-2 rounded-xl mb-3 border border-[#DDD6C9]">
-                <label class="flex items-center justify-center gap-2 py-1.5 bg-white rounded-lg cursor-pointer text-[10px] font-black uppercase tracking-wider text-[#2C2A27]">
-                    <input type="radio" name="profile-class" id="status-student" class="accent-[#A97C50]" checked>
-                    🎓 Student
-                </label>
-                <label class="flex items-center justify-center gap-2 py-1.5 bg-white rounded-lg cursor-pointer text-[10px] font-black uppercase tracking-wider text-[#2C2A27]">
-                    <input type="radio" name="profile-class" id="status-resident" class="accent-[#A97C50]">
-                    👤 Resident / Adult
-                </label>
-            </div>
-
-            <!-- Modal Map Picker Canvas Container Box -->
-            <div class="w-full h-36 bg-[#EAE3D5] border border-[#DDD6C9] rounded-xl overflow-hidden relative mb-3">
-                <div id="modal-map-picker" class="w-full h-full relative"></div>
-            </div>
-
-            <form onsubmit="submitFormNode(event)" class="space-y-3 text-xs overflow-y-auto pr-1 no-scrollbar">
+            <div class="space-y-3 overflow-y-auto pr-1 no-scrollbar text-xs flex-1">
                 
-                <!-- LIVE GLOBAL ADDRESS SEARCH SYSTEM -->
-                <div class="relative">
-                    <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Neighborhood Location / Address Lookup</label>
-                    <div class="flex gap-1.5">
-                        <input type="text" id="form-address-text" required placeholder="Type any real location (e.g. World Trade Center, Al Hosn, Shabiya)..." class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] focus:outline-none focus:border-[#A97C50]">
-                        <button type="button" id="geocode-search-btn" onclick="executeLiveGlobalGeocoding()" class="px-4 bg-[#2C2A27] hover:bg-[#433F3A] text-white rounded-lg font-bold text-[10px] uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-1 min-w-[70px]">
-                            <span>Find</span>
-                        </button>
-                    </div>
-                    <!-- Selection Suggestion Result List Drawer Box -->
-                    <div id="address-suggestions-box" class="hidden absolute left-0 right-0 mt-1 bg-white border-2 border-[#2C2A27] rounded-lg shadow-xl z-[999999] max-h-40 overflow-y-auto divide-y divide-[#EFEBE3]"></div>
+                <div class="grid grid-cols-2 gap-2 bg-[#EAE3D5] p-1.5 rounded-xl border border-[#DDD6C9]">
+                    <label class="flex items-center justify-center gap-1.5 py-1.5 bg-white rounded-lg cursor-pointer text-[9px] font-black uppercase tracking-wider text-[#2C2A27]">
+                        <input type="radio" name="profile-class" id="status-student" class="accent-[#A97C50]" checked>
+                        🎓 Student
+                    </label>
+                    <label class="flex items-center justify-center gap-1.5 py-1.5 bg-white rounded-lg cursor-pointer text-[9px] font-black uppercase tracking-wider text-[#2C2A27]">
+                        <input type="radio" name="profile-class" id="status-resident" class="accent-[#A97C50]">
+                        👤 Resident
+                    </label>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2">
+                <div class="w-full h-28 sm:h-32 bg-[#EAE3D5] border border-[#DDD6C9] rounded-xl overflow-hidden relative shrink-0">
+                    <div id="modal-map-picker" class="w-full h-full relative"></div>
+                </div>
+
+                <form onsubmit="submitFormNode(event)" class="space-y-3">
+                    <div class="relative">
+                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Neighborhood Address Search</label>
+                        <div class="flex gap-1.5">
+                            <input type="text" id="form-address-text" required placeholder="Type location (e.g., Al Hosn, Mussafah)..." class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] text-xs focus:outline-none focus:border-[#A97C50]">
+                            <button type="button" id="geocode-search-btn" onclick="executeLiveGlobalGeocoding()" class="px-3 bg-[#2C2A27] text-white rounded-lg font-bold text-[9px] uppercase tracking-wider shrink-0">
+                                Find
+                            </button>
+                        </div>
+                        <div id="address-suggestions-box" class="hidden absolute left-0 right-0 mt-1 bg-white border-2 border-[#2C2A27] rounded-lg shadow-xl z-[999999] max-h-32 overflow-y-auto divide-y divide-[#EFEBE3]"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-0.5">Latitude</label>
+                            <input type="text" id="form-lat" required readonly placeholder="Tap on map" class="w-full bg-[#EAE3D5] border border-[#DDD6C9] px-2.5 py-1.5 rounded-lg font-mono text-[10px]">
+                        </div>
+                        <div>
+                            <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-0.5">Longitude</label>
+                            <input type="text" id="form-lng" required readonly placeholder="Tap on map" class="w-full bg-[#EAE3D5] border border-[#DDD6C9] px-2.5 py-1.5 rounded-lg font-mono text-[10px]">
+                        </div>
+                    </div>
+
                     <div>
-                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Target Latitude</label>
-                        <input type="text" id="form-lat" required readonly placeholder="Awaiting location match" class="w-full bg-[#EAE3D5] border border-[#DDD6C9] px-3 py-1.5 rounded-lg font-mono text-[#2C2A27] text-[11px]">
+                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Your Name</label>
+                        <input type="text" id="form-title-author" required placeholder="e.g., Fatima Al Mansoori" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-xs focus:outline-none">
                     </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Category Type</label>
+                            <select id="form-category" onchange="evaluateConditionalSubcategoryRouting()" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg font-bold text-[#5C5449] text-xs focus:outline-none">
+                                <option value="Service">🛠️ Service</option>
+                                <option value="Product">📦 Product</option>
+                                <option value="Skill">💡 Skill Hub</option>
+                                <option value="Notice">📢 Notice</option>
+                            </select>
+                        </div>
+                        
+                        <div id="service-subclass-wrapper">
+                            <label class="block text-[9px] font-bold text-[#A97C50] uppercase tracking-wider mb-1">Job Menu</label>
+                            <select id="form-service-subclass" class="w-full bg-white border border-[#A97C50] px-3 py-2 rounded-lg font-semibold text-xs focus:outline-none">
+                                <option value="Cleaner">🧹 Cleaner</option>
+                                <option value="Stitching (Tailoring)">🪡 Stitching</option>
+                                <option value="Baking">🎂 Baking</option>
+                                <option value="Home Cooking">🍲 Home Cooking</option>
+                                <option value="Repairs">🔧 Repairs</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="col-span-2">
+                            <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Listing Title</label>
+                            <input type="text" id="form-title" required placeholder="What are you offering?" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-xs focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Cost</label>
+                            <input type="text" id="form-target" required placeholder="e.g. 50 AED" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-xs focus:outline-none">
+                        </div>
+                    </div>
+
                     <div>
-                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Target Longitude</label>
-                        <input type="text" id="form-lng" required readonly placeholder="Awaiting location match" class="w-full bg-[#EAE3D5] border border-[#DDD6C9] px-3 py-1.5 rounded-lg font-mono text-[#2C2A27] text-[11px]">
+                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Description Context Log Summary</label>
+                        <textarea id="form-desc" rows="2" required placeholder="Provide context..." class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-xs focus:outline-none"></textarea>
                     </div>
-                </div>
 
-                <div>
-                    <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Your Name / Group Name</label>
-                    <input type="text" id="form-title-author" required placeholder="e.g., Fatima Al Mansoori or Dunes Radio Team" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] focus:outline-none focus:border-[#A97C50]">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    <div>
-                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Types:</label>
-                        <select id="form-category" onchange="evaluateConditionalSubcategoryRouting()" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg font-bold text-[#5C5449] focus:outline-none focus:border-[#A97C50]">
-                            <option value="Service">🛠️ Service</option>
-                            <option value="Product">📦 Product</option>
-                            <option value="Skill">💡 Skill Hub</option>
-                            <option value="Notice">📢 Notice</option>
-                        </select>
-                    </div>
-                    
-                    <div id="service-subclass-wrapper">
-                        <label class="block text-[9px] font-bold text-[#A97C50] uppercase tracking-wider mb-1">Service Job Classification Menu</label>
-                        <select id="form-service-subclass" class="w-full bg-white border-2 border-[#A97C50] px-3 py-2 rounded-lg font-semibold text-[#2C2A27] focus:outline-none">
-                            <option value="Cleaner">🧹 Cleaner</option>
-                            <option value="Stitching (Tailoring)">🪡 Stitching (Tailoring)</option>
-                            <option value="Baking">🎂 Baking</option>
-                            <option value="Home Cooking">🍲 Home Cooking</option>
-                            <option value="Small-scale Repairs">🔧 Small-scale Repairs</option>
-                            <option value="Delivery Assist">📦 Delivery Assist</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-3 gap-2">
-                    <div class="col-span-2">
-                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Title</label>
-                        <input type="text" id="form-title" required placeholder="What are you listing?" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] focus:outline-none focus:border-[#A97C50]">
-                    </div>
-                    <div>
-                        <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Capacity / Cost</label>
-                        <input type="text" id="form-target" required placeholder="e.g. 50 AED" class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] focus:outline-none focus:border-[#A97C50]">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-[9px] font-bold text-[#857B6D] uppercase tracking-wider mb-1">Operational Summary Log Description</label>
-                    <textarea id="form-desc" rows="2" required placeholder="Provide descriptive context info..." class="w-full bg-white border border-[#DDD6C9] px-3 py-2 rounded-lg text-[#2C2A27] focus:outline-none focus:border-[#A97C50]"></textarea>
-                </div>
-
-                <button type="submit" class="w-full py-3 bg-[#2C2A27] hover:bg-[#433F3A] text-white font-bold uppercase tracking-widest text-[11px] rounded-xl transition-all cursor-pointer shadow-sm">
-                    Confirm and Upload details
-                </button>
-            </form>
+                    <button type="submit" class="w-full py-3 bg-[#2C2A27] text-white font-bold uppercase tracking-widest text-[10px] rounded-xl cursor-pointer shadow-xs mt-1">
+                        Confirm and Upload Node Details
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- 6. APPLICATIVE INTERACTION JS VECTOR       -->
-    <!-- ========================================== -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         let mainMap = null;
@@ -573,34 +472,29 @@
         function collapsePortalGateways() {
             const overlay = document.getElementById('welcome-portal-overlay');
             const dashboard = document.getElementById('core-matrix-dashboard');
-            const signature = document.getElementById('nav-brand-signature');
             const heroLogo = document.getElementById('portal-hero-logo');
             const heroExplainer = document.getElementById('portal-hero-explainer');
             const leftSidebar = document.getElementById('portal-left-sidebar');
             const rightSidebar = document.getElementById('portal-right-sidebar');
 
-            // Complex side panel glassy fading transition sequence
             heroExplainer.classList.add('opacity-0', 'scale-95', 'blur-md');
-            leftSidebar.classList.add('opacity-0', '-translate-x-16', 'blur-md');
-            rightSidebar.classList.add('opacity-0', 'translate-x-16', 'blur-md');
-            heroLogo.classList.add('scale-50', '-translate-y-[40vh]', 'opacity-0', 'blur-md');
+            leftSidebar.classList.add('opacity-0', 'blur-md');
+            rightSidebar.classList.add('opacity-0', 'blur-md');
+            heroLogo.classList.add('opacity-0', 'blur-md');
             overlay.classList.add('opacity-0', 'pointer-events-none');
 
             setTimeout(() => {
                 overlay.classList.add('hidden');
-                dashboard.classList.remove('opacity-0');
-                dashboard.classList.add('opacity-100');
+                dashboard.classList.remove('hidden');
                 
+                // Trigger maps setup sequence
                 initMainAppMap();
-
-                setTimeout(() => {
-                    signature.classList.remove('scale-70', 'opacity-0');
-                    signature.classList.add('scale-100', 'opacity-100');
-                }, 100);
-            }, 600);
+            }, 550);
         }
 
         function initMainAppMap() {
+            if (mainMap) return;
+
             mainMap = L.map('leaflet-map-canvas', {
                 center: [24.4686, 54.3646],
                 zoom: 12,
@@ -611,18 +505,21 @@
                 maxZoom: 19
             }).addTo(mainMap);
 
-            // Populate all map points coordinates for the pre-seeded marquee items
+            // Seed sample coordinates arrays
             seedMapNode(24.4735, 54.3742, "Professional Home Cleaning Assistance", "Al Danah, Abu Dhabi");
-            seedMapNode(24.4892, 54.3598, "Fresh Homemade Sourdough Loaves", "Liwa Center, Al Danah, Abu Dhabi");
-            seedMapNode(24.3601, 54.5050, "Custom Stitching & Traditional Tailoring", "Sector 12, Mussafah, Abu Dhabi");
-            seedMapNode(24.3644, 54.5126, "Custom Birthday Baking & Pastry Design", "Shabiya, Mussafah, Abu Dhabi");
-            seedMapNode(24.4686, 54.3646, "Community Park Clean-Up Coordination", "Central Capital Area, Abu Dhabi");
-            seedMapNode(24.3644, 54.5126, "Grade 10 Mathematics Exam Tutoring Support", "Shabiya 12, Mussafah, Abu Dhabi");
+            seedMapNode(24.4892, 54.3598, "Fresh Homemade Sourdough Loaves", "Liwa Center, Abu Dhabi");
+            seedMapNode(24.3601, 54.5050, "Custom Stitching & Traditional Tailoring", "Mussafah, Abu Dhabi");
+            seedMapNode(24.4686, 54.3646, "Community Park Clean-Up Coordination", "Capital Area, Abu Dhabi");
+
+            // Recalculate dynamic leaflet framing parameters securely
+            setTimeout(() => {
+                mainMap.invalidateSize();
+            }, 200);
         }
 
         function seedMapNode(lat, lng, title, textAddress) {
             let markerInstance = L.marker([lat, lng]).addTo(mainMap)
-                .bindPopup(`<div class='p-1 font-sans text-xs'><b class='uppercase text-[#2C2A27] block mb-1'>${title}</b><span class='text-[10px] text-[#766E61]'><i class='fa-solid fa-map-pin mr-1'></i>${textAddress}</span></div>`);
+                .bindPopup(`<div class='p-1 font-sans text-xs'><b class='uppercase text-[#2C2A27] block mb-0.5'>${title}</b><span class='text-[10px] text-[#766E61]'>${textAddress}</span></div>`);
             
             activeMarkers.push({ lat, lng, marker: markerInstance, address: textAddress });
         }
@@ -630,10 +527,13 @@
         function panToMapNode(lat, lng, title) {
             if (!mainMap) return;
 
-            mainMap.flyTo([lat, lng], 14, {
-                animate: true,
-                duration: 1.2
-            });
+            // Fluid auto-focus logic based on responsive height layouts
+            mainMap.flyTo([lat, lng], 14, { animate: true, duration: 1.0 });
+
+            // If on mobile screen, scroll smoothly to the map viewport component area automatically
+            if (window.innerWidth < 1024) {
+                document.getElementById('leaflet-map-canvas').scrollIntoView({ behavior: 'smooth' });
+            }
 
             setTimeout(() => {
                 activeMarkers.forEach(node => {
@@ -641,7 +541,7 @@
                         node.marker.openPopup();
                     }
                 });
-            }, 1300);
+            }, 1100);
         }
 
         function toggleRegisterModal() {
@@ -652,7 +552,7 @@
                 setTimeout(() => {
                     modalMap = L.map('modal-map-picker', {
                         center: [24.4686, 54.3646],
-                        zoom: 12,
+                        zoom: 11,
                         zoomControl: false
                     });
 
@@ -661,6 +561,7 @@
                     modalMap.on('click', function(e) {
                         assignFormCoordinates(e.latlng.lat, e.latlng.lng);
                     });
+                    modalMap.invalidateSize();
                 }, 200);
             } else if (!modal.classList.contains('hidden') && modalMap) {
                 setTimeout(() => {
@@ -685,7 +586,6 @@
             }
         }
 
-        // LIVE LIVE GLOBAL MAP GEOCODING INTEGRATION FOR REAL PLACES
         async function executeLiveGlobalGeocoding() {
             const inputField = document.getElementById('form-address-text');
             const searchBtn = document.getElementById('geocode-search-btn');
@@ -695,49 +595,42 @@
             if (!query) return;
 
             searchBtn.disabled = true;
-            searchBtn.innerHTML = "<i class='fa-solid fa-spinner animate-spin text-xs'></i>";
+            searchBtn.innerHTML = "<i class='fa-solid fa-spinner animate-spin'></i>";
             container.innerHTML = "";
 
             try {
-                const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ', Abu Dhabi')}&limit=4`);
+                const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ', Abu Dhabi')}&limit=3`);
                 const results = await response.json();
 
                 if (results && results.length > 0) {
                     container.classList.remove('hidden');
                     results.forEach(place => {
                         const row = document.createElement('div');
-                        row.className = "p-3 bg-white hover:bg-[#F6F2EB] cursor-pointer text-[11px] font-medium border-b border-[#EFEBE3] transition-colors text-[#2C2A27]";
-                        row.innerHTML = `📍 <span class='font-bold text-[#A97C50]'>${place.display_name.split(',')[0]}</span> <br> <span class='text-[10px] text-[#766E61]'>${place.display_name}</span>`;
+                        row.className = "p-2.5 bg-white hover:bg-[#F6F2EB] cursor-pointer text-[11px] border-b border-[#EFEBE3] text-[#2C2A27]";
+                        row.innerHTML = `📍 <b>${place.display_name.split(',')[0]}</b> <br><span class='text-[10px] text-[#766E61] truncate block'>${place.display_name}</span>`;
                         
                         row.onclick = function() {
                             const lat = parseFloat(place.lat);
                             const lon = parseFloat(place.lon);
-                            inputField.value = place.display_name;
+                            inputField.value = place.display_name.split(',')[0];
                             assignFormCoordinates(lat, lon);
-                            modalMap.flyTo([lat, lon], 15);
+                            modalMap.flyTo([lat, lon], 14);
                             container.classList.add('hidden');
                         };
                         container.appendChild(row);
                     });
                 } else {
                     container.classList.remove('hidden');
-                    container.innerHTML = "<div class='p-3 text-[11px] font-bold text-rose-600 text-center bg-white'>❌ No matches found. Try pin clicking directly on the map structure.</div>";
-                    setTimeout(() => container.classList.add('hidden'), 3500);
+                    container.innerHTML = "<div class='p-2 text-[10px] text-rose-600 font-bold text-center'>No matches found. Try tapping map path.</div>";
+                    setTimeout(() => container.classList.add('hidden'), 3000);
                 }
             } catch (err) {
-                console.error("Geocoding pipeline fault:", err);
+                console.error(err);
             } finally {
                 searchBtn.disabled = false;
                 searchBtn.innerText = "Find";
             }
         }
-
-        document.addEventListener('click', function(e) {
-            const container = document.getElementById('address-suggestions-box');
-            if (e.target.id !== 'form-address-text' && e.target.id !== 'geocode-search-btn') {
-                container.classList.add('hidden');
-            }
-        });
 
         function evaluateConditionalSubcategoryRouting() {
             const activeCategory = document.getElementById('form-category').value;
@@ -786,43 +679,42 @@
             const microAvatarLabel = isStudent ? "ST" : "RE";
 
             let labelBadgeText = mainCat;
-            let visualStyles = "bg-[#FFEFE2] text-[#A97C50] border border-[#F5DBC4]";
+            let visualStyles = "bg-[#FFEFE2] text-[#A97C50]";
 
             if(mainCat === 'Service') {
                 labelBadgeText = `🛠️ Service (${serviceSub})`;
-                visualStyles = "bg-[#E2F5E9] text-[#2E7D32] border border-[#C8E6C9]";
+                visualStyles = "bg-[#E2F5E9] text-[#2E7D32]";
             } else if (mainCat === 'Skill') {
-                visualStyles = "bg-[#EAE8F9] text-[#512DA8] border border-[#D1C4E9]";
+                visualStyles = "bg-[#EAE8F9] text-[#512DA8]";
                 labelBadgeText = "💡 Skill Hub";
             } else if (mainCat === 'Notice') {
-                visualStyles = "bg-rose-100 text-rose-700 border border-rose-200";
+                visualStyles = "bg-rose-100 text-rose-700";
                 labelBadgeText = "📢 Notice";
             }
 
             const streamGallery = document.getElementById('nodes-gallery-stream');
             const dynamicCard = document.createElement('div');
-            dynamicCard.className = "node-card bg-[#F6F2EB] border-2 border-[#A97C50] p-5 rounded-2xl shadow-md transition-all cursor-pointer group";
+            dynamicCard.className = "node-card bg-[#F6F2EB] border-2 border-[#A97C50] p-4 rounded-xl transition-all cursor-pointer group";
             dynamicCard.setAttribute('data-category', mainCat);
             dynamicCard.onclick = () => panToMapNode(lat, lng, title);
 
             dynamicCard.innerHTML = `
-                <div class="flex items-center justify-between text-[10px] font-black uppercase tracking-wider mb-2">
+                <div class="flex items-center justify-between text-[9px] font-black uppercase tracking-wider mb-1.5">
                     <span class="${visualStyles} px-2 py-0.5 rounded-md">${labelBadgeText}</span>
                     <span class="text-[#857B6D]"><i class="fa-solid fa-location-dot text-[#A97C50] mr-1"></i> Added Node</span>
                 </div>
-                <h3 class="text-base font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50]">${title}</h3>
-                <p class="text-xs text-[#5C5449] mt-1.5 leading-relaxed font-medium">${desc}</p>
-                <div class="mt-4 flex items-center justify-between border-t border-[#EAE3D5] pt-3">
+                <h3 class="text-sm font-black uppercase tracking-tight text-[#2C2A27] group-hover:text-[#A97C50]">${title}</h3>
+                <p class="text-xs text-[#5C5449] mt-1 leading-relaxed font-medium">${desc}</p>
+                <div class="mt-3 flex items-center justify-between border-t border-[#EAE3D5] pt-2.5">
                     <div class="flex items-center gap-2">
-                        <div class="w-6 h-6 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[9px] font-black uppercase text-[#5C5449]">${microAvatarLabel}</div>
+                        <div class="w-5 h-5 rounded-full bg-[#EAE3D5] flex items-center justify-center text-[8px] font-black text-[#5C5449]">${microAvatarLabel}</div>
                         <span class="text-[11px] font-bold text-[#2C2A27]">@${author} (${entityTypeTag})</span>
                     </div>
-                    <span class="bg-[#EAE3D5] text-[#2C2A27] px-3 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider">${target}</span>
+                    <span class="bg-[#EAE3D5] text-[#2C2A27] px-2 py-0.5 rounded-md text-[10px] font-bold">${target}</span>
                 </div>
             `;
 
             streamGallery.insertBefore(dynamicCard, streamGallery.firstChild);
-
             seedMapNode(lat, lng, title, textAddress);
             toggleRegisterModal();
             panToMapNode(lat, lng, title);
