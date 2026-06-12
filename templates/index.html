@@ -56,6 +56,27 @@
         .animation-delay-200 { animation-delay: 200ms; }
         .animation-delay-400 { animation-delay: 400ms; }
 
+        /* Core Breathing Pulse Glow Animation for Primary Entry CTA Button */
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 14px rgba(169, 124, 80, 0.4);
+            }
+            
+            50% {
+                transform: scale(1.04);
+                box-shadow: 0 6px 25px rgba(169, 124, 80, 0.75), 0 0 0 6px rgba(169, 124, 80, 0.15);
+            }
+            
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 14px rgba(169, 124, 80, 0.4);
+            }
+        }
+.animate-pulse-glow {
+    animation: pulseGlow 2.2s ease-in-out infinite;
+}
+
         /* Strict layer stacking logic to completely prevent Leaflet frame bleedthrough */
         #leaflet-map-canvas {
             z-index: 10 !important;
@@ -182,7 +203,7 @@
                         Discover nearby skills, coordinate mutual support initiatives, find locally crafted products, or share announcements. Sanad bridges hyper-local physical coordinates with instant neighborhood coordination.
                     </p>
                     <div class="pt-1">
-                        <button onclick="collapsePortalGateways()" class="w-full sm:w-auto px-8 py-3.5 bg-[#A97C50] hover:bg-[#8F653E] text-white font-black text-xs uppercase tracking-widest rounded-full transition-all duration-300 shadow-md cursor-pointer">
+                        <button onclick="collapsePortalGateways()" class="w-full sm:w-auto px-8 py-3.5 bg-[#A97C50] text-white font-black text-xs uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer animate-pulse-glow">
                             Enter Dashboard Map 📍
                         </button>
                     </div>
